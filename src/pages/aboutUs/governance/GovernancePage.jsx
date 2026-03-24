@@ -1,6 +1,6 @@
-import { Footer } from '../../widgets/footer/Footer'
-import { useScrollReveal } from '../../shared/lib/useScrollReveal'
-import { t } from '../../shared/config/locales'
+import { Footer } from '../../../widgets/footer/Footer'
+import { useScrollReveal } from '../../../shared/lib/useScrollReveal'
+import { t } from '../../../shared/config/locales'
 
 const tg = t.governance
 

@@ -15,8 +15,9 @@
       "enfoque": [
         { "title": "Filosofía de Inversión", "desc": "Las 5 convicciones fundamentales" },
         { "title": "Marco Metodológico",     "desc": "Arquitectura de Capital FinancialQ™" },
-        { "title": "Filosofía de Riesgo",    "desc": "Presupuesto explícito multidimensional" },
-        { "title": "Gobernanza Fiduciaria",  "desc": "Fee-only · Sin conflictos" }
+        { "title": "Proceso de Inversión",   "desc": "Marco de cuatro pasos estructurado" },
+        { "title": "Filosofía de Riesgo",    "desc": "Presupuesto explícito multidimensional" }
+        
       ],
       "clientes": [
         "Profesionales de Altos Ingresos",
@@ -126,7 +127,8 @@
     "subnav": {
       "firma": "La Firma",
       "equipo": "El Equipo",
-      "mision": "Misión y Visión"
+      "mision": "Misión y Visión",
+      "governance": "Gobernanza Fiduciaria"
     },
     "firma": {
       "kicker": "Sobre Nosotros — La Firma",
@@ -228,6 +230,85 @@
           "body": "Aceptar clientes que no podemos servir bien no es un servicio — es un perjuicio. Nuestros compromisos son selectivos por respeto y por principio."
         }
       ]
+    },
+    "team": {
+      "header": {
+        "eyebrow": "El Equipo",
+        "titleLines": [
+          "Una sola",
+          "responsabilidad",
+          "central."
+        ],
+        "lead": "FinancialQ Group reúne profesionales con experiencia en gestión de portafolios, mercados financieros y análisis estratégico de inversiones. Nuestro equipo se enfoca en una responsabilidad central: ayudar a los clientes a tomar decisiones financieras informadas y disciplinadas.",
+        "principles": [
+          {
+            "title": "Más que opiniones de mercado",
+            "body": "La gestión de inversiones requiere estructura, conciencia del riesgo y perspectiva de largo plazo - no predicciones de corto plazo.",
+            "icon": "plus"
+          },
+          {
+            "title": "Alineación de intereses",
+            "body": "Creemos que los clientes se benefician más de asesores que priorizan claridad, transparencia y alineación de intereses - no retornos prometidos.",
+            "icon": "clock"
+          }
+        ]
+      },
+      "members": [
+        {
+          "initials": "MQ",
+          "name": "Marcus Quinlan",
+          "role": "Fundador & CIO",
+          "bio": "24 años supervisando mandatos de capital privado. Especialista en asignación estratégica de activos y presupuestación explícita del riesgo."
+        },
+        {
+          "initials": "EL",
+          "name": "Elena Laurente",
+          "role": "Directora de Portafolios",
+          "bio": "Gestión cuantitativa de portafolios con enfoque en análisis macroeconómico y correlación de activos en distintos entornos de mercado."
+        },
+        {
+          "initials": "DK",
+          "name": "Daniel Krebs",
+          "role": "Director de Riesgos",
+          "bio": "Especialista en modelado de riesgo y optimización de portafolios. Supervisa la exposición de concentración, liquidez y sensibilidad a tasas."
+        },
+        {
+          "initials": "SA",
+          "name": "Sophia Andros",
+          "role": "Relaciones con Clientes",
+          "bio": "Coordinación de mandatos y supervisión de la relación cliente-portafolio. Garantiza que cada estrategia permanezca alineada con los objetivos declarados."
+        }
+      ],
+      "philosophy": {
+        "eyebrow": "Nuestra Filosofía",
+        "quoteLines": [
+          "Claridad.",
+          "Transparencia.",
+          "Alineación."
+        ],
+        "values": [
+          {
+            "label": "Principio I",
+            "title": "Análisis Cuantitativo",
+            "body": "Decisiones basadas en datos, modelos y marcos analíticos rigurosos - no en narrativas de mercado."
+          },
+          {
+            "label": "Principio II",
+            "title": "Conciencia Macro",
+            "body": "El entorno macroeconómico informa la asignación. Los regímenes cambian; los portafolios deben anticiparlos."
+          },
+          {
+            "label": "Principio III",
+            "title": "Gestión Prudente",
+            "body": "Preservación de capital primero. Los retornos son consecuencia de la gestión disciplinada del riesgo."
+          },
+          {
+            "label": "Principio IV",
+            "title": "Perspectiva de Largo Plazo",
+            "body": "Los mercados recompensan la paciencia y la disciplina. No gestionamos ciclos - gestionamos décadas."
+          }
+        ]
+      }
     }
   },
 
@@ -235,6 +316,7 @@
     "subnav": {
       "filosofia": "Filosofía de Inversión",
       "framework": "Marco Metodológico",
+      "proceso": "Proceso de Inversión",
       "riesgo": "Filosofía de Riesgo"
     },
     "filosofia": {
@@ -268,7 +350,39 @@
           "title": "La Permanencia como Criterio de Diseño",
           "body": "Construimos para la relevancia generacional. Cada decisión se evalúa por su contribución a riqueza duradera y compuesta — no por benchmarks trimestrales ni atribución de desempeño de corto plazo."
         }
-      ]
+      ],
+      "statement": {
+        "eyebrow": "Nuestro Enfoque",
+        "headlineLines": ["Tres principios.", "Un solo", "objetivo."],
+        "principles": [
+          { "num": "01", "word": "Disciplina",       "sub": "Portafolios construidos con proceso, no con predicciones." },
+          { "num": "02", "word": "Diversificación",  "sub": "Resiliencia a través de distintos entornos de mercado." },
+          { "num": "03", "word": "Largo Plazo",      "sub": "Paciencia a través de ciclos. Capital que capitaliza en el tiempo." }
+        ]
+      },
+      "convictions": [
+        { "num": "I",   "tag": "Primera Convicción",  "title": "Los mercados son inherentemente inciertos.",                   "body": "En lugar de predecir movimientos de corto plazo, nos enfocamos en construir portafolios que sean resilientes en distintos entornos de mercado. La incertidumbre no se predice — se gestiona." },
+        { "num": "II",  "tag": "Segunda Convicción",  "title": "La asignación estratégica de activos determina los resultados.", "body": "La decisión más importante no es qué acciones elegir — es cómo distribuir el capital entre clases de activos y cómo esa distribución evoluciona con el ciclo económico." },
+        { "num": "III", "tag": "Tercera Convicción",  "title": "El riesgo a la baja define el retorno a largo plazo.",          "body": "No perseguimos retornos — construimos portafolios capaces de capitalizar en el tiempo mientras gestionamos el riesgo a la baja. La preservación de capital es condición previa al crecimiento." },
+        { "num": "IV",  "tag": "Cuarta Convicción",   "title": "La paciencia es la ventaja competitiva más escasa.",            "body": "Los ciclos de mercado ponen a prueba la disciplina del inversor. Nuestra función es mantener la estrategia alineada con los objetivos de largo plazo, incluso cuando los mercados generan presión para actuar." }
+      ],
+      "drivers": {
+        "eyebrow": "Lo que impulsa los resultados",
+        "heading": "Inversión exitosa a través",
+        "heading.italic": "del tiempo.",
+        "body": "Cuatro fuerzas que — aplicadas con consistencia — determinan los resultados del portafolio a lo largo de décadas.",
+        "items": [
+          { "name": "Asignación Estratégica de Activos", "desc": "La distribución del capital entre clases de activos es la palanca de mayor impacto en los retornos a largo plazo.",                         "icon": "trend"  },
+          { "name": "Diversificación Inteligente",       "desc": "No toda diversificación reduce el riesgo. La diversificación efectiva requiere análisis de correlación, no solo cantidad de activos.",      "icon": "clock"  },
+          { "name": "Gestión Disciplinada del Riesgo",   "desc": "El riesgo se presupuesta explícitamente. Cada exposición presente en el portafolio fue aceptada conscientemente.",                         "icon": "arrows" },
+          { "name": "Paciencia a Través de Ciclos",      "desc": "Los mejores retornos se construyen con horizontes largos. La rotación frecuente destruye valor — la disciplina lo preserva.",              "icon": "plus"   }
+        ]
+      },
+      "close": {
+        "quote":        "El objetivo no es perseguir retornos. Es construir portafolios que",
+        "quote.italic": "capitalicen en el tiempo.",
+        "body": "Cada decisión de inversión se evalúa contra dos preguntas: ¿Está alineada con los objetivos de largo plazo del cliente? ¿El riesgo adicional que introduce está adecuadamente compensado y presupuestado? Si la respuesta a cualquiera de las dos es no, no procedemos."
+      }
     },
     "framework": {
       "eyebrow": "Marco Metodológico",
@@ -334,187 +448,400 @@
         }
       ]
     },
+    "proceso": {
+      "header": {
+        "eyebrow": "Proceso de Inversión",
+        "headlineLines": ["Un proceso.", "Cuatro", "pasos."],
+        "lead": "Nuestro proceso de inversión sigue un marco estructurado diseñado para alinear portafolios con los objetivos financieros de cada cliente. No improvisamos - aplicamos un sistema probado con disciplina consistente.",
+        "frameworkTag": "Marco de Inversión FinancialQ"
+      },
+      "steps": [
+        {
+          "num": "01",
+          "tag": "Paso 01",
+          "title": "Comprensión del Cliente",
+          "body": "Toda estrategia de inversión comienza con un entendimiento claro y documentado de los objetivos, horizonte temporal, necesidades de liquidez y tolerancia real al riesgo del cliente.",
+          "detailLabel": "En este paso definimos",
+          "detailItems": [
+            "Objetivos financieros de largo plazo",
+            "Horizonte temporal del mandato",
+            "Necesidades de liquidez y restricciones",
+            "Tolerancia real al riesgo y drawdown"
+          ]
+        },
+        {
+          "num": "02",
+          "tag": "Paso 02",
+          "title": "Diseño Estratégico del Portafolio",
+          "body": "Construimos portafolios diversificados usando un enfoque disciplinado de asignación de activos en renta variable, renta fija y otras clases de activos cuando aplica al perfil del cliente.",
+          "detailLabel": "En este paso definimos",
+          "detailItems": [
+            "Asignación estratégica de activos",
+            "Selección de instrumentos y vehículos",
+            "Rangos de tolerancia por clase de activo",
+            "Presupuesto explícito de riesgo"
+          ]
+        },
+        {
+          "num": "03",
+          "tag": "Paso 03",
+          "title": "Monitoreo del Riesgo",
+          "body": "Las exposiciones de riesgo del portafolio - concentración, liquidez, sensibilidad a tasas y correlación de mercado - se evalúan regularmente como parte del proceso de supervisión.",
+          "detailLabel": "Variables monitoreadas",
+          "detailItems": [
+            "Riesgo de concentración por sector",
+            "Liquidez del portafolio",
+            "Sensibilidad a tasas de interés",
+            "Correlación y volatilidad realizada"
+          ]
+        },
+        {
+          "num": "04",
+          "tag": "Paso 04",
+          "title": "Supervisión Continua",
+          "body": "Los mercados cambian. Los portafolios se revisan periódicamente para asegurar que permanezcan alineados con los objetivos del cliente y las condiciones cambiantes del mercado.",
+          "detailLabel": "En cada revisión evaluamos",
+          "detailItems": [
+            "Desviación de la asignación objetivo",
+            "Cambios en objetivos del cliente",
+            "Régimen macroeconómico actual",
+            "Necesidad de rebalanceo o ajuste"
+          ]
+        }
+      ],
+      "monitoring": {
+        "eyebrow": "Supervisión Permanente",
+        "heading": "El portafolio",
+        "heading.mid": "como proceso,",
+        "heading.italic": "no como evento.",
+        "body": "La supervisión continua no es un servicio adicional - es parte integral del mandato. Cada portafolio FinancialQ es revisado regularmente contra sus objetivos declarados.",
+        "items": [
+          {
+            "icon": "∑",
+            "title": "Análisis Cuantitativo",
+            "body": "Modelado estadístico de riesgo y retorno esperado bajo distintos escenarios."
+          },
+          {
+            "icon": "↻",
+            "title": "Revisiones Periódicas",
+            "body": "Reuniones programadas para revisar el portafolio contra objetivos y condiciones de mercado."
+          },
+          {
+            "icon": "⊘",
+            "title": "Sin Conflictos",
+            "body": "Honorarios fee-only. Sin comisiones por transacción que incentiven rotación innecesaria."
+          },
+          {
+            "icon": "≡",
+            "title": "Reportes Claros",
+            "body": "Informes de portafolio con exposiciones, rendimiento atribuido y métricas de riesgo explicadas."
+          }
+        ]
+      },
+      "cta": {
+        "heading": "Listo para ver el proceso",
+        "heading.mid": "aplicado a su",
+        "heading.italic": "situación específica",
+        "button": "Iniciar Diálogo"
+      }
+    },
     "riesgo": {
-      "kicker": "Nuestro Enfoque — Filosofía de Riesgo",
-      "heading": "El Riesgo es",
-      "heading.italic": "Multidimensional.",
-      "body1": "La mayoría de los asesores gestionan el riesgo como si solo existiera en una dimensión: la volatilidad. Nosotros identificamos y gestionamos seis dimensiones simultáneamente.",
-      "body2": "Cada dimensión recibe un presupuesto explícito dentro del mandato del cliente. No hay riesgo \"accidental\" en un portafolio FinancialQ — todo riesgo presente fue aceptado conscientemente.",
+      "hero": {
+        "watermark": "RIESGO",
+        "eyebrow": "Filosofía de Riesgo",
+        "headline": ["El riesgo", "primero.", "Siempre."],
+        "bodies": [
+          "La gestión del riesgo es central en la construcción de portafolios. Antes de enfocarse en retornos potenciales, los inversores deben comprender los riesgos embebidos en sus portafolios.",
+          "En FinancialQ, vemos el riesgo a través de múltiples dimensiones — y gestionamos su interacción con la misma disciplina con la que gestionamos los retornos."
+        ],
+        "axiom": "El objetivo no es eliminar la volatilidad — lo cual es imposible. Es asegurar que el riesgo sea intencional, medido y alineado con resultados de largo plazo."
+      },
+      "dimensionsIntro": {
+        "eyebrow": "Cinco Dimensiones del Riesgo",
+        "headingBefore": "Riesgo visto en",
+        "headingEm": "profundidad.",
+        "desc": "La gestión efectiva de portafolios requiere entender cómo estos cinco tipos de riesgo interactúan entre sí — y asegurarse de que permanezcan alineados con los objetivos financieros del cliente en todo momento."
+      },
       "dimensions": [
-        { "num": "01", "title": "Riesgo de Mercado",    "body": "Volatilidad y drawdown del portafolio. La dimensión más medida — y la menos suficiente por sí sola para una gestión completa." },
-        { "num": "02", "title": "Riesgo de Secuencia",  "body": "El momento en que ocurren las pérdidas importa tanto como su magnitud. Crítico especialmente en fases de distribución y retiro." },
-        { "num": "03", "title": "Riesgo de Liquidez",   "body": "La capacidad de convertir activos en efectivo en el momento necesario, al precio correcto y dentro del horizonte requerido." },
-        { "num": "04", "title": "Riesgo Conductual",    "body": "Las decisiones tomadas bajo estrés emocional son la fuente más frecuente de destrucción de valor a largo plazo en portafolios bien construidos." },
-        { "num": "05", "title": "Arrastre Fiscal",       "body": "El costo fiscal acumulado de una estrategia ineficiente puede superar la diferencia de retorno entre opciones de inversión en el largo plazo." },
-        { "num": "06", "title": "Riesgo de Objetivo",   "body": "La probabilidad de no alcanzar el objetivo financiero definido en el mandato dentro del horizonte temporal establecido por el cliente." }
-      ]
+        {
+          "roman": "I",
+          "tag": "Dimensión 01",
+          "title": "Riesgo de Mercado",
+          "body": "Movimientos amplios en los precios de los activos causados por factores macroeconómicos, cambios de sentimiento o eventos sistémicos. La dimensión más visible y frecuentemente malentendida.",
+          "example": "Gestión: Diversificación entre activos con baja correlación."
+        },
+        {
+          "roman": "II",
+          "tag": "Dimensión 02",
+          "title": "Riesgo de Concentración",
+          "body": "Exposición excesiva a un solo activo, sector o región. Un portafolio concentrado puede generar retornos superiores — hasta que no lo hace. El daño suele ser asimétrico e irreversible.",
+          "example": "Gestión: Límites de exposición por activo y sector."
+        },
+        {
+          "roman": "III",
+          "tag": "Dimensión 03",
+          "title": "Riesgo de Liquidez",
+          "body": "La capacidad de acceder al capital cuando se necesita. Un activo ilíquido en el momento equivocado puede forzar ventas a precios desfavorables, destruyendo valor a largo plazo.",
+          "example": "Gestión: Escalonamiento de liquidez según horizonte del cliente."
+        },
+        {
+          "roman": "IV",
+          "tag": "Dimensión 04",
+          "title": "Sensibilidad a Tasas",
+          "body": "Cómo reaccionan los instrumentos de renta fija y otros activos ante cambios en las tasas de interés. Un riesgo que permanece invisible en períodos de tasas estables — hasta que las tasas cambian.",
+          "example": "Gestión: Duración estratégica y análisis de sensibilidad."
+        },
+        {
+          "roman": "V",
+          "tag": "Dimensión 05",
+          "title": "Riesgo de Secuencia",
+          "body": "El impacto del momento del mercado para inversores que están retirando capital. Una caída temprana en la fase de retiro puede destruir permanentemente la capacidad de recuperación del portafolio.",
+          "example": "Gestión: Segmentación de portafolio por horizonte temporal."
+        }
+      ],
+      "interaction": {
+        "left": {
+          "label": "Nuestra Posición",
+          "quoteLines": ["El riesgo no se elimina.", "Se presupuesta."],
+          "body": "En FinancialQ, cada riesgo presente en un portafolio fue aceptado conscientemente. No hay riesgo \"accidental\". Nuestro enfoque prioriza preservación de capital, diversificación real y presupuestación inteligente del riesgo — en ese orden."
+        },
+        "right": {
+          "label": "Tres Prioridades",
+          "principles": [
+            {
+              "num": "I",
+              "title": "Preservación de Capital",
+              "body": "Condición previa al crecimiento. Lo que no se pierde, no necesita recuperarse."
+            },
+            {
+              "num": "II",
+              "title": "Diversificación Real",
+              "body": "No en cantidad de activos, sino en independencia de sus fuentes de riesgo."
+            },
+            {
+              "num": "III",
+              "title": "Presupuesto de Riesgo",
+              "body": "Cada exposición tiene un presupuesto explícito. Nada queda sin medir ni sin justificación."
+            }
+          ]
+        }
+      },
+      "closing": {
+        "quote": ["Riesgo intencional.", "Riesgo medido.", "Riesgo alineado."],
+        "body": "La diferencia entre un portafolio bien gestionado y uno mal gestionado no siempre es visible en los retornos — se revela en los momentos de estrés del mercado. Nuestra filosofía de riesgo está diseñada para que esos momentos sean manejables, no devastadores."
+      }
     }
   },
 
   "clientes": {
-    "kicker": "A Quiénes Servimos",
-    "heading": "Diseñado para Circunstancias",
-    "heading.italic": "Excepcionales.",
-    "body1": "Trabajamos con un número limitado de clientes cuya complejidad financiera exige disciplina institucional — no soluciones minoristas. Cada relación comienza con una evaluación exhaustiva del mandato.",
-    "body2": "Nuestros compromisos son selectivos por diseño. No aceptamos clientes que no podamos servir bien — es una responsabilidad, no una restricción comercial.",
+    "intro": {
+      "eyebrow": "A Quiénes Servimos",
+      "headline": ["Clientes que", "piensan en", "décadas."],
+      "lead": "FinancialQ trabaja con inversores que valoran la gestión disciplinada de portafolios y los procesos de inversión estructurados. No tenemos un cliente promedio — tenemos clientes que comparten una filosofía de inversión.",
+      "commonStrong": "Lo que todos comparten:",
+      "commonRest": " una orientación de largo plazo, apreciación por la transparencia y preferencia por procesos estructurados sobre narrativas de mercado."
+    },
     "profiles": [
       {
-        "title": "Profesionales de Altos Ingresos",
-        "body": "Ejecutivos senior, socios y especialistas con compensación compleja que exige planificación estructurada a múltiples décadas.",
-        "items": [
-          "Compensación en acciones, RSUs y stock options",
-          "Posiciones concentradas en una sola acción",
-          "Planificación de vesting y ejercicio de opciones",
-          "Estrategias de acumulación multigeneracional",
-          "Coordinación con beneficios y deferred comp corporativos"
+        "roman": "I",
+        "tag": "Perfil 01",
+        "title": "Profesionales e Individuos de Alto Patrimonio",
+        "body": "Ejecutivos, médicos, abogados y profesionales con patrimonio acumulado que buscan una gestión estructurada y transparente, lejos de la banca privada tradicional orientada a comisiones.",
+        "traits": [
+          "Horizonte temporal de 10 años o más",
+          "Prefieren un asesor fiduciario fee-only",
+          "Valoran claridad sobre rentabilidades prometidas",
+          "Buscan un proceso, no una recomendación puntual"
         ]
       },
       {
-        "title": "Empresarios Transfronterizos",
-        "body": "Propietarios de empresas en múltiples jurisdicciones que requieren supervisión integrada de capital y planificación de repatriación.",
-        "items": [
-          "Planificación de repatriación de utilidades",
-          "Estructuración de holdings internacionales",
-          "Optimización bajo tratados de doble tributación",
-          "Supervisión de flujos entre países",
-          "Planificación de sucesión transfronteriza"
+        "roman": "II",
+        "tag": "Perfil 02",
+        "title": "Familias con Objetivos Multigeneracionales",
+        "body": "Familias que buscan preservar y hacer crecer el patrimonio a través de generaciones, con necesidades de planificación de liquidez, distribuciones periódicas y objetivos específicos por horizonte.",
+        "traits": [
+          "Gestión del portafolio familiar centralizada",
+          "Planificación de distribuciones y retiros",
+          "Consideraciones de transferencia patrimonial",
+          "Múltiples perfiles de riesgo dentro de la familia"
         ]
       },
       {
-        "title": "Inversores Internacionales",
-        "body": "Familias y principales globalmente móviles con capital en EE.UU. e internacional que buscan asignación disciplinada con rigor fiduciario.",
-        "items": [
-          "Asignación de capital en múltiples mercados",
-          "Coordinación de custodia internacional",
-          "Planificación PFIC, FBAR y FATCA",
-          "Gestión de divisas y cobertura cambiaria",
-          "Asesoría disponible en ES, EN, FR, PT"
+        "roman": "III",
+        "tag": "Perfil 03",
+        "title": "Empresarios e Inversionistas Experimentados",
+        "body": "Empresarios que han acumulado capital a través de sus negocios y buscan diversificar hacia mercados financieros con la misma disciplina con la que gestionan sus empresas.",
+        "traits": [
+          "Capital diversificado fuera del negocio principal",
+          "Comprensión del riesgo empresarial como base",
+          "Aprecian el enfoque estructurado y analítico",
+          "Buscan alineación, no asesoramiento de ventas"
         ]
       },
       {
-        "title": "Fundadores con Evento de Liquidez",
-        "body": "Fundadores post-exit que convierten riqueza concentrada e ilíquida en capital duradero y multigeneracional con plena claridad.",
-        "items": [
-          "Estrategia de disposición patrimonial post-exit",
-          "Diferimiento fiscal de ganancias de capital",
-          "Diversificación de posición concentrada",
-          "Estructuras para familia y próxima generación",
-          "Planificación filantrópica: DAF y fundaciones"
+        "roman": "IV",
+        "tag": "Perfil 04",
+        "title": "Family Offices e Inversores Institucionales",
+        "body": "Inversores acreditados, family offices y clientes de orientación institucional que buscan un marco de inversión disciplinado aplicado con el cuidado de una firma boutique.",
+        "traits": [
+          "Marco institucional con relación directa",
+          "Análisis de portafolio personalizado y detallado",
+          "Reportes y métricas de nivel institucional",
+          "Coordinación con otros asesores y custodios"
         ]
       }
     ],
-    "onboarding": {
-      "eyebrow": "El Proceso de Incorporación",
-      "heading": "Cómo Comenzamos a",
-      "heading.italic": "Trabajar Juntos.",
-      "steps": [
+    "commonGround": {
+      "eyebrow": "Lo que nos une",
+      "heading": ["Independiente", "del perfil,", "el enfoque es uno."],
+      "sub": "Nuestro foco permanece igual sin importar el tipo de cliente: construir portafolios alineados con objetivos financieros de largo plazo y riesgo cuidadosamente gestionado.",
+      "shared": [
         {
-          "num": "Paso 01",
-          "title": "Diálogo Introductorio",
-          "body": "Conversación confidencial sin compromiso para comprender sus circunstancias y si nuestro enfoque es el adecuado. Sin presentaciones, sin discurso de ventas."
+          "num": "01",
+          "title": "Orientación de Largo Plazo",
+          "body": "Todos nuestros clientes piensan en años y décadas — no en trimestres. Eso define la calidad de las decisiones que podemos tomar juntos."
         },
         {
-          "num": "Paso 02",
-          "title": "Evaluación del Mandato",
-          "body": "Diagnóstico estructurado de su posición de capital, objetivos, parámetros de riesgo y consideraciones estructurales. Resultado: articulación clara de si podemos servir su mandato."
+          "num": "02",
+          "title": "Apreciación por la Estructura",
+          "body": "Prefieren un proceso replicable y explicable sobre predicciones de mercado o recomendaciones puntuales sin fundamento analítico."
         },
         {
-          "num": "Paso 03",
-          "title": "Propuesta de Arquitectura",
-          "body": "Propuesta a medida con arquitectura de capital, estructura de honorarios y marco de gobernanza — antes de que se requiera ninguna decisión de ninguna de las partes."
+          "num": "03",
+          "title": "Demanda de Transparencia",
+          "body": "Quieren entender qué hay en su portafolio, por qué está ahí y qué riesgo representa. No aceptan \"confíe en nosotros\" como respuesta."
+        },
+        {
+          "num": "04",
+          "title": "Enfoque en el Riesgo Primero",
+          "body": "Comprenden que preservar el capital es condición previa al crecimiento. La primera conversación siempre es sobre riesgo, no sobre retorno."
         }
       ]
     },
+    "welcome": {
+      "eyebrow": "También Recibimos",
+      "heading": ["La conversación", "está abierta para", "quienes califican."],
+      "body": "No limitamos nuestras conversaciones a un solo tipo de cliente. Si comparte nuestra filosofía de inversión y valora un enfoque disciplinado, nos interesa escucharle.",
+      "types": [
+        { "name": "Inversores Acreditados", "tag": "Bienvenidos" },
+        { "name": "Family Offices", "tag": "Bienvenidos" },
+        { "name": "Clientes Institucionales", "tag": "Bienvenidos" },
+        { "name": "Inversores Transfronterizos", "tag": "Bienvenidos" },
+        { "name": "Inversores con Eventos de Liquidez", "tag": "Bienvenidos" }
+      ]
+    },
     "cta": {
-      "heading": "¿Listo para iniciar una",
-      "heading.italic": "conversación significativa?",
-      "btn": "Agendar Consulta",
-      "note": "Mínimo $2M en activos invertibles."
+      "headingBefore": "¿Comparte nuestra filosofía?",
+      "headingEm": "Hablemos sin compromiso.",
+      "btn": "Iniciar Diálogo"
     }
   },
 
   "perspectivas": {
-    "kicker": "Investigación y Perspectivas",
-    "heading": "Pensamiento de",
-    "heading.italic": "Capital.",
     "tabs": {
       "all": "Todos",
       "ensayo": "Ensayos",
       "tecnica": "Notas Técnicas",
       "carta": "Cartas a Clientes"
     },
-    "insights": [
+    "intro": {
+      "eyebrow": "Perspectivas",
+      "headline": ["Análisis que", "informa.", "No ruido."],
+      "lead": "FinancialQ publica perspectivas periódicas enfocadas en construcción de portafolios, dinámica de mercados y temas de inversión de largo plazo. En lugar de enfocarnos en el ruido de corto plazo, nuestro análisis enfatiza tendencias estructurales, conciencia del riesgo y pensamiento de inversión disciplinado.",
+      "focusItems": [
+        "Construcción de portafolios y asignación de activos",
+        "Dinámica de mercados y análisis macroeconómico",
+        "Tendencias estructurales de largo plazo",
+        "Riesgo de portafolio y sus implicaciones prácticas"
+      ]
+    },
+    "featured": {
+      "badge": "Ensayo Destacado",
+      "articleType": "Ensayo",
+      "title": "Identificación de Régimen Macroeconómico como Insumo de Portafolio",
+      "excerpt": "Los regímenes macroeconómicos gobiernan las distribuciones de retorno de los activos de maneras que la asignación estática no captura. Exploramos cómo incorporar el análisis de régimen en el proceso de construcción de portafolios sin caer en la trampa del market timing.",
+      "date": "Nov 2024",
+      "readTime": "14 min de lectura",
+      "readCta": "Leer Ensayo"
+    },
+    "gridRow1": [
       {
-        "cat": "ensayo",
-        "featured": true,
-        "tag": "Ensayo Destacado",
-        "title": "Identificación de Régimen como Insumo de Portafolio: Más Allá de la Correlación Móvil",
-        "body": "Los regímenes macroeconómicos — no los períodos calendario — gobiernan las distribuciones de retorno de los activos. Examinamos cómo identificar transiciones de régimen mejora la resiliencia del portafolio sin sacrificar la disciplina de asignación estructural.",
-        "meta": "Noviembre 2024 · 14 min de lectura"
+        "cat": "tecnica",
+        "tag": "Nota Técnica",
+        "title": "Presupuestación de Riesgo: Del Concepto a la Implementación",
+        "body": "Cómo traducir la tolerancia al riesgo del cliente en límites operacionales concretos para cada clase de activo y dimensión de riesgo en el portafolio.",
+        "date": "Oct 2024",
+        "read": "9 min"
       },
       {
         "cat": "ensayo",
         "tag": "Ensayo",
-        "title": "Permanencia como Criterio de Diseño: Una Defensa del Horizonte Generacional",
-        "body": "Por qué optimizar para la riqueza multigeneracional requiere rechazar activamente los benchmarks trimestrales y los incentivos de corto plazo.",
-        "meta": "Agosto 2024 · 11 min"
-      },
-      {
-        "cat": "ensayo",
-        "tag": "Ensayo",
-        "title": "El Problema del Mandato Implícito: Por Qué la Ambigüedad Destruye Valor",
-        "body": "Cuando el propósito del capital no está articulado explícitamente, las decisiones se toman contra un mandato imaginario que nadie acordó.",
-        "meta": "Junio 2024 · 8 min"
-      },
-      {
-        "cat": "tecnica",
-        "tag": "Nota Técnica",
-        "title": "La Aritmética del Arrastre Fiscal sobre la Capitalización a Largo Plazo",
-        "body": "Cómo los supuestos de retorno pre-impuestos sobreestiman sistemáticamente los resultados patrimoniales — y un marco para incorporar la capitalización post-impuestos desde el inicio del mandato.",
-        "meta": "Octubre 2024 · 9 min"
-      },
-      {
-        "cat": "tecnica",
-        "tag": "Nota Técnica",
-        "title": "Construcción de Presupuesto de Riesgo: Metodología y Límites",
-        "body": "Un recorrido técnico por la construcción del presupuesto de riesgo explícito: qué mide, qué no mide, y cómo se integra con los objetivos del mandato.",
-        "meta": "Julio 2024 · 12 min"
-      },
-      {
-        "cat": "tecnica",
-        "tag": "Nota Técnica",
-        "title": "Correlaciones en Régimen de Estrés: Por Qué Fallan los Modelos de Diversificación",
-        "body": "Las correlaciones entre clases de activos tienden a converger hacia 1.0 exactamente cuando más se necesita la diversificación. Implicaciones para la construcción de portafolios.",
-        "meta": "Abril 2024 · 10 min"
+        "title": "Paciencia como Ventaja: El Caso contra la Rotación Frecuente",
+        "body": "Los datos muestran consistentemente que la rotación activa destruye retorno después de costos. Analizamos por qué la paciencia es la ventaja competitiva más escasa en la gestión de portafolios.",
+        "date": "Sep 2024",
+        "read": "11 min"
       },
       {
         "cat": "carta",
         "tag": "Carta a Clientes",
-        "title": "Capital Concentrado: Disciplina, Diversificación y el Costo de la Inacción",
-        "body": "Para los fundadores con eventos de liquidez, el mayor riesgo rara vez es el riesgo de mercado — es el riesgo de posición disfrazado de convicción.",
-        "meta": "Septiembre 2024 · 7 min"
-      },
-      {
-        "cat": "carta",
-        "tag": "Carta a Clientes",
-        "title": "Tercer Trimestre 2024: Régimen en Transición y Posicionamiento de Portafolios",
-        "body": "Nuestra perspectiva sobre la transición de régimen macroeconómico en curso y cómo afecta el posicionamiento estructural de los mandatos de clientes.",
-        "meta": "Octubre 2024 · 6 min"
-      },
-      {
-        "cat": "carta",
-        "tag": "Carta a Clientes",
-        "title": "Planificación Transfronteriza en 2024: Cambios Regulatorios que Importan",
-        "body": "Resumen de los cambios más relevantes en regulación fiscal internacional para inversores con estructuras transfronterizas activas en EE.UU.",
-        "meta": "Enero 2024 · 8 min"
+        "title": "Tercer Trimestre 2024: Régimen de Transición y Posicionamiento",
+        "body": "Revisamos el entorno macroeconómico del trimestre, las implicaciones para la asignación de activos y los ajustes realizados en los portafolios administrados.",
+        "date": "Oct 2024",
+        "read": "7 min"
       }
     ],
+    "gridRow2": [
+      {
+        "cat": "tecnica",
+        "tag": "Nota Técnica",
+        "title": "Riesgo de Secuencia: El Peligro Oculto en la Fase de Retiro",
+        "body": "Por qué el orden en que ocurren los retornos importa tanto como los retornos promedio para inversores que están extrayendo capital de su portafolio.",
+        "date": "Ago 2024",
+        "read": "8 min"
+      },
+      {
+        "cat": "ensayo",
+        "tag": "Ensayo",
+        "title": "Correlación en Crisis: Por qué la Diversificación Falla Cuando más se Necesita",
+        "body": "En momentos de estrés sistémico, las correlaciones convergen hacia 1. Analizamos cómo construir portafolios que mantengan sus propiedades de diversificación bajo presión.",
+        "date": "Jul 2024",
+        "read": "12 min"
+      },
+      {
+        "cat": "carta",
+        "tag": "Carta a Clientes",
+        "title": "Segundo Trimestre 2024: Tasas, Inflación y el Portafolio 60/40",
+        "body": "El impacto del entorno de tasas elevadas en la correlación renta variable/renta fija y las implicaciones para el portafolio balanceado tradicional.",
+        "date": "Jul 2024",
+        "read": "6 min"
+      }
+    ],
+    "about": {
+      "eyebrow": "Sobre Nuestra Investigación",
+      "headline": {
+        "line1": "Estructural.",
+        "line2Prefix": "No ",
+        "line2Em": "especulativo."
+      },
+      "body": "Nuestra investigación está diseñada para ayudar a los inversores a entender mejor las fuerzas que dan forma a los mercados financieros y cómo esas fuerzas pueden impactar el riesgo del portafolio y los resultados de largo plazo — no para predecir el próximo movimiento del mercado.",
+      "themes": [
+        "Construcción de portafolios y asignación estratégica de activos",
+        "Dinámica de mercados y ciclos económicos",
+        "Gestión del riesgo y preservación de capital",
+        "Temas estructurales de inversión de largo plazo",
+        "Comportamiento del inversor y disciplina en ciclos de mercado"
+      ]
+    },
     "newsletter": {
-      "heading": "¿Desea recibir nuestras",
-      "heading.italic": "perspectivas directamente?",
-      "placeholder": "su@correo.com",
+      "eyebrow": "Perspectivas Periódicas",
+      "headline": ["Análisis directo", "a su bandeja de", "entrada."],
+      "body": "Publicamos ensayos, notas técnicas y cartas trimestrales a clientes. Sin frecuencia forzada, sin ruido de corto plazo. Solo análisis cuando hay algo relevante que comunicar.",
+      "emailLabel": "Correo Electrónico",
+      "nameLabel": "Nombre",
+      "emailPlaceholder": "su@correo.com",
+      "namePlaceholder": "Su nombre",
       "btn": "Suscribirse",
-      "note": "Solo perspectivas relevantes. Sin spam. Baja cuando quiera."
+      "disclaimer": "Solo análisis de inversión. Sin promociones ni contenido comercial. Puede cancelar en cualquier momento."
     }
   },
 

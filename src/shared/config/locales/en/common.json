@@ -15,8 +15,8 @@
       "enfoque": [
         { "title": "Investment Philosophy",    "desc": "The 5 fundamental convictions" },
         { "title": "Methodological Framework", "desc": "FinancialQ™ Capital Architecture" },
-        { "title": "Risk Philosophy",          "desc": "Explicit multidimensional budget" },
-        { "title": "Fiduciary Governance",     "desc": "Fee-only · Conflict-free" }
+        { "title": "Investment Process",       "desc": "Four-step structured framework" },
+        { "title": "Risk Philosophy",          "desc": "Explicit multidimensional budget" }
       ],
       "clientes": [
         "High-Income Professionals",
@@ -126,7 +126,8 @@
     "subnav": {
       "firma": "The Firm",
       "equipo": "The Team",
-      "mision": "Mission and Vision"
+      "mision": "Mission and Vision",
+      "governance": "Fiduciary Governance"
     },
     "firma": {
       "kicker": "About Us — The Firm",
@@ -228,6 +229,85 @@
           "body": "Accepting clients we cannot serve well is not a service — it is a disservice. Our commitments are selective out of respect and principle."
         }
       ]
+    },
+    "team": {
+      "header": {
+        "eyebrow": "The Team",
+        "titleLines": [
+          "One core",
+          "responsibility",
+          "at the center."
+        ],
+        "lead": "FinancialQ Group brings together professionals with experience in portfolio management, financial markets and strategic investment analysis. Our team focuses on one core responsibility: helping clients make informed and disciplined financial decisions.",
+        "principles": [
+          {
+            "title": "More than market opinions",
+            "body": "Investment management requires structure, risk awareness and a long-term perspective - not short-term predictions.",
+            "icon": "plus"
+          },
+          {
+            "title": "Alignment of interests",
+            "body": "We believe clients benefit most from advisors who prioritize clarity, transparency and aligned incentives - not promised returns.",
+            "icon": "clock"
+          }
+        ]
+      },
+      "members": [
+        {
+          "initials": "MQ",
+          "name": "Marcus Quinlan",
+          "role": "Founder & CIO",
+          "bio": "24 years overseeing private capital mandates. Specialist in strategic asset allocation and explicit risk budgeting."
+        },
+        {
+          "initials": "EL",
+          "name": "Elena Laurente",
+          "role": "Portfolio Director",
+          "bio": "Quantitative portfolio management focused on macroeconomic analysis and cross-asset correlation across market environments."
+        },
+        {
+          "initials": "DK",
+          "name": "Daniel Krebs",
+          "role": "Risk Director",
+          "bio": "Specialist in risk modeling and portfolio optimization. Oversees concentration, liquidity and rate sensitivity exposures."
+        },
+        {
+          "initials": "SA",
+          "name": "Sophia Andros",
+          "role": "Client Relations",
+          "bio": "Coordinates mandates and supervises the client-portfolio relationship. Ensures each strategy remains aligned with stated goals."
+        }
+      ],
+      "philosophy": {
+        "eyebrow": "Our Philosophy",
+        "quoteLines": [
+          "Clarity.",
+          "Transparency.",
+          "Alignment."
+        ],
+        "values": [
+          {
+            "label": "Principle I",
+            "title": "Quantitative Analysis",
+            "body": "Decisions based on data, models and rigorous analytical frameworks - not market narratives."
+          },
+          {
+            "label": "Principle II",
+            "title": "Macro Awareness",
+            "body": "The macroeconomic environment informs allocation. Regimes change; portfolios should anticipate them."
+          },
+          {
+            "label": "Principle III",
+            "title": "Prudent Management",
+            "body": "Capital preservation comes first. Returns are the consequence of disciplined risk management."
+          },
+          {
+            "label": "Principle IV",
+            "title": "Long-Term Perspective",
+            "body": "Markets reward patience and discipline. We do not manage cycles - we manage decades."
+          }
+        ]
+      }
     }
   },
 
@@ -235,6 +315,7 @@
     "subnav": {
       "filosofia": "Investment Philosophy",
       "framework": "Methodological Framework",
+      "proceso": "Investment Process",
       "riesgo": "Risk Philosophy"
     },
     "filosofia": {
@@ -268,7 +349,39 @@
           "title": "Permanence as a Design Criterion",
           "body": "We build for generational relevance. Every decision is evaluated for its contribution to lasting, compounding wealth — not quarterly benchmarks or short-term performance attribution."
         }
-      ]
+      ],
+      "statement": {
+        "eyebrow": "Our Approach",
+        "headlineLines": ["Three principles.", "One single", "objective."],
+        "principles": [
+          { "num": "01", "word": "Discipline",     "sub": "Portfolios built with process, not predictions." },
+          { "num": "02", "word": "Diversification","sub": "Resilience across different market environments." },
+          { "num": "03", "word": "Long Term",      "sub": "Patience through cycles. Capital that compounds over time." }
+        ]
+      },
+      "convictions": [
+        { "num": "I",   "tag": "First Conviction",  "title": "Markets are inherently uncertain.",                "body": "Rather than predicting short-term movements, we focus on building portfolios resilient to different market environments. Uncertainty is not predicted — it is managed." },
+        { "num": "II",  "tag": "Second Conviction", "title": "Strategic asset allocation determines outcomes.", "body": "The most important decision is not which stocks to select — it is how to distribute capital across asset classes and how that distribution evolves with the economic cycle." },
+        { "num": "III", "tag": "Third Conviction",  "title": "Downside risk defines long-term return.",         "body": "We do not chase returns — we build portfolios capable of compounding over time while managing downside risk. Capital preservation is the prerequisite for growth." },
+        { "num": "IV",  "tag": "Fourth Conviction", "title": "Patience is the scarcest competitive advantage.", "body": "Market cycles test investor discipline. Our function is to keep strategy aligned with long-term objectives, even when markets generate pressure to act." }
+      ],
+      "drivers": {
+        "eyebrow": "What drives results",
+        "heading": "Successful investment through",
+        "heading.italic": "time.",
+        "body": "Four forces that — applied consistently — determine portfolio outcomes across decades.",
+        "items": [
+          { "name": "Strategic Asset Allocation",  "desc": "Capital distribution across asset classes is the highest-impact lever in long-term returns.",                              "icon": "trend"  },
+          { "name": "Intelligent Diversification", "desc": "Not all diversification reduces risk. Effective diversification requires correlation analysis, not just quantity of assets.", "icon": "clock"  },
+          { "name": "Disciplined Risk Management", "desc": "Risk is explicitly budgeted. Every exposure in the portfolio was consciously accepted.",                                    "icon": "arrows" },
+          { "name": "Patience Through Cycles",     "desc": "The best returns are built with long horizons. Frequent rotation destroys value — discipline preserves it.",               "icon": "plus"   }
+        ]
+      },
+      "close": {
+        "quote":        "The objective is not to chase returns. It is to build portfolios that",
+        "quote.italic": "compound over time.",
+        "body": "Every investment decision is evaluated against two questions: Is it aligned with the client's long-term objectives? Is the additional risk it introduces adequately compensated and budgeted? If the answer to either is no, we do not proceed."
+      }
     },
     "framework": {
       "eyebrow": "Methodological Framework",
@@ -334,187 +447,400 @@
         }
       ]
     },
+    "proceso": {
+      "header": {
+        "eyebrow": "Our Approach",
+        "headlineLines": ["One process.", "Four", "steps."],
+        "lead": "Our investment process follows a structured framework designed to align portfolios with each client's financial objectives. We do not improvise - we apply a proven system with consistent discipline.",
+        "frameworkTag": "FinancialQ Investment Framework"
+      },
+      "steps": [
+        {
+          "num": "01",
+          "tag": "Step 01",
+          "title": "Client Understanding",
+          "body": "Every investment strategy begins with a clear and documented understanding of the client's objectives, time horizon, liquidity needs and true risk tolerance.",
+          "detailLabel": "In this step we define",
+          "detailItems": [
+            "Long-term financial objectives",
+            "Mandate time horizon",
+            "Liquidity needs and constraints",
+            "True risk tolerance and drawdown limits"
+          ]
+        },
+        {
+          "num": "02",
+          "tag": "Step 02",
+          "title": "Strategic Portfolio Design",
+          "body": "We build diversified portfolios using a disciplined asset allocation approach across equities, fixed income and other asset classes when appropriate for the client profile.",
+          "detailLabel": "In this step we define",
+          "detailItems": [
+            "Strategic asset allocation",
+            "Instrument and vehicle selection",
+            "Tolerance ranges by asset class",
+            "Explicit risk budget"
+          ]
+        },
+        {
+          "num": "03",
+          "tag": "Step 03",
+          "title": "Risk Monitoring",
+          "body": "Portfolio risk exposures - concentration, liquidity, rate sensitivity and market correlation - are evaluated regularly as part of the supervision process.",
+          "detailLabel": "Monitored variables",
+          "detailItems": [
+            "Sector concentration risk",
+            "Portfolio liquidity",
+            "Interest-rate sensitivity",
+            "Correlation and realized volatility"
+          ]
+        },
+        {
+          "num": "04",
+          "tag": "Step 04",
+          "title": "Continuous Oversight",
+          "body": "Markets change. Portfolios are reviewed periodically to ensure they remain aligned with client objectives and evolving market conditions.",
+          "detailLabel": "In each review we evaluate",
+          "detailItems": [
+            "Deviation from target allocation",
+            "Changes in client objectives",
+            "Current macroeconomic regime",
+            "Need for rebalancing or adjustment"
+          ]
+        }
+      ],
+      "monitoring": {
+        "eyebrow": "Permanent Oversight",
+        "heading": "The portfolio",
+        "heading.mid": "as a process,",
+        "heading.italic": "not an event.",
+        "body": "Continuous oversight is not an add-on service - it is an integral part of the mandate. Every FinancialQ portfolio is reviewed regularly against its stated objectives.",
+        "items": [
+          {
+            "icon": "∑",
+            "title": "Quantitative Analysis",
+            "body": "Statistical modeling of risk and expected return under different scenarios."
+          },
+          {
+            "icon": "↻",
+            "title": "Periodic Reviews",
+            "body": "Scheduled meetings to review the portfolio against objectives and market conditions."
+          },
+          {
+            "icon": "⊘",
+            "title": "Conflict-Free",
+            "body": "Fee-only compensation. No transaction commissions that incentivize unnecessary turnover."
+          },
+          {
+            "icon": "≡",
+            "title": "Clear Reporting",
+            "body": "Portfolio reports with exposures, attributed performance and explained risk metrics."
+          }
+        ]
+      },
+      "cta": {
+        "heading": "Ready to see the process",
+        "heading.mid": "applied to your",
+        "heading.italic": "specific situation",
+        "button": "Start a Conversation"
+      }
+    },
     "riesgo": {
-      "kicker": "Our Approach — Risk Philosophy",
-      "heading": "Risk is",
-      "heading.italic": "Multidimensional.",
-      "body1": "Most advisors manage risk as if it exists in only one dimension: volatility. We identify and manage six dimensions simultaneously.",
-      "body2": "Each dimension receives an explicit budget within the client's mandate. There is no 'accidental' risk in a FinancialQ portfolio — every risk present was consciously accepted.",
+      "hero": {
+        "watermark": "RISK",
+        "eyebrow": "Risk Philosophy",
+        "headline": ["Risk", "first.", "Always."],
+        "bodies": [
+          "Risk management is central to portfolio construction. Before focusing on potential returns, investors must understand the risks embedded in their portfolios.",
+          "At FinancialQ, we view risk through multiple dimensions — and manage how they interact with the same discipline we apply to returns."
+        ],
+        "axiom": "The goal is not to eliminate volatility — which is impossible. It is to ensure risk is intentional, measured and aligned with long-term outcomes."
+      },
+      "dimensionsIntro": {
+        "eyebrow": "Five Dimensions of Risk",
+        "headingBefore": "Risk seen in",
+        "headingEm": "depth.",
+        "desc": "Effective portfolio management requires understanding how these five risk types interact — and ensuring they remain aligned with the client's financial objectives at all times."
+      },
       "dimensions": [
-        { "num": "01", "title": "Market Risk",    "body": "Portfolio volatility and drawdown. The most measured dimension — and the least sufficient on its own for complete management." },
-        { "num": "02", "title": "Sequence Risk",  "body": "The timing of losses matters as much as their magnitude. Critically important in distribution and withdrawal phases." },
-        { "num": "03", "title": "Liquidity Risk", "body": "The ability to convert assets to cash at the needed time, at the right price and within the required horizon." },
-        { "num": "04", "title": "Behavioral Risk","body": "Decisions made under emotional stress are the most frequent source of long-term value destruction in well-constructed portfolios." },
-        { "num": "05", "title": "Tax Drag",       "body": "The cumulative tax cost of an inefficient strategy can outweigh the return differential between investment options over the long term." },
-        { "num": "06", "title": "Objective Risk", "body": "The probability of failing to achieve the financial objective defined in the mandate within the time horizon established by the client." }
-      ]
+        {
+          "roman": "I",
+          "tag": "Dimension 01",
+          "title": "Market Risk",
+          "body": "Broad asset price movements driven by macroeconomic factors, shifts in sentiment or systemic events. The most visible dimension — and often the most misunderstood.",
+          "example": "Management: Diversification across assets with low correlation."
+        },
+        {
+          "roman": "II",
+          "tag": "Dimension 02",
+          "title": "Concentration Risk",
+          "body": "Excessive exposure to a single asset, sector or region. A concentrated portfolio may outperform — until it does not. Damage tends to be asymmetric and irreversible.",
+          "example": "Management: Exposure limits by asset and sector."
+        },
+        {
+          "roman": "III",
+          "tag": "Dimension 03",
+          "title": "Liquidity Risk",
+          "body": "The ability to access capital when needed. An illiquid asset at the wrong moment can force sales at unfavorable prices, destroying long-term value.",
+          "example": "Management: Laddered liquidity aligned with the client's horizon."
+        },
+        {
+          "roman": "IV",
+          "tag": "Dimension 04",
+          "title": "Interest-Rate Sensitivity",
+          "body": "How fixed income and other assets respond to changes in interest rates. A risk that stays invisible when rates are stable — until they move.",
+          "example": "Management: Strategic duration and sensitivity analysis."
+        },
+        {
+          "roman": "V",
+          "tag": "Dimension 05",
+          "title": "Sequence Risk",
+          "body": "The impact of market timing for investors drawing on capital. An early drawdown in the withdrawal phase can permanently impair a portfolio's ability to recover.",
+          "example": "Management: Portfolio segmentation by time horizon."
+        }
+      ],
+      "interaction": {
+        "left": {
+          "label": "Our Position",
+          "quoteLines": ["Risk is not eliminated.", "It is budgeted."],
+          "body": "At FinancialQ, every risk in a portfolio was consciously accepted. There is no \"accidental\" risk. Our approach prioritizes capital preservation, true diversification and intelligent risk budgeting — in that order."
+        },
+        "right": {
+          "label": "Three Priorities",
+          "principles": [
+            {
+              "num": "I",
+              "title": "Capital Preservation",
+              "body": "A prerequisite for growth. What is not lost does not need to be recovered."
+            },
+            {
+              "num": "II",
+              "title": "True Diversification",
+              "body": "Not in the number of holdings, but in independence of risk drivers."
+            },
+            {
+              "num": "III",
+              "title": "Risk Budget",
+              "body": "Every exposure has an explicit budget. Nothing is left unmeasured or unjustified."
+            }
+          ]
+        }
+      },
+      "closing": {
+        "quote": ["Intentional risk.", "Measured risk.", "Aligned risk."],
+        "body": "The difference between a well-managed portfolio and a poorly managed one is not always visible in returns — it appears in moments of market stress. Our risk philosophy is designed so those moments are manageable, not devastating."
+      }
     }
   },
 
   "clientes": {
-    "kicker": "Who We Serve",
-    "heading": "Designed for Exceptional",
-    "heading.italic": "Circumstances.",
-    "body1": "We work with a limited number of clients whose financial complexity demands institutional discipline — not retail solutions. Each relationship begins with a thorough mandate assessment.",
-    "body2": "Our commitments are selective by design. We do not accept clients we cannot serve well — it is a responsibility, not a commercial restriction.",
+    "intro": {
+      "eyebrow": "Who We Serve",
+      "headline": ["Clients who", "think in", "decades."],
+      "lead": "FinancialQ works with investors who value disciplined portfolio management and structured investment processes. We do not have an average client — we have clients who share an investment philosophy.",
+      "commonStrong": "What they all share:",
+      "commonRest": " a long-term orientation, appreciation for transparency and preference for structured process over market narratives."
+    },
     "profiles": [
       {
-        "title": "High-Income Professionals",
-        "body": "Senior executives, partners and specialists with complex compensation demanding structured planning across multiple decades.",
-        "items": [
-          "Equity compensation, RSUs and stock options",
-          "Concentrated single-stock positions",
-          "Vesting planning and options exercise",
-          "Multigenerational accumulation strategies",
-          "Coordination with corporate benefits and deferred compensation"
+        "roman": "I",
+        "tag": "Profile 01",
+        "title": "High-Net-Worth Professionals and Individuals",
+        "body": "Executives, physicians, attorneys and professionals with accumulated wealth seeking structured, transparent management — away from commission-driven traditional private banking.",
+        "traits": [
+          "Time horizon of 10 years or more",
+          "Preference for a fee-only fiduciary advisor",
+          "Value clarity over promised returns",
+          "Seek a process, not a one-off recommendation"
         ]
       },
       {
-        "title": "Cross-Border Entrepreneurs",
-        "body": "Business owners across multiple jurisdictions requiring integrated capital supervision and repatriation planning.",
-        "items": [
-          "Profit repatriation planning",
-          "International holding structuring",
-          "Optimization under tax treaty networks",
-          "Cross-border cash flow supervision",
-          "Cross-border succession planning"
+        "roman": "II",
+        "tag": "Profile 02",
+        "title": "Families with Multigenerational Objectives",
+        "body": "Families seeking to preserve and grow wealth across generations, with liquidity planning needs, periodic distributions and objectives specific to each time horizon.",
+        "traits": [
+          "Centralized family portfolio management",
+          "Distribution and withdrawal planning",
+          "Wealth transfer considerations",
+          "Multiple risk profiles within the family"
         ]
       },
       {
-        "title": "International Investors",
-        "body": "Globally mobile families and principals with U.S. and international capital seeking disciplined allocation with fiduciary rigor.",
-        "items": [
-          "Capital allocation across multiple markets",
-          "International custody coordination",
-          "PFIC, FBAR and FATCA planning",
-          "Foreign exchange management and hedging",
-          "Advisory available in ES, EN, FR, PT"
+        "roman": "III",
+        "tag": "Profile 03",
+        "title": "Entrepreneurs and Experienced Investors",
+        "body": "Entrepreneurs who have built capital through their businesses and seek diversification into financial markets with the same discipline they apply to operating their companies.",
+        "traits": [
+          "Capital diversified outside the core business",
+          "Business risk understanding as a foundation",
+          "Appreciation for structured, analytical approach",
+          "Seek alignment, not sales-driven advice"
         ]
       },
       {
-        "title": "Founders with Liquidity Event",
-        "body": "Post-exit founders converting concentrated, illiquid wealth into durable, multigenerational capital with full clarity.",
-        "items": [
-          "Post-exit wealth disposition strategy",
-          "Capital gains tax deferral",
-          "Concentrated position diversification",
-          "Family and next-generation structures",
-          "Philanthropic planning: DAF and foundations"
+        "roman": "IV",
+        "tag": "Profile 04",
+        "title": "Family Offices and Institutional-Style Investors",
+        "body": "Accredited investors, family offices and institutional-minded clients seeking a disciplined investment framework delivered with boutique firm care.",
+        "traits": [
+          "Institutional framework with direct relationship",
+          "Customized, detailed portfolio analysis",
+          "Institutional-grade reporting and metrics",
+          "Coordination with other advisors and custodians"
         ]
       }
     ],
-    "onboarding": {
-      "eyebrow": "The Onboarding Process",
-      "heading": "How We Begin",
-      "heading.italic": "Working Together.",
-      "steps": [
+    "commonGround": {
+      "eyebrow": "What Unites Us",
+      "heading": ["Whatever the", "profile,", "the approach is one."],
+      "sub": "Our focus stays the same regardless of client type: build portfolios aligned with long-term financial objectives and carefully managed risk.",
+      "shared": [
         {
-          "num": "Step 01",
-          "title": "Introductory Dialogue",
-          "body": "A confidential, no-obligation conversation to understand your circumstances and whether our approach is the right fit. No presentations, no sales pitch."
+          "num": "01",
+          "title": "Long-Term Orientation",
+          "body": "All of our clients think in years and decades — not quarters. That shapes the quality of decisions we can make together."
         },
         {
-          "num": "Step 02",
-          "title": "Mandate Assessment",
-          "body": "Structured diagnosis of your capital position, objectives, risk parameters and structural considerations. Result: a clear articulation of whether we can serve your mandate."
+          "num": "02",
+          "title": "Appreciation for Structure",
+          "body": "They prefer a replicable, explainable process over market predictions or ad hoc recommendations without analytical grounding."
         },
         {
-          "num": "Step 03",
-          "title": "Architecture Proposal",
-          "body": "A bespoke proposal with capital architecture, fee structure and governance framework — before any decision is required from either party."
+          "num": "03",
+          "title": "Demand for Transparency",
+          "body": "They want to understand what is in the portfolio, why it is there and what risk it represents. \"Trust us\" is not an acceptable answer."
+        },
+        {
+          "num": "04",
+          "title": "Risk-First Focus",
+          "body": "They understand that preserving capital is prerequisite to growth. The first conversation is always about risk, not return."
         }
       ]
     },
+    "welcome": {
+      "eyebrow": "We Also Welcome",
+      "heading": ["The conversation", "is open to", "those who qualify."],
+      "body": "We do not limit our conversations to a single client type. If you share our investment philosophy and value a disciplined approach, we want to hear from you.",
+      "types": [
+        { "name": "Accredited Investors", "tag": "Welcome" },
+        { "name": "Family Offices", "tag": "Welcome" },
+        { "name": "Institutional Clients", "tag": "Welcome" },
+        { "name": "Cross-Border Investors", "tag": "Welcome" },
+        { "name": "Investors with Liquidity Events", "tag": "Welcome" }
+      ]
+    },
     "cta": {
-      "heading": "Ready to begin a",
-      "heading.italic": "meaningful conversation?",
-      "btn": "Schedule Consultation",
-      "note": "Minimum $2M in investable assets."
+      "headingBefore": "Share our philosophy?",
+      "headingEm": "Let's talk with no obligation.",
+      "btn": "Start a Conversation"
     }
   },
 
   "perspectivas": {
-    "kicker": "Research and Perspectives",
-    "heading": "Capital",
-    "heading.italic": "Thinking.",
     "tabs": {
       "all": "All",
       "ensayo": "Essays",
       "tecnica": "Technical Notes",
       "carta": "Client Letters"
     },
-    "insights": [
+    "intro": {
+      "eyebrow": "Perspectives",
+      "headline": ["Analysis that", "informs.", "Not noise."],
+      "lead": "FinancialQ publishes periodic perspectives focused on portfolio construction, market dynamics and long-term investment themes. Rather than short-term noise, our analysis emphasizes structural trends, risk awareness and disciplined investment thinking.",
+      "focusItems": [
+        "Portfolio construction and asset allocation",
+        "Market dynamics and macroeconomic analysis",
+        "Long-term structural trends",
+        "Portfolio risk and practical implications"
+      ]
+    },
+    "featured": {
+      "badge": "Featured Essay",
+      "articleType": "Essay",
+      "title": "Macroeconomic Regime Identification as a Portfolio Input",
+      "excerpt": "Macroeconomic regimes govern asset return distributions in ways static allocation does not capture. We explore how to incorporate regime analysis into portfolio construction without falling into market-timing traps.",
+      "date": "Nov 2024",
+      "readTime": "14 min read",
+      "readCta": "Read Essay"
+    },
+    "gridRow1": [
       {
-        "cat": "ensayo",
-        "featured": true,
-        "tag": "Featured Essay",
-        "title": "Regime Identification as Portfolio Input: Beyond Rolling Correlation",
-        "body": "Macroeconomic regimes — not calendar periods — govern asset return distributions. We examine how identifying regime transitions improves portfolio resilience without sacrificing structural allocation discipline.",
-        "meta": "November 2024 · 14 min read"
+        "cat": "tecnica",
+        "tag": "Technical Note",
+        "title": "Risk Budgeting: From Concept to Implementation",
+        "body": "How to translate a client's risk tolerance into concrete operational limits for each asset class and risk dimension in the portfolio.",
+        "date": "Oct 2024",
+        "read": "9 min"
       },
       {
         "cat": "ensayo",
         "tag": "Essay",
-        "title": "Permanence as a Design Criterion: A Defense of the Generational Horizon",
-        "body": "Why optimizing for multigenerational wealth requires actively rejecting quarterly benchmarks and short-term incentives.",
-        "meta": "August 2024 · 11 min"
-      },
-      {
-        "cat": "ensayo",
-        "tag": "Essay",
-        "title": "The Implicit Mandate Problem: Why Ambiguity Destroys Value",
-        "body": "When the purpose of capital is not explicitly articulated, decisions are made against an imaginary mandate that no one agreed upon.",
-        "meta": "June 2024 · 8 min"
-      },
-      {
-        "cat": "tecnica",
-        "tag": "Technical Note",
-        "title": "The Arithmetic of Tax Drag on Long-Term Capitalization",
-        "body": "How pre-tax return assumptions systematically overestimate wealth outcomes — and a framework for incorporating post-tax compounding from mandate inception.",
-        "meta": "October 2024 · 9 min"
-      },
-      {
-        "cat": "tecnica",
-        "tag": "Technical Note",
-        "title": "Risk Budget Construction: Methodology and Limits",
-        "body": "A technical walkthrough of explicit risk budgeting: what it measures, what it does not, and how it integrates with mandate objectives.",
-        "meta": "July 2024 · 12 min"
-      },
-      {
-        "cat": "tecnica",
-        "tag": "Technical Note",
-        "title": "Stress Regime Correlations: Why Diversification Models Fail",
-        "body": "Cross-asset correlations tend to converge toward 1.0 precisely when diversification is most needed. Implications for portfolio construction.",
-        "meta": "April 2024 · 10 min"
+        "title": "Patience as an Edge: The Case Against Frequent Turnover",
+        "body": "Data consistently shows active turnover destroys return after costs. We examine why patience is the scarcest competitive advantage in portfolio management.",
+        "date": "Sep 2024",
+        "read": "11 min"
       },
       {
         "cat": "carta",
         "tag": "Client Letter",
-        "title": "Concentrated Capital: Discipline, Diversification and the Cost of Inaction",
-        "body": "For founders with liquidity events, the greatest risk is rarely market risk — it is position risk disguised as conviction.",
-        "meta": "September 2024 · 7 min"
-      },
-      {
-        "cat": "carta",
-        "tag": "Client Letter",
-        "title": "Q3 2024: Regime in Transition and Portfolio Positioning",
-        "body": "Our perspective on the ongoing macroeconomic regime transition and its effect on the structural positioning of client mandates.",
-        "meta": "October 2024 · 6 min"
-      },
-      {
-        "cat": "carta",
-        "tag": "Client Letter",
-        "title": "Cross-Border Planning in 2024: Regulatory Changes That Matter",
-        "body": "A summary of the most relevant international tax regulatory changes for investors with active cross-border structures in the U.S.",
-        "meta": "January 2024 · 8 min"
+        "title": "Q3 2024: Transition Regime and Positioning",
+        "body": "We review the quarter's macroeconomic environment, implications for asset allocation and adjustments made in managed portfolios.",
+        "date": "Oct 2024",
+        "read": "7 min"
       }
     ],
+    "gridRow2": [
+      {
+        "cat": "tecnica",
+        "tag": "Technical Note",
+        "title": "Sequence Risk: The Hidden Danger in the Withdrawal Phase",
+        "body": "Why the order of returns matters as much as average returns for investors withdrawing capital from their portfolio.",
+        "date": "Aug 2024",
+        "read": "8 min"
+      },
+      {
+        "cat": "ensayo",
+        "tag": "Essay",
+        "title": "Correlation in Crises: Why Diversification Fails When It Matters Most",
+        "body": "In periods of systemic stress, correlations converge toward 1. We analyze how to build portfolios that preserve diversification properties under pressure.",
+        "date": "Jul 2024",
+        "read": "12 min"
+      },
+      {
+        "cat": "carta",
+        "tag": "Client Letter",
+        "title": "Q2 2024: Rates, Inflation and the 60/40 Portfolio",
+        "body": "The impact of a higher-rate environment on equity/fixed income correlation and implications for the traditional balanced portfolio.",
+        "date": "Jul 2024",
+        "read": "6 min"
+      }
+    ],
+    "about": {
+      "eyebrow": "About Our Research",
+      "headline": {
+        "line1": "Structural.",
+        "line2Prefix": "Not ",
+        "line2Em": "speculative."
+      },
+      "body": "Our research is designed to help investors better understand the forces that shape financial markets and how those forces can impact portfolio risk and long-term outcomes — not to predict the next market move.",
+      "themes": [
+        "Portfolio construction and strategic asset allocation",
+        "Market dynamics and economic cycles",
+        "Risk management and capital preservation",
+        "Long-term structural investment themes",
+        "Investor behavior and discipline through market cycles"
+      ]
+    },
     "newsletter": {
-      "heading": "Would you like to receive our",
-      "heading.italic": "perspectives directly?",
-      "placeholder": "your@email.com",
+      "eyebrow": "Periodic Perspectives",
+      "headline": ["Straight analysis", "to your", "inbox."],
+      "body": "We publish essays, technical notes and quarterly client letters. No forced cadence, no short-term noise. Only analysis when there is something meaningful to share.",
+      "emailLabel": "Email",
+      "nameLabel": "Name",
+      "emailPlaceholder": "you@email.com",
+      "namePlaceholder": "Your name",
       "btn": "Subscribe",
-      "note": "Relevant perspectives only. No spam. Unsubscribe anytime."
+      "disclaimer": "Investment analysis only. No promotions or commercial content. You can unsubscribe at any time."
     }
   },
 

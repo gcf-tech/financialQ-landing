@@ -4,7 +4,7 @@ import { t } from '../../shared/config/locales'
 
 const tn = t.nav
 const SOBRE_SUBS = ['firma', 'equipo', 'mision', null]
-const ENFOQUE_SUBS = ['filosofia', 'framework', 'riesgo', null]
+const ENFOQUE_SUBS = ['filosofia', 'framework', 'proceso', 'riesgo']
 
 export function Header({ navigate }) {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -48,8 +48,12 @@ export function Header({ navigate }) {
               </svg>
             </div>
             <div className="nav-drop wide">
-              {tn.dropdown.enfoque.map((item, i) => (
-                <div key={i} className="drop-item" onClick={() => go(ENFOQUE_SUBS[i] ? 'enfoque' : 'governance', ENFOQUE_SUBS[i])}>
+              {tn.dropdown.enfoque.slice(0, ENFOQUE_SUBS.length).map((item, i) => (
+                <div
+                  key={i}
+                  className="drop-item"
+                  onClick={() => go('enfoque', ENFOQUE_SUBS[i])}
+                >
                   <span className="drop-title">{item.title}</span>
                   <span className="drop-desc">{item.desc}</span>
                 </div>

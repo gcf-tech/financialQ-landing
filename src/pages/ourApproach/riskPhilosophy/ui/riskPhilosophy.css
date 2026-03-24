@@ -1,0 +1,379 @@
+/* Risk philosophy — seccion-05-filosofia-riesgo */
+
+.s-riesgo {
+  background: var(--ivory-pale);
+}
+
+.rsk-hero {
+  background: var(--black);
+  padding: var(--gap) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.rsk-hero::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 55vw;
+  height: 70vh;
+  background: radial-gradient(ellipse, rgba(59, 76, 157, .18) 0%, transparent 65%);
+}
+
+.rsk-hero-watermark {
+  position: absolute;
+  right: -2%;
+  bottom: -15%;
+  font-family: var(--serif);
+  font-size: clamp(120px, 18vw, 260px);
+  font-weight: 300;
+  color: rgba(255, 255, 255, .025);
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -0.04em;
+}
+
+.rsk-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.rsk-hero .eyebrow {
+  color: rgba(230, 223, 197, .45);
+}
+
+.rsk-hero .eyebrow::before {
+  background: currentColor;
+}
+
+.rsk-hero-headline {
+  font-family: var(--serif);
+  font-size: clamp(44px, 5.5vw, 80px);
+  font-weight: 400;
+  color: var(--ivory);
+  line-height: .98;
+  letter-spacing: -0.022em;
+  margin-top: 20px;
+}
+
+.rsk-hero-headline em {
+  font-style: italic;
+  color: rgba(230, 223, 197, .35);
+}
+
+.rsk-hero-body {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, .38);
+  line-height: 1.9;
+  margin-bottom: 28px;
+}
+
+.rsk-axiom {
+  padding: 20px 24px;
+  border-left: 2px solid var(--blue);
+  background: rgba(59, 76, 157, .1);
+}
+
+.rsk-axiom p {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ivory);
+  line-height: 1.5;
+}
+
+.rsk-dims {
+  background: var(--ivory-pale);
+  padding: var(--gap) 0 0;
+}
+
+.rsk-dims-header {
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  gap: 80px;
+  align-items: end;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1px;
+}
+
+.rsk-dims-hed {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4.2vw, 60px);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-top: 20px;
+}
+
+.rsk-dims-hed em {
+  font-style: italic;
+  color: var(--blue);
+}
+
+.rsk-dims-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.rsk-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-bottom: 1px;
+}
+
+.rsk-dim {
+  background: var(--ivory-pale);
+  padding: 48px 36px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: background .3s;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+}
+
+.rsk-dim:hover {
+  background: var(--white);
+}
+
+.rsk-dim::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1);
+}
+
+.rsk-dim:hover::after {
+  transform: scaleX(1);
+}
+
+.rsk-dim-bg {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: var(--serif);
+  font-size: 72px;
+  font-weight: 300;
+  color: rgba(59, 76, 157, .05);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.rsk-dim-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 18px;
+  display: block;
+}
+
+.rsk-dim-name {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.rsk-dim-body {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.75;
+  flex: 1;
+}
+
+.rsk-dim-example {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--blue);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.rsk-interaction {
+  background: var(--ivory);
+  padding: 72px 0;
+}
+
+.rsk-int-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+
+.rsk-int-item {
+  background: var(--ivory);
+  padding: 48px 44px;
+}
+
+.rsk-int-item.dark {
+  background: var(--black);
+}
+
+.rsk-int-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.rsk-int-quote {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.8vw, 38px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin-bottom: 20px;
+}
+
+.rsk-int-body {
+  font-size: 13.5px;
+  font-weight: 300;
+  line-height: 1.85;
+}
+
+.rsk-principles {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(207, 200, 176, .12);
+}
+
+.rsk-prin {
+  background: rgba(255, 255, 255, .025);
+  padding: 22px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: background .25s;
+}
+
+.rsk-prin:hover {
+  background: rgba(59, 76, 157, .1);
+}
+
+.rsk-prin-num {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 300;
+  color: rgba(59, 76, 157, .3);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 36px;
+}
+
+.rsk-prin-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--ivory);
+  margin-bottom: 3px;
+}
+
+.rsk-prin-body {
+  font-size: 11.5px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, .3);
+  line-height: 1.6;
+}
+
+.rsk-final {
+  background: var(--blue);
+  padding: 72px 0;
+}
+
+.rsk-final-inner {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 64px;
+  align-items: center;
+}
+
+.rsk-final-quote {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.5vw, 50px);
+  font-weight: 400;
+  color: var(--ivory);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.rsk-final-quote em {
+  font-style: italic;
+  color: rgba(230, 223, 197, .38);
+}
+
+.rsk-final-body {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, .45);
+  line-height: 1.85;
+}
+
+@media (max-width: 1100px) {
+  .rsk-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .rsk-dims-header {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .rsk-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .rsk-int-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .rsk-final-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 700px) {
+  .rsk-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .rsk-grid {
+    grid-template-columns: 1fr;
+  }
+}

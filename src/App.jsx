@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { Header } from './widgets/header/Header'
 import { LandingPage } from './pages/landing/LandingPage'
-import { SobrePage } from './pages/sobre/SobrePage'
-import { EnfoquePage } from './pages/enfoque/EnfoquePage'
-import { ClientesPage } from './pages/clientes/ClientesPage'
-import { PerspectivasPage } from './pages/perspectivas/PerspectivasPage'
-import { GovernancePage } from './pages/governance/GovernancePage'
+import { AboutUsPage } from './pages/aboutUs/AboutUsPage'
+import { OurApproachPage } from './pages/ourApproach/OurApproachPage'
+import { CustomerPage } from './pages/customer/CustomerPage'
+import { PerspectivesPage } from './pages/perspectives/PerspectivesPage'
+import { GovernancePage } from './pages/aboutUs/governance/GovernancePage'
 import { ContactoPage } from './pages/contacto/ContactoPage'
 
 function App() {
@@ -18,10 +18,10 @@ function App() {
 
   const pages = {
     inicio: <LandingPage navigate={navigate} />,
-    sobre: <SobrePage initialSub={nav.sub} navigate={navigate} />,
-    enfoque: <EnfoquePage initialSub={nav.sub} navigate={navigate} />,
-    clientes: <ClientesPage navigate={navigate} />,
-    perspectivas: <PerspectivasPage navigate={navigate} />,
+    sobre: <AboutUsPage sub={nav.sub} />,
+    enfoque: <OurApproachPage sub={nav.sub} />,
+    clientes: <CustomerPage navigate={navigate} />,
+    perspectivas: <PerspectivesPage />,
     governance: <GovernancePage navigate={navigate} />,
     contacto: <ContactoPage navigate={navigate} />,
   }

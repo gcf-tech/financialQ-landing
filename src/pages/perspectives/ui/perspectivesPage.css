@@ -1,0 +1,562 @@
+/* Perspectives — seccion-07-perspectivas */
+
+.s-perspectives {
+  background: var(--white);
+}
+
+.persp-header {
+  padding: var(--gap) 0 72px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 96px;
+  align-items: end;
+  border-bottom: 1px solid var(--border);
+}
+
+.persp-headline {
+  font-family: var(--serif);
+  font-size: clamp(44px, 5.5vw, 80px);
+  font-weight: 400;
+  color: var(--black);
+  line-height: .98;
+  letter-spacing: -0.022em;
+  margin-top: 20px;
+}
+
+.persp-headline em {
+  font-style: italic;
+  color: var(--blue);
+}
+
+.persp-lead {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.9;
+  margin-bottom: 28px;
+}
+
+.persp-focus {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.persp-focus-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.persp-focus-item::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+
+.persp-filters {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+  overflow-x: auto;
+}
+
+.persp-filter {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 16px 28px;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color .2s, border-color .2s;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.persp-filter:hover {
+  color: var(--blue);
+}
+
+.persp-filter.active {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+
+.persp-featured {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  margin-bottom: 1px;
+}
+
+.persp-feat-img {
+  background: var(--black);
+  min-height: 420px;
+  position: relative;
+  overflow: hidden;
+}
+
+.persp-feat-img-inner {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(158deg, rgba(35, 31, 32, .5) 0%, rgba(59, 76, 157, .15) 100%);
+}
+
+.persp-feat-img-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 56px, rgba(255, 255, 255, .02) 56px, rgba(255, 255, 255, .02) 57px),
+    repeating-linear-gradient(90deg, transparent, transparent 56px, rgba(255, 255, 255, .02) 56px, rgba(255, 255, 255, .02) 57px);
+}
+
+.persp-feat-badge {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue);
+  padding: 8px 16px;
+  border-radius: 2px;
+}
+
+.persp-feat-badge span {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(230, 223, 197, .8);
+}
+
+.persp-feat-geom {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  width: 120px;
+  height: 120px;
+  opacity: .12;
+}
+
+.persp-feat-content {
+  background: var(--ivory-pale);
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.persp-feat-type {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.persp-feat-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-bottom: 20px;
+}
+
+.persp-feat-excerpt {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.85;
+  margin-bottom: 32px;
+}
+
+.persp-feat-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.persp-meta-date {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.persp-meta-read {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.persp-meta-sep {
+  width: 1px;
+  height: 12px;
+  background: var(--border);
+}
+
+.persp-feat-cta {
+  margin-top: 24px;
+}
+
+.persp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-bottom: 1px;
+}
+
+.persp-article {
+  background: var(--white);
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: background .28s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.persp-article:hover {
+  background: var(--ivory-pale);
+}
+
+.persp-article::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1);
+}
+
+.persp-article:hover::before {
+  transform: scaleX(1);
+}
+
+.persp-article-type {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.persp-article-title {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.persp-article-excerpt {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.75;
+  flex: 1;
+}
+
+.persp-article-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.persp-article-date {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.persp-article-read {
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+.persp-grid-alt {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-bottom: 1px;
+}
+
+.persp-article-alt {
+  background: var(--ivory-pale);
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: background .28s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.persp-article-alt:hover {
+  background: var(--white);
+}
+
+.persp-article-alt::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1);
+}
+
+.persp-article-alt:hover::after {
+  transform: scaleX(1);
+}
+
+.persp-about {
+  background: var(--ivory);
+  padding: 72px 0;
+  border-top: 1px solid var(--border);
+}
+
+.persp-about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.persp-about-hed {
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.5vw, 48px);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-top: 16px;
+}
+
+.persp-about-hed em {
+  font-style: italic;
+  color: var(--blue);
+}
+
+.persp-about-body {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.85;
+  margin-top: 16px;
+}
+
+.persp-themes {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+}
+
+.persp-theme {
+  background: var(--ivory);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: background .25s;
+}
+
+.persp-theme:hover {
+  background: var(--white);
+}
+
+.persp-theme-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
+  opacity: .6;
+}
+
+.persp-theme-text {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--black-soft);
+}
+
+.persp-newsletter {
+  background: var(--black);
+  padding: var(--gap) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.persp-newsletter::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 55vw;
+  height: 70vh;
+  background: radial-gradient(ellipse, rgba(59, 76, 157, .2) 0%, transparent 65%);
+}
+
+.persp-nl-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.persp-newsletter .eyebrow {
+  color: rgba(230, 223, 197, .45);
+}
+
+.persp-newsletter .eyebrow::before {
+  background: var(--blue);
+}
+
+.persp-nl-hed {
+  font-family: var(--serif);
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 400;
+  color: var(--ivory);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-top: 16px;
+}
+
+.persp-nl-hed em {
+  font-style: italic;
+  color: rgba(230, 223, 197, .35);
+}
+
+.persp-nl-body {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, .35);
+  line-height: 1.85;
+  margin-top: 16px;
+}
+
+.persp-nl-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.persp-nl-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(230, 223, 197, .35);
+  margin-bottom: 4px;
+}
+
+.persp-nl-input {
+  width: 100%;
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(207, 200, 176, .2);
+  color: var(--ivory);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  padding: 14px 18px;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.persp-nl-input::placeholder {
+  color: rgba(255, 255, 255, .2);
+}
+
+.persp-nl-input:focus {
+  border-color: rgba(59, 76, 157, .6);
+}
+
+.persp-nl-disclaimer {
+  font-size: 10.5px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, .18);
+  line-height: 1.6;
+}
+
+.persp-nl-submit {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+@media (max-width: 960px) {
+  .persp-header {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .persp-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .persp-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .persp-grid-alt {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .persp-about-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .persp-nl-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .persp-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .persp-grid-alt {
+    grid-template-columns: 1fr;
+  }
+}
