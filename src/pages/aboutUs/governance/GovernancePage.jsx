@@ -63,7 +63,7 @@ export function GovernancePage() {
                 {tg.feeComparison.feeOnly.items.map(item => <li key={item}>{item}</li>)}
               </ul>
             </div>
-            <div style={{ background: 'var(--ivory-pale)', border: '1px solid var(--border)', padding: 44 }}>
+            <div style={{ background: 'var(--white)', border: '1px solid var(--border)', padding: 44 }}>
               <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#C0614E', marginBottom: 16 }}>{tg.feeComparison.feeBased.label}</div>
               <ul className="cc-list" style={{ gap: 10 }}>
                 {tg.feeComparison.feeBased.items.map(item => <li key={item}>{item}</li>)}
@@ -88,7 +88,7 @@ export function GovernancePage() {
                 <div
                   key={doc.title}
                   style={{ background: 'var(--white)', padding: '24px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, transition: 'background .2s', cursor: 'pointer' }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'var(--ivory-pale)'}
+                  onMouseEnter={e => e.currentTarget.style.background = 'var(--white)'}
                   onMouseLeave={e => e.currentTarget.style.background = 'var(--white)'}
                 >
                   <div>

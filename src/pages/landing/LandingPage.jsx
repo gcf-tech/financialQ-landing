@@ -82,7 +82,7 @@ export function LandingPage({ navigate }) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 1, background: 'rgba(255,255,255,.06)' }}>
               {tl.framework.pillars.map((p, i) => (
                 <Card key={p.num} variant="dark" className={`reveal d${i}`} style={{ display: 'flex', gap: 18, alignItems: 'flex-start' }}>
-                  <div style={{ fontFamily: 'var(--serif)', fontSize: 38, fontWeight: 300, color: 'rgba(230,223,197,.09)', lineHeight: 1, flexShrink: 0, width: 44 }}>{p.num}</div>
+                  <div style={{ fontFamily: 'var(--serif)', fontSize: 38, fontWeight: 300, color: 'rgba(230, 223, 197, 0.4)', lineHeight: 1, flexShrink: 0, width: 44 }}>{p.num}</div>
                   <div>
                     <div style={{ fontFamily: 'var(--serif)', fontSize: 18, color: 'var(--ivory)', marginBottom: 5 }}>{p.title}</div>
                     <div style={{ fontSize: 12.5, fontWeight: 300, color: 'rgba(255,255,255,.3)', lineHeight: 1.65 }}>{p.body}</div>

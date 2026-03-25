@@ -1,7 +1,7 @@
 /* Risk philosophy — seccion-05-filosofia-riesgo */
 
 .s-riesgo {
-  background: var(--ivory-pale);
+  background: var(--white);
 }
 
 .rsk-hero {
@@ -90,7 +90,7 @@
 }
 
 .rsk-dims {
-  background: var(--ivory-pale);
+  background: var(--white);
   padding: var(--gap) 0 0;
 }
 
@@ -135,7 +135,7 @@
 }
 
 .rsk-dim {
-  background: var(--ivory-pale);
+  background: var(--white);
   padding: 48px 36px 40px;
   position: relative;
   overflow: hidden;
@@ -173,7 +173,7 @@
   font-family: var(--serif);
   font-size: 72px;
   font-weight: 300;
-  color: rgba(59, 76, 157, .05);
+  color: rgba(59, 76, 157, .2);
   line-height: 1;
   pointer-events: none;
 }
@@ -217,7 +217,7 @@
 }
 
 .rsk-interaction {
-  background: var(--ivory);
+  background: var(--black);
   padding: 72px 0;
 }
 
@@ -229,12 +229,12 @@
 }
 
 .rsk-int-item {
-  background: var(--ivory);
+  background: var(--black);
   padding: 48px 44px;
 }
 
 .rsk-int-item.dark {
-  background: var(--black);
+  background: var(--ivory-pale);
 }
 
 .rsk-int-label {
@@ -265,7 +265,7 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
-  background: rgba(207, 200, 176, .12);
+  background: rgba(129, 126, 118, 0.5); 
 }
 
 .rsk-prin {
@@ -285,7 +285,7 @@
   font-family: var(--serif);
   font-size: 28px;
   font-weight: 300;
-  color: rgba(59, 76, 157, .3);
+  color: rgba(59, 75, 157, 0.8);
   line-height: 1;
   flex-shrink: 0;
   width: 36px;
@@ -302,7 +302,7 @@
 .rsk-prin-body {
   font-size: 11.5px;
   font-weight: 300;
-  color: rgba(255, 255, 255, .3);
+  color: var(--black-soft);
   line-height: 1.6;
 }
 

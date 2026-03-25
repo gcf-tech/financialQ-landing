@@ -56,7 +56,7 @@
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--black);
-  background: var(--ivory);
+  background: var(--ivory-pale);
   border: 1.5px solid var(--ivory);
   padding: 14px 36px;
   border-radius: 5px;
@@ -67,7 +67,7 @@
   white-space: nowrap;
 }
 .btn-ivory:hover {
-  background: var(--ivory-dark);
+  background: var(--ivory);
   border-color: var(--ivory-dark);
   transform: translateY(-1px);
 }

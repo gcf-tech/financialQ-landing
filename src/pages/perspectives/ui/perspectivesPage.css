@@ -149,7 +149,7 @@
 }
 
 .persp-feat-content {
-  background: var(--ivory-pale);
+  background: var(--white);
   padding: 56px 48px;
   display: flex;
   flex-direction: column;
@@ -235,7 +235,7 @@
 }
 
 .persp-article:hover {
-  background: var(--ivory-pale);
+  background: var(--white);
 }
 
 .persp-article::before {
@@ -314,7 +314,7 @@
 }
 
 .persp-article-alt {
-  background: var(--ivory-pale);
+  background: var(--white);
   padding: 40px 36px;
   position: relative;
   overflow: hidden;
@@ -346,7 +346,7 @@
 }
 
 .persp-about {
-  background: var(--ivory);
+  background: var(--ivory-pale);
   padding: 72px 0;
   border-top: 1px solid var(--border);
 }
@@ -389,7 +389,7 @@
 }
 
 .persp-theme {
-  background: var(--ivory);
+  background: var(--ivory-pale);
   padding: 20px 28px;
   display: flex;
   align-items: center;

@@ -20,7 +20,7 @@ export function MissionPage() {
       <section className="section">
         <div className="wrap">
           <div className="g2" style={{ marginBottom: 64 }}>
-            <div className="card reveal" style={{ border: '1px solid var(--border)', padding: '48px 44px' }}>
+            <div className="card reveal" style={{ background: 'var(--ivory-pale)', border: '1px solid var(--border)', padding: '48px 44px' }}>
               <span className="eyebrow" style={{ marginBottom: 18, display: 'flex' }}>{tm.missionEyebrow}</span>
               <p style={{ fontFamily: 'var(--serif)', fontSize: 26, fontWeight: 400, color: 'var(--black)', lineHeight: 1.35 }}>
                 {tm.missionText}

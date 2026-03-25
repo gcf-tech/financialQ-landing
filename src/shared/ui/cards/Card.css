@@ -1,6 +1,6 @@
 /* ── Base card ── */
 .card {
-  background: var(--ivory-pale);
+  background: var(--white);
   padding: 40px 34px;
   transition: background .28s;
   position: relative;
@@ -25,7 +25,7 @@
   padding: 40px 36px;
   transition: background .28s;
 }
-.card-wht:hover { background: var(--ivory-pale); }
+.card-wht:hover { background: var(--white); }
 
 /* ── Dark card ── */
 .card-dk {
@@ -76,7 +76,7 @@
 .t-mono {
   width: 62px; height: 62px;
   border-radius: 50%;
-  background: rgba(59, 76, 157, .18);
+  background: rgba(49, 83, 255, 0.18);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--serif);
   font-size: 23px; font-weight: 400;
@@ -92,7 +92,7 @@
 
 /* ── Client card ── */
 .cc {
-  background: var(--ivory-pale);
+  background: var(--white);
   padding: 48px 40px;
   position: relative; overflow: hidden;
   transition: background .3s;
@@ -133,7 +133,7 @@
   cursor: pointer;
   transition: background .3s;
 }
-.ic:hover { background: var(--ivory-pale); }
+.ic:hover { background: var(--white); }
 
 .i-tag { font-size: 9.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
 .i-tag.bl { color: rgba(230, 223, 197, .55); }

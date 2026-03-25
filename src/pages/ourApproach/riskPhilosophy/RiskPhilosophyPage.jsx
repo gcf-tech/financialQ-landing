@@ -73,14 +73,14 @@ export function RiskPhilosophyPage() {
             <div className="rsk-int-inner">
               <div className="rsk-int-item">
                 <span className="rsk-int-label" style={{ color: 'var(--blue)' }}>{tr.interaction.left.label}</span>
-                <h2 className="rsk-int-quote" style={{ color: 'var(--black)' }}>
+                <h2 className="rsk-int-quote" style={{ color: 'var(--ivory)' }}>
                   {tr.interaction.left.quoteLines[0]}<br />
                   {tr.interaction.left.quoteLines[1]}
                 </h2>
                 <p className="rsk-int-body" style={{ color: 'var(--muted)' }}>{tr.interaction.left.body}</p>
               </div>
               <div className="rsk-int-item dark">
-                <span className="rsk-int-label" style={{ color: 'rgba(230,223,197,.35)' }}>{tr.interaction.right.label}</span>
+                <span className="rsk-int-label" style={{ color: 'black' }}>{tr.interaction.right.label}</span>
                 <div className="rsk-principles">
                   {tr.interaction.right.principles.map((p, i) => (
                     <div key={p.num} className={`rsk-prin reveal${i > 0 ? ` d${i}` : ''}`}>

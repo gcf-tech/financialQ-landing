@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './Header.css'
 import { t } from '../../shared/config/locales'
+import logoImg from '../../assets/images/hero/logo_financialQ.png'
 
 const tn = t.nav
 const SOBRE_SUBS = ['firma', 'equipo', 'mision', null]
@@ -18,8 +19,7 @@ export function Header({ navigate }) {
     <nav id="mainNav">
       <div className="nav-inner">
         <div className="logo" onClick={() => go('inicio')}>
-          <span className="logo-name">{t.common.logoName}<span>{t.common.logoQ}</span></span>
-          <span className="logo-tag">{t.common.logoTag}</span>
+          <img src={logoImg} alt={t.common.logoName} className="logo-img" />
         </div>
 
         <ul className={`nav-menu${menuOpen ? ' open' : ''}`}>
