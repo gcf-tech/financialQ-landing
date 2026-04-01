@@ -18,7 +18,7 @@ export function CustomerPage() {
   return (
     <div>
       <section className="s-customer">
-        <div className="wrap">
+        <div className="wrap cli-intro-wrap">
           <div className="cli-intro">
             <div>
               <span className="eyebrow reveal">{tc.intro.eyebrow}</span>
@@ -28,7 +28,7 @@ export function CustomerPage() {
                 <em>{h3}</em>
               </h1>
             </div>
-            <div>
+            <div className="cli-intro-common">
               <p className="cli-lead reveal d1">{tc.intro.lead}</p>
               <div className="cli-common reveal d2">
                 <p>
@@ -40,21 +40,23 @@ export function CustomerPage() {
           </div>
         </div>
 
-        <div className="wrap" style={{ paddingTop: 0 }}>
-          <div className="cli-profiles">
-            {tc.profiles.map((p, i) => (
-              <div key={p.tag} className={`cli-profile reveal${i > 0 ? ` d${i % 4}` : ''}`}>
-                <div className="cli-profile-n">{p.roman}</div>
-                <span className="cli-profile-tag">{p.tag}</span>
-                <div className="cli-profile-title">{p.title}</div>
-                <p className="cli-profile-body">{p.body}</p>
-                <div className="cli-profile-traits">
-                  {p.traits.map(trait => (
-                    <div key={trait} className="cli-trait">{trait}</div>
-                  ))}
+        <div style={{ background: 'var(--white)' }}>
+          <div className="wrap" style={{ paddingTop: 0 }}>
+            <div className="cli-profiles">
+              {tc.profiles.map((p, i) => (
+                <div key={p.tag} className={`cli-profile reveal${i > 0 ? ` d${i % 4}` : ''}`}>
+                  <div className="cli-profile-n">{p.roman}</div>
+                  <span className="cli-profile-tag">{p.tag}</span>
+                  <div className="cli-profile-title">{p.title}</div>
+                  <p className="cli-profile-body">{p.body}</p>
+                  <div className="cli-profile-traits">
+                    {p.traits.map(trait => (
+                      <div key={trait} className="cli-trait">{trait}</div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
