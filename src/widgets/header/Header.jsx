@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './Header.css'
 import { t } from '../../shared/config/locales'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
-import logoImg from '../../assets/images/hero/logo_financialQ.png'
+import logoImg from '../../assets/images/header/logo_financialQ.png'
 
 const tn = t.nav
 const SOBRE_SUBS = ['firma', 'equipo', 'mision', 'governance']

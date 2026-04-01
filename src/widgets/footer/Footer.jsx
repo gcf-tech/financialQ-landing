@@ -1,6 +1,7 @@
 import './Footer.css'
 import { t } from '../../shared/config/locales'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
+import logoImg from '../../assets/images/footer/logo_blanco_financialQ.png'
 
 const tf = t.footer
 
@@ -37,7 +38,7 @@ export function Footer({ variant = 'mini' }) {
         <div className="fg">
           <div className="fb">
             <div className="logo">
-              <span className="logo-name">{t.common.logoName}<span>{t.common.logoQ}</span> {t.common.logoTag}</span>
+              <img src={logoImg} alt={t.common.logoName} className="logo-img" />
             </div>
             <p>{tf.tagline}</p>
           </div>
