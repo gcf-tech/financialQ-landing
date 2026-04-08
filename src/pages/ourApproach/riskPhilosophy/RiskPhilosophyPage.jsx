@@ -1,12 +1,12 @@
 import { Footer } from '../../../widgets/footer/Footer'
 import { useScrollReveal } from '../../../shared/lib/useScrollReveal'
-import { t } from '../../../shared/config/locales'
+import { useTranslation } from '../../../shared/config/locales/i18nContext'
 import './ui/riskPhilosophy.css'
-
-const tr = t.enfoque.riesgo
 
 export function RiskPhilosophyPage() {
   useScrollReveal()
+  const { t } = useTranslation()
+  const tr = t.enfoque.riesgo
 
   const [h1, h2, h3] = tr.hero.headline
 

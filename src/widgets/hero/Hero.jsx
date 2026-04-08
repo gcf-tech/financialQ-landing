@@ -1,9 +1,10 @@
 import './Hero.css'
 import { Button } from '../../shared/ui/button/Button'
-import { t } from '../../shared/config/locales'
+import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
 
 export function Hero() {
+  const { t } = useTranslation()
   const navigate = useAppNavigate()
 
   return (

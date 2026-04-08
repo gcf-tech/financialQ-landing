@@ -2,13 +2,13 @@ import { Footer } from '../../widgets/footer/Footer'
 import { Button } from '../../shared/ui/button/Button'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
-import { t } from '../../shared/config/locales'
+import { useTranslation } from '../../shared/config/locales/i18nContext'
 import './ui/customerPage.css'
-
-const tc = t.clientes
 
 export function CustomerPage() {
   useScrollReveal()
+  const { t } = useTranslation()
+  const tc = t.clientes
   const navigate = useAppNavigate()
 
   const [h1, h2, h3] = tc.intro.headline

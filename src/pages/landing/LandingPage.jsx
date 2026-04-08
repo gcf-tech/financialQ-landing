@@ -4,7 +4,7 @@ import { Button } from '../../shared/ui/button/Button'
 import { Card } from '../../shared/ui/cards/Card'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
-import { t } from '../../shared/config/locales'
+import { useTranslation } from '../../shared/config/locales/i18nContext'
 
 const CLIENT_ICONS = [
   <svg key="0" style={{ width: 38, height: 38, color: 'var(--blue)', opacity: .65, marginBottom: 18 }} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -21,10 +21,10 @@ const CLIENT_ICONS = [
   </svg>,
 ]
 
-const tl = t.landing
-
 export function LandingPage() {
   useScrollReveal()
+  const { t } = useTranslation()
+  const tl = t.landing
   const navigate = useAppNavigate()
 
   return (

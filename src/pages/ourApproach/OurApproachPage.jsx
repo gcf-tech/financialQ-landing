@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom'
-import { t } from '../../shared/config/locales'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { SLUG_TO_KEY } from '../../shared/config/routes'
@@ -18,7 +17,7 @@ const subPages = {
 
 export function OurApproachPage() {
   const { sub: slugSub } = useParams()
-  const { lang } = useTranslation()
+  const { t, lang } = useTranslation()
   const navigate = useAppNavigate()
 
   // Convierte el slug de la URL (e.g. 'philosophy') a clave interna (e.g. 'filosofia')

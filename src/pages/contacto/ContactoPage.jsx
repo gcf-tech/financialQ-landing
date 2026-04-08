@@ -1,12 +1,8 @@
 import { Footer } from '../../widgets/footer/Footer'
 import { Button } from '../../shared/ui/button/Button'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
-import { t } from '../../shared/config/locales'
+import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { PageHero } from '../../shared/ui/pageHero/PageHero'
-
-const tc = t.contacto
-const tf = tc.form
-const ti = tc.info
 
 const CONTACT_ICONS = [
   <svg key="office" className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M10 2C6.68 2 4 4.68 4 8c0 5.25 6 10 6 10s6-4.75 6-10c0-3.32-2.68-6-6-6z" /><circle cx="10" cy="8" r="2" /></svg>,
@@ -15,14 +11,14 @@ const CONTACT_ICONS = [
   <svg key="meeting" className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="3" width="16" height="14" rx="1" /><path d="M2 7h16M7 3v4M13 3v4" /></svg>,
 ]
 
-const CONTACT_ITEMS = [
-  { label: ti.officeLabel, line1: ti.officeLine1, line2: ti.officeLine2 },
-  { label: ti.emailLabel, line1: ti.emailLine1, line2: ti.emailLine2 },
-  { label: ti.phoneLabel, line1: ti.phoneLine1, line2: ti.phoneLine2 },
-  { label: ti.meetingLabel, line1: ti.meetingLine1, line2: ti.meetingLine2 },
-]
+function ContactInfo({ ti }) {
+  const CONTACT_ITEMS = [
+    { label: ti.officeLabel, line1: ti.officeLine1, line2: ti.officeLine2 },
+    { label: ti.emailLabel, line1: ti.emailLine1, line2: ti.emailLine2 },
+    { label: ti.phoneLabel, line1: ti.phoneLine1, line2: ti.phoneLine2 },
+    { label: ti.meetingLabel, line1: ti.meetingLine1, line2: ti.meetingLine2 },
+  ]
 
-function ContactInfo() {
   return (
     <div>
       <span className="eyebrow" style={{ marginBottom: 24, display: 'flex' }}>{ti.eyebrow}</span>
@@ -57,6 +53,10 @@ function ContactInfo() {
 
 export function ContactoPage() {
   useScrollReveal()
+  const { t } = useTranslation()
+  const tc = t.contacto
+  const tf = tc.form
+  const ti = tc.info
 
   return (
     <div>
@@ -112,7 +112,7 @@ export function ContactoPage() {
             </div>
 
             {/* Info lateral */}
-            <ContactInfo />
+            <ContactInfo ti={ti} />
           </div>
         </div>
       </section>

@@ -1,13 +1,13 @@
 import { Footer } from '../../../widgets/footer/Footer'
 import { useScrollReveal } from '../../../shared/lib/useScrollReveal'
-import { t } from '../../../shared/config/locales'
+import { useTranslation } from '../../../shared/config/locales/i18nContext'
 import { PageHero } from '../../../shared/ui/pageHero/PageHero'
 import { ValueList } from '../../../shared/ui/valueList/ValueList'
 
-const tm = t.sobre.mision
-
 export function MissionPage() {
   useScrollReveal()
+  const { t } = useTranslation()
+  const tm = t.sobre.mision
 
   return (
     <>
