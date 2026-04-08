@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import './Header.css'
-import { t } from '../../shared/config/locales'
+import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
 import logoImg from '../../assets/images/header/logo_financialQ.png'
 
-const tn = t.nav
 const SOBRE_SUBS = ['firma', 'mision', 'governance']
 const ENFOQUE_SUBS = ['filosofia', 'framework', 'proceso', 'riesgo']
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const { t } = useTranslation()
+  const tn = t.nav
   const navigate = useAppNavigate()
 
   const go = (page, sub) => {

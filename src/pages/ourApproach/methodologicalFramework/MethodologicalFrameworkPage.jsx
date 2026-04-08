@@ -1,12 +1,12 @@
 import { Footer } from '../../../widgets/footer/Footer'
 import { Card } from '../../../shared/ui/cards/Card'
 import { useScrollReveal } from '../../../shared/lib/useScrollReveal'
-import { t } from '../../../shared/config/locales'
-
-const tf = t.enfoque.framework
+import { useTranslation } from '../../../shared/config/locales/i18nContext'
 
 export function MethodologicalFrameworkPage() {
   useScrollReveal()
+  const { t } = useTranslation()
+  const tf = t.enfoque.framework
 
   return (
     <div>

@@ -2,10 +2,8 @@ import { useState } from 'react'
 import { Footer } from '../../widgets/footer/Footer'
 import { Button } from '../../shared/ui/button/Button'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
-import { t } from '../../shared/config/locales'
+import { useTranslation } from '../../shared/config/locales/i18nContext'
 import './ui/perspectivesPage.css'
-
-const tp = t.perspectivas
 
 const TABS = [
   { key: 'todos', labelKey: 'all' },
@@ -54,6 +52,8 @@ function GridArticleRow({ articles, variant, filter }) {
 export function PerspectivesPage() {
   const [filter, setFilter] = useState('todos')
   useScrollReveal()
+  const { t } = useTranslation()
+  const tp = t.perspectivas
 
   const [h1, h2, h3] = tp.intro.headline
   const [n1, n2, n3] = tp.newsletter.headline

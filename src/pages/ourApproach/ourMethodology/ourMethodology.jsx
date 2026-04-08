@@ -1,12 +1,12 @@
 import { Footer } from '../../../widgets/footer/Footer'
 import { useScrollReveal } from '../../../shared/lib/useScrollReveal'
-import { t } from '../../../shared/config/locales'
+import { useTranslation } from '../../../shared/config/locales/i18nContext'
 import './ui/ourMethodology.css'
-
-const tp = t.enfoque.proceso
 
 export function OurMethodologyPage() {
   useScrollReveal()
+  const { t } = useTranslation()
+  const tp = t.enfoque.proceso
 
   return (
     <div>
@@ -36,9 +36,11 @@ export function OurMethodologyPage() {
             {tp.steps.map((step, i) => (
               <div key={step.num} className={`proc-step reveal${i > 0 ? ` d${i}` : ''}${i === 2 ? ' proc-step--centered' : ''}`}>
                 <div className="proc-step-num">{step.num}</div>
-                <div className="proc-step-tag">{step.tag}</div>
-                <div className="proc-step-title">{step.title}</div>
-                <p className="proc-step-body">{step.body}</p>
+                <div className="proc-step-top">
+                  <div className="proc-step-tag">{step.tag}</div>
+                  <div className="proc-step-title">{step.title}</div>
+                  <p className="proc-step-body">{step.body}</p>
+                </div>
                 <div className="proc-step-detail">
                   <div className="proc-detail-label">{step.detailLabel}</div>
                   {step.detailItems.map(item => (

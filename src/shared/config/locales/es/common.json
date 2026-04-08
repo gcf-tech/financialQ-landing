@@ -460,7 +460,7 @@
         {
           "num": "01",
           "tag": "Paso 01",
-          "title": "Comprensión del Cliente",
+          "title": "Comprensión\ndel Cliente",
           "body": "Toda estrategia de inversión comienza con un entendimiento claro y documentado de los objetivos, horizonte temporal, necesidades de liquidez y tolerancia real al riesgo del cliente.",
           "detailLabel": "En este paso definimos",
           "detailItems": [
@@ -473,7 +473,7 @@
         {
           "num": "02",
           "tag": "Paso 02",
-          "title": "Construcción del Portafolio",
+          "title": "Construcción\ndel Portafolio",
           "body": "Los portafolios se construyen mediante una asignación disciplinada de activos, alineando el capital entre clases de activos según el mandato y el presupuesto de riesgo definidos.",
           "detailLabel": "En este paso definimos",
           "detailItems": [
@@ -499,7 +499,7 @@
         {
           "num": "04",
           "tag": "Paso 04",
-          "title": "Supervisión Continua",
+          "title": "Supervisión\nContinua",
           "body": "Los mercados cambian. Los portafolios se revisan periódicamente para asegurar que permanezcan alineados con los objetivos del cliente y las condiciones cambiantes del mercado.",
           "detailLabel": "En cada revisión evaluamos",
           "detailItems": [
@@ -852,7 +852,7 @@
     "heading.italic": "Sin Condiciones.",
     "obligationEyebrow": "Nuestra Obligación",
     "obligationHeading": "El Estándar Fiduciario.",
-    "obligationHeading.italic": "A Fiduciary Standard. Applied Without Compromise.",
+    "obligationHeading.italic": "Un Estándar Fiduciario. Aplicado Sin Compromiso.",
     "obligationBody": "Como asesor de inversiones registrado, estamos legal y éticamente obligados a actuar en los mejores intereses de nuestros clientes. Esta no es una declaración de posicionamiento — es el fundamento de cada decisión que tomamos.",
     "pill": "Registrado en la SEC · Formulario ADV Parte 2",
     "obligations": [

@@ -459,8 +459,8 @@
         {
           "num": "01",
           "tag": "Step 01",
-          "title": "Client Understanding",
-          "body": "Every investment strategy begins with a clear and documented understanding of the client's objectives, time horizon, liquidity needs and true risk tolerance.",
+          "title": "Client\nUnderstanding",
+          "body": "Every investment strategy begins with a clear and documented understanding of the client's objectives, time horizon, liquidity needs and true risk tolerance.\n",
           "detailLabel": "In this step we define",
           "detailItems": [
             "Long-term financial objectives",
@@ -472,8 +472,8 @@
         {
           "num": "02",
           "tag": "Step 02",
-          "title": "Portfolio Construction",
-          "body": "Portfolios are constructed through disciplined asset allocation, aligning capital across asset classes based on the defined mandate and risk budget.",
+          "title": "Portfolio\nConstruction",
+          "body": "Portfolios are constructed through disciplined asset allocation, aligning capital across asset classes based on the defined mandate and risk budget.\n",
           "detailLabel": "In this step we define",
           "detailItems": [
             "Strategic asset allocation",
@@ -486,7 +486,7 @@
           "num": "03",
           "tag": "Step 03",
           "title": "Risk\nOversight",
-          "body": "Portfolio risk is continuously monitored across key dimensions, ensuring exposures remain aligned with the defined risk budget.",
+          "body": "Portfolio risk is continuously monitored across key dimensions, ensuring exposures remain aligned with the defined risk budget.\n",
           "detailLabel": "Monitored variables",
           "detailItems": [
             "Sector concentration risk",
@@ -498,8 +498,8 @@
         {
           "num": "04",
           "tag": "Step 04",
-          "title": "Continuous Oversight",
-          "body": "Markets change. Portfolios are reviewed periodically to ensure they remain aligned with client objectives and evolving market conditions.",
+          "title": "Continuous\nOversight",
+          "body": "Markets change. Portfolios are reviewed periodically to ensure they remain aligned with client objectives and evolving market conditions.\n",
           "detailLabel": "In each review we evaluate",
           "detailItems": [
             "Deviation from target allocation",

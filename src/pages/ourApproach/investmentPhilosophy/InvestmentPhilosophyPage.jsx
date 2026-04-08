@@ -1,9 +1,7 @@
 import { Footer } from '../../../widgets/footer/Footer'
 import { useScrollReveal } from '../../../shared/lib/useScrollReveal'
-import { t } from '../../../shared/config/locales'
+import { useTranslation } from '../../../shared/config/locales/i18nContext'
 import './ui/investmentPhilosophy.css'
-
-const tf = t.enfoque.filosofia
 
 const driverIcons = {
   trend:  <><path d="M2 12 L6 7 L10 9 L14 4"/></>,
@@ -14,6 +12,8 @@ const driverIcons = {
 
 export function InvestmentPhilosophyPage() {
   useScrollReveal()
+  const { t } = useTranslation()
+  const tf = t.enfoque.filosofia
 
   return (
     <div>

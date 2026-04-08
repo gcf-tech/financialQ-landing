@@ -1,11 +1,9 @@
 import './Footer.css'
-import { t } from '../../shared/config/locales'
+import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
 import logoImg from '../../assets/images/footer/logo_blanco_financialQ.png'
 
-const tf = t.footer
-
-function LegalLinks() {
+function LegalLinks({ tf }) {
   return (
     <div className="fleg">
       <a href="#">{tf.legalLinks.privacy}</a>
@@ -17,6 +15,8 @@ function LegalLinks() {
 }
 
 export function Footer({ variant = 'mini' }) {
+  const { t } = useTranslation()
+  const tf = t.footer
   const navigate = useAppNavigate()
 
   if (variant === 'mini') {
@@ -25,7 +25,7 @@ export function Footer({ variant = 'mini' }) {
         <div className="wrap">
           <div className="fbot">
             <p className="fdisc"><strong>{tf['disclosureLabel.bold']}</strong> {tf.disclosureShort}</p>
-            <LegalLinks />
+            <LegalLinks tf={tf} />
           </div>
         </div>
       </footer>
@@ -87,7 +87,7 @@ export function Footer({ variant = 'mini' }) {
           <p className="fdisc">
             <strong>{tf['disclosureLabelFull.bold']}</strong> {tf.disclosureFull}
           </p>
-          <LegalLinks />
+          <LegalLinks tf={tf} />
         </div>
       </div>
     </footer>

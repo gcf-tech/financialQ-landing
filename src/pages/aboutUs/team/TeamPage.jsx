@@ -1,6 +1,6 @@
 import { Footer } from '../../../widgets/footer/Footer'
 import { useScrollReveal } from '../../../shared/lib/useScrollReveal'
-import { t } from '../../../shared/config/locales'
+import { useTranslation } from '../../../shared/config/locales/i18nContext'
 import { TeamHeroSection } from './ui/TeamHeroSection'
 import { TeamMembersGrid } from './ui/TeamMembersGrid'
 import { TeamPhilosophySection } from './ui/TeamPhilosophySection'
@@ -8,6 +8,7 @@ import './ui/teamPage.css'
 
 export function TeamPage() {
   useScrollReveal()
+  const { t } = useTranslation()
   const team = t.sobre.team
 
   return (

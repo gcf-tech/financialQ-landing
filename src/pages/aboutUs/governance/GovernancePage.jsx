@@ -1,10 +1,8 @@
 import { Footer } from '../../../widgets/footer/Footer'
 import { useScrollReveal } from '../../../shared/lib/useScrollReveal'
-import { t } from '../../../shared/config/locales'
+import { useTranslation } from '../../../shared/config/locales/i18nContext'
 import { PageHero } from '../../../shared/ui/pageHero/PageHero'
 import { ValueList } from '../../../shared/ui/valueList/ValueList'
-
-const tg = t.governance
 
 function DownloadIcon() {
   return (
@@ -16,6 +14,8 @@ function DownloadIcon() {
 
 export function GovernancePage() {
   useScrollReveal()
+  const { t } = useTranslation()
+  const tg = t.governance
 
   return (
     <div>
