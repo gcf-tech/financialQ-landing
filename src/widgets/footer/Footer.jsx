@@ -47,7 +47,7 @@ export function Footer({ variant = 'mini' }) {
             <h5>{tf.sections.sobre}</h5>
             <ul>
               <li><span onClick={() => navigate('sobre', 'firma')}>{tf.links.firma}</span></li>
-              <li><span onClick={() => navigate('sobre', 'equipo')}>{tf.links.equipo}</span></li>
+              {/* <li><span onClick={() => navigate('sobre', 'equipo')}>{tf.links.equipo}</span></li> */}
               <li><span onClick={() => navigate('sobre', 'mision')}>{tf.links.mision}</span></li>
               <li><span onClick={() => navigate('sobre', 'governance')}>{tf.links.governance}</span></li>
             </ul>

@@ -34,7 +34,7 @@
     "heading.italic": "Capital",
     "heading2": "Estructurada.",
     "subtitle": "Construida para la Permanencia.",
-    "description": "Una plataforma fiduciaria para inversores sofisticados — diseño por mandato, presupuestación explícita de riesgo y asignación sensible al régimen macroeconómico.",
+    "description": "Una plataforma de inversión fiduciaria basada en carteras guiadas por el mandato, presupuesto de riesgo explícito y asignación consciente del régimen de mercado.",
     "ctaPrimary": "Agendar Consulta",
     "ctaSecondary": "Nuestro Enfoque",
     "tags": [
@@ -83,13 +83,13 @@
     "framework": {
       "eyebrow": "Metodología Exclusiva",
       "heading": "Arquitectura de Capital FinancialQ™",
-      "body": "Una metodología de cuatro pilares para construir, gobernar y adaptar portafolios a través de regímenes de mercado.",
+      "body": "Un marco disciplinado para construir y gestionar carteras a través de regímenes de mercado cambiantes.",
       "btn": "Ver Marco Completo",
       "pillars": [
         { "num": "01", "title": "Definición del Mandato",       "body": "Propósito del capital, objetivos y horizonte temporal." },
         { "num": "02", "title": "Presupuesto de Riesgo",         "body": "Volatilidad, caída máxima y correlación presupuestados." },
         { "num": "03", "title": "Asignación por Régimen",        "body": "Ciclos macroeconómicos como insumo estructural permanente." },
-        { "num": "04", "title": "Arquitectura de Capitalización","body": "Estructuración fiscal y rebalanceo sistemático." }
+        { "num": "04", "title": "Arquitectura de Capitalización","body": "Alineación de la estructura del portafolio con la eficiencia del capital a largo plazo." }
       ]
     },
     "insights": {
@@ -98,9 +98,9 @@
       "btnAll": "Todas las Perspectivas",
       "featured": {
         "tag": "Ensayo Destacado",
-        "title": "Identificación de Régimen como Insumo de Portafolio",
-        "body": "Los regímenes macroeconómicos — no los períodos calendario — gobiernan las distribuciones de retorno de los activos.",
-        "meta": "Nov 2024 · 14 min"
+        "title": "Perspectiva Global del Mercado 2026",
+        "body": "Desplazamientos estructurales, transiciones de régimen y implicaciones para el capital a largo plazo.",
+        "meta": "Abr 2026 · 14 min"
       },
       "card1": {
         "tag": "Nota Técnica",
@@ -135,19 +135,20 @@
       "heading": "Una Firma Construida para la",
       "heading.italic": "Permanencia.",
       "historyEyebrow": "Historia y Fundación",
-      "historyHeading": "Dos Décadas de",
-      "historyHeading.italic": "Disciplina Institucional.",
-      "historyBody1": "FinancialQ Group fue fundada en 2000 con una premisa simple pero radical: los inversores privados sofisticados merecen el mismo rigor metodológico que los grandes fondos institucionales — sin los conflictos de interés que caracterizan a la banca privada tradicional.",
-      "historyBody2": "Durante 24 años hemos construido y supervisado mandatos para una base de clientes deliberadamente pequeña. No gestionamos activos por escala. Gestionamos compromisos por profundidad.",
+      "historyHeading": "Disciplina Institucional.",
+      "historyHeading.italic": "Aplicada Diferentemente.",
+      "historyBody1": "FinancialQ fue fundada con una premisa simple: los inversores privados merecen el mismo nivel de disciplina, estructura y gestión de riesgo tradicionalmente reservada para portafolios institucionales.",
+      "historyBody2": "La firma lleva una enfoque institucional a la construcción de portafolios, fundado en la asignación guiada por el mandato, el presupuesto explícito de riesgo y la conciencia macroeconómica, y lo aplica a capital individual y familiar.",
+      "historyBody3": "Nuestros principios aportan décadas de experiencia en inversión institucional, fiscalidad y planificación patrimonial a una firma deliberadamente pequeña, enfocada y sin conflictos de interés.",
       "legalEyebrow": "Estructura Legal y Regulatoria",
       "legalHeading": "Registro y",
       "legalHeading.italic": "Cumplimiento Regulatorio.",
-      "legalBody": "Operamos bajo el marco más exigente disponible para asesores de inversión en Estados Unidos.",
-      "legalPill": "SEC-Registrado · Formulario ADV Parte 2",
+      "legalBody": "Operamos como asesor de inversión registrado bajo el estándar fiduciario, priorizando los intereses de nuestros clientes.",
+      "legalPill": "Formulario ADV Parte 2",
       "items": [
         {
           "title": "Asesor de Inversiones Registrado",
-          "body": "Regulado por la SEC bajo el Investment Advisers Act de 1940. Obligación fiduciaria total con cada cliente."
+          "body": "Registrado en el nivel estatal y operando bajo el estándar fiduciario."
         },
         {
           "title": "Modelo Fee-Only",
@@ -158,8 +159,8 @@
           "body": "Los activos de clientes se mantienen en custodios independientes completamente separados de las operaciones de la firma."
         },
         {
-          "title": "Membresías Profesionales",
-          "body": "CFA Institute · CFP Board · NAPFA (National Association of Personal Financial Advisors)"
+          "title": "Supervisión Regulatoria",
+          "body": "La firma opera bajo los requisitos regulatorios aplicables y las obligaciones fiduciarias."
         }
       ]
     },
@@ -201,10 +202,10 @@
     },
     "mision": {
       "kicker": "Sobre Nosotros — Misión y Visión",
-      "heading": "El Propósito que Guía Cada",
+      "heading": "Los Principios que Guían Cada",
       "heading.italic": "Decisión.",
       "missionEyebrow": "Misión",
-      "missionText": "Preservar y hacer crecer el capital de nuestros clientes a través de una disciplina de inversión estructurada, sin compromisos en el estándar fiduciario.",
+      "missionText": "Preservar y hacer crecer el capital de nuestros clientes a través de la aplicación de la disciplina de inversión institucional a capital individual y familiar, sin compromisos en el estándar fiduciario.",
       "visionEyebrow": "Visión",
       "visionText": "Ser el estándar de referencia para la gestión patrimonial institucional aplicada a mandatos individuales de complejidad excepcional.",
       "valuesLabel": "Valores Institucionales",
@@ -222,12 +223,12 @@
         {
           "num": "III",
           "title": "Permanencia sobre Rendimiento Trimestral",
-          "body": "El objetivo no es maximizar el retorno de un período. Es construir riqueza que perdure generaciones con integridad estructural."
+          "body": "El objetivo no es maximizar el retorno de un período. Es construir capital que perdure generaciones con integridad estructural."
         },
         {
           "num": "IV",
           "title": "Selectividad como Responsabilidad",
-          "body": "Aceptar clientes que no podemos servir bien no es un servicio — es un perjuicio. Nuestros compromisos son selectivos por respeto y por principio."
+          "body": "Aceptar clientes que no podemos servir bien no es un servicio — es un perjuicio. Nuestros compromisos son selectivos por design y por principio."
         }
       ]
     },
@@ -353,11 +354,11 @@
       ],
       "statement": {
         "eyebrow": "Nuestro Enfoque",
-        "headlineLines": ["Tres principios.", "Un solo", "objetivo."],
+        "headlineLines": ["Tres principios.", "Un Objetivo:", "Capital a largo plazo"],
         "principles": [
-          { "num": "01", "word": "Disciplina",       "sub": "Portafolios construidos con proceso, no con predicciones." },
-          { "num": "02", "word": "Diversificación",  "sub": "Resiliencia a través de distintos entornos de mercado." },
-          { "num": "03", "word": "Largo Plazo",      "sub": "Paciencia a través de ciclos. Capital que capitaliza en el tiempo." }
+          { "num": "01", "word": "Disciplina",       "sub": "Portafolios construidos con procesos estructurados, no con predicciones." },
+          { "num": "02", "word": "Presupuesto de Riesgo",  "sub": "El riesgo se define, mide y asigna intencionalmente, no se asume." },
+          { "num": "03", "word": "Orientación a Largo Plazo",      "sub": "El capital se gestiona a través de ciclos, no de trimestres." }
         ]
       },
       "convictions": [
@@ -368,9 +369,9 @@
       ],
       "drivers": {
         "eyebrow": "Lo que impulsa los resultados",
-        "heading": "Inversión exitosa a través",
-        "heading.italic": "del tiempo.",
-        "body": "Cuatro fuerzas que — aplicadas con consistencia — determinan los resultados del portafolio a lo largo de décadas.",
+        "heading": "Lo que Impulsa los Resultados",
+        "heading.italic": "a Largo Plazo.",
+        "body": "Cuatro fuerzas que aplicadas de manera consistente determinan los resultados del portafolio a lo largo de décadas.",
         "items": [
           { "name": "Asignación Estratégica de Activos", "desc": "La distribución del capital entre clases de activos es la palanca de mayor impacto en los retornos a largo plazo.",                         "icon": "trend"  },
           { "name": "Diversificación Inteligente",       "desc": "No toda diversificación reduce el riesgo. La diversificación efectiva requiere análisis de correlación, no solo cantidad de activos.",      "icon": "clock"  },
@@ -388,7 +389,7 @@
       "eyebrow": "Marco Metodológico",
       "heading": "Arquitectura de Capital",
       "heading.sup": "FinancialQ™",
-      "body": "Una metodología de cuatro pilares para construir, gobernar y adaptar portafolios a través de regímenes de mercado. Basada en principios institucionales — aplicada con precisión a mandatos individuales.",
+      "body": "Una metodología de cuatro pilares para construir, gobernar y adaptar portafolios a través de regímenes de mercado. Basada en principios institucionales y aplicada con precisión a mandatos individuales.",
       "pillars": [
         {
           "num": "01",
@@ -435,14 +436,14 @@
         {
           "num": "04",
           "title": "Arquitectura de Capitalización",
-          "body": "Los resultados a largo plazo se diseñan mediante estructuración fiscalmente eficiente, disciplina conductual y rebalanceo sistemático — permitiendo que la capitalización compuesta opere sin interrupciones.",
+          "body": "Los resultados a largo plazo se soportan mediante una estructura portafolio disciplinada y un rebalanceo sistemático, permitiendo que el capital compuesto opere de manera consistente a lo largo del tiempo.",
           "deliverables": {
             "label": "Palancas de capitalización",
             "items": [
-              "Ubicación eficiente de activos (tax location)",
-              "Rebalanceo sistemático con umbral de deriva",
-              "Cosecheo de pérdidas fiscales (TLH)",
-              "Gestión de distribuciones y retiros"
+              "Rebalanceo sistemático con umbrales definidos",
+              "Estructura portafolio alineada con los objetivos del mandato",
+              "Posicionamiento consciente de liquidez y horizonte",
+              "Planificación de distribución y retiro"
             ]
           }
         }
@@ -472,8 +473,8 @@
         {
           "num": "02",
           "tag": "Paso 02",
-          "title": "Diseño Estratégico del Portafolio",
-          "body": "Construimos portafolios diversificados usando un enfoque disciplinado de asignación de activos en renta variable, renta fija y otras clases de activos cuando aplica al perfil del cliente.",
+          "title": "Construcción del Portafolio",
+          "body": "Los portafolios se construyen mediante una asignación disciplinada de activos, alineando el capital entre clases de activos según el mandato y el presupuesto de riesgo definidos.",
           "detailLabel": "En este paso definimos",
           "detailItems": [
             "Asignación estratégica de activos",
@@ -485,8 +486,8 @@
         {
           "num": "03",
           "tag": "Paso 03",
-          "title": "Monitoreo del Riesgo",
-          "body": "Las exposiciones de riesgo del portafolio - concentración, liquidez, sensibilidad a tasas y correlación de mercado - se evalúan regularmente como parte del proceso de supervisión.",
+          "title": "Supervisión del Riesgo",
+          "body": "El riesgo del portafolio se monitorea de manera continua a través de las dimensiones clave, asegurando que las exposiciones permanezcan alineadas con el presupuesto de riesgo definido.",
           "detailLabel": "Variables monitoreadas",
           "detailItems": [
             "Riesgo de concentración por sector",
@@ -758,9 +759,9 @@
     "featured": {
       "badge": "Ensayo Destacado",
       "articleType": "Ensayo",
-      "title": "Identificación de Régimen Macroeconómico como Insumo de Portafolio",
+      "title": "Perspectiva Global del Mercado 2026",
       "excerpt": "Los regímenes macroeconómicos gobiernan las distribuciones de retorno de los activos de maneras que la asignación estática no captura. Exploramos cómo incorporar el análisis de régimen en el proceso de construcción de portafolios sin caer en la trampa del market timing.",
-      "date": "Nov 2024",
+      "date": "Abr 2026",
       "readTime": "14 min de lectura",
       "readCta": "Leer Ensayo"
     },
@@ -850,14 +851,14 @@
     "heading": "El Estándar Fiduciario.",
     "heading.italic": "Sin Condiciones.",
     "obligationEyebrow": "Nuestra Obligación",
-    "obligationHeading": "El Estándar más",
-    "obligationHeading.italic": "Exigente del Sector.",
-    "obligationBody": "Como asesor de inversiones registrado, estamos legal y éticamente obligados a actuar en su interés — no en el nuestro. Esta no es una declaración de posicionamiento. Es el fundamento estructural de cada compromiso que asumimos.",
+    "obligationHeading": "El Estándar Fiduciario.",
+    "obligationHeading.italic": "A Fiduciary Standard. Applied Without Compromise.",
+    "obligationBody": "Como asesor de inversiones registrado, estamos legal y éticamente obligados a actuar en los mejores intereses de nuestros clientes. Esta no es una declaración de posicionamiento — es el fundamento de cada decisión que tomamos.",
     "pill": "Registrado en la SEC · Formulario ADV Parte 2",
     "obligations": [
       {
         "title": "Asesoría sin Conflictos de Interés",
-        "body": "No tenemos productos propios, no aceptamos compensación de terceros y no mantenemos incentivos de captación que comprometan nuestro asesoramiento."
+        "body": "No ofrecemos productos propios ni aceptamos compensación de terceros, y no mantenemos incentivos de captación que puedan influir en nuestro asesoramiento."
       },
       {
         "title": "Divulgación Transparente de Honorarios",
@@ -868,8 +869,8 @@
         "body": "Los portafolios se revisan contra los parámetros del mandato en intervalos definidos. Los cambios de régimen desencadenan reevaluación estructurada — no reposicionamiento reactivo."
       },
       {
-        "title": "Arquitectura de Cumplimiento Regulatorio",
-        "body": "Totalmente conforme con regulaciones SEC. Custodios independientes garantizan segregación completa de activos de las operaciones de la firma."
+        "title": "Marco Regulatorio",
+        "body": "La firma opera bajo los requisitos regulatorios aplicables y las obligaciones fiduciarias, con custodios independientes manteniendo la segregación completa de los activos de los clientes."
       }
     ],
     "feeComparison": {
@@ -978,7 +979,7 @@
   },
 
   "footer": {
-    "tagline": "Plataforma fiduciaria de supervisión de capital para inversores sofisticados. Registrado en la SEC. Fee-only. Sin conflictos.",
+    "tagline": "Asesor de inversiones registrado. Fee-only. Sin conflictos.",
     "sections": {
       "sobre": "Sobre Nosotros",
       "enfoque": "Enfoque",
@@ -1014,7 +1015,7 @@
     "disclosureLabel.bold": "Divulgaciones:",
     "disclosureLabelFull.bold": "Divulgaciones Importantes:",
     "disclosureShort": "FinancialQ Group es un asesor de inversiones registrado. Toda inversión conlleva riesgo.",
-    "disclosureFull": "FinancialQ Group es un asesor de inversiones registrado. El registro no implica un determinado nivel de habilidad o formación. El rendimiento pasado no es indicativo de resultados futuros. Este sitio web es solo para fines informativos y no constituye asesoramiento de inversión. Toda inversión conlleva riesgo, incluida la posible pérdida del capital principal."
+    "disclosureFull": "FinancialQ Group es un asesor de inversiones registrado. Registración no implica un nivel de habilidad o capacitación determinado. Este material es solo informativo y no constituye asesoramiento de inversión. El rendimiento pasado no es indicativo del rendimiento futuro. Todas las inversiones conllevan riesgo, incluido el posible pérdida de capital."
   },
 
   "common": {

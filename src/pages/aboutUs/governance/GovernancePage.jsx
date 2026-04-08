@@ -30,7 +30,7 @@ export function GovernancePage() {
                 {tg.obligationHeading}<br /><em>{tg['obligationHeading.italic']}</em>
               </h2>
               <p className="body-copy" style={{ fontSize: 15, marginBottom: 28 }}>{tg.obligationBody}</p>
-              <div className="gpill"><div className="gpill-dot" />{tg.pill}</div>
+              {/*<div className="gpill"><div className="gpill-dot" />{tg.pill}</div>*/}
             </div>
             <ValueList items={tg.obligations} delay={1} />
           </div>
@@ -72,7 +72,7 @@ export function GovernancePage() {
               </h2>
               <p className="body-copy" style={{ marginTop: 18 }}>{tg.docs.body}</p>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 2, background: 'var(--border)' }}>
+            {/*<div style={{ display: 'flex', flexDirection: 'column', gap: 2, background: 'var(--border)' }}>
               {tg.docs.items.map(doc => (
                 <div
                   key={doc.title}
@@ -87,7 +87,7 @@ export function GovernancePage() {
                   <DownloadIcon />
                 </div>
               ))}
-            </div>
+            </div>*/}
           </div>
         </div>
       </section>

@@ -33,7 +33,7 @@
     "heading.italic": "Capital",
     "heading2": "Management.",
     "subtitle": "Built for Permanence.",
-    "description": "A fiduciary platform for sophisticated investors — design by mandate, explicit risk budgeting and macroeconomic regime-sensitive allocation.",
+    "description": "A fiduciary investment platform built on mandate-driven portfolios, explicit risk budgeting, and regime-aware allocation.",
     "ctaPrimary": "Schedule Consultation",
     "ctaSecondary": "Our Approach",
     "tags": [
@@ -82,13 +82,13 @@
     "framework": {
       "eyebrow": "Exclusive Methodology",
       "heading": "FinancialQ™ Capital Architecture",
-      "body": "A four-pillar methodology for building, governing and adapting portfolios through market regimes.",
+      "body": "A disciplined framework for constructing and managing portfolios across evolving market regimes.",
       "btn": "View Full Framework",
       "pillars": [
         { "num": "01", "title": "Mandate Definition",            "body": "Capital purpose, objectives and time horizon." },
         { "num": "02", "title": "Risk Budget",                   "body": "Budgeted volatility, maximum drawdown and correlation." },
         { "num": "03", "title": "Regime Allocation",             "body": "Macroeconomic cycles as a permanent structural input." },
-        { "num": "04", "title": "Capitalization Architecture",   "body": "Tax structuring and systematic rebalancing." }
+        { "num": "04", "title": "Capitalization Architecture",   "body": "Aligns portfolio structure and rebalancing with long-term capital efficiency." }
       ]
     },
     "insights": {
@@ -97,9 +97,9 @@
       "btnAll": "All Perspectives",
       "featured": {
         "tag": "Featured Essay",
-        "title": "Regime Identification as Portfolio Input",
-        "body": "Macroeconomic regimes — not calendar periods — govern asset return distributions.",
-        "meta": "Nov 2024 · 14 min"
+        "title": "2026 Global Market Outlook",
+        "body": "Structural shifts, regime transitions, and portfolio implications for long-term capital.",
+        "meta": "Apr 2026 · 14 min"
       },
       "card1": {
         "tag": "Technical Note",
@@ -134,19 +134,20 @@
       "heading": "A Firm Built for",
       "heading.italic": "Permanence.",
       "historyEyebrow": "History and Foundation",
-      "historyHeading": "Two Decades of",
-      "historyHeading.italic": "Institutional Discipline.",
-      "historyBody1": "FinancialQ Group was founded in 2000 on a simple but radical premise: sophisticated private investors deserve the same methodological rigor as large institutional funds — without the conflicts of interest that characterize traditional private banking.",
-      "historyBody2": "For 24 years we have built and overseen mandates for a deliberately small client base. We do not manage assets by scale. We manage commitments by depth.",
+      "historyHeading": "Institutional Discipline.",
+      "historyHeading.italic": "Applied Differently.",
+      "historyBody1": "FinancialQ was founded on a simple premise: private investors deserve the same level of discipline, structure, and risk management traditionally reserved for institutional portfolios.",
+      "historyBody2": "The firm brings an institutional approach to portfolio construction, grounded in mandate-driven allocation, explicit risk budgeting, and macroeconomic awareness and applies it to individual and family capital.",
+      "historyBody3": "We do not manage assets by scale. We build and govern portfolios with precision, aligning each decision with clearly defined objectives and long-term outcomes.",
       "legalEyebrow": "Legal and Regulatory Structure",
       "legalHeading": "Registration and",
       "legalHeading.italic": "Regulatory Compliance.",
-      "legalBody": "We operate under the most demanding framework available to investment advisors in the United States.",
-      "legalPill": "SEC-Registered · Form ADV Part 2",
+      "legalBody": "We operate as a registered investment adviser under a fiduciary standard, placing client interests first.",
+      "legalPill": "Form ADV Part 2",
       "items": [
         {
           "title": "Registered Investment Advisor",
-          "body": "Regulated by the SEC under the Investment Advisers Act of 1940. Full fiduciary obligation to each client."
+          "body": "Registered at the state level and operating under a fiduciary standard."
         },
         {
           "title": "Fee-Only Model",
@@ -157,8 +158,8 @@
           "body": "Client assets are held at independent custodians completely separate from the firm's operations."
         },
         {
-          "title": "Professional Memberships",
-          "body": "CFA Institute · CFP Board · NAPFA (National Association of Personal Financial Advisors)"
+          "title": "Regulatory Oversight",
+          "body": "The firm operates under applicable state regulatory requirements and fiduciary obligations."
         }
       ]
     },
@@ -200,12 +201,12 @@
     },
     "mision": {
       "kicker": "About Us — Mission and Vision",
-      "heading": "The Purpose Guiding",
+      "heading": "The Principles Guiding",
       "heading.italic": "Every Decision.",
       "missionEyebrow": "Mission",
       "missionText": "To preserve and grow our clients' capital through structured investment discipline, without compromise on the fiduciary standard.",
       "visionEyebrow": "Vision",
-      "visionText": "To be the reference standard for institutional wealth management applied to individual mandates of exceptional complexity.",
+      "visionText": "To set the standard for applying institutional investment discipline to individual and family capital.",
       "valuesLabel": "Institutional Values",
       "values": [
         {
@@ -221,12 +222,12 @@
         {
           "num": "III",
           "title": "Permanence Over Quarterly Performance",
-          "body": "The objective is not to maximize a period's return. It is to build wealth that endures for generations with structural integrity."
+          "body": "The objective is not to maximize short-term returns, but to build capital that endures across generations with structural integrity."
         },
         {
           "num": "IV",
           "title": "Selectivity as Responsibility",
-          "body": "Accepting clients we cannot serve well is not a service — it is a disservice. Our commitments are selective out of respect and principle."
+          "body": "Accepting clients we cannot serve well is not a service — it is a disservice. Our commitments are selective by design and by principle."
         }
       ]
     },
@@ -352,11 +353,11 @@
       ],
       "statement": {
         "eyebrow": "Our Approach",
-        "headlineLines": ["Three principles.", "One single", "objective."],
+        "headlineLines": ["Three principles.", "One Objective:", "Long-term capital"],
         "principles": [
-          { "num": "01", "word": "Discipline",     "sub": "Portfolios built with process, not predictions." },
-          { "num": "02", "word": "Diversification","sub": "Resilience across different market environments." },
-          { "num": "03", "word": "Long Term",      "sub": "Patience through cycles. Capital that compounds over time." }
+          { "num": "01", "word": "Discipline",            "sub": "Portfolios built through structured processes, not predictions." },
+          { "num": "02", "word": "Risk Budgeting",        "sub": "Risk is defined, measured, and allocated intentionally, not assumed." },
+          { "num": "03", "word": "Long-Term Orientation", "sub": "Capital is managed across cycles, not quarters." }
         ]
       },
       "convictions": [
@@ -367,9 +368,9 @@
       ],
       "drivers": {
         "eyebrow": "What drives results",
-        "heading": "Successful investment through",
-        "heading.italic": "time.",
-        "body": "Four forces that — applied consistently — determine portfolio outcomes across decades.",
+        "heading": "What Drives Long-Term",
+        "heading.italic": "Outcomes.",
+        "body": "Four forces that, applied consistently, determine portfolio outcomes across decades.",
         "items": [
           { "name": "Strategic Asset Allocation",  "desc": "Capital distribution across asset classes is the highest-impact lever in long-term returns.",                              "icon": "trend"  },
           { "name": "Intelligent Diversification", "desc": "Not all diversification reduces risk. Effective diversification requires correlation analysis, not just quantity of assets.", "icon": "clock"  },
@@ -387,7 +388,7 @@
       "eyebrow": "Methodological Framework",
       "heading": "Capital Architecture",
       "heading.sup": "FinancialQ™",
-      "body": "A four-pillar methodology for building, governing and adapting portfolios through market regimes. Grounded in institutional principles — applied with precision to individual mandates.",
+      "body": "A structured framework for building, governing, and adapting portfolios across market regimes, grounded in mandate definition, risk budgeting, and disciplined allocation.",
       "pillars": [
         {
           "num": "01",
@@ -434,14 +435,14 @@
         {
           "num": "04",
           "title": "Capitalization Architecture",
-          "body": "Long-term outcomes are engineered through tax-efficient structuring, behavioral discipline and systematic rebalancing — allowing compounding to operate without interruption.",
+          "body": "Long-term outcomes are supported through disciplined portfolio structure and systematic rebalancing, enabling capital to compound with consistency over time.",
           "deliverables": {
             "label": "Capitalization levers",
             "items": [
-              "Efficient asset location (tax location)",
-              "Systematic rebalancing with drift threshold",
-              "Tax-loss harvesting (TLH)",
-              "Distribution and withdrawal management"
+              "Systematic rebalancing with defined thresholds",
+              "Portfolio structure aligned with mandate objectives",
+              "Liquidity and horizon-aware positioning",
+              "Distribution and withdrawal planning"
             ]
           }
         }
@@ -471,8 +472,8 @@
         {
           "num": "02",
           "tag": "Step 02",
-          "title": "Strategic Portfolio Design",
-          "body": "We build diversified portfolios using a disciplined asset allocation approach across equities, fixed income and other asset classes when appropriate for the client profile.",
+          "title": "Portfolio Construction",
+          "body": "Portfolios are constructed through disciplined asset allocation, aligning capital across asset classes based on the defined mandate and risk budget.",
           "detailLabel": "In this step we define",
           "detailItems": [
             "Strategic asset allocation",
@@ -484,8 +485,8 @@
         {
           "num": "03",
           "tag": "Step 03",
-          "title": "Risk Monitoring",
-          "body": "Portfolio risk exposures - concentration, liquidity, rate sensitivity and market correlation - are evaluated regularly as part of the supervision process.",
+          "title": "Risk Oversight",
+          "body": "Portfolio risk is continuously monitored across key dimensions, ensuring exposures remain aligned with the defined risk budget.",
           "detailLabel": "Monitored variables",
           "detailItems": [
             "Sector concentration risk",
@@ -757,9 +758,9 @@
     "featured": {
       "badge": "Featured Essay",
       "articleType": "Essay",
-      "title": "Macroeconomic Regime Identification as a Portfolio Input",
+      "title": "2026 Market Outlook",
       "excerpt": "Macroeconomic regimes govern asset return distributions in ways static allocation does not capture. We explore how to incorporate regime analysis into portfolio construction without falling into market-timing traps.",
-      "date": "Nov 2024",
+      "date": "Apr 2026",
       "readTime": "14 min read",
       "readCta": "Read Essay"
     },
@@ -849,14 +850,14 @@
     "heading": "The Fiduciary Standard.",
     "heading.italic": "Unconditionally.",
     "obligationEyebrow": "Our Obligation",
-    "obligationHeading": "The Most Demanding",
-    "obligationHeading.italic": "Standard in the Industry.",
-    "obligationBody": "As a registered investment advisor, we are legally and ethically obligated to act in your interest — not our own. This is not a positioning statement. It is the structural foundation of every commitment we undertake.",
+    "obligationHeading": "The Fiduciary Standard.",
+    "obligationHeading.italic": "A Fiduciary Standard. Applied Without Compromise.",
+    "obligationBody": "As a registered investment adviser, we are legally and ethically obligated to act in our clients' best interest. This is not a positioning statement — it is the foundation of every decision we make.",
     "pill": "SEC-Registered · Form ADV Part 2",
     "obligations": [
       {
         "title": "Advice Free of Conflicts of Interest",
-        "body": "We have no proprietary products, accept no third-party compensation, and maintain no referral incentives that could compromise our advice."
+        "body": "We do not offer proprietary products or accept third-party compensation, and maintain no referral incentives that could influence our advice."
       },
       {
         "title": "Transparent Fee Disclosure",
@@ -867,8 +868,8 @@
         "body": "Portfolios are reviewed against mandate parameters at defined intervals. Regime changes trigger structured reassessment — not reactive repositioning."
       },
       {
-        "title": "Regulatory Compliance Architecture",
-        "body": "Fully compliant with SEC regulations. Independent custodians guarantee complete segregation of client assets from firm operations."
+        "title": "Regulatory Framework",
+        "body": "The firm operates under applicable state regulatory requirements and fiduciary obligations, with independent custodians maintaining full segregation of client assets."
       }
     ],
     "feeComparison": {
@@ -878,11 +879,11 @@
       "feeOnly": {
         "label": "✓ Fee-Only (FinancialQ Group)",
         "items": [
-          "Fees charged exclusively to the client",
-          "Zero commissions from financial products",
-          "Zero third-party payments (funds, brokers, insurers)",
-          "Legal fiduciary obligation to the client at all times",
-          "Recommendations based solely on the client's interest"
+          "Fees charged directly to the client",
+          "No commissions from financial products",
+          "No third-party compensation",
+          "Operates under a fiduciary standard",
+          "Recommendations aligned with client interests"
         ]
       },
       "feeBased": {
@@ -977,7 +978,7 @@
   },
 
   "footer": {
-    "tagline": "Fiduciary capital supervision platform for sophisticated investors. SEC-Registered. Fee-only. Conflict-free.",
+    "tagline": "Registered Investment Adviser. Fee-only. Conflict-free.",
     "sections": {
       "sobre": "About Us",
       "enfoque": "Approach",
@@ -1013,7 +1014,7 @@
     "disclosureLabel.bold": "Disclosures:",
     "disclosureLabelFull.bold": "Important Disclosures:",
     "disclosureShort": "FinancialQ Group is a registered investment advisor. All investments involve risk.",
-    "disclosureFull": "FinancialQ Group is a registered investment advisor. Registration does not imply a certain level of skill or training. Past performance is not indicative of future results. This website is for informational purposes only and does not constitute investment advice. All investments involve risk, including possible loss of principal."
+    "disclosureFull": "FinancialQ Group is a registered investment adviser. Registration does not imply a certain level of skill or training. This material is for informational purposes only and does not constitute investment advice. Past performance is not indicative of future results. All investments involve risk, including the possible loss of principal."
   },
 
   "common": {

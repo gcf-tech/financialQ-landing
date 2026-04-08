@@ -84,7 +84,7 @@ export function PerspectivesPage() {
 
         <div className="wrap" style={{ paddingTop: 0, paddingBottom: 0 }}>
           <div className="persp-filters">
-            {TABS.map(tab => (
+            {TABS.filter(tab => tab.key === 'todos').map(tab => (
               <div
                 key={tab.key}
                 className={`persp-filter${filter === tab.key ? ' active' : ''}`}
@@ -100,15 +100,15 @@ export function PerspectivesPage() {
 
         <div className="wrap" style={{ paddingTop: 0 }}>
           <div className="persp-featured">
-            <div className="persp-feat-img">
+            {/*<div className="persp-feat-img">
               <div className="persp-feat-img-inner" />
               <div className="persp-feat-img-grid" />
               <div className="persp-feat-badge">
                 <span>{tp.featured.badge}</span>
               </div>
               <FeaturedGeom />
-            </div>
-            <div className="persp-feat-content">
+            </div>*/}
+            <div className="persp-feat-content" style={{ gridColumn: '1 / -1' }}>
               <span className="persp-feat-type">{tp.featured.articleType}</span>
               <h2 className="persp-feat-title reveal">{tp.featured.title}</h2>
               <p className="persp-feat-excerpt reveal d1">{tp.featured.excerpt}</p>
@@ -127,10 +127,10 @@ export function PerspectivesPage() {
           </div>
         </div>
 
-        <div className="wrap" style={{ paddingTop: 0 }}>
+        {/*<div className="wrap" style={{ paddingTop: 0 }}>
           <GridArticleRow articles={tp.gridRow1} variant="default" filter={filter} />
           <GridArticleRow articles={tp.gridRow2} variant="alt" filter={filter} />
-        </div>
+        </div>*/}
 
         <div className="persp-about">
           <div className="wrap">

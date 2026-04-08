@@ -110,14 +110,14 @@ export function LandingPage() {
             </Button>
           </div>
           <div className="g53 reveal d1">
-            <div className="il" onClick={() => navigate('perspectivas')}>
+            <div className="il" style={{ gridColumn: '1 / -1' }} onClick={() => navigate('perspectivas')}>
               <div className="i-tag bl">{tl.insights.featured.tag}</div>
               <div className="i-ttl" style={{ fontSize: 28, color: 'var(--ivory)' }}>{tl.insights.featured.title}</div>
               <div className="i-body" style={{ color: 'rgba(230,223,197,.52)' }}>{tl.insights.featured.body}</div>
               <div className="i-meta" style={{ color: 'rgba(230,223,197,.3)' }}>{tl.insights.featured.meta}</div>
               <div className="i-arr"><svg viewBox="0 0 12 12"><path d="M1 6h10M6 1l5 5-5 5" /></svg></div>
             </div>
-            <div className="ic" onClick={() => navigate('perspectivas')}>
+            {/*<div className="ic" onClick={() => navigate('perspectivas')}>
               <div className="i-tag lgt">{tl.insights.card1.tag}</div>
               <div className="i-ttl">{tl.insights.card1.title}</div>
               <div className="i-body">{tl.insights.card1.body}</div>
@@ -130,7 +130,7 @@ export function LandingPage() {
               <div className="i-body">{tl.insights.card2.body}</div>
               <div className="i-meta">{tl.insights.card2.meta}</div>
               <div className="i-arr"><svg viewBox="0 0 12 12"><path d="M1 6h10M6 1l5 5-5 5" /></svg></div>
-            </div>
+            </div>*/}
           </div>
         </div>
       </section>

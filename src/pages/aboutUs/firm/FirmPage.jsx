@@ -24,7 +24,8 @@ export function FirmPage() {
             </div>
             <div>
               <p className="body-copy" style={{ fontSize: 15, marginBottom: 18 }}>{tf.historyBody1}</p>
-              <p className="body-copy" style={{ fontSize: 15 }}>{tf.historyBody2}</p>
+              <p className="body-copy" style={{ fontSize: 15, marginBottom: 18 }}>{tf.historyBody2}</p>
+              <p className="body-copy" style={{ fontSize: 15 }}>{tf.historyBody3}</p>
             </div>
           </div>
         </div>

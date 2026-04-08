@@ -5,7 +5,7 @@ import { useAppNavigate } from '../../shared/lib/useAppNavigate'
 import logoImg from '../../assets/images/header/logo_financialQ.png'
 
 const tn = t.nav
-const SOBRE_SUBS = ['firma', 'equipo', 'mision', 'governance']
+const SOBRE_SUBS = ['firma', 'mision', 'governance']
 const ENFOQUE_SUBS = ['filosofia', 'framework', 'proceso', 'riesgo']
 
 export function Header() {
@@ -33,7 +33,7 @@ export function Header() {
               </svg>
             </div>
             <div className="nav-drop wide">
-              {tn.dropdown.sobre.map((item, i) => (
+              {tn.dropdown.sobre.filter((_, i) => i !== 1).map((item, i) => (
                 <div key={i} className="drop-item" onClick={() => go('sobre', SOBRE_SUBS[i])}>
                   <span className="drop-title">{item.title}</span>
                   <span className="drop-desc">{item.desc}</span>

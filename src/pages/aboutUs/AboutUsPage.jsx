@@ -5,13 +5,11 @@ import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { SLUG_TO_KEY } from '../../shared/config/routes'
 import { SubNav } from '../../shared/ui/subNav/SubNav'
 import { FirmPage } from './firm/FirmPage'
-import { TeamPage } from './team/TeamPage'
 import { MissionPage } from './mission/MissionPage'
 import { GovernancePage } from './governance/GovernancePage'
 
 const subPages = {
   firma: FirmPage,
-  equipo: TeamPage,
   mision: MissionPage,
   governance: GovernancePage,
 }
@@ -27,7 +25,7 @@ export function AboutUsPage() {
 
   return (
     <div>
-      <SubNav items={t.sobre.subnav} active={active} onChange={key => navigate('sobre', key)} />
+      <SubNav items={Object.fromEntries(Object.entries(t.sobre.subnav).filter(([k]) => k !== 'equipo'))} active={active} onChange={key => navigate('sobre', key)} />
       <Page />
     </div>
   )
