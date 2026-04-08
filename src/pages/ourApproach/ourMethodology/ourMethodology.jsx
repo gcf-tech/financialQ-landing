@@ -34,7 +34,7 @@ export function OurMethodologyPage() {
         <div className="wrap" style={{ paddingTop: 0 }}>
           <div className="proc-steps">
             {tp.steps.map((step, i) => (
-              <div key={step.num} className={`proc-step reveal${i > 0 ? ` d${i}` : ''}`}>
+              <div key={step.num} className={`proc-step reveal${i > 0 ? ` d${i}` : ''}${i === 2 ? ' proc-step--centered' : ''}`}>
                 <div className="proc-step-num">{step.num}</div>
                 <div className="proc-step-tag">{step.tag}</div>
                 <div className="proc-step-title">{step.title}</div>

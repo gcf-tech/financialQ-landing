@@ -149,7 +149,7 @@
 }
 
 .persp-feat-content {
-  background: var(--white);
+  background: var(--blue);
   padding: 56px 48px;
   display: flex;
   flex-direction: column;
@@ -161,7 +161,7 @@
   font-weight: 700;
   letter-spacing: .2em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--border);
   margin-bottom: 20px;
   display: block;
 }
@@ -170,7 +170,7 @@
   font-family: var(--serif);
   font-size: clamp(28px, 3.2vw, 44px);
   font-weight: 400;
-  color: var(--black);
+  color: var(--ivory);
   line-height: 1.1;
   letter-spacing: -0.015em;
   margin-bottom: 20px;
@@ -179,7 +179,7 @@
 .persp-feat-excerpt {
   font-size: 14px;
   font-weight: 300;
-  color: var(--muted);
+  color: var(--border);
   line-height: 1.85;
   margin-bottom: 32px;
 }
@@ -530,6 +530,7 @@
 
   .persp-featured {
     grid-template-columns: 1fr;
+    
   }
 
   .persp-grid {

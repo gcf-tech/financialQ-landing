@@ -146,7 +146,7 @@
       "legalPill": "Form ADV Part 2",
       "items": [
         {
-          "title": "Registered Investment Advisor",
+          "title": "Registered Investment Adviser",
           "body": "Registered at the state level and operating under a fiduciary standard."
         },
         {
@@ -757,7 +757,7 @@
     },
     "featured": {
       "badge": "Featured Essay",
-      "articleType": "Essay",
+      "articleType": "Featured Essay",
       "title": "2026 Market Outlook",
       "excerpt": "Macroeconomic regimes govern asset return distributions in ways static allocation does not capture. We explore how to incorporate regime analysis into portfolio construction without falling into market-timing traps.",
       "date": "Apr 2026",

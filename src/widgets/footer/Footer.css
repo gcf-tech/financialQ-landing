@@ -49,8 +49,8 @@ footer.main-footer {
 .fc a:hover, .fc span:hover { color: rgba(230, 223, 197, .75); }
 
 .fbot {
-  padding: 24px 0;
-  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 5px 0 55px 0;
+  display: flex; justify-content: space-between; align-items: center;
   gap: 24px; flex-wrap: wrap;
 }
 .fdisc {

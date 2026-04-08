@@ -1,7 +1,12 @@
 #hero {
   min-height: calc(100vh - var(--nav-h));
   display: flex; flex-direction: column;
+}
+
+.hero-top {
   position: relative; overflow: hidden;
+  flex: 1;
+  display: flex;
 }
 
 .hero-bg { position: absolute; inset: 0; z-index: 0; }
@@ -73,7 +78,9 @@
 
 .hero-tags {
   display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;
-  margin-top: 52px;
+  padding: 28px 24px;
+  background: var(--white);
+  border-top: 1px  var(--border);
   animation: fadeIn .9s 1.02s both;
 }
 .h-tag {
@@ -126,7 +133,7 @@
   .hero-sub { font-size: clamp(18px, 5vw, 24px); margin-top: 6px; }
   .hero-rule { margin: 22px auto; height: 32px; }
   .hero-desc { font-size: 14px; margin-bottom: 32px; }
-  .hero-tags { margin-top: 32px; }
+  .hero-tags { padding: 20px 16px; }
 }
 @media (max-width: 480px) {
   .h-tag-sep { display: none; }

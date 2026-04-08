@@ -35,7 +35,7 @@ export function LandingPage() {
       {/* Clientes preview */}
       <section className="section">
         <div className="wrap">
-          <div className="col2 reveal" style={{ marginBottom: 56 }}>
+          <div className="col2 reveal" style={{ marginBottom: 56, alignItems: 'center' }}>
             <div>
               <span className="eyebrow">{tl.clients.eyebrow}</span>
               <h2 className="display" style={{ fontSize: 'clamp(28px,3.5vw,42px)', marginTop: 18 }}>
@@ -49,7 +49,7 @@ export function LandingPage() {
               </Button>
             </div>
             <div>
-              <p className="body-copy" style={{ fontSize: 16, marginBottom: 20 }}>{tl.clients.body1}</p>
+              <p className="body-copy" style={{ fontSize: 16, marginBottom: 20, marginTop: -8 }}>{tl.clients.body1}</p>
               <p className="body-copy" style={{ fontSize: 16 }}>{tl.clients.body2}</p>
             </div>
           </div>
