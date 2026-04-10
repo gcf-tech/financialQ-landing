@@ -173,6 +173,17 @@ body {
   color: var(--black);
 }
 .gpill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+.gpill--link {
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color .2s, color .2s, transform .18s;
+}
+.gpill--link:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  transform: translateY(-1px);
+}
+.gpill--link svg { width: 11px; height: 11px; flex-shrink: 0; }
 
 /* ── CTA block ── */
 .cta-blk {

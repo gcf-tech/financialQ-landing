@@ -40,7 +40,19 @@ export function FirmPage() {
                 {tf.legalHeading}<br /><em>{tf['legalHeading.italic']}</em>
               </h2>
               <p className="body-copy" style={{ marginTop: 18, marginBottom: 28 }}>{tf.legalBody}</p>
-              <div className="gpill"><div className="gpill-dot" />{tf.legalPill}</div>
+              <a
+                className="gpill gpill--link"
+                href={tf.legalPillHref}
+                download
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className="gpill-dot" />
+                {tf.legalPill}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M6 1v7M3 6l3 3 3-3M1 10h10" />
+                </svg>
+              </a>
             </div>
             <ValueList items={tf.items} delay={1} />
           </div>

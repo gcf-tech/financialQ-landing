@@ -145,6 +145,7 @@
       "legalHeading.italic": "Cumplimiento Regulatorio.",
       "legalBody": "Operamos como asesor de inversión registrado bajo el estándar fiduciario, priorizando los intereses de nuestros clientes.",
       "legalPill": "Formulario ADV Parte 2",
+      "legalPillHref": "/docs/form-adv-part-2.pdf",
       "items": [
         {
           "title": "Asesor de Inversiones Registrado",
@@ -1013,9 +1014,9 @@
       "crs": "CRS"
     },
     "disclosureLabel.bold": "Divulgaciones:",
-    "disclosureLabelFull.bold": "Divulgaciones Importantes:",
+    "disclosureLabelFull.bold": "Divulgaciones:",
     "disclosureShort": "FinancialQ Group es un asesor de inversiones registrado. Toda inversión conlleva riesgo.",
-    "disclosureFull": "FinancialQ Group es un asesor de inversiones registrado. Registración no implica un nivel de habilidad o capacitación determinado. Este material es solo informativo y no constituye asesoramiento de inversión. El rendimiento pasado no es indicativo del rendimiento futuro. Todas las inversiones conllevan riesgo, incluido el posible pérdida de capital."
+    "disclosureFull": "FinancialQ Group es un asesor de inversiones registrado. El registro no implica un determinado nivel de habilidad o formación. Este material tiene fines meramente informativos y no constituye asesoramiento de inversión. El rendimiento pasado no garantiza resultados futuros. Todas las inversiones conllevan riesgos, incluida la posible pérdida del capital invertido."
   },
 
   "common": {

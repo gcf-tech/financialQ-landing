@@ -144,6 +144,7 @@
       "legalHeading.italic": "Regulatory Compliance.",
       "legalBody": "We operate as a registered investment adviser under a fiduciary standard, placing client interests first.",
       "legalPill": "Form ADV Part 2",
+      "legalPillHref": "/docs/form-adv-part-2.pdf",
       "items": [
         {
           "title": "Registered Investment Adviser",
@@ -1012,7 +1013,7 @@
       "crs": "CRS"
     },
     "disclosureLabel.bold": "Disclosures:",
-    "disclosureLabelFull.bold": "Important Disclosures:",
+    "disclosureLabelFull.bold": "Disclosures:",
     "disclosureShort": "FinancialQ Group is a registered investment advisor. All investments involve risk.",
     "disclosureFull": "FinancialQ Group is a registered investment adviser. Registration does not imply a certain level of skill or training. This material is for informational purposes only and does not constitute investment advice. Past performance is not indicative of future results. All investments involve risk, including the possible loss of principal."
   },
