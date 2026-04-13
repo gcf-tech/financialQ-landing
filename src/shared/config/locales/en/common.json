@@ -953,11 +953,11 @@
     "info": {
       "eyebrow": "Contact Information",
       "officeLabel": "Main Office",
-      "officeLine1": "345 Park Avenue, Suite 2200",
-      "officeLine2": "New York, NY 10154",
+      "officeLine1": "8950 SW 74th Ct, 22nd floor, Office 2252",
+      "officeLine2": "Miami, FL 33156, USA",
       "emailLabel": "Email Address",
-      "emailLine1": "hello@financialqgroup.com",
-      "emailLine2": "inquiries@financialqgroup.com",
+      "emailLine1": "admin@financialqgroup.com",
+      "emailLine2": "",
       "phoneLabel": "Phone",
       "phoneLine1": "+1 (212) 000-0000",
       "phoneLine2": "Monday to Friday · 9am – 6pm EST",
@@ -1002,15 +1002,15 @@
       "schedule": "Schedule Meeting",
       "perspectives": "Perspectives",
       "privacy": "Privacy Policy",
-      "terms": "Terms of Use",
+      "terms": "",
       "adv": "Form ADV",
-      "crs": "CRS"
+      "crs": ""
     },
     "legalLinks": {
       "privacy": "Privacy",
-      "terms": "Terms",
+      "terms": "",
       "adv": "ADV",
-      "crs": "CRS"
+      "crs": ""
     },
     "disclosureLabel.bold": "Disclosures:",
     "disclosureLabelFull.bold": "Disclosures:",

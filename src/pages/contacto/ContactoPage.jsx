@@ -14,7 +14,7 @@ const CONTACT_ICONS = [
 function ContactInfo({ ti }) {
   const CONTACT_ITEMS = [
     { label: ti.officeLabel, line1: ti.officeLine1, line2: ti.officeLine2 },
-    { label: ti.emailLabel, line1: ti.emailLine1, line2: ti.emailLine2 },
+    { label: ti.emailLabel, line1: ti.emailLine1, /*line2: ti.emailLine2 */},
     { label: ti.phoneLabel, line1: ti.phoneLine1, line2: ti.phoneLine2 },
     { label: ti.meetingLabel, line1: ti.meetingLine1, line2: ti.meetingLine2 },
   ]
@@ -32,20 +32,6 @@ function ContactInfo({ ti }) {
             </div>
           </div>
         ))}
-      </div>
-      <div style={{ background: 'var(--blue-pale)', border: '1px solid rgba(59,76,157,.15)', padding: 28, marginTop: 32, borderRadius: 2 }}>
-        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: 10 }}>{ti.eligibilityLabel}</div>
-        <p style={{ fontSize: 13.5, fontWeight: 300, color: 'var(--black-soft)', lineHeight: 1.75 }}>
-          {ti.eligibilityBody} <strong>{ti['eligibilityBody.bold']}</strong> {ti.eligibilityBody2}
-        </p>
-      </div>
-      <div style={{ marginTop: 28, padding: '20px 24px', background: 'var(--ivory)', border: '1px solid var(--border)' }}>
-        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 8 }}>{ti.languagesLabel}</div>
-        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-          {ti.languages.map(lang => (
-            <span key={lang} style={{ fontSize: 12, fontWeight: 600, color: 'var(--black-soft)', background: 'var(--white)', border: '1px solid var(--border)', padding: '6px 14px', borderRadius: 20 }}>{lang}</span>
-          ))}
-        </div>
       </div>
     </div>
   )

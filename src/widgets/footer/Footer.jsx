@@ -6,10 +6,10 @@ import logoImg from '../../assets/images/footer/logo_blanco_financialQ.png'
 function LegalLinks({ tf }) {
   return (
     <div className="fleg">
-      <a href="#">{tf.legalLinks.privacy}</a>
-      <a href="#">{tf.legalLinks.terms}</a>
-      <a href="#">{tf.legalLinks.adv}</a>
-      <a href="#">{tf.legalLinks.crs}</a>
+      <a href="/docs/2026_Privacy_Notice-FinancialQGroup.pdf" download="2026 Privacy Notice - Financial Q Group.pdf">{tf.legalLinks.privacy}</a>
+      {/*<a href="#">{tf.legalLinks.terms}</a>*/}
+      <a href="/docs/form-adv-part-2.pdf" download="202603 Form ADV Financial Q Group.pdf">{tf.legalLinks.adv}</a>
+      {/*<a href="#">{tf.legalLinks.crs}</a>*/}
     </div>
   )
 }
@@ -75,10 +75,9 @@ export function Footer({ variant = 'mini' }) {
           <div className="fc">
             <h5>{tf.sections.legal}</h5>
             <ul>
-              <li><a href="#">{tf.links.privacy}</a></li>
-              <li><a href="#">{tf.links.terms}</a></li>
-              <li><a href="#">{tf.links.adv}</a></li>
-              <li><a href="#">{tf.links.crs}</a></li>
+              <li><a href="/docs/2026_Privacy_Notice-FinancialQGroup.pdf" download="2026 Privacy Notice - Financial Q Group.pdf">{tf.links.privacy}</a></li>
+              {/*<li><a href="#">{tf.links.terms}</a></li>*/}
+              <li><a href="/docs/form-adv-part-2.pdf" download="202603 Form ADV Financial Q Group.pdf">{tf.links.adv}</a></li>
             </ul>
           </div>
         </div>

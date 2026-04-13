@@ -118,16 +118,22 @@ export function PerspectivesPage() {
                 <span className="persp-meta-read">{tp.featured.readTime}</span>
               </div>
               <div className="persp-feat-cta reveal d2">
-                <Button variant="ghost" style=
-                  {{ 
-                    color: 'var(--ivory)', 
-                    borderColor: 'var(--border)', 
-                    borderWidth: 'thin',
-                    backgroundColor: 'transparent' 
-                  }}>
-                  {tp.featured.readCta}
-                  <svg viewBox="0 0 12 12" style={{ fill: 'var(--ivory)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
-                </Button>
+                <a
+                  href="/docs/Global-Market-Outlook.pdf"
+                  download="Global-Market-Outlook.pdf"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button variant="ghost" style=
+                    {{
+                      color: 'var(--ivory)',
+                      borderColor: 'var(--border)',
+                      borderWidth: 'thin',
+                      backgroundColor: 'transparent'
+                    }}>
+                    {tp.featured.readCta}
+                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--ivory)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
