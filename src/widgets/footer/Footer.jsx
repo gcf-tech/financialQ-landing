@@ -8,7 +8,7 @@ function LegalLinks({ tf }) {
     <div className="fleg">
       <a href="/docs/2026_Privacy_Notice-FinancialQGroup.pdf" download="2026 Privacy Notice - Financial Q Group.pdf">{tf.legalLinks.privacy}</a>
       {/*<a href="#">{tf.legalLinks.terms}</a>*/}
-      <a href="/docs/form-adv-part-2.pdf" download="202603 Form ADV Financial Q Group.pdf">{tf.legalLinks.adv}</a>
+      <a href="https://adviserinfo.sec.gov/firm/summary/327095" target="_blank" rel="noopener noreferrer">{tf.legalLinks.adv}</a>
       {/*<a href="#">{tf.legalLinks.crs}</a>*/}
     </div>
   )
@@ -77,7 +77,7 @@ export function Footer({ variant = 'mini' }) {
             <ul>
               <li><a href="/docs/2026_Privacy_Notice-FinancialQGroup.pdf" download="2026 Privacy Notice - Financial Q Group.pdf">{tf.links.privacy}</a></li>
               {/*<li><a href="#">{tf.links.terms}</a></li>*/}
-              <li><a href="/docs/form-adv-part-2.pdf" download="202603 Form ADV Financial Q Group.pdf">{tf.links.adv}</a></li>
+              <li><a href="https://adviserinfo.sec.gov/firm/summary/327095" target="_blank" rel="noopener noreferrer">{tf.links.adv}</a></li>
             </ul>
           </div>
         </div>
