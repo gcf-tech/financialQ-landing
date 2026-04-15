@@ -949,7 +949,11 @@
       "labelSituation": "Su Situación en Pocas Palabras",
       "placeholderSituation": "Describa brevemente qué lo trae aquí. No se requiere detalle — solo el contexto suficiente para entender si somos el ajuste correcto.",
       "btnSubmit": "Enviar Consulta",
-      "privacy": "Su información es completamente confidencial. No compartimos datos con terceros. Respondemos en 48 horas hábiles."
+      "privacy": "Su información es completamente confidencial. No compartimos datos con terceros. Respondemos en 48 horas hábiles.",
+      "errorRequired": "Por favor, complete todos los campos obligatorios.",
+      "errorSubmit": "Algo salió mal. Por favor, inténtelo de nuevo.",
+      "successTitle": "Consulta Recibida",
+      "successBody": "Gracias por comunicarse. Revisaremos su consulta y responderemos en un plazo de 48 horas hábiles."
     },
     "info": {
       "eyebrow": "Información de Contacto",

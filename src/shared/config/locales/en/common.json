@@ -948,7 +948,11 @@
       "labelSituation": "Your Situation in Brief",
       "placeholderSituation": "Briefly describe what brings you here. No detail required — just enough context to understand whether we are the right fit.",
       "btnSubmit": "Submit Inquiry",
-      "privacy": "Your information is completely confidential. We do not share data with third parties. We respond within 48 business hours."
+      "privacy": "Your information is completely confidential. We do not share data with third parties. We respond within 48 business hours.",
+      "errorRequired": "Please complete all required fields.",
+      "errorSubmit": "Something went wrong. Please try again later.",
+      "successTitle": "Inquiry Received",
+      "successBody": "Thank you for reaching out. We will review your inquiry and respond within 48 business hours."
     },
     "info": {
       "eyebrow": "Contact Information",
