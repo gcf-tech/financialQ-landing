@@ -119,8 +119,8 @@ export function PerspectivesPage() {
               </div>
               <div className="persp-feat-cta reveal d2">
                 <a
-                  href="/docs/Global-Market-Outlook.pdf"
-                  download="Global-Market-Outlook.pdf"
+                  //href="/docs/Global-Market-Outlook.pdf"
+                  //download="Global-Market-Outlook.pdf"
                   style={{ textDecoration: 'none' }}
                 >
                   <Button variant="ghost" style=
