@@ -767,12 +767,12 @@
     },
     "gridRow1": [
       {
-        "cat": "tecnica",
-        "tag": "Technical Note",
-        "title": "Risk Budgeting: From Concept to Implementation",
-        "body": "How to translate a client's risk tolerance into concrete operational limits for each asset class and risk dimension in the portfolio.",
-        "date": "Oct 2024",
-        "read": "9 min"
+        "cat": "opinion",
+        "tag": "Market Commentary",
+        "title": "Why Liquidity Drives Markets More Than Headlines",
+        "body": "How monitoring systemic liquidity and capital availability—rather than reacting to daily headlines—enables proactive risk management and disciplined portfolio decisions.",
+        "date": "May 2026",
+        "read": "2 min"
       },
       {
         "cat": "ensayo",

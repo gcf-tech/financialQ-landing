@@ -139,10 +139,41 @@ export function PerspectivesPage() {
           </div>
         </div>
 
-        {/*<div className="wrap" style={{ paddingTop: 0 }}>
-          <GridArticleRow articles={tp.gridRow1} variant="default" filter={filter} />
-          <GridArticleRow articles={tp.gridRow2} variant="alt" filter={filter} />
-        </div>*/}
+        <div className="wrap" style={{ paddingTop: 0 }}>
+          <div className="persp-single-article">
+            <img
+              src="https://media.licdn.com/dms/image/v2/D4E12AQH_SplVXLpwyg/article-cover_image-shrink_720_1280/B4EZ489rI3KQAQ-/0/1779139267978?e=1781136000&v=beta&t=0Nnt8ZbhXnmJ90BZDrwmrMFFIgHxPTpUE3C-l_Wpr54"
+              alt="Why Liquidity Drives Markets More Than Headlines"
+              className="persp-single-article-img reveal"
+              style={{ width: '60%', height: 'auto', maxHeight: '420px', objectFit: 'cover', marginBottom: '32px', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
+            />
+            <span className="persp-article-type">{tp.gridRow1[0].tag}</span>
+            <div className="persp-single-article-title reveal d1">{tp.gridRow1[0].title}</div>
+            <p className="persp-single-article-excerpt reveal d1">{tp.gridRow1[0].body}</p>
+            <div className="persp-article-footer">
+              <span className="persp-article-date">{tp.gridRow1[0].date}</span>
+              <span className="persp-article-read">{tp.gridRow1[0].read}</span>
+            </div>
+            <div className="persp-single-article-cta reveal d2">
+              <a
+                href="https://www.linkedin.com/pulse/why-liquidity-drives-markets-more-than-headlines-david-enciso-febee/"
+                target="_blank"
+                style={{ textDecoration: 'none' }}
+              >
+                <Button variant="ghost" style=
+                  {{
+                    color: 'var(--black)',
+                    borderColor: 'var(--border)',
+                    borderWidth: 'thin',
+                    backgroundColor: 'transparent'
+                  }}>
+                  {tp.featured.readCta}
+                  <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
 
         <div className="persp-about">
           <div className="wrap">

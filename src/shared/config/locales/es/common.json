@@ -768,12 +768,12 @@
     },
     "gridRow1": [
       {
-        "cat": "tecnica",
-        "tag": "Nota Técnica",
-        "title": "Presupuestación de Riesgo: Del Concepto a la Implementación",
-        "body": "Cómo traducir la tolerancia al riesgo del cliente en límites operacionales concretos para cada clase de activo y dimensión de riesgo en el portafolio.",
-        "date": "Oct 2024",
-        "read": "9 min"
+        "cat": "opinion",
+        "tag": "Comentario de Mercado",
+        "title": "Por qué la Liquidez Guía los Mercados Más Que los Titulares",
+        "body": "Cómo monitorear la liquidez sistémica y la disponibilidad de capital —en lugar de reaccionar a los titulares diarios— permite una gestión de riesgos proactiva y decisiones de portafolio disciplinadas.",
+        "date": "May 2026",
+        "read": "2 min"
       },
       {
         "cat": "ensayo",
