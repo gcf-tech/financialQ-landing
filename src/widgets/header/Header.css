@@ -52,7 +52,12 @@ nav {
 }
 .nav-link:hover, .nav-link.active { color: var(--blue); background: var(--blue-pale); }
 .nav-link svg { width: 9px; height: 9px; transition: transform .2s; }
-.nav-item:hover > .nav-link svg { transform: rotate(180deg); }
+
+.nav-caret {
+  background: none; border: none; padding: 0;
+  cursor: pointer; color: inherit;
+  display: inline-flex; align-items: center; justify-content: center;
+}
 
 .nav-drop {
   position: absolute;
@@ -74,9 +79,13 @@ nav {
   grid-template-columns: 1fr 1fr;
   gap: 0;
 }
-.nav-item:hover .nav-drop {
-  opacity: 1; pointer-events: all;
-  transform: translateX(-50%) translateY(0);
+
+@media (hover: hover) {
+  .nav-item:hover > .nav-link svg { transform: rotate(180deg); }
+  .nav-item:hover .nav-drop {
+    opacity: 1; pointer-events: all;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .drop-item {
@@ -103,30 +112,110 @@ nav {
 .burger {
   display: none; flex-direction: column; gap: 5px;
   background: none; border: none; cursor: pointer; padding: 4px;
+  z-index: 501;
 }
-.burger span { display: block; width: 22px; height: 1.5px; background: var(--black); transition: all .3s; }
+.burger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--black);
+  transition: transform .3s ease, opacity .25s ease;
+  transform-origin: center;
+}
 
 @media (max-width: 960px) {
-  .nav-item::after { display: none; }
   nav { padding: 0 24px; }
-  .nav-menu { display: none; }
+  .nav-item::after { display: none; }
   .burger { display: flex; }
-  .nav-menu.open {
-    display: flex; flex-direction: column; align-items: stretch;
+
+  .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     position: fixed;
-    top: var(--nav-h); left: 0; right: 0;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
     background: var(--white);
     padding: 16px 24px 32px;
     border-bottom: 1px solid var(--border);
-    gap: 4px; z-index: 499;
+    box-shadow: 0 12px 28px rgba(35, 31, 32, .08);
+    gap: 4px;
+    z-index: 499;
+    max-height: calc(100vh - var(--nav-h));
+    max-height: calc(100dvh - var(--nav-h));
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+
+    transform: translateY(-110%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .35s cubic-bezier(.22, 1, .36, 1), opacity .25s ease;
   }
+
+  .nav-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .nav-link {
+    padding: 14px 12px;
+    font-size: 15px;
+    justify-content: space-between;
+    gap: 12px;
+    border-radius: 6px;
+  }
+  .nav-link-text { flex: 1; }
+
+  .nav-caret {
+    padding: 10px;
+    margin: -10px -4px -10px 0;
+  }
+  .nav-caret svg { width: 11px; height: 11px; }
+
+  .nav-item.expanded > .nav-link svg { transform: rotate(180deg); }
+
   .nav-drop {
-    position: static; transform: none;
-    opacity: 1; pointer-events: all;
-    box-shadow: none; border: none;
+    position: static;
+    transform: none;
+    box-shadow: none;
+    border: none;
     background: var(--ivory-warm);
-    margin-top: 4px; min-width: auto; width: 100%;
-    display: flex !important; flex-direction: column !important;
+    min-width: auto;
+    width: 100%;
+    border-radius: 6px;
+    margin: 0;
+
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: 0;
+    opacity: 0;
+    padding: 0 8px;
+    overflow: hidden;
+    pointer-events: none;
+    transition: max-height .35s ease, opacity .25s ease, padding .35s ease, margin-top .35s ease;
   }
-  .nav-item:hover .nav-drop { transform: none; }
+
+  .nav-item.expanded .nav-drop {
+    max-height: 600px;
+    opacity: 1;
+    padding: 8px;
+    margin-top: 4px;
+    pointer-events: all;
+  }
+
+  .nav-item:hover .nav-drop {
+    transform: none;
+  }
+
+  .nav-item-cta { margin-top: 12px; }
+  .nav-cta {
+    display: block;
+    text-align: center;
+    padding: 14px 22px;
+  }
 }
