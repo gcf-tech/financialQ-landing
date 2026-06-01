@@ -206,6 +206,39 @@ export function PerspectivesPage() {
                 </a>
               </div>
             </article>
+
+            <article className="persp-single-article reveal d2">
+              <img
+                src="https://media.licdn.com/dms/image/v2/D4D12AQEJBC9J4lkQZA/article-cover_image-shrink_720_1280/B4DZ5k8XQ1KYAQ-/0/1779810010826?e=1781740800&v=beta&t=dfEKeCJyhlILjdlq9A1RNrgZdfJCwzWksSPQKCepDao"
+                alt={tp.gridRow1[2].title}
+                className="persp-single-article-img"
+              />
+              <span className="persp-article-type">{tp.gridRow1[2].tag}</span>
+              <div className="persp-single-article-title">{tp.gridRow1[2].title}</div>
+              <p className="persp-single-article-excerpt">{tp.gridRow1[2].body}</p>
+              <div className="persp-article-footer">
+                <span className="persp-article-date">{tp.gridRow1[2].date}</span>
+                <span className="persp-article-read">{tp.gridRow1[2].read}</span>
+              </div>
+              <div className="persp-single-article-cta">
+                <a
+                  href="https://www.linkedin.com/pulse/why-asset-allocation-matters-more-than-stock-selection-david-enciso-mx88f/?trackingId=5%2FFrWX62S9u4lxOaEocpxw%3D%3D"
+                  target="_blank"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button variant="ghost" style=
+                    {{
+                      color: 'var(--black)',
+                      borderColor: 'var(--border)',
+                      borderWidth: 'thin',
+                      backgroundColor: 'transparent'
+                    }}>
+                    {tp.featured.readCta}
+                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
+                  </Button>
+                </a>
+              </div>
+            </article>
           </div>
         </div>
 

@@ -564,7 +564,7 @@
 
 .persp-articles-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 48px;
   padding: 48px 0 64px;
 }
@@ -606,6 +606,13 @@
 }
 
 @media (max-width: 960px) {
+  .persp-articles-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 640px) {
   .persp-articles-grid {
     grid-template-columns: 1fr;
     gap: 56px;
