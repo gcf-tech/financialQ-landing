@@ -239,6 +239,39 @@ export function PerspectivesPage() {
                 </a>
               </div>
             </article>
+
+            <article className="persp-single-article reveal d3">
+              <img
+                src="https://media.licdn.com/dms/image/v2/D5612AQF0eyOmNdQhdw/article-cover_image-shrink_720_1280/B56Z6Dfjp7IcAY-/0/1780322553395?e=1781740800&v=beta&t=elHzpFsRfHl3Z6jUxUjGE9zlQBzNvA3xsYkk0cbCEuc"
+                alt={tp.gridRow2[0].title}
+                className="persp-single-article-img"
+              />
+              <span className="persp-article-type">{tp.gridRow2[0].tag}</span>
+              <div className="persp-single-article-title">{tp.gridRow2[0].title}</div>
+              <p className="persp-single-article-excerpt">{tp.gridRow2[0].body}</p>
+              <div className="persp-article-footer">
+                <span className="persp-article-date">{tp.gridRow2[0].date}</span>
+                <span className="persp-article-read">{tp.gridRow2[0].read}</span>
+              </div>
+              <div className="persp-single-article-cta">
+                <a
+                  href="https://www.linkedin.com/pulse/most-entrepreneurs-overexposed-one-asset-david-enciso-0mthc/"
+                  target="_blank"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button variant="ghost" style=
+                    {{
+                      color: 'var(--black)',
+                      borderColor: 'var(--border)',
+                      borderWidth: 'thin',
+                      backgroundColor: 'transparent'
+                    }}>
+                    {tp.featured.readCta}
+                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
+                  </Button>
+                </a>
+              </div>
+            </article>
           </div>
         </div>
 
