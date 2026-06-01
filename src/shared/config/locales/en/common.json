@@ -33,6 +33,7 @@
     "heading.italic": "Capital",
     "heading2": "Management.",
     "subtitle": "Built for Permanence.",
+    "subtitle2": "Let's change the landing page with one from NYC.",
     "description": "A fiduciary investment platform built on mandate-driven portfolios, explicit risk budgeting, and regime-aware allocation.",
     "ctaPrimary": "Schedule Consultation",
     "ctaSecondary": "Our Approach",
@@ -638,9 +639,9 @@
     "intro": {
       "eyebrow": "Who We Serve",
       "headline": ["Clients who", "think in", "decades."],
-      "lead": "FinancialQ works with investors who value disciplined portfolio management and structured investment processes. We do not have an average client — we have clients who share an investment philosophy.",
+      "lead": "We bring institutional portfolio management principles traditionally used by pensions, insurance companies, and large asset managers to individuals, families, and business owners.",
       "commonStrong": "What they all share:",
-      "commonRest": " a long-term orientation, appreciation for transparency and preference for structured process over market narratives."
+      "commonRest": " Our relationship typically begin at $250,000 in investable assets."
     },
     "profiles": [
       {
@@ -732,7 +733,7 @@
       ]
     },
     "cta": {
-      "headingBefore": "Share our philosophy?",
+      "headingBefore": "Ready to Build a More Disciplined Investment Strategy?",
       "headingEm": "Let's talk with no obligation.",
       "btn": "Start a Conversation"
     }

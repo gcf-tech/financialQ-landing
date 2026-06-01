@@ -34,10 +34,10 @@ export function Hero() {
 
             <div className="hero-btns">
               <Button variant="solid" onClick={() => navigate('contacto')}>{t.hero.ctaPrimary}</Button>
-              <Button variant="ghost" onClick={() => navigate('enfoque')}>
+              <Button variant="ghost" className="hero-ghost" onClick={() => navigate('enfoque')}>
                 {t.hero.ctaSecondary}{' '}
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M1 6h10M6 1l5 5-5 5" />
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" >
+                  <path d="M4 1l5 5-5 5" />
                 </svg>
               </Button>
             </div>

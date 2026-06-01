@@ -639,9 +639,9 @@
     "intro": {
       "eyebrow": "A Quiénes Servimos",
       "headline": ["Clientes que", "piensan en", "décadas."],
-      "lead": "FinancialQ trabaja con inversores que valoran la gestión disciplinada de portafolios y los procesos de inversión estructurados. No tenemos un cliente promedio — tenemos clientes que comparten una filosofía de inversión.",
+      "lead": "Trabajamos con inversores que valoran la gestión de portafolios disciplinada y procesos de inversión estructurados. No tenemos un cliente promedio — tenemos clientes que comparten una filosofía de inversión.",
       "commonStrong": "Lo que todos comparten:",
-      "commonRest": " una orientación de largo plazo, apreciación por la transparencia y preferencia por procesos estructurados sobre narrativas de mercado."
+      "commonRest": " Nuestra relación típicamente comienza con $250,000 en activos invertibles."
     },
     "profiles": [
       {
@@ -733,7 +733,7 @@
       ]
     },
     "cta": {
-      "headingBefore": "¿Comparte nuestra filosofía?",
+      "headingBefore": "¿Listo para construir una estrategia de inversión más disciplinada?",
       "headingEm": "Hablemos sin compromiso.",
       "btn": "Iniciar Diálogo"
     }

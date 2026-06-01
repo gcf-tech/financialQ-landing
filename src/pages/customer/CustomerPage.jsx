@@ -29,11 +29,11 @@ export function CustomerPage() {
               </h1>
             </div>
             <div className="cli-intro-common">
-              <p className="cli-lead reveal d1">{tc.intro.lead}</p>
+              <p style={{ color: 'var(--white)', fontSize: '18px' }} className="cli-lead reveal d1">{tc.intro.lead}</p>
               <div className="cli-common reveal d2">
                 <p>
-                  <strong>{tc.intro.commonStrong}</strong>
-                  {tc.intro.commonRest}
+                  <strong style={{ color: 'var(--white)', fontSize: '16px' }}>{tc.intro.commonStrong}</strong>
+                  <span style={{ color: 'var(--white)', fontSize: '16px' }}>{tc.intro.commonRest}</span>
                 </p>
               </div>
             </div>
