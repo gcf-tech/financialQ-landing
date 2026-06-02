@@ -1,4 +1,5 @@
 import './Hero.css'
+import horizonteIcon from '../../assets/icons/horizonte.png'
 import { Button } from '../../shared/ui/button/Button'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
@@ -42,6 +43,15 @@ export function Hero() {
               </Button>
             </div>
           </div>
+
+          <aside className="hero-card">
+            <img className="hero-card-icon" src={horizonteIcon} alt="" aria-hidden="true" />
+            <div className="hero-card-body">
+              <p className="hero-card-label">{t.hero.card.label}</p>
+              <p className="hero-card-title">{t.hero.card.title}</p>
+              <p className="hero-card-text">{t.hero.card.text}</p>
+            </div>
+          </aside>
         </div>
 
         <div className="hero-tags">

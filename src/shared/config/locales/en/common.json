@@ -37,6 +37,11 @@
     "description": "A fiduciary investment platform built on mandate-driven portfolios, explicit risk budgeting, and regime-aware allocation.",
     "ctaPrimary": "Schedule Consultation",
     "ctaSecondary": "Our Approach",
+    "card": {
+      "label": "NYC OFFICE",
+      "title": "Coming Soon",
+      "text": "Expanding to better serve our clients in New York City and beyond."
+    },
     "tags": [
       "Design by Mandate",
       "Allocation by Regime",

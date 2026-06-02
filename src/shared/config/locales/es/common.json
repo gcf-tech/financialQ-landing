@@ -37,6 +37,11 @@
     "description": "Una plataforma de inversión fiduciaria basada en carteras guiadas por el mandato, presupuesto de riesgo explícito y asignación consciente del régimen de mercado.",
     "ctaPrimary": "Agendar Consulta",
     "ctaSecondary": "Nuestro Enfoque",
+    "card": {
+      "label": "Oficina en NYC",
+      "title": "Prontamente",
+      "text": "Nos expandimos para brindar un mejor servicio a nuestros clientes en la ciudad de Nueva York y más allá."
+    },
     "tags": [
       "Diseño por Mandato",
       "Asignación por Régimen",

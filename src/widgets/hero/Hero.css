@@ -12,8 +12,8 @@
 .hero-bg { position: absolute; inset: 0; z-index: 0; }
 .hero-bg-img {
   position: absolute; inset: 0;
-  background: url('../../assets/images/hero/Miami_Skyline.png') center top / 100% auto no-repeat;
-  filter: blur(1px) brightness(.9) saturate(.38);
+  background: url('../../assets/images/hero/New-york.png') center top / 100% auto no-repeat;
+  
   transform-origin: center;
 }
 .hero-bg-wash {
@@ -84,6 +84,55 @@
   padding-right: 0;
 }
 
+/* Tarjeta flotante de cristal — esquina inferior derecha del hero.
+   Estética private banking / wealth management: panel negro translúcido,
+   glassmorphism sutil y acento azul eléctrico sólo en el icono. */
+.hero-card {
+  position: absolute;
+  right: 56px;
+  bottom: 56px;
+  z-index: 2;
+  width: 400px;
+  padding: 24px 26px 26px;
+  background: rgba(0, 0, 0, 0.85);
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  animation: fadeUp 1s .95s both;
+  /* Icono a la izquierda, columna de texto a la derecha */
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.hero-card-icon {
+  flex-shrink: 0;
+  display: block; width: 50px; height: 50px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(47, 95, 255, .35));
+}
+.hero-card-body { min-width: 0; }
+.hero-card-label {
+  font-family: var(--sans);
+  font-size: 14px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--white);
+  margin: 0 0 10px;
+}
+.hero-card-title {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 400;
+  font-size: 34px; line-height: 1.1;
+  color: var(--white);
+  margin: 0 0 10px;
+}
+.hero-card-text {
+  font-family: var(--sans);
+  font-size: 16px; font-weight: 300; line-height: 1.6;
+  color: rgba(255, 255, 255, .62);
+  margin: 0;
+}
+
 .hero-tags {
   display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;
   padding: 28px 24px;
@@ -128,6 +177,10 @@
 }
 .mitem::after { content: '◆'; font-size: 5px; color: rgba(230, 223, 197, .22); }
 
+@media (max-width: 1100px) {
+  /* En pantallas estrechas la tarjeta se solaparía con el titular */
+  .hero-card { display: none; }
+}
 @media (max-width: 900px) {
   .hero-body { padding: 60px 24px 48px; }
   .hs:nth-child(2) { border-right: none; }
