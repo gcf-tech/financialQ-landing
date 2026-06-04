@@ -305,6 +305,39 @@ export function PerspectivesPage() {
                 </a>
               </div>
             </article>
+
+            <article className="persp-single-article reveal d5">
+              <img
+                src="https://media.licdn.com/dms/image/v2/D4E12AQGPtPRISUebCQ/article-cover_image-shrink_720_1280/B4EZ6PbgQEJkAQ-/0/1780522817464?e=1782345600&v=beta&t=-85Ti26SgWyKtW_Ly9FxV6ar4pB8jq9sON8WSt6U9Ic"
+                alt={tp.gridRow2[2].title}
+                className="persp-single-article-img"
+              />
+              <span className="persp-article-type">{tp.gridRow2[2].tag}</span>
+              <div className="persp-single-article-title">{tp.gridRow2[2].title}</div>
+              <p className="persp-single-article-excerpt">{tp.gridRow2[2].body}</p>
+              <div className="persp-article-footer">
+                <span className="persp-article-date">{tp.gridRow2[2].date}</span>
+                <span className="persp-article-read">{tp.gridRow2[2].read}</span>
+              </div>
+              <div className="persp-single-article-cta">
+                <a
+                  href="https://www.linkedin.com/pulse/why-business-owners-need-liquidity-planning-david-enciso-rqibe/?trackingId=kQAQ1mXAbKftU3tv8Esuew%3D%3D"
+                  target="_blank"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button variant="ghost" style=
+                    {{
+                      color: 'var(--black)',
+                      borderColor: 'var(--border)',
+                      borderWidth: 'thin',
+                      backgroundColor: 'transparent'
+                    }}>
+                    {tp.featured.readCta}
+                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
+                  </Button>
+                </a>
+              </div>
+            </article>
             
           </div>
         </div>
