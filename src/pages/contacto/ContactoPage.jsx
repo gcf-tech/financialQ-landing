@@ -99,6 +99,8 @@ const EMPTY_FORM = {
   company: '',
   profile: '',
   assets: '',
+  income: '',
+  referral: '',
   situation: '',
 }
 
@@ -257,6 +259,30 @@ export function ContactoPage() {
                     >
                       <option value="" disabled>{tf.placeholderAssets}</option>
                       {tf.assetOptions.map(opt => <option key={opt}>{opt}</option>)}
+                    </select>
+                  </div>
+
+                  <div className="fgroup">
+                    <label className="flabel">{tf.labelIncome}</label>
+                    <select
+                      className="fselect"
+                      value={form.income}
+                      onChange={set('income')}
+                    >
+                      <option value="">{tf.placeholderIncome}</option>
+                      {tf.incomeOptions.map(opt => <option key={opt}>{opt}</option>)}
+                    </select>
+                  </div>
+
+                  <div className="fgroup">
+                    <label className="flabel">{tf.labelReferral}</label>
+                    <select
+                      className="fselect"
+                      value={form.referral}
+                      onChange={set('referral')}
+                    >
+                      <option value="">{tf.placeholderReferral}</option>
+                      {tf.referralOptions.map(opt => <option key={opt}>{opt}</option>)}
                     </select>
                   </div>
 

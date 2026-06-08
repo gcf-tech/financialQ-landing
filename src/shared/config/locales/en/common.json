@@ -951,6 +951,28 @@
         "$25M – $50M",
         "$50M+"
       ],
+      "labelIncome": "What is your annual household income? (optional)",
+      "placeholderIncome": "Select a range",
+      "incomeOptions": [
+        "Less than $250,000",
+        "$250,000 – $500,000",
+        "$500,000 – $1,000,000",
+        "$1,000,000 – $2,000,000",
+        "More than $2,000,000",
+        "Prefer not to say"
+      ],
+      "labelReferral": "How did you hear about FinancialQ Group? (optional)",
+      "placeholderReferral": "Select an option",
+      "referralOptions": [
+        "LinkedIn",
+        "Referral from a client",
+        "Referral from an employee",
+        "Podcast",
+        "Online search",
+        "Event or conference",
+        "Social media",
+        "Other"
+      ],
       "labelSituation": "Your Situation in Brief",
       "placeholderSituation": "Briefly describe what brings you here. No detail required — just enough context to understand whether we are the right fit.",
       "btnSubmit": "Submit Inquiry",

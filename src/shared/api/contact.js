@@ -17,6 +17,14 @@ export async function submitContact(formData, lang) {
     payload.companyName = formData.company.trim()
   }
 
+  // Campos opcionales: solo se envían si el usuario eligió un valor.
+  if (formData.income) {
+    payload.customField.householdIncome = formData.income
+  }
+  if (formData.referral) {
+    payload.customField.referralSource = formData.referral
+  }
+
   const res = await fetch(`${BACKEND_URL}/landings/contacts/create`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

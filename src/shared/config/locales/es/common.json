@@ -951,6 +951,28 @@
         "$25M – $50M",
         "$50M+"
       ],
+      "labelIncome": "¿Cuál es el ingreso anual de su hogar? (opcional)",
+      "placeholderIncome": "Seleccione un rango",
+      "incomeOptions": [
+        "Menos de $250,000",
+        "$250,000 – $500,000",
+        "$500,000 – $1,000,000",
+        "$1,000,000 – $2,000,000",
+        "Más de $2,000,000",
+        "Prefiero no decirlo"
+      ],
+      "labelReferral": "¿Cómo conoció a FinancialQ Group? (opcional)",
+      "placeholderReferral": "Seleccione una opción",
+      "referralOptions": [
+        "LinkedIn",
+        "Referido de un cliente",
+        "Referido de un empleado",
+        "Podcast",
+        "Búsqueda en internet",
+        "Evento o conferencia",
+        "Redes sociales",
+        "Otro"
+      ],
       "labelSituation": "Su Situación en Pocas Palabras",
       "placeholderSituation": "Describa brevemente qué lo trae aquí. No se requiere detalle — solo el contexto suficiente para entender si somos el ajuste correcto.",
       "btnSubmit": "Enviar Consulta",
