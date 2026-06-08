@@ -338,6 +338,39 @@ export function PerspectivesPage() {
                 </a>
               </div>
             </article>
+
+            <article className="persp-single-article reveal d6">
+              <img
+                src="https://media.licdn.com/dms/image/v2/D4E12AQG5EmuafxdqXA/article-cover_image-shrink_720_1280/B4EZ6aUEQYHwAQ-/0/1780705416641?e=1782345600&v=beta&t=9903skxXVvsvFLS7plrGU_9bTloyuWYy9CxfU2BpdDg"
+                alt={tp.gridRow3[0].title}
+                className="persp-single-article-img"
+              />
+              <span className="persp-article-type">{tp.gridRow3[0].tag}</span>
+              <div className="persp-single-article-title">{tp.gridRow3[0].title}</div>
+              <p className="persp-single-article-excerpt">{tp.gridRow3[0].body}</p>
+              <div className="persp-article-footer">
+                <span className="persp-article-date">{tp.gridRow3[0].date}</span>
+                <span className="persp-article-read">{tp.gridRow3[0].read}</span>
+              </div>
+              <div className="persp-single-article-cta">
+                <a
+                  href="https://www.linkedin.com/pulse/retirement-cash-flow-just-net-worth-david-enciso-xb6qe/?trackingId=IlmsxkpBR%2Ber%2FU%2Fedlg6pw%3D%3D"
+                  target="_blank"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button variant="ghost" style=
+                    {{
+                      color: 'var(--black)',
+                      borderColor: 'var(--border)',
+                      borderWidth: 'thin',
+                      backgroundColor: 'transparent'
+                    }}>
+                    {tp.featured.readCta}
+                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
+                  </Button>
+                </a>
+              </div>
+            </article>
             
           </div>
         </div>
