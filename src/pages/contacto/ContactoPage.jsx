@@ -1,10 +1,55 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Footer } from '../../widgets/footer/Footer'
 import { Button } from '../../shared/ui/button/Button'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { PageHero } from '../../shared/ui/pageHero/PageHero'
 import { submitContact } from '../../shared/api/contact'
+import './ContactoPage.css'
+
+const CALENDAR_ICON = (
+  <svg className="consult-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <rect x="3" y="4" width="18" height="17" rx="2" />
+    <path d="M3 9h18M8 2v4M16 2v4" />
+  </svg>
+)
+
+// Agenda externa de LeadConnector. Su branding (colores/fuentes) se configura
+// en el panel de LeadConnector, no aquí: el iframe es cross-origin.
+const CONSULT_URL = 'https://api.leadconnectorhq.com/widget/bookings/meeting-financial-q-group'
+const CONSULT_EMBED_SCRIPT = 'https://link.msgsndr.com/js/form_embed.js'
+
+function ConsultModal({ open, onClose, title }) {
+  useEffect(() => {
+    if (!open) return
+    // Bloquear el scroll del fondo mientras el modal está abierto.
+    document.body.style.overflow = 'hidden'
+    // Script oficial de LeadConnector para autoajustar el alto del iframe.
+    if (!document.querySelector(`script[src="${CONSULT_EMBED_SCRIPT}"]`)) {
+      const s = document.createElement('script')
+      s.src = CONSULT_EMBED_SCRIPT
+      s.async = true
+      document.body.appendChild(s)
+    }
+    const onKey = e => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open, onClose])
+
+  if (!open) return null
+
+  return (
+    <div className="consult-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label={title}>
+      <div className="consult-modal" onClick={e => e.stopPropagation()}>
+        <button className="consult-close" onClick={onClose} aria-label="Close">&times;</button>
+        <iframe className="consult-frame" src={CONSULT_URL} title={title} />
+      </div>
+    </div>
+  )
+}
 
 const CONTACT_ICONS = [
   <svg key="office" className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M10 2C6.68 2 4 4.68 4 8c0 5.25 6 10 6 10s6-4.75 6-10c0-3.32-2.68-6-6-6z" /><circle cx="10" cy="8" r="2" /></svg>,
@@ -13,7 +58,7 @@ const CONTACT_ICONS = [
   <svg key="meeting" className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="3" width="16" height="14" rx="1" /><path d="M2 7h16M7 3v4M13 3v4" /></svg>,
 ]
 
-function ContactInfo({ ti }) {
+function ContactInfo({ ti, onSchedule }) {
   const CONTACT_ITEMS = [
     { label: ti.officeLabel, line1: ti.officeLine1, line2: ti.officeLine2 },
     { label: ti.emailLabel, line1: ti.emailLine1, /*line2: ti.emailLine2 */},
@@ -34,6 +79,14 @@ function ContactInfo({ ti }) {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="consult-card">
+        {CALENDAR_ICON}
+        <h3 className="consult-title">{ti.consultTitle}</h3>
+        <span className="consult-divider" />
+        <p className="consult-text">{ti.consultText}</p>
+        <Button variant="solid" onClick={onSchedule}>{ti.consultBtn}</Button>
       </div>
     </div>
   )
@@ -69,6 +122,7 @@ export function ContactoPage() {
   const [touched, setTouched] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [status, setStatus] = useState('idle') // idle | loading | success | error
+  const [consultOpen, setConsultOpen] = useState(false)
 
   const fieldErrors = Object.fromEntries(
     Object.keys(form)
@@ -236,10 +290,12 @@ export function ContactoPage() {
             </div>
 
             {/* Info lateral */}
-            <ContactInfo ti={ti} />
+            <ContactInfo ti={ti} onSchedule={() => setConsultOpen(true)} />
           </div>
         </div>
       </section>
+
+      <ConsultModal open={consultOpen} onClose={() => setConsultOpen(false)} title={ti.consultTitle} />
 
       <Footer variant="full" />
     </div>
