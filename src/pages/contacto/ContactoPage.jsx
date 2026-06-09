@@ -5,6 +5,7 @@ import { useScrollReveal } from '../../shared/lib/useScrollReveal'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { PageHero } from '../../shared/ui/pageHero/PageHero'
 import { submitContact } from '../../shared/api/contact'
+import { GHL_OPTION_VALUES } from '../../shared/config/ghlFields'
 import './ContactoPage.css'
 
 const CALENDAR_ICON = (
@@ -245,7 +246,7 @@ export function ContactoPage() {
                       onBlur={touch('profile')}
                     >
                       <option value="" disabled>{tf.placeholderProfile}</option>
-                      {tf.profileOptions.map(opt => <option key={opt}>{opt}</option>)}
+                      {tf.profileOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.profile[i]}>{opt}</option>)}
                     </select>
                   </div>
 
@@ -258,7 +259,7 @@ export function ContactoPage() {
                       onBlur={touch('assets')}
                     >
                       <option value="" disabled>{tf.placeholderAssets}</option>
-                      {tf.assetOptions.map(opt => <option key={opt}>{opt}</option>)}
+                      {tf.assetOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.assets[i]}>{opt}</option>)}
                     </select>
                   </div>
 
@@ -270,7 +271,7 @@ export function ContactoPage() {
                       onChange={set('income')}
                     >
                       <option value="">{tf.placeholderIncome}</option>
-                      {tf.incomeOptions.map(opt => <option key={opt}>{opt}</option>)}
+                      {tf.incomeOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.income[i]}>{opt}</option>)}
                     </select>
                   </div>
 
@@ -282,7 +283,7 @@ export function ContactoPage() {
                       onChange={set('referral')}
                     >
                       <option value="">{tf.placeholderReferral}</option>
-                      {tf.referralOptions.map(opt => <option key={opt}>{opt}</option>)}
+                      {tf.referralOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.referral[i]}>{opt}</option>)}
                     </select>
                   </div>
 
