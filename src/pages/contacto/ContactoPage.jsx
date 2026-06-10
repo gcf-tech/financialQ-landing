@@ -59,7 +59,7 @@ const CONTACT_ICONS = [
   <svg key="meeting" className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="3" width="16" height="14" rx="1" /><path d="M2 7h16M7 3v4M13 3v4" /></svg>,
 ]
 
-function ContactInfo({ ti, onSchedule }) {
+function ContactInfo({ ti, onSchedule, unlocked }) {
   const CONTACT_ITEMS = [
     { label: ti.officeLabel, line1: ti.officeLine1, line2: ti.officeLine2 },
     { label: ti.emailLabel, line1: ti.emailLine1, /*line2: ti.emailLine2 */},
@@ -87,7 +87,14 @@ function ContactInfo({ ti, onSchedule }) {
         <h3 className="consult-title">{ti.consultTitle}</h3>
         <span className="consult-divider" />
         <p className="consult-text">{ti.consultText}</p>
-        <Button variant="solid" onClick={onSchedule}>{ti.consultBtn}</Button>
+        <Button
+          variant="solid"
+          className={unlocked ? '' : 'is-locked'}
+          onClick={unlocked ? onSchedule : undefined}
+        >
+          {ti.consultBtn}
+        </Button>
+        {!unlocked && <p className="consult-locked-hint">{ti.consultLockedHint}</p>}
       </div>
     </div>
   )
@@ -317,7 +324,7 @@ export function ContactoPage() {
             </div>
 
             {/* Info lateral */}
-            <ContactInfo ti={ti} onSchedule={() => setConsultOpen(true)} />
+            <ContactInfo ti={ti} onSchedule={() => setConsultOpen(true)} unlocked={status === 'success'} />
           </div>
         </div>
       </section>

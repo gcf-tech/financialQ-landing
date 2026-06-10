@@ -964,11 +964,10 @@
       "labelAssets": "Activos Invertibles Aproximados",
       "placeholderAssets": "Rango aproximado",
       "assetOptions": [
-        "$2M – $5M",
-        "$5M – $10M",
-        "$10M – $25M",
-        "$25M – $50M",
-        "$50M+"
+        "$250,000 – $1,000,000",
+        "$1,000,000 – $3,000,000",
+        "$3,000,000 – $5,000,000",
+        "$5,000,000+"
       ],
       "labelIncome": "¿Cuál es el ingreso anual de su hogar? (opcional)",
       "placeholderIncome": "Seleccione un rango",
@@ -1014,10 +1013,11 @@
       "phoneLine2": "Lunes a Viernes · 9am – 6pm EST",
       "meetingLabel": "Agendar Reunión",
       "meetingLine1": "Disponible por videollamada",
-      "meetingLine2": "en Zoom, Teams o llamada directa",
+      "meetingLine2": "en Google meet",
       "consultTitle": "Agenda una Consulta",
       "consultText": "Reserva una conversación confidencial y sin compromiso. Evaluaremos tu situación y determinaremos si somos la opción adecuada.",
       "consultBtn": "Agenda una Consulta",
+      "consultLockedHint": "Completa y envía el formulario de consulta para habilitar el agendamiento.",
       "eligibilityLabel": "Criterios de Elegibilidad",
       "eligibilityBody": "Los compromisos son selectivos. Trabajamos principalmente con clientes con un mínimo de",
       "eligibilityBody.bold": "$2 millones en activos invertibles",

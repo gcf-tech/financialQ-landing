@@ -971,11 +971,10 @@
       "labelAssets": "Approximate Investable Assets",
       "placeholderAssets": "Approximate range",
       "assetOptions": [
-        "$2M – $5M",
-        "$5M – $10M",
-        "$10M – $25M",
-        "$25M – $50M",
-        "$50M+"
+        "$250,000 – $1,000,000",
+        "$1,000,000 – $3,000,000",
+        "$3,000,000 – $5,000,000",
+        "$5,000,000+"
       ],
       "labelIncome": "What is your annual household income? (optional)",
       "placeholderIncome": "Select a range",
@@ -1021,10 +1020,11 @@
       "phoneLine2": "Monday to Friday · 9am – 6pm EST",
       "meetingLabel": "Schedule a Meeting",
       "meetingLine1": "Available by video call",
-      "meetingLine2": "via Zoom, Teams or direct call",
+      "meetingLine2": "via Google meet",
       "consultTitle": "Schedule a Consultation",
       "consultText": "Reserve a confidential, no-obligation conversation. We will assess your situation and determine whether we are the right fit.",
       "consultBtn": "Schedule a Consultation",
+      "consultLockedHint": "Please complete and submit the inquiry form to unlock scheduling.",
       "eligibilityLabel": "Eligibility Criteria",
       "eligibilityBody": "Commitments are selective. We work primarily with clients with a minimum of",
       "eligibilityBody.bold": "$2 million in investable assets",

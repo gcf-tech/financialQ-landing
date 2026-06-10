@@ -53,6 +53,23 @@
   text-align: center;
 }
 
+/* Bloqueado hasta enviar el formulario de consulta: atenuado y no clickeable */
+.consult-card .btn-solid.is-locked {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.consult-locked-hint {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 12px 0 0;
+  max-width: 320px;
+}
+
 /* ── Modal de la agenda (LeadConnector) ── */
 .consult-overlay {
   position: fixed;
@@ -69,9 +86,9 @@
 .consult-modal {
   position: relative;
   width: 100%;
-  max-width: 760px;
-  height: 85vh;
-  max-height: 820px;
+  max-width: 960px;
+  height: 95vh;
+  max-height: 920px;
   background: var(--white);
   border-radius: 10px;
   overflow: hidden;
