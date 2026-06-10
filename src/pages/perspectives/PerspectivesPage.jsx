@@ -371,6 +371,39 @@ export function PerspectivesPage() {
                 </a>
               </div>
             </article>
+
+            <article className="persp-single-article reveal d7">
+              <img
+                src="https://media.licdn.com/dms/image/v2/D4E12AQHBioDqSYfL5g/article-cover_image-shrink_720_1280/B4EZ6p.ggQIkAQ-/0/1780968202514?e=1782950400&v=beta&t=zrtipYSXzXChwg9fChhRMbvFgyF2iH_LMzhEb1U2hIc"
+                alt={tp.gridRow3[1].title}
+                className="persp-single-article-img"
+              />
+              <span className="persp-article-type">{tp.gridRow3[1].tag}</span>
+              <div className="persp-single-article-title">{tp.gridRow3[1].title}</div>
+              <p className="persp-single-article-excerpt">{tp.gridRow3[1].body}</p>
+              <div className="persp-article-footer">
+                <span className="persp-article-date">{tp.gridRow3[1].date}</span>
+                <span className="persp-article-read">{tp.gridRow3[1].read}</span>
+              </div>
+              <div className="persp-single-article-cta">
+                <a
+                  href="https://www.linkedin.com/pulse/what-sequence-risk-means-retirees-david-enciso-5loee/"
+                  target="_blank"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button variant="ghost" style=
+                    {{
+                      color: 'var(--black)',
+                      borderColor: 'var(--border)',
+                      borderWidth: 'thin',
+                      backgroundColor: 'transparent'
+                    }}>
+                    {tp.featured.readCta}
+                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
+                  </Button>
+                </a>
+              </div>
+            </article>
             
           </div>
         </div>
