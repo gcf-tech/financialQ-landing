@@ -1,22 +1,24 @@
-import { GHL_FIELD_KEYS as K } from '../config/ghlFields'
+import { GHL_FIELD_IDS as K } from '../config/ghlFields'
 
 const BACKEND_URL = 'https://financial-back-prod-production.up.railway.app'
 
 export async function submitContact(formData, lang) {
   // Passthrough genérico a GHL: las keys son fieldKey nativos. Los values de
   // los dropdowns ya vienen canónicos desde el form (ver ghlFields.js).
+  // profile/assets son MULTIPLE_OPTIONS en GHL → el value va dentro de un array.
+  // situation es LARGE_TEXT → string plano.
   const customField = {
-    [K.profile]: formData.profile,
-    [K.assets]: formData.assets,
+    [K.profile]: [formData.profile],
+    [K.assets]: [formData.assets],
     [K.situation]: formData.situation,
   }
 
-  // Opcionales: solo se envían si el usuario eligió un valor.
+  // Opcionales (también MULTIPLE_OPTIONS): solo se envían si el usuario eligió valor.
   if (formData.income) {
-    customField[K.income] = formData.income
+    customField[K.income] = [formData.income]
   }
   if (formData.referral) {
-    customField[K.referral] = formData.referral
+    customField[K.referral] = [formData.referral]
   }
 
   const payload = {

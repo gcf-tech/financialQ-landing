@@ -1,20 +1,22 @@
 // Configuración del passthrough genérico a GHL (LeadConnector).
 //
-// El backend reenvía `customField` tal cual: las KEYS deben ser los fieldKey
-// nativos de GHL y, para los dropdowns SINGLE_OPTIONS, los VALUES deben ser el
-// string EXACTO de la opción en GHL (no el label traducido que ve el usuario).
+// El backend reenvía `customField` tal cual a GHL: la KEY de cada entrada debe
+// ser el ID interno del custom field en GHL (no su fieldKey legible), y para los
+// dropdowns MULTIPLE_OPTIONS los VALUES deben ser el string EXACTO de la opción
+// en GHL (no el label traducido que ve el usuario), enviados dentro de un array.
 //
 // Por eso cada dropdown define aquí sus values canónicos en el MISMO orden que
 // las opciones de los diccionarios i18n (en/es common.json). El usuario ve el
 // label (EN/ES); el form envía el value de GHL.
 
-// fieldKey nativo de GHL por cada custom field.
-export const GHL_FIELD_KEYS = {
-  profile: 'cmo_describira_su_perfil',
-  assets: 'activos_invertibles_aproximados',
-  income: 'cul_es_el_ingreso_anual_de_su_hogar',
-  referral: 'cmo_conoci_a_financialq_group',
-  situation: 'descripcion', // texto libre, no dropdown
+// ID interno de GHL por cada custom field (location 3e4KskiaytyloyjNSJhh).
+// El comentario es el fieldKey de GHL, solo como referencia humana.
+export const GHL_FIELD_IDS = {
+  profile: 'FJtiei8XfDZIxo46YRNj',   // contact.cmo_describira_su_perfil2  (MULTIPLE_OPTIONS)
+  assets: 'VYiBJdEYEDiPxbzKaQGd',    // contact.activos_invertibles_aproximados  (MULTIPLE_OPTIONS)
+  income: 'YhLNC2iC76ZScHeSrYEq',    // contact.cul_es_el_ingreso_anual_de_su_hogar  (MULTIPLE_OPTIONS)
+  referral: 'oJD1DdvR5GPm27DOzXFq',  // contact.cmo_conoci_a_financialq_group  (MULTIPLE_OPTIONS)
+  situation: 'TEqDVNrByCTDUvazu16w', // contact.descripcion  (LARGE_TEXT, texto libre)
 }
 
 // Values canónicos de GHL por opción, en el MISMO orden que los arrays

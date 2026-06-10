@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../app-mobile/marca-blanca-back-v2"
+		},
+		{
+			"path": "../landing-vsl-demo"
 		}
 	],
 	"settings": {}
