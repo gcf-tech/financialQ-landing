@@ -3,6 +3,7 @@ import { Footer } from '../../widgets/footer/Footer'
 import { Button } from '../../shared/ui/button/Button'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
+import posts from './posts.json'
 import './ui/perspectivesPage.css'
 
 const TABS = [
@@ -52,7 +53,7 @@ function GridArticleRow({ articles, variant, filter }) {
 export function PerspectivesPage() {
   const [filter, setFilter] = useState('todos')
   useScrollReveal()
-  const { t } = useTranslation()
+  const { t, lang } = useTranslation()
   const tp = t.perspectivas
 
   const [h1, h2, h3] = tp.intro.headline
@@ -141,270 +142,45 @@ export function PerspectivesPage() {
 
         <div className="wrap" style={{ paddingTop: 0 }}>
           <div className="persp-articles-grid">
-            <article className="persp-single-article reveal">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4E12AQH_SplVXLpwyg/article-cover_image-shrink_720_1280/B4EZ489rI3KQAQ-/0/1779139267978?e=1781136000&v=beta&t=0Nnt8ZbhXnmJ90BZDrwmrMFFIgHxPTpUE3C-l_Wpr54"
-                alt={tp.gridRow1[0].title}
-                className="persp-single-article-img"
-              />
-              <span className="persp-article-type">{tp.gridRow1[0].tag}</span>
-              <div className="persp-single-article-title">{tp.gridRow1[0].title}</div>
-              <p className="persp-single-article-excerpt">{tp.gridRow1[0].body}</p>
-              <div className="persp-article-footer">
-                <span className="persp-article-date">{tp.gridRow1[0].date}</span>
-                <span className="persp-article-read">{tp.gridRow1[0].read}</span>
-              </div>
-              <div className="persp-single-article-cta">
-                <a
-                  href="https://www.linkedin.com/pulse/why-liquidity-drives-markets-more-than-headlines-david-enciso-febee/"
-                  target="_blank"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <Button variant="ghost" style=
-                    {{
-                      color: 'var(--black)',
-                      borderColor: 'var(--border)',
-                      borderWidth: 'thin',
-                      backgroundColor: 'transparent'
-                    }}>
-                    {tp.featured.readCta}
-                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
-                  </Button>
-                </a>
-              </div>
-            </article>
-
-            <article className="persp-single-article reveal d1">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4E12AQFl8SFl3P_kWg/article-cover_image-shrink_720_1280/B4EZ5QlH0GG8AQ-/0/1779468375448?e=1781136000&v=beta&t=b6a3A7bKdxxNuAVRcs4pczThK0qHHNuibKPvRXJ-WW0"
-                alt={tp.gridRow1[1].title}
-                className="persp-single-article-img"
-              />
-              <span className="persp-article-type">{tp.gridRow1[1].tag}</span>
-              <div className="persp-single-article-title">{tp.gridRow1[1].title}</div>
-              <p className="persp-single-article-excerpt">{tp.gridRow1[1].body}</p>
-              <div className="persp-article-footer">
-                <span className="persp-article-date">{tp.gridRow1[1].date}</span>
-                <span className="persp-article-read">{tp.gridRow1[1].read}</span>
-              </div>
-              <div className="persp-single-article-cta">
-                <a
-                  href="https://www.linkedin.com/pulse/what-credit-spreads-signaling-right-now-david-enciso-yda7e/"
-                  target="_blank"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <Button variant="ghost" style=
-                    {{
-                      color: 'var(--black)',
-                      borderColor: 'var(--border)',
-                      borderWidth: 'thin',
-                      backgroundColor: 'transparent'
-                    }}>
-                    {tp.featured.readCta}
-                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
-                  </Button>
-                </a>
-              </div>
-            </article>
-
-            <article className="persp-single-article reveal d2">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4D12AQEJBC9J4lkQZA/article-cover_image-shrink_720_1280/B4DZ5k8XQ1KYAQ-/0/1779810010826?e=1781740800&v=beta&t=dfEKeCJyhlILjdlq9A1RNrgZdfJCwzWksSPQKCepDao"
-                alt={tp.gridRow1[2].title}
-                className="persp-single-article-img"
-              />
-              <span className="persp-article-type">{tp.gridRow1[2].tag}</span>
-              <div className="persp-single-article-title">{tp.gridRow1[2].title}</div>
-              <p className="persp-single-article-excerpt">{tp.gridRow1[2].body}</p>
-              <div className="persp-article-footer">
-                <span className="persp-article-date">{tp.gridRow1[2].date}</span>
-                <span className="persp-article-read">{tp.gridRow1[2].read}</span>
-              </div>
-              <div className="persp-single-article-cta">
-                <a
-                  href="https://www.linkedin.com/pulse/why-asset-allocation-matters-more-than-stock-selection-david-enciso-mx88f/?trackingId=5%2FFrWX62S9u4lxOaEocpxw%3D%3D"
-                  target="_blank"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <Button variant="ghost" style=
-                    {{
-                      color: 'var(--black)',
-                      borderColor: 'var(--border)',
-                      borderWidth: 'thin',
-                      backgroundColor: 'transparent'
-                    }}>
-                    {tp.featured.readCta}
-                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
-                  </Button>
-                </a>
-              </div>
-            </article>
-
-            <article className="persp-single-article reveal d4">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4E12AQG6c_Uuhzcu1w/article-cover_image-shrink_720_1280/B4EZ50uKw5G0AQ-/0/1780074728154?e=1782345600&v=beta&t=6NFvDf6Gkoe7HJBhYRHITkbXhFaDWnFNE-_DxRHZ2Z8"
-                alt={tp.gridRow2[1].title}
-                className="persp-single-article-img"
-              />
-              <span className="persp-article-type">{tp.gridRow2[1].tag}</span>
-              <div className="persp-single-article-title">{tp.gridRow2[1].title}</div>
-              <p className="persp-single-article-excerpt">{tp.gridRow2[1].body}</p>
-              <div className="persp-article-footer">
-                <span className="persp-article-date">{tp.gridRow2[1].date}</span>
-                <span className="persp-article-read">{tp.gridRow2[1].read}</span>
-              </div>
-              <div className="persp-single-article-cta">
-                <a
-                  href="https://www.linkedin.com/pulse/diversification-risk-quantity-david-enciso-ys1ie/"
-                  target="_blank"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <Button variant="ghost" style=
-                    {{
-                      color: 'var(--black)',
-                      borderColor: 'var(--border)',
-                      borderWidth: 'thin',
-                      backgroundColor: 'transparent'
-                    }}>
-                    {tp.featured.readCta}
-                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
-                  </Button>
-                </a>
-              </div>
-            </article>
-
-            <article className="persp-single-article reveal d3">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D5612AQF0eyOmNdQhdw/article-cover_image-shrink_720_1280/B56Z6Dfjp7IcAY-/0/1780322553395?e=1781740800&v=beta&t=elHzpFsRfHl3Z6jUxUjGE9zlQBzNvA3xsYkk0cbCEuc"
-                alt={tp.gridRow2[0].title}
-                className="persp-single-article-img"
-              />
-              <span className="persp-article-type">{tp.gridRow2[0].tag}</span>
-              <div className="persp-single-article-title">{tp.gridRow2[0].title}</div>
-              <p className="persp-single-article-excerpt">{tp.gridRow2[0].body}</p>
-              <div className="persp-article-footer">
-                <span className="persp-article-date">{tp.gridRow2[0].date}</span>
-                <span className="persp-article-read">{tp.gridRow2[0].read}</span>
-              </div>
-              <div className="persp-single-article-cta">
-                <a
-                  href="https://www.linkedin.com/pulse/most-entrepreneurs-overexposed-one-asset-david-enciso-0mthc/"
-                  target="_blank"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <Button variant="ghost" style=
-                    {{
-                      color: 'var(--black)',
-                      borderColor: 'var(--border)',
-                      borderWidth: 'thin',
-                      backgroundColor: 'transparent'
-                    }}>
-                    {tp.featured.readCta}
-                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
-                  </Button>
-                </a>
-              </div>
-            </article>
-
-            <article className="persp-single-article reveal d5">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4E12AQGPtPRISUebCQ/article-cover_image-shrink_720_1280/B4EZ6PbgQEJkAQ-/0/1780522817464?e=1782345600&v=beta&t=-85Ti26SgWyKtW_Ly9FxV6ar4pB8jq9sON8WSt6U9Ic"
-                alt={tp.gridRow2[2].title}
-                className="persp-single-article-img"
-              />
-              <span className="persp-article-type">{tp.gridRow2[2].tag}</span>
-              <div className="persp-single-article-title">{tp.gridRow2[2].title}</div>
-              <p className="persp-single-article-excerpt">{tp.gridRow2[2].body}</p>
-              <div className="persp-article-footer">
-                <span className="persp-article-date">{tp.gridRow2[2].date}</span>
-                <span className="persp-article-read">{tp.gridRow2[2].read}</span>
-              </div>
-              <div className="persp-single-article-cta">
-                <a
-                  href="https://www.linkedin.com/pulse/why-business-owners-need-liquidity-planning-david-enciso-rqibe/?trackingId=kQAQ1mXAbKftU3tv8Esuew%3D%3D"
-                  target="_blank"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <Button variant="ghost" style=
-                    {{
-                      color: 'var(--black)',
-                      borderColor: 'var(--border)',
-                      borderWidth: 'thin',
-                      backgroundColor: 'transparent'
-                    }}>
-                    {tp.featured.readCta}
-                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
-                  </Button>
-                </a>
-              </div>
-            </article>
-
-            <article className="persp-single-article reveal d6">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4E12AQG5EmuafxdqXA/article-cover_image-shrink_720_1280/B4EZ6aUEQYHwAQ-/0/1780705416641?e=1782345600&v=beta&t=9903skxXVvsvFLS7plrGU_9bTloyuWYy9CxfU2BpdDg"
-                alt={tp.gridRow3[0].title}
-                className="persp-single-article-img"
-              />
-              <span className="persp-article-type">{tp.gridRow3[0].tag}</span>
-              <div className="persp-single-article-title">{tp.gridRow3[0].title}</div>
-              <p className="persp-single-article-excerpt">{tp.gridRow3[0].body}</p>
-              <div className="persp-article-footer">
-                <span className="persp-article-date">{tp.gridRow3[0].date}</span>
-                <span className="persp-article-read">{tp.gridRow3[0].read}</span>
-              </div>
-              <div className="persp-single-article-cta">
-                <a
-                  href="https://www.linkedin.com/pulse/retirement-cash-flow-just-net-worth-david-enciso-xb6qe/?trackingId=IlmsxkpBR%2Ber%2FU%2Fedlg6pw%3D%3D"
-                  target="_blank"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <Button variant="ghost" style=
-                    {{
-                      color: 'var(--black)',
-                      borderColor: 'var(--border)',
-                      borderWidth: 'thin',
-                      backgroundColor: 'transparent'
-                    }}>
-                    {tp.featured.readCta}
-                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
-                  </Button>
-                </a>
-              </div>
-            </article>
-
-            <article className="persp-single-article reveal d7">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4E12AQHBioDqSYfL5g/article-cover_image-shrink_720_1280/B4EZ6p.ggQIkAQ-/0/1780968202514?e=1782950400&v=beta&t=zrtipYSXzXChwg9fChhRMbvFgyF2iH_LMzhEb1U2hIc"
-                alt={tp.gridRow3[1].title}
-                className="persp-single-article-img"
-              />
-              <span className="persp-article-type">{tp.gridRow3[1].tag}</span>
-              <div className="persp-single-article-title">{tp.gridRow3[1].title}</div>
-              <p className="persp-single-article-excerpt">{tp.gridRow3[1].body}</p>
-              <div className="persp-article-footer">
-                <span className="persp-article-date">{tp.gridRow3[1].date}</span>
-                <span className="persp-article-read">{tp.gridRow3[1].read}</span>
-              </div>
-              <div className="persp-single-article-cta">
-                <a
-                  href="https://www.linkedin.com/pulse/what-sequence-risk-means-retirees-david-enciso-5loee/"
-                  target="_blank"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <Button variant="ghost" style=
-                    {{
-                      color: 'var(--black)',
-                      borderColor: 'var(--border)',
-                      borderWidth: 'thin',
-                      backgroundColor: 'transparent'
-                    }}>
-                    {tp.featured.readCta}
-                    <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
-                  </Button>
-                </a>
-              </div>
-            </article>
-            
+            {posts
+              .filter(p => filter === 'todos' || p.cat === filter)
+              .map((p, i) => {
+                const c = p.i18n[lang]
+                return (
+                  <article key={p.id} className={`persp-single-article reveal${i > 0 ? ` d${i}` : ''}`}>
+                    <img
+                      src={p.image}
+                      alt={c.title}
+                      className="persp-single-article-img"
+                    />
+                    <span className="persp-article-type">{c.tag}</span>
+                    <div className="persp-single-article-title">{c.title}</div>
+                    <p className="persp-single-article-excerpt">{c.body}</p>
+                    <div className="persp-article-footer">
+                      <span className="persp-article-date">{p.date}</span>
+                      <span className="persp-article-read">{p.read}</span>
+                    </div>
+                    <div className="persp-single-article-cta">
+                      <a
+                        href={p.href}
+                        target="_blank"
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Button variant="ghost" style=
+                          {{
+                            color: 'var(--black)',
+                            borderColor: 'var(--border)',
+                            borderWidth: 'thin',
+                            backgroundColor: 'transparent'
+                          }}>
+                          {tp.featured.readCta}
+                          <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
+                        </Button>
+                      </a>
+                    </div>
+                  </article>
+                )
+              })}
           </div>
         </div>
 
