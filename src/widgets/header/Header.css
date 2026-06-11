@@ -24,7 +24,7 @@ nav {
 #mainNav .logo {
   display: flex; align-items: center;
   text-decoration: none; cursor: pointer;
-  margin-left: -10px;
+  margin-left: clamp(-30px, -2.3vw, -8px);
 }
 #mainNav .logo-img {
   height: 45px;
@@ -127,6 +127,7 @@ nav {
 
 @media (max-width: 960px) {
   nav { padding: 0 24px; }
+  #mainNav .logo { margin-left: 0; }
   .nav-item::after { display: none; }
   .burger { display: flex; }
 
