@@ -1,11 +1,13 @@
 import { Footer } from '../../../widgets/footer/Footer'
 import { useScrollReveal } from '../../../shared/lib/useScrollReveal'
 import { useTranslation } from '../../../shared/config/locales/i18nContext'
+import { useAppNavigate } from '../../../shared/lib/useAppNavigate'
 import './ui/ourMethodology.css'
 
 export function OurMethodologyPage() {
   useScrollReveal()
   const { t } = useTranslation()
+  const navigate = useAppNavigate()
   const tp = t.enfoque.proceso
 
   return (
@@ -86,7 +88,7 @@ export function OurMethodologyPage() {
                 {tp.cta.heading}<br />
                 {tp.cta['heading.mid']} <em>{tp.cta['heading.italic']}</em>.
               </h2>
-              <div className="btn-solid reveal d1">{tp.cta.button}</div>
+              <div className="btn-solid reveal d1" onClick={() => navigate('contacto')}>{tp.cta.button}</div>
             </div>
           </div>
         </div>

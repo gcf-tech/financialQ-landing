@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import './Header.css'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
+import { SLUG_TO_KEY } from '../../shared/config/routes'
 import logoImg from '../../assets/images/header/logo_financialQ.png'
 
 const SOBRE_SUBS = ['firma', 'mision', 'governance']
@@ -11,10 +12,15 @@ const ENFOQUE_SUBS = ['filosofia', 'framework', 'proceso', 'riesgo']
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [openDrop, setOpenDrop] = useState(null)
-  const { t } = useTranslation()
+  const { t, lang } = useTranslation()
   const tn = t.nav
   const navigate = useAppNavigate()
   const location = useLocation()
+
+  // Clave interna de la sección activa según el primer segmento de la URL,
+  // para resaltar el ítem del navbar de la página en la que está el usuario.
+  const firstSeg = location.pathname.split('/').filter(Boolean)[0]
+  const activeKey = SLUG_TO_KEY[lang]?.[firstSeg] ?? null
 
   useEffect(() => {
     setMenuOpen(false)
@@ -64,7 +70,7 @@ export function Header() {
 
         <ul className={`nav-menu${menuOpen ? ' open' : ''}`}>
           <li className={`nav-item${openDrop === 0 ? ' expanded' : ''}`}>
-            <div className="nav-link" onClick={() => go('sobre')}>
+            <div className={`nav-link${activeKey === 'sobre' ? ' active' : ''}`} onClick={() => go('sobre')}>
               <span className="nav-link-text">{tn.sobre}</span>
               {caret(0)}
             </div>
@@ -79,7 +85,7 @@ export function Header() {
           </li>
 
           <li className={`nav-item${openDrop === 1 ? ' expanded' : ''}`}>
-            <div className="nav-link" onClick={() => go('enfoque')}>
+            <div className={`nav-link${activeKey === 'enfoque' ? ' active' : ''}`} onClick={() => go('enfoque')}>
               <span className="nav-link-text">{tn.enfoque}</span>
               {caret(1)}
             </div>
@@ -94,7 +100,7 @@ export function Header() {
           </li>
 
           <li className={`nav-item${openDrop === 2 ? ' expanded' : ''}`}>
-            <div className="nav-link" onClick={() => go('clientes')}>
+            <div className={`nav-link${activeKey === 'clientes' ? ' active' : ''}`} onClick={() => go('clientes')}>
               <span className="nav-link-text">{tn.clientes}</span>
               {caret(2)}
             </div>
@@ -108,7 +114,7 @@ export function Header() {
           </li>
 
           <li className="nav-item">
-            <div className="nav-link" onClick={() => go('perspectivas')}>
+            <div className={`nav-link${activeKey === 'perspectivas' ? ' active' : ''}`} onClick={() => go('perspectivas')}>
               <span className="nav-link-text">{tn.perspectivas}</span>
             </div>
           </li>

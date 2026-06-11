@@ -124,7 +124,7 @@
       "heading": "Ready to begin a",
       "heading.italic": "meaningful conversation?",
       "btn": "Schedule a Consultation",
-      "note": "Selective commitments · Min. $2M in assets."
+      "note": ""
     }
   },
 
@@ -950,7 +950,7 @@
     "heading.italic": "Conversation.",
     "form": {
       "eyebrow": "Contact Form",
-      "intro": "Share a brief overview of your situation. We will review your inquiry and respond within 48 business hours to determine whether we can be of assistance.",
+      "intro": "Share a brief overview of your situation. We will review your inquiry and respond within 48 business hours.",
       "labelName": "First Name",
       "placeholderName": "Your first name",
       "labelLastName": "Last Name",
@@ -1001,7 +1001,7 @@
       "labelSituation": "Your Situation in Brief",
       "placeholderSituation": "Briefly describe what brings you here. No detail required — just enough context to understand whether we are the right fit.",
       "btnSubmit": "Submit Inquiry",
-      "privacy": "Your information is completely confidential. We do not share data with third parties. We respond within 48 business hours.",
+      "privacy": "",
       "errorRequired": "Please complete all required fields.",
       "errorSubmit": "Something went wrong. Please try again later.",
       "successTitle": "Inquiry Received",

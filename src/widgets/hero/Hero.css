@@ -190,6 +190,18 @@
   .hs:nth-child(3), .hs:nth-child(4) { border-top: 1px solid var(--border); }
 }
 @media (max-width: 640px) {
+  /* Velo claro sobre el skyline en móvil: aclara el fondo bajo el texto
+     para que el titular/cuerpo (oscuros) mantengan contraste sin cambiar
+     su color ni ocultar la foto. */
+  .hero-bg-wash {
+    background: linear-gradient(
+      to bottom,
+      rgba(244, 241, 234, 0.92) 0%,
+      rgba(244, 241, 234, 0.80) 55%,
+      rgba(244, 241, 234, 0.58) 100%
+    );
+  }
+
   .hero-body { padding: 40px 20px 36px; }
   .hero-sup { margin-bottom: 22px; font-size: 9px; letter-spacing: .18em; }
   .hero-sup-line { width: 20px; }

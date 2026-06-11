@@ -18,12 +18,16 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
 }
 
-.logo {
+/* Reglas aisladas bajo #mainNav: el header y el footer comparten la clase
+   global .logo-img. Sin este scope, la regla del footer (34px) pisaba la del
+   header según el orden del bundle y el tamaño no se aplicaba. */
+#mainNav .logo {
   display: flex; align-items: center;
   text-decoration: none; cursor: pointer;
+  margin-left: -10px;
 }
-.logo-img {
-  height: 34px;
+#mainNav .logo-img {
+  height: 45px;
   width: auto;
   display: block;
   mix-blend-mode: multiply;

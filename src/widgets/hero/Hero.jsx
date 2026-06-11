@@ -1,5 +1,5 @@
 import './Hero.css'
-import horizonteIcon from '../../assets/icons/horizonte.png'
+// import horizonteIcon from '../../assets/icons/horizonte.png' // usado solo por la hero-card (comentada)
 import { Button } from '../../shared/ui/button/Button'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
@@ -44,6 +44,7 @@ export function Hero() {
             </div>
           </div>
 
+          {/* Card flotante del hero — oculta a pedido. Descomentar para restaurar.
           <aside className="hero-card">
             <img className="hero-card-icon" src={horizonteIcon} alt="" aria-hidden="true" />
             <div className="hero-card-body">
@@ -52,6 +53,7 @@ export function Hero() {
               <p className="hero-card-text">{t.hero.card.text}</p>
             </div>
           </aside>
+          */}
         </div>
 
         <div className="hero-tags">

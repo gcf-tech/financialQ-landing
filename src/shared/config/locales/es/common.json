@@ -124,7 +124,7 @@
       "heading": "¿Listo para iniciar una",
       "heading.italic": "conversación significativa?",
       "btn": "Agendar una Consulta",
-      "note": "Compromisos selectivos · Mín. $2M en activos."
+      "note": ""
     }
   },
 
@@ -943,7 +943,7 @@
     "heading.italic": "Significativa.",
     "form": {
       "eyebrow": "Formulario de Contacto",
-      "intro": "Comparta brevemente su situación. Revisaremos su consulta y responderemos en un plazo de 48 horas hábiles para determinar si podemos ser de ayuda.",
+      "intro": "Comparta brevemente su situación. Revisaremos su consulta y responderemos en un plazo de 48 horas hábiles.",
       "labelName": "Nombre",
       "placeholderName": "Su nombre completo",
       "labelLastName": "Apellido",
@@ -994,7 +994,7 @@
       "labelSituation": "Su Situación en Pocas Palabras",
       "placeholderSituation": "Describa brevemente qué lo trae aquí. No se requiere detalle — solo el contexto suficiente para entender si somos el ajuste correcto.",
       "btnSubmit": "Enviar Consulta",
-      "privacy": "Su información es completamente confidencial. No compartimos datos con terceros. Respondemos en 48 horas hábiles.",
+      "privacy": "",
       "errorRequired": "Por favor, complete todos los campos obligatorios.",
       "errorSubmit": "Algo salió mal. Por favor, inténtelo de nuevo.",
       "successTitle": "Consulta Recibida",
