@@ -60,16 +60,16 @@ const CONTACT_ICONS = [
 ]
 
 function ContactInfo({ ti, onSchedule, unlocked }) {
-  // const CONTACT_ITEMS = [
+  const CONTACT_ITEMS = [
   //   { label: ti.officeLabel, line1: ti.officeLine1, line2: ti.officeLine2 },
   //   { label: ti.emailLabel, line1: ti.emailLine1, /*line2: ti.emailLine2 */},
   //   { label: ti.phoneLabel, line1: ti.phoneLine1, line2: ti.phoneLine2 },
-  //   { label: ti.meetingLabel, line1: ti.meetingLine1, line2: ti.meetingLine2 },
-  // ]
+    { label: ti.meetingLabel, line1: ti.meetingLine1, line2: ti.meetingLine2 }
+  ]
 
   return (
     <div>
-      {/* <span className="eyebrow" style={{ marginBottom: 24, display: 'flex' }}>{ti.eyebrow}</span>
+     <span className="eyebrow" style={{ marginBottom: 24, display: 'flex' }}>{ti.eyebrow}</span>
       <div>
         {CONTACT_ITEMS.map((item, i) => (
           <div key={item.label} className="ci-item">
@@ -80,7 +80,7 @@ function ContactInfo({ ti, onSchedule, unlocked }) {
             </div>
           </div>
         ))}
-      </div> */}
+      </div> 
 
       <div className="consult-card">
         {CALENDAR_ICON}

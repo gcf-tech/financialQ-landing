@@ -943,7 +943,7 @@
     "heading.italic": "Significativa.",
     "form": {
       "eyebrow": "Formulario de Contacto",
-      "intro": "Comparta brevemente su situación. Revisaremos su consulta y responderemos en un plazo de 48 horas hábiles.",
+      "intro": "Comparta brevemente su situación. Revisaremos su consulta y responderemos en un plazo de 24 horas hábiles.",
       "labelName": "Nombre",
       "placeholderName": "Su nombre completo",
       "labelLastName": "Apellido",
@@ -964,9 +964,10 @@
       "labelAssets": "Activos Invertibles Aproximados",
       "placeholderAssets": "Rango aproximado",
       "assetOptions": [
-        "$250,000 – $1,000,000",
-        "$1,000,000 – $3,000,000",
-        "$3,000,000 – $5,000,000",
+        "$100,000 – $249,000",
+        "$250,000 – $999,000",
+        "$1,000,000 – $2,999,999",
+        "$3,000,000 – $4,999,999",
         "$5,000,000+"
       ],
       "labelIncome": "¿Cuál es el ingreso anual de su hogar? (opcional)",
@@ -998,9 +999,19 @@
       "errorRequired": "Por favor, complete todos los campos obligatorios.",
       "errorSubmit": "Algo salió mal. Por favor, inténtelo de nuevo.",
       "successTitle": "Consulta Recibida",
-      "successBody": "Gracias por comunicarse. Revisaremos su consulta y responderemos en un plazo de 48 horas hábiles."
+      "successBody": "Gracias por comunicarse. Revisaremos su consulta y responderemos en un plazo de 24 horas hábiles."
     },
     "info": {
+      "eyebrow": "Información de Contacto",
+      "officeLabel": "Oficina Principal",
+      "officeLine1": "8950 SW 74th Ct, 22nd floor, Office 2252",
+      "officeLine2": "Miami, FL 33156, USA",
+      "emailLabel": "Correo Electrónico",
+      "emailLine1": "admin@financialqgroup.com",
+      "emailLine2": "",
+      "phoneLabel": "Teléfono",
+      "phoneLine1": "+1 407-288-0087",
+      "phoneLine2": "Lunes a Viernes · 9am – 6pm EST",
       "meetingLabel": "Agendar Reunión",
       "meetingLine1": "Disponible por videollamada",
       "meetingLine2": "en Google meet",

@@ -950,7 +950,7 @@
     "heading.italic": "Conversation.",
     "form": {
       "eyebrow": "Contact Form",
-      "intro": "Share a brief overview of your situation. We will review your inquiry and respond within 48 business hours.",
+      "intro": "Share a brief overview of your situation. We will review your inquiry and respond within 24 business hours.",
       "labelName": "First Name",
       "placeholderName": "Your first name",
       "labelLastName": "Last Name",
@@ -971,9 +971,10 @@
       "labelAssets": "Approximate Investable Assets",
       "placeholderAssets": "Approximate range",
       "assetOptions": [
-        "$250,000 – $1,000,000",
-        "$1,000,000 – $3,000,000",
-        "$3,000,000 – $5,000,000",
+        "$100,000 – $249,000",
+        "$250,000 – $999,000",
+        "$1,000,000 – $2,999,999",
+        "$3,000,000 – $4,999,999",
         "$5,000,000+"
       ],
       "labelIncome": "What is your annual household income? (optional)",
@@ -1005,9 +1006,22 @@
       "errorRequired": "Please complete all required fields.",
       "errorSubmit": "Something went wrong. Please try again later.",
       "successTitle": "Inquiry Received",
-      "successBody": "Thank you for reaching out. We will review your inquiry and respond within 48 business hours."
+      "successBody": "Thank you for reaching out. We will review your inquiry and respond within 24 business hours."
     },
     "info": {
+      "eyebrow": "Contact Information",
+      "officeLabel": "Main Office",
+      "officeLine1": "8950 SW 74th Ct, 22nd floor, Office 2252",
+      "officeLine2": "Miami, FL 33156, USA",
+      "emailLabel": "Email Address",
+      "emailLine1": "admin@financialqgroup.com",
+      "emailLine2": "",
+      "phoneLabel": "Phone",
+      "phoneLine1": "+1 407-288-0087",
+      "phoneLine2": "Monday to Friday · 9am – 6pm EST",
+      "meetingLabel": "Schedule a Meeting",
+      "meetingLine1": "Available by video call",
+      "meetingLine2": "via Google meet",
       "consultTitle": "Schedule a Consultation",
       "consultText": "Reserve a confidential, no-obligation conversation. We will assess your situation and determine whether we are the right fit.",
       "consultBtn": "Schedule a Consultation",
