@@ -34,19 +34,28 @@ function parseJsonLoose(raw) {
 
 /**
  * Construye los mensajes system/user para el LLM.
- * @param {{ ogTitle:string, ogDescription:string, samples:Array }} input
+ *
+ * El cuerpo full (`body`) lo provee el autor en `bodyLang`; el adapter NUNCA
+ * lo inventa ni lo scrapea. Su trabajo es:
+ *   - copiar verbatim el cuerpo en `content.<bodyLang>`,
+ *   - traducirlo fielmente en `content.<otherLang>`,
+ *   - derivar blurb/title/tag/cat/read a partir de ese cuerpo.
+ *
+ * @param {{ ogTitle:string, ogDescription:string, body:string, bodyLang:'es'|'en', samples:Array }} input
  */
-function buildPrompt({ ogTitle, ogDescription, samples }) {
+function buildPrompt({ ogTitle, ogDescription, body, bodyLang, samples }) {
+  const otherLang = bodyLang === 'es' ? 'en' : 'es'
+
   const system = [
     'Eres asistente editorial de FinancialQ Group (Global Corporate Finance).',
-    'Escribes blurbs bilingües (español/inglés) de comentario de mercado:',
-    'sobrios, analíticos, sin promesas comerciales, imitando el estilo de los ejemplos.',
+    'Escribes contenido bilingüe (español/inglés) de comentario de mercado:',
+    'sobrio, analítico, sin promesas comerciales, imitando el estilo de los ejemplos.',
     'Devuelve EXCLUSIVAMENTE un objeto JSON válido. Sin markdown, sin texto fuera del JSON.',
   ].join(' ')
 
   const schema = `{
-  "es": { "tag": "string", "title": "string", "body": "string" },
-  "en": { "tag": "string", "title": "string", "body": "string" },
+  "es": { "tag": "string", "title": "string", "body": "string", "content": "string (markdown)" },
+  "en": { "tag": "string", "title": "string", "body": "string", "content": "string (markdown)" },
   "cat": "opinion | newsletter",
   "read": "string (p. ej. \\"2 min\\")"
 }`
@@ -55,16 +64,23 @@ function buildPrompt({ ogTitle, ogDescription, samples }) {
     'Ejemplos del estilo existente (para inferir tono, longitud y formato del body):',
     JSON.stringify(samples, null, 2),
     '',
-    'Artículo nuevo (LinkedIn Pulse):',
+    `Cuerpo del artículo (markdown), escrito por el autor en "${bodyLang}":`,
+    '<<<BODY',
+    body,
+    'BODY',
+    '',
+    'Metadatos del enlace original (LinkedIn Pulse), solo como contexto auxiliar:',
     `og:title: ${ogTitle}`,
     `og:description: ${ogDescription}`,
     '',
     'Reglas:',
-    '- "body" en español e inglés con el patrón "Cómo X —en lugar de Y— logra Z" (1 oración, ~40 palabras).',
-    '- "title": reescribe el og:title de forma natural en cada idioma (no traducción literal forzada).',
+    `- "content.${bodyLang}": devuelve el cuerpo recibido EXACTAMENTE, carácter por carácter, sin reescribir, resumir ni reordenar. Conserva el markdown tal cual.`,
+    `- "content.${otherLang}": traducción fiel y COMPLETA del cuerpo al otro idioma, preservando la estructura markdown (encabezados, listas, énfasis, enlaces).`,
+    '- "body" en español e inglés: blurb de 1 oración (~40 palabras) que resuma el cuerpo con el patrón "Cómo X —en lugar de Y— logra Z".',
+    '- "title": titula el artículo de forma natural en cada idioma (apóyate en el cuerpo y el og:title; no traducción literal forzada).',
     '- "tag": "Comentario de Mercado" (es) / "Market Commentary" (en), salvo que el tema sugiera otro coherente con los ejemplos.',
     '- "cat": "opinion" o "newsletter" según el tipo de pieza.',
-    '- "read": estima el tiempo de lectura ("2 min" para un blurb corto).',
+    '- "read": estima el tiempo de lectura del cuerpo completo ("2 min", "5 min", etc.).',
     '',
     `Devuelve solo JSON con esta forma exacta:\n${schema}`,
   ].join('\n')
@@ -73,10 +89,12 @@ function buildPrompt({ ogTitle, ogDescription, samples }) {
 }
 
 /**
- * Genera el contenido bilingüe del post a partir de los metadatos OG + ejemplos
- * de estilo. Contrato estable que el orquestador consume.
- * @param {{ ogTitle:string, ogDescription:string, samples:Array }} input
- * @returns {Promise<object>} JSON parseado: { es, en, cat, read }
+ * Genera el contenido bilingüe del post a partir del cuerpo del autor + los
+ * metadatos OG + ejemplos de estilo. Contrato estable que el orquestador
+ * consume. El cuerpo full siempre lo provee el autor (`input.body`); el adapter
+ * no lo scrapea.
+ * @param {{ ogTitle:string, ogDescription:string, body:string, bodyLang:'es'|'en', samples:Array }} input
+ * @returns {Promise<object>} JSON parseado: { es, en, cat, read } con content por idioma
  */
 export async function summarize(input) {
   const apiKey = process.env.OPENAI_API_KEY

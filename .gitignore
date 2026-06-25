@@ -31,3 +31,12 @@ dist.zip
 
 # Claude
 .claude/
+
+#Usar el comando
+#node scripts/ingest-post.mjs \
+#"https://www.linkedin.com/pulse/hidden-importance-treasury-auctions-david-enciso-zckye/?published=t" \
+#--body-file aerospace-risk.md \
+#--body-lang en \
+#--image-url "https://media.licdn.com/dms/image/v2/D4E12AQGknhx9hN6uAw/article-cover_image-shrink_720_1280/B4EZ7w0hcMJMAQ-/0/1782156767510?e=1784160000&v=beta&t=-9N_mfBbpWJqoMdKaJuQPB_EaIkTR_2hjPg2wKR2WMs" \
+#--commit
+aerospace-risk.md

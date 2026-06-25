@@ -5,6 +5,7 @@ import { AboutUsPage } from './pages/aboutUs/AboutUsPage'
 import { OurApproachPage } from './pages/ourApproach/OurApproachPage'
 import { CustomerPage } from './pages/customer/CustomerPage'
 import { PerspectivesPage } from './pages/perspectives/PerspectivesPage'
+import { PostDetailPage } from './pages/perspectives/PostDetailPage'
 import { ContactoPage } from './pages/contacto/ContactoPage'
 import { LanguagePicker } from './shared/ui/languagePicker/LanguagePicker'
 
@@ -32,6 +33,10 @@ function App() {
           {/* Perspectives — ES + EN */}
           <Route path="/perspectivas" element={<PerspectivesPage />} />
           <Route path="/perspectives" element={<PerspectivesPage />} />
+
+          {/* Perspectives detail (artículo local) — ES + EN */}
+          <Route path="/perspectivas/:id" element={<PostDetailPage />} />
+          <Route path="/perspectives/:id" element={<PostDetailPage />} />
 
           {/* Contact — ES + EN */}
           <Route path="/contacto" element={<ContactoPage />} />

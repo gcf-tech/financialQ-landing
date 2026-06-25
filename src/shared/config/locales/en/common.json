@@ -745,11 +745,16 @@
   },
 
   "perspectivas": {
-    "tabs": {
-      "all": "All",
-      "ensayo": "Essays",
-      "tecnica": "Technical Notes",
-      "carta": "Client Letters"
+    "detail": {
+      "readArticle": "Read article",
+      "viewOriginal": "View original on LinkedIn",
+      "back": "Back to Perspectives",
+      "notFound": "We couldn't find this article."
+    },
+    "sort": {
+      "label": "Sort",
+      "newest": "Newest first",
+      "oldest": "Oldest first"
     },
     "intro": {
       "eyebrow": "Perspectives",
@@ -771,84 +776,6 @@
       "readTime": "14 min read",
       "readCta": "Read Essay"
     },
-    "gridRow1": [
-      {
-        "cat": "opinion",
-        "tag": "Market Commentary",
-        "title": "Why Liquidity Drives Markets More Than Headlines",
-        "body": "How monitoring systemic liquidity and capital availability—rather than reacting to daily headlines—enables proactive risk management and disciplined portfolio decisions.",
-        "date": "May 2026",
-        "read": "2 min"
-      },
-      {
-        "cat": "newsletter",
-        "tag": "Market Commentary",
-        "title": "What Credit Spreads Are Signaling Right Now",
-        "body": "How monitoring credit spreads—rather than just watching the stock market—reveals under-the-surface changes in borrowing costs and systemic financial stress.",
-        "date": "May 2026",
-        "read": "2 min"
-      },
-      {
-        "cat": "newsletter",
-        "tag": "Market Commentary",
-        "title": "Why Asset Allocation Matters More Than Stock Selection",
-        "body": "How structuring portfolios for long-term resilience and proper asset allocation—rather than trying to predict winning stocks—drives steady compounding and investment discipline.",
-        "date": "May 2026",
-        "read": "2 min"
-      }
-    ],
-    "gridRow2": [
-      {
-        "cat": "newsletter",
-        "tag": "Market Commentary",
-        "title": "Most Entrepreneurs Are Overexposed to One Asset",
-        "body": "How building liquidity and wealth outside a private company—rather than remaining overexposed to a single concentrated asset—creates true financial resilience and options for entrepreneurs.",
-        "date": "Jun 2026",
-        "read": "2 min"
-      },
-      {
-        "cat": "newsletter",
-        "tag": "Market Commentary",
-        "title": "Diversification Is About Risk, Not Quantity",
-        "body": "How focusing on uncorrelated asset behaviors—rather than the sheer quantity of individual holdings—reduces portfolio dependence on a single economic outcome.",
-        "date": "May 2026",
-        "read": "2 min"
-      },
-      {
-        "cat": "newsletter",
-        "tag": "Market Commentary",
-        "title": "Why Business Owners Need Liquidity Planning",
-        "body": "How establishing liquid capital outside a private business—rather than relying solely on paper wealth—creates the strategic flexibility and options needed to handle unexpected obligations and opportunities.",
-        "date": "Jun 2026",
-        "read": "2 min"
-      }
-    ],
-    "gridRow3": [
-      {
-        "cat": "newsletter",
-        "tag": "Market Commentary",
-        "title": "Retirement Is About Cash Flow, Not Just Next Worth",
-        "body": "How focusing on predictable cash flow and reliable income streams—rather than just accumulating a specific net worth number—ensures long-term retirement security and flexibility.",
-        "date": "Jun 2026",
-        "read": "2 min"
-      },
-      {
-        "cat": "newsletter",
-        "tag": "Market Commentary",
-        "title": "What Sequence Risk Means for Retirees",
-        "body": "How managing sequence risk—the timing of market returns relative to retirement withdrawals—rather than relying on long-term averages protects portfolios from permanent depletion.",
-        "date": "Jun 2026",
-        "read": "2 min"
-      },
-      {
-        "cat": "newsletter",
-        "tag": "Market Commentary",
-        "title": "Why Business Owners Need Liquidity Planning",
-        "body": "How establishing liquid capital outside a private business—rather than relying solely on paper wealth—creates the strategic flexibility and options needed to handle unexpected obligations and opportunities.",
-        "date": "Jun 2026",
-        "read": "2 min"
-      }
-    ],
     "about": {
       "eyebrow": "About Our Research",
       "headline": {

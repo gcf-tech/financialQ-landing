@@ -1,18 +1,29 @@
 #!/usr/bin/env node
-// Ingesta un artículo de LinkedIn Pulse a src/pages/perspectives/posts.json.
+// Ingesta un artículo a src/pages/perspectives/posts.json bajo un modelo de
+// OWNERSHIP: el contenido vive y se renderiza localmente; LinkedIn queda como
+// enlace secundario, no como source-of-truth.
 //
 // Flujo:
-//   1. Lee la URL Pulse del argumento.
-//   2. Fetch server-side + parseo de Open Graph (og:title / og:description / og:image).
-//   3. Descarga og:image a public/posts-img/<id>.<ext> y usa esa ruta local
-//      (NO se hotlinkea media.licdn.com: sus URLs caducan por el token "e=").
-//   4. Genera el contenido bilingüe vía summarize() (adapter LLM, Dependency Inversion).
+//   1. Lee la URL Pulse (solo para `href` e idempotencia) y el cuerpo full del
+//      autor desde --body-file (markdown). El cuerpo NUNCA se scrapea.
+//   2. Open Graph opcional: og:title / og:description / og:image como contexto
+//      auxiliar. Si el scrape falla, los overrides manuales bastan.
+//      La fecha de publicación es la FUENTE DE VERDAD (`publishedAt`, ISO): sale
+//      del JSON-LD "datePublished" (sobrevive al authwall) o de --published-at.
+//      `date` ("May 2026") es display derivado de `publishedAt`.
+//   3. Imagen: SIEMPRE local. Descarga og:image (o --image-url) a
+//      public/posts-img/<id>.<ext>. Hotlinkear media.licdn.com es ERROR FATAL
+//      (sus URLs caducan por el token "e="); si og:image da 403, exige
+//      --image-url y aborta.
+//   4. Genera blurb/title/tag/cat/read + traducción del cuerpo vía summarize()
+//      (adapter LLM, Dependency Inversion). El cuerpo en el idioma origen se
+//      preserva verbatim; el LLM solo traduce al otro idioma.
 //   5. Imprime el objeto para revisión; con --commit lo añade a posts.json.
 //   6. Idempotencia: si el href ya existe, aborta sin escribir.
 //
 // Uso:
-//   node scripts/ingest-post.mjs <pulse-url> [--commit]
-//        [--id <slug>] [--date "Mon YYYY"]
+//   node scripts/ingest-post.mjs <pulse-url> --body-file <path.md> [--commit]
+//        [--body-lang es|en] [--id <slug>] [--published-at <ISO>]
 //        [--title "..."] [--desc "..."] [--image-url <url>]
 //
 // Env: OPENAI_API_KEY, OPENAI_MODEL (requeridos por el adapter).
@@ -44,13 +55,20 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 function usage() {
   console.log(`Uso:
-  node scripts/ingest-post.mjs <pulse-url> [--commit]
-       [--id <slug>] [--date "Mon YYYY"]
+  node scripts/ingest-post.mjs <pulse-url> --body-file <path.md> [--commit]
+       [--body-lang es|en] [--id <slug>] [--published-at <ISO>]
        [--title "..."] [--desc "..."] [--image-url <url>]
 
+  --body-file    (REQUERIDO) Cuerpo full del artículo en markdown, escrito por
+                 el autor. Es el source-of-truth; nunca se scrapea.
+  --body-lang    Idioma del cuerpo: "es" (default) o "en". El otro idioma lo
+                 traduce el LLM; el idioma origen se conserva verbatim.
   --commit       Escribe el post en posts.json (por defecto: dry-run).
   --id           Fuerza el slug del id (por defecto: derivado de la URL).
-  --date         Fuerza la fecha (por defecto: article:published_time o el mes actual).
+  --published-at Override ISO (YYYY-MM-DD o YYYY-MM) de la fecha de publicación.
+                 Es la fuente de verdad; "date" se deriva de ella. Si no se pasa,
+                 se scrapea ("datePublished"/article:published_time); si tampoco
+                 hay scrape, ERROR explícito (nunca asume "hoy").
   --title/--desc/--image-url   Overrides manuales si el scrape de OG falla.
 
   Env requeridas: OPENAI_API_KEY, OPENAI_MODEL.`)
@@ -61,8 +79,10 @@ function parseArgs(argv) {
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
     if (a === '--commit') out.commit = true
+    else if (a === '--body-file') out.bodyFile = argv[++i]
+    else if (a === '--body-lang') out.bodyLang = argv[++i]
     else if (a === '--id') out.id = argv[++i]
-    else if (a === '--date') out.date = argv[++i]
+    else if (a === '--published-at') out.publishedAt = argv[++i]
     else if (a === '--title') out.title = argv[++i]
     else if (a === '--desc') out.desc = argv[++i]
     else if (a === '--image-url') out.imageUrl = argv[++i]
@@ -133,10 +153,27 @@ function slugFromUrl(url) {
     .replace(/^-+|-+$/g, '')
 }
 
-function monthYear(input) {
-  const dt = input ? new Date(input) : new Date()
-  if (Number.isNaN(dt.getTime())) return monthYear(null)
-  return `${MONTHS[dt.getMonth()]} ${dt.getFullYear()}`
+// Fecha de publicación: el JSON-LD ("datePublished") sobrevive al authwall de
+// LinkedIn; la meta og `article:published_time` casi siempre viene vacía tras el
+// login, así que queda solo como fallback.
+function publishedTimeFromHtml(html) {
+  const jsonLd = html.match(/"datePublished"\s*:\s*"([^"]+)"/i)
+  return jsonLd?.[1] || metaContent(html, 'article:published_time')
+}
+
+// Normaliza a "YYYY-MM-DD" (o "YYYY-MM") y valida. Acepta timestamps ISO completos.
+function normalizePublishedAt(input) {
+  const m = String(input).trim().match(/^(\d{4}-\d{2}(?:-\d{2})?)/)
+  if (!m) throw new Error(`Fecha de publicación inválida (se esperaba ISO YYYY-MM-DD): "${input}".`)
+  return m[1]
+}
+
+// Deriva el display "Mon YYYY" desde el ISO SIN parsear Date() (evita corrimientos
+// de zona horaria). `publishedAt` es la fuente de verdad.
+function displayDate(iso) {
+  const m = String(iso).match(/^(\d{4})-(\d{2})/)
+  if (!m) throw new Error(`publishedAt no es ISO YYYY-MM(-DD): "${iso}".`)
+  return `${MONTHS[Number(m[2]) - 1]} ${m[1]}`
 }
 
 async function downloadImage(imageUrl, id) {
@@ -185,7 +222,7 @@ function validateLlm(o) {
       errs.push(`falta "${lang}"`)
       continue
     }
-    for (const k of ['tag', 'title', 'body']) {
+    for (const k of ['tag', 'title', 'body', 'content']) {
       if (typeof o[lang][k] !== 'string' || !o[lang][k].trim()) errs.push(`${lang}.${k} inválido`)
     }
   }
@@ -196,9 +233,14 @@ function validateLlm(o) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2))
-  if (args.help || !args.url) {
+  if (args.help || !args.url || !args.bodyFile) {
     usage()
     process.exit(args.help ? 0 : 1)
+  }
+
+  const bodyLang = args.bodyLang ?? 'es'
+  if (bodyLang !== 'es' && bodyLang !== 'en') {
+    throw new Error(`--body-lang debe ser "es" o "en" (recibido: "${bodyLang}").`)
   }
 
   const posts = loadPosts()
@@ -214,36 +256,75 @@ async function main() {
   if (!process.env.OPENAI_API_KEY) throw new Error('Falta OPENAI_API_KEY en el entorno.')
   if (!process.env.OPENAI_MODEL) throw new Error('Falta OPENAI_MODEL en el entorno (no se hardcodea el modelo).')
 
-  // Open Graph: overrides manuales o scrape.
+  // Cuerpo full del autor (source-of-truth). NUNCA se scrapea.
+  let body
+  try {
+    body = fs.readFileSync(path.resolve(args.bodyFile), 'utf8')
+  } catch (err) {
+    throw new Error(`No se pudo leer --body-file (${args.bodyFile}): ${err.message}`)
+  }
+  if (!body.trim()) throw new Error(`--body-file (${args.bodyFile}) está vacío.`)
+
+  // Open Graph: overrides manuales o scrape. Solo contexto auxiliar; si falla,
+  // los overrides bastan (el cuerpo ya está garantizado por --body-file).
   const og = { title: args.title, description: args.desc, image: args.imageUrl, publishedTime: null }
-  if (!og.title || !og.description || !og.image) {
+  // Hay que ir al HTML si falta algún OG o si no se pasó --published-at (la
+  // fecha también se scrapea).
+  if (!og.title || !og.description || !og.image || !args.publishedAt) {
     const html = await fetchHtml(args.url)
     og.title ??= metaContent(html, 'og:title')
     og.description ??= metaContent(html, 'og:description')
     og.image ??= metaContent(html, 'og:image')
-    og.publishedTime = metaContent(html, 'article:published_time')
+    og.publishedTime = publishedTimeFromHtml(html)
   }
   if (!og.title || !og.description) throw new Error('No se obtuvieron og:title/og:description. Usa --title/--desc.')
   if (!og.image) throw new Error('No se obtuvo og:image. Usa --image-url.')
 
+  // Fecha de publicación (SSOT). --published-at gana; si no, lo scrapeado. Si ni
+  // flag ni scrape dan fecha, error explícito: nunca se asume "hoy".
+  const rawPublished = args.publishedAt || og.publishedTime
+  if (!rawPublished) {
+    throw new Error(
+      'No se obtuvo fecha de publicación (ni --published-at ni datePublished/article:published_time). Pasa --published-at <ISO>.',
+    )
+  }
+  const publishedAt = normalizePublishedAt(rawPublished)
+
   const id = args.id || slugFromUrl(args.url)
 
-  // Imagen (se descarga siempre: el token "e=" caduca, conviene guardarla ya).
+  // Imagen: SIEMPRE local. downloadImage descarga a /posts-img y devuelve la
+  // ruta local; si og:image da 403 lanza error pidiendo --image-url.
   const img = await downloadImage(og.image, id)
+  // Invariante de ownership: jamás se persiste un hotlink. Defensa en profundidad.
+  if (!img.publicPath.startsWith('/posts-img/')) {
+    throw new Error(`La imagen no quedó local (${img.publicPath}). Hotlinking prohibido.`)
+  }
 
-  // LLM (adapter): infiere tono desde los primeros posts existentes.
+  // LLM (adapter): traduce el cuerpo al otro idioma y deriva blurb/title/tag/cat/read.
+  // Infiere tono desde los primeros posts existentes.
   const samples = posts.slice(0, 3).map((p) => ({ es: p.i18n.es, en: p.i18n.en, cat: p.cat, read: p.read }))
-  const llm = await summarize({ ogTitle: og.title, ogDescription: og.description, samples })
+  const llm = await summarize({
+    ogTitle: og.title,
+    ogDescription: og.description,
+    body,
+    bodyLang,
+    samples,
+  })
   validateLlm(llm)
 
-  // Ensambla el objeto con el esquema de posts.json.
+  // Source-of-truth: el cuerpo en el idioma origen se persiste VERBATIM,
+  // sin depender de que el LLM lo haya copiado fielmente.
+  llm[bodyLang].content = body
+
+  // Ensambla el objeto con el esquema de posts.json (incluye content bilingüe).
   const post = {
     id,
     cat: llm.cat,
     image: img.publicPath,
     href: args.url,
     read: llm.read,
-    date: args.date || monthYear(og.publishedTime),
+    publishedAt,
+    date: displayDate(publishedAt),
     i18n: { es: llm.es, en: llm.en },
   }
 

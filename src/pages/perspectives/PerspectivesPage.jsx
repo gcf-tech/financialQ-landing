@@ -1,63 +1,39 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Footer } from '../../widgets/footer/Footer'
 import { Button } from '../../shared/ui/button/Button'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
+import { useAppNavigate } from '../../shared/lib/useAppNavigate'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
 import posts from './posts.json'
 import './ui/perspectivesPage.css'
 
-const TABS = [
-  { key: 'todos', labelKey: 'all' },
-  { key: 'ensayo', labelKey: 'ensayo' },
-  { key: 'tecnica', labelKey: 'tecnica' },
-  { key: 'carta', labelKey: 'carta' },
-]
-
-function FeaturedGeom() {
-  return (
-    <svg className="persp-feat-geom" viewBox="0 0 120 120" fill="none" aria-hidden>
-      <rect x="20" y="20" width="80" height="80" stroke="#3B4C9D" strokeWidth="1" />
-      <rect x="35" y="35" width="50" height="50" stroke="#E6DFC5" strokeWidth="0.5" />
-      <line x1="20" y1="20" x2="100" y2="100" stroke="#3B4C9D" strokeWidth="0.5" />
-      <line x1="100" y1="20" x2="20" y2="100" stroke="#3B4C9D" strokeWidth="0.5" />
-      <circle cx="60" cy="60" r="25" stroke="#E6DFC5" strokeWidth="0.5" />
-    </svg>
-  )
-}
-
-function GridArticleRow({ articles, variant, filter }) {
-  const visible = articles.filter(a => filter === 'todos' || a.cat === filter)
-
-  if (visible.length === 0) return null
-
-  const gridCls = variant === 'alt' ? 'persp-grid-alt' : 'persp-grid'
-  const cardCls = variant === 'alt' ? 'persp-article-alt' : 'persp-article'
-
-  return (
-    <div className={gridCls}>
-      {visible.map((item, i) => (
-        <div key={item.title} className={`${cardCls} reveal${i > 0 ? ` d${i % 4}` : ''}`} role="article">
-          <span className="persp-article-type">{item.tag}</span>
-          <div className="persp-article-title">{item.title}</div>
-          <p className="persp-article-excerpt">{item.body}</p>
-          <div className="persp-article-footer">
-            <span className="persp-article-date">{item.date}</span>
-            <span className="persp-article-read">{item.read}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
+const SORT_KEYS = ['newest', 'oldest']
 
 export function PerspectivesPage() {
-  const [filter, setFilter] = useState('todos')
   useScrollReveal()
+  const navigate = useAppNavigate()
   const { t, lang } = useTranslation()
   const tp = t.perspectivas
 
   const [h1, h2, h3] = tp.intro.headline
   const [n1, n2, n3] = tp.newsletter.headline
+
+  const [sortKey, setSortKey] = useState('newest')
+
+  // Orden por publishedAt (SSOT). El ISO ordena lexicográficamente, no se parsea
+  // Date(). Empates de misma fecha → orden original del array como tiebreaker
+  // estable (mismo en ambas direcciones).
+  const sortedPosts = useMemo(() => {
+    const dir = sortKey === 'oldest' ? 1 : -1
+    return posts
+      .map((p, i) => ({ p, i }))
+      .sort((a, b) =>
+        a.p.publishedAt === b.p.publishedAt
+          ? a.i - b.i
+          : (a.p.publishedAt < b.p.publishedAt ? -dir : dir),
+      )
+      .map(({ p }) => p)
+  }, [sortKey])
 
   return (
     <div>
@@ -80,22 +56,6 @@ export function PerspectivesPage() {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="wrap" style={{ paddingTop: 0, paddingBottom: 0 }}>
-          <div className="persp-filters">
-            {TABS.filter(tab => tab.key === 'todos').map(tab => (
-              <div
-                key={tab.key}
-                className={`persp-filter${filter === tab.key ? ' active' : ''}`}
-                onClick={() => setFilter(tab.key)}
-                role="tab"
-                aria-selected={filter === tab.key}
-              >
-                {tp.tabs[tab.labelKey]}
-              </div>
-            ))}
           </div>
         </div>
 
@@ -141,46 +101,68 @@ export function PerspectivesPage() {
         </div>
 
         <div className="wrap" style={{ paddingTop: 0 }}>
+          <div className="persp-articles-toolbar reveal">
+            <span className="persp-sort-label" id="persp-sort-label">{tp.sort.label}</span>
+            <div className="persp-sort" role="radiogroup" aria-labelledby="persp-sort-label">
+              {SORT_KEYS.map(key => (
+                <button
+                  key={key}
+                  type="button"
+                  role="radio"
+                  aria-checked={sortKey === key}
+                  className={`persp-sort-btn${sortKey === key ? ' is-active' : ''}`}
+                  onClick={() => setSortKey(key)}
+                >
+                  {tp.sort[key]}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="persp-articles-grid">
-            {posts
-              .filter(p => filter === 'todos' || p.cat === filter)
-              .map((p, i) => {
-                const c = p.i18n[lang]
-                return (
-                  <article key={p.id} className={`persp-single-article reveal${i > 0 ? ` d${i}` : ''}`}>
-                    <img
-                      src={p.image}
-                      alt={c.title}
-                      className="persp-single-article-img"
-                    />
-                    <span className="persp-article-type">{c.tag}</span>
-                    <div className="persp-single-article-title">{c.title}</div>
-                    <p className="persp-single-article-excerpt">{c.body}</p>
-                    <div className="persp-article-footer">
-                      <span className="persp-article-date">{p.date}</span>
-                      <span className="persp-article-read">{p.read}</span>
-                    </div>
-                    <div className="persp-single-article-cta">
+            {sortedPosts.map((p, i) => {
+              const c = p.i18n[lang]
+              return (
+                <article key={p.id} className={`persp-single-article reveal${i > 0 ? ` d${i}` : ''}`}>
+                  <img
+                    src={p.image}
+                    alt={c.title}
+                    className="persp-single-article-img"
+                  />
+                  <span className="persp-article-type">{c.tag}</span>
+                  <div className="persp-single-article-title">{c.title}</div>
+                  <p className="persp-single-article-excerpt">{c.body}</p>
+                  <div className="persp-article-footer">
+                    <span className="persp-article-date">{p.date}</span>
+                    <span className="persp-article-read">{p.read}</span>
+                  </div>
+                  <div className="persp-single-article-cta">
+                    <Button
+                      variant="ghost"
+                      onClick={() => navigate('perspectivas', p.id)}
+                      style={{
+                        color: 'var(--black)',
+                        borderColor: 'var(--border)',
+                        borderWidth: 'thin',
+                        backgroundColor: 'transparent',
+                      }}
+                    >
+                      {tp.detail.readArticle}
+                      <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
+                    </Button>
+                    {p.href && (
                       <a
                         href={p.href}
                         target="_blank"
-                        style={{ textDecoration: 'none' }}
+                        rel="noopener noreferrer"
+                        className="persp-single-article-original"
                       >
-                        <Button variant="ghost" style=
-                          {{
-                            color: 'var(--black)',
-                            borderColor: 'var(--border)',
-                            borderWidth: 'thin',
-                            backgroundColor: 'transparent'
-                          }}>
-                          {tp.featured.readCta}
-                          <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
-                        </Button>
+                        {tp.detail.viewOriginal} ↗
                       </a>
-                    </div>
-                  </article>
-                )
-              })}
+                    )}
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </div>
 
