@@ -61,7 +61,7 @@ const CONTACT_ICONS = [
 
 function ContactInfo({ ti, onSchedule, unlocked }) {
   const CONTACT_ITEMS = [
-  //   { label: ti.officeLabel, line1: ti.officeLine1, line2: ti.officeLine2 },
+    { label: ti.officeLabel, line1: ti.officeLine1, line2: ti.officeLine2 },
   //   { label: ti.emailLabel, line1: ti.emailLine1, /*line2: ti.emailLine2 */},
   //   { label: ti.phoneLabel, line1: ti.phoneLine1, line2: ti.phoneLine2 },
     { label: ti.meetingLabel, line1: ti.meetingLine1, line2: ti.meetingLine2 }
