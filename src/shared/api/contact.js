@@ -1,6 +1,6 @@
 import { GHL_FIELD_IDS as K } from '../config/ghlFields'
 
-const BACKEND_URL = 'https://financial-back-prod-production.up.railway.app'
+const BACKEND_URL = 'dashboardback.financialqgroup.com'
 
 export async function submitContact(formData, lang) {
   // Passthrough genérico a GHL: las keys son fieldKey nativos. Los values de

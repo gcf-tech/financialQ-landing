@@ -2,7 +2,7 @@
 // GHL que el form de contacto (ver contact.js): el suscriptor queda como
 // contacto en GHL, distinguido por un tag propio. El aviso de "nuevo post" lo
 // envía GHL a ese tag (disparado manualmente vía scripts/notify-subscribers.mjs).
-const BACKEND_URL = 'https://financial-back-prod-production.up.railway.app'
+const BACKEND_URL = 'dashboardback.financialqgroup.com'
 
 export async function subscribeNewsletter({ email, name }, lang) {
   // El form solo pide nombre completo en un campo; lo partimos en first/last
