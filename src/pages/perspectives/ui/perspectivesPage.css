@@ -517,6 +517,28 @@
   line-height: 1.6;
 }
 
+.persp-nl-error {
+  font-size: 11.5px;
+  font-weight: 300;
+  color: #e08a8a;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.persp-nl-success-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ivory);
+  margin-bottom: 8px;
+}
+
+.persp-nl-success-body {
+  font-size: 13.5px;
+  font-weight: 300;
+  color: rgba(230, 223, 197, .6);
+  line-height: 1.65;
+}
+
 .persp-nl-submit {
   align-self: flex-start;
   margin-top: 8px;

@@ -801,6 +801,11 @@
       "emailPlaceholder": "su@correo.com",
       "namePlaceholder": "Su nombre",
       "btn": "Suscribirse",
+      "sending": "Enviando…",
+      "successTitle": "¡Suscripción confirmada!",
+      "successBody": "Le avisaremos por correo cuando publiquemos un nuevo análisis.",
+      "errorEmail": "Ingrese un correo electrónico válido.",
+      "errorSubmit": "No pudimos completar la suscripción. Inténtelo de nuevo.",
       "disclaimer": "Solo análisis de inversión. Sin promociones ni contenido comercial. Puede cancelar en cualquier momento."
     }
   },

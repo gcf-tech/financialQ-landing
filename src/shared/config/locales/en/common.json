@@ -801,6 +801,11 @@
       "emailPlaceholder": "you@email.com",
       "namePlaceholder": "Your name",
       "btn": "Subscribe",
+      "sending": "Sending…",
+      "successTitle": "Subscription confirmed!",
+      "successBody": "We'll email you whenever we publish new analysis.",
+      "errorEmail": "Please enter a valid email address.",
+      "errorSubmit": "We couldn't complete your subscription. Please try again.",
       "disclaimer": "Investment analysis only. No promotions or commercial content. You can unsubscribe at any time."
     }
   },

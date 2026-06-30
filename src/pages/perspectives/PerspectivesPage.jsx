@@ -4,10 +4,12 @@ import { Button } from '../../shared/ui/button/Button'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
+import { subscribeNewsletter } from '../../shared/api/newsletter'
 import posts from './posts.json'
 import './ui/perspectivesPage.css'
 
 const SORT_KEYS = ['newest', 'oldest']
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export function PerspectivesPage() {
   useScrollReveal()
@@ -19,6 +21,32 @@ export function PerspectivesPage() {
   const [n1, n2, n3] = tp.newsletter.headline
 
   const [sortKey, setSortKey] = useState('newest')
+
+  // Newsletter: estado mínimo replicando el patrón del form de contacto
+  // (idle | loading | success | error). El registro va a GHL vía subscribeNewsletter.
+  const [nlEmail, setNlEmail] = useState('')
+  const [nlName, setNlName] = useState('')
+  const [nlStatus, setNlStatus] = useState('idle')
+  const [nlTouched, setNlTouched] = useState(false)
+
+  const emailInvalid = !EMAIL_RE.test(nlEmail.trim())
+
+  const handleNlSubmit = async e => {
+    e.preventDefault()
+    if (nlStatus === 'loading') return
+    setNlTouched(true)
+    if (emailInvalid) return
+    setNlStatus('loading')
+    try {
+      await subscribeNewsletter({ email: nlEmail, name: nlName }, lang)
+      setNlStatus('success')
+      setNlEmail('')
+      setNlName('')
+      setNlTouched(false)
+    } catch {
+      setNlStatus('error')
+    }
+  }
 
   // Orden por publishedAt (SSOT). El ISO ordena lexicográficamente, no se parsea
   // Date(). Empates de misma fecha → orden original del array como tiebreaker
@@ -201,23 +229,65 @@ export function PerspectivesPage() {
                 </h2>
                 <p className="persp-nl-body reveal d2">{tp.newsletter.body}</p>
               </div>
-              <form
-                className="persp-nl-form reveal d1"
-                onSubmit={e => e.preventDefault()}
-              >
-                <div>
-                  <label className="persp-nl-label" htmlFor="persp-nl-email">{tp.newsletter.emailLabel}</label>
-                  <input id="persp-nl-email" className="persp-nl-input" type="email" placeholder={tp.newsletter.emailPlaceholder} autoComplete="email" />
+              {nlStatus === 'success' ? (
+                <div className="persp-nl-form reveal d1">
+                  <div className="persp-nl-success">
+                    <div className="persp-nl-success-title">{tp.newsletter.successTitle}</div>
+                    <div className="persp-nl-success-body">{tp.newsletter.successBody}</div>
+                  </div>
                 </div>
-                <div>
-                  <label className="persp-nl-label" htmlFor="persp-nl-name">{tp.newsletter.nameLabel}</label>
-                  <input id="persp-nl-name" className="persp-nl-input" type="text" placeholder={tp.newsletter.namePlaceholder} autoComplete="name" />
-                </div>
-                <div className="persp-nl-submit">
-                  <Button variant="solid">{tp.newsletter.btn}</Button>
-                </div>
-                <p className="persp-nl-disclaimer">{tp.newsletter.disclaimer}</p>
-              </form>
+              ) : (
+                <form
+                  className="persp-nl-form reveal d1"
+                  onSubmit={handleNlSubmit}
+                  noValidate
+                >
+                  <div>
+                    <label className="persp-nl-label" htmlFor="persp-nl-email">{tp.newsletter.emailLabel}</label>
+                    <input
+                      id="persp-nl-email"
+                      className="persp-nl-input"
+                      type="email"
+                      placeholder={tp.newsletter.emailPlaceholder}
+                      autoComplete="email"
+                      value={nlEmail}
+                      onChange={e => setNlEmail(e.target.value)}
+                      onBlur={() => setNlTouched(true)}
+                    />
+                    {nlTouched && emailInvalid && (
+                      <p className="persp-nl-error">{tp.newsletter.errorEmail}</p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="persp-nl-label" htmlFor="persp-nl-name">{tp.newsletter.nameLabel}</label>
+                    <input
+                      id="persp-nl-name"
+                      className="persp-nl-input"
+                      type="text"
+                      placeholder={tp.newsletter.namePlaceholder}
+                      autoComplete="name"
+                      value={nlName}
+                      onChange={e => setNlName(e.target.value)}
+                    />
+                  </div>
+                  {nlStatus === 'error' && (
+                    <p className="persp-nl-error">{tp.newsletter.errorSubmit}</p>
+                  )}
+                  <div className="persp-nl-submit">
+                    <Button
+                      variant="solid"
+                      onClick={handleNlSubmit}
+                      style={{
+                        opacity: nlStatus === 'loading' ? 0.6 : 1,
+                        pointerEvents: nlStatus === 'loading' ? 'none' : 'auto',
+                      }}
+                    >
+                      {nlStatus === 'loading' ? tp.newsletter.sending : tp.newsletter.btn}
+                    </Button>
+                  </div>
+                  <p className="persp-nl-disclaimer">{tp.newsletter.disclaimer}</p>
+                </form>
+              )}
             </div>
           </div>
         </div>
