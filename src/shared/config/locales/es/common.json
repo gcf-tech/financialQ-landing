@@ -951,6 +951,9 @@
       "phoneLabel": "Teléfono",
       "phoneLine1": "+1 407-288-0087",
       "phoneLine2": "Lunes a Viernes · 9am – 6pm EST",
+      "hoursLabel": "Horario de Atención",
+      "hoursLine1": "Lunes a Viernes",
+      "hoursLine2": "9am – 5pm EST",
       "meetingLabel": "Agendar Reunión",
       "meetingLine1": "Disponible por videollamada",
       "meetingLine2": "en Google meet",
@@ -962,6 +965,7 @@
       "eligibilityBody": "Los compromisos son selectivos. Trabajamos principalmente con clientes con un mínimo de",
       "eligibilityBody.bold": "$2 millones en activos invertibles",
       "eligibilityBody2": "y complejidad financiera que justifique un mandato institucional.",
+      "socialLabel": "Síguenos",
       "languagesLabel": "Idiomas disponibles",
       "languages": [
         "🇺🇸 English",

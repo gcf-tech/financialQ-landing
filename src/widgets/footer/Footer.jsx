@@ -1,6 +1,7 @@
 import './Footer.css'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
+import { SocialLinks } from '../../shared/ui/socialLinks/SocialLinks'
 import logoImg from '../../assets/images/footer/logo_blanco_financialQ.png'
 
 function LegalLinks({ tf }) {
@@ -25,7 +26,10 @@ export function Footer({ variant = 'mini' }) {
         <div className="wrap">
           <div className="fbot">
             <p className="fdisc"><strong>{tf['disclosureLabel.bold']}</strong> {tf.disclosureShort}</p>
-            <LegalLinks tf={tf} />
+            <div className="fmeta">
+              <LegalLinks tf={tf} />
+              <SocialLinks />
+            </div>
           </div>
         </div>
       </footer>
@@ -41,6 +45,7 @@ export function Footer({ variant = 'mini' }) {
               <img src={logoImg} alt={t.common.logoName} className="logo-img" />
             </div>
             <p>{tf.tagline}</p>
+            <SocialLinks className="fsocial" />
           </div>
 
           <div className="fc">

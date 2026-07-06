@@ -70,6 +70,26 @@
   max-width: 320px;
 }
 
+/* ── Redes sociales (bajo la tarjeta de consulta) ── */
+.ci-social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.ci-social-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ci-social-links { color: var(--blue); }
+.ci-social-links .social-link:hover { color: var(--blue-deep); }
+
 /* ── Modal de la agenda (LeadConnector) ── */
 .consult-overlay {
   position: fixed;

@@ -4,6 +4,7 @@ import { Button } from '../../shared/ui/button/Button'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { PageHero } from '../../shared/ui/pageHero/PageHero'
+import { SocialLinks } from '../../shared/ui/socialLinks/SocialLinks'
 import { submitContact } from '../../shared/api/contact'
 import { GHL_OPTION_VALUES } from '../../shared/config/ghlFields'
 import './ContactoPage.css'
@@ -52,28 +53,30 @@ function ConsultModal({ open, onClose, title }) {
   )
 }
 
-const CONTACT_ICONS = [
-  <svg key="office" className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M10 2C6.68 2 4 4.68 4 8c0 5.25 6 10 6 10s6-4.75 6-10c0-3.32-2.68-6-6-6z" /><circle cx="10" cy="8" r="2" /></svg>,
-  <svg key="email" className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 4h16v12H2z" /><path d="M2 4l8 8 8-8" /></svg>,
-  <svg key="phone" className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 4a1 1 0 011-1h2.5l1 3-1.5 1.5A11 11 0 0012 13.5l1.5-1.5 3 1V15a1 1 0 01-1 1C7.16 16 3 11.84 3 5V4z" /></svg>,
-  <svg key="meeting" className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="3" width="16" height="14" rx="1" /><path d="M2 7h16M7 3v4M13 3v4" /></svg>,
-]
+const CONTACT_ICONS = {
+  office: <svg className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M10 2C6.68 2 4 4.68 4 8c0 5.25 6 10 6 10s6-4.75 6-10c0-3.32-2.68-6-6-6z" /><circle cx="10" cy="8" r="2" /></svg>,
+  email: <svg className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 4h16v12H2z" /><path d="M2 4l8 8 8-8" /></svg>,
+  phone: <svg className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 4a1 1 0 011-1h2.5l1 3-1.5 1.5A11 11 0 0012 13.5l1.5-1.5 3 1V15a1 1 0 01-1 1C7.16 16 3 11.84 3 5V4z" /></svg>,
+  hours: <svg className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="10" cy="10" r="7" /><path d="M10 6v4l2.5 2" /></svg>,
+  meeting: <svg className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="3" width="16" height="14" rx="1" /><path d="M2 7h16M7 3v4M13 3v4" /></svg>,
+}
 
 function ContactInfo({ ti, onSchedule, unlocked }) {
   const CONTACT_ITEMS = [
-    { label: ti.officeLabel, line1: ti.officeLine1, line2: ti.officeLine2 },
-  //   { label: ti.emailLabel, line1: ti.emailLine1, /*line2: ti.emailLine2 */},
-  //   { label: ti.phoneLabel, line1: ti.phoneLine1, line2: ti.phoneLine2 },
-    { label: ti.meetingLabel, line1: ti.meetingLine1, line2: ti.meetingLine2 }
+    { icon: 'office', label: ti.officeLabel, line1: ti.officeLine1, line2: ti.officeLine2 },
+  //   { icon: 'email', label: ti.emailLabel, line1: ti.emailLine1, /*line2: ti.emailLine2 */},
+  //   { icon: 'phone', label: ti.phoneLabel, line1: ti.phoneLine1, line2: ti.phoneLine2 },
+    { icon: 'hours', label: ti.hoursLabel, line1: ti.hoursLine1, line2: ti.hoursLine2 },
+    { icon: 'meeting', label: ti.meetingLabel, line1: ti.meetingLine1, line2: ti.meetingLine2 }
   ]
 
   return (
     <div>
      <span className="eyebrow" style={{ marginBottom: 24, display: 'flex' }}>{ti.eyebrow}</span>
       <div>
-        {CONTACT_ITEMS.map((item, i) => (
+        {CONTACT_ITEMS.map(item => (
           <div key={item.label} className="ci-item">
-            {CONTACT_ICONS[i]}
+            {CONTACT_ICONS[item.icon]}
             <div>
               <div className="ci-label">{item.label}</div>
               <div className="ci-val">{item.line1}<br />{item.line2}</div>
@@ -95,6 +98,11 @@ function ContactInfo({ ti, onSchedule, unlocked }) {
           {ti.consultBtn}
         </Button>
         {!unlocked && <p className="consult-locked-hint">{ti.consultLockedHint}</p>}
+      </div>
+
+      <div className="ci-social">
+        <span className="ci-social-label">{ti.socialLabel}</span>
+        <SocialLinks className="ci-social-links" />
       </div>
     </div>
   )
