@@ -744,6 +744,60 @@
     }
   },
 
+  "admin": {
+    "login": {
+      "eyebrow": "Acceso restringido",
+      "title": "Ingreso al editor",
+      "emailLabel": "Correo electrónico",
+      "passwordLabel": "Contraseña",
+      "submit": "Ingresar",
+      "sending": "Ingresando…",
+      "otpTitle": "Enviamos un código de verificación a tu correo.",
+      "otpLabel": "Código de verificación",
+      "otpSubmit": "Verificar código",
+      "error": "No se pudo iniciar sesión. Verifica tus credenciales.",
+      "notAdmin": "Esta cuenta no tiene permisos de editor.",
+      "sessionTitle": "Sesión activa",
+      "goToPerspectives": "Ir a Perspectivas",
+      "logout": "Cerrar sesión"
+    },
+    "editor": {
+      "newTitle": "Nuevo post",
+      "editTitle": "Editar post",
+      "tabEn": "English",
+      "tabEs": "Español",
+      "titleLabel": "Título",
+      "contentLabel": "Cuerpo (markdown)",
+      "excerptLabel": "Resumen (una oración)",
+      "translateBtn": "Traducir al español con IA",
+      "translating": "Traduciendo…",
+      "translateHint": "Escribe primero la versión en inglés, luego genera el borrador en español y revísalo antes de publicar.",
+      "translateError": "La traducción falló. Reintenta o escribe la versión en español manualmente.",
+      "previewLabel": "Vista previa",
+      "imageLabel": "Imagen de portada",
+      "uploadBtn": "Subir imagen",
+      "uploading": "Subiendo…",
+      "changeImage": "Cambiar imagen",
+      "dateLabel": "Fecha de publicación",
+      "readLabel": "Tiempo de lectura",
+      "hrefLabel": "Enlace original (LinkedIn, opcional)",
+      "tagsLabel": "Etiquetas",
+      "newTagNameEs": "Nombre (español)",
+      "newTagNameEn": "Nombre (inglés)",
+      "newTagColor": "Color",
+      "addTag": "Agregar etiqueta",
+      "deleteTagConfirm": "¿Eliminar esta etiqueta? Los posts seguirán funcionando sin ella.",
+      "requiredError": "El título y el cuerpo son obligatorios en ambos idiomas.",
+      "saveError": "No se pudo guardar el post. Inténtalo de nuevo.",
+      "save": "Publicar post",
+      "saveEdit": "Guardar cambios",
+      "saving": "Guardando…",
+      "cancel": "Cancelar",
+      "loading": "Cargando post…",
+      "notFound": "Post no encontrado."
+    }
+  },
+
   "perspectivas": {
     "detail": {
       "readArticle": "Leer artículo",
@@ -755,6 +809,19 @@
       "label": "Ordenar",
       "newest": "Recientes primero",
       "oldest": "Antiguos primero"
+    },
+    "list": {
+      "loading": "Cargando artículos…",
+      "error": "No pudimos cargar los artículos. Inténtalo de nuevo.",
+      "retry": "Reintentar",
+      "empty": "Aún no hay artículos publicados."
+    },
+    "admin": {
+      "addPost": "Agregar nuevo post",
+      "edit": "Editar post",
+      "delete": "Eliminar post",
+      "deleteConfirm": "¿Eliminar \"{title}\"? Esta acción no se puede deshacer.",
+      "deleteError": "No se pudo eliminar el post. Inténtalo de nuevo."
     },
     "intro": {
       "eyebrow": "Perspectivas",

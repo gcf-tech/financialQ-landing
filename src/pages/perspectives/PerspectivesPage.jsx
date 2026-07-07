@@ -1,21 +1,62 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
 import { Footer } from '../../widgets/footer/Footer'
 import { Button } from '../../shared/ui/button/Button'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
+import { useAdminSession } from '../../shared/lib/useAdminSession'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { subscribeNewsletter } from '../../shared/api/newsletter'
-import posts from './posts.json'
+import { fetchPosts, deletePost } from '../../shared/api/posts'
 import './ui/perspectivesPage.css'
 
 const SORT_KEYS = ['newest', 'oldest']
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export function PerspectivesPage() {
-  useScrollReveal()
   const navigate = useAppNavigate()
   const { t, lang } = useTranslation()
+  const { isAdmin } = useAdminSession()
   const tp = t.perspectivas
+
+  // Posts desde el backend (antes: posts.json empaquetado en el build).
+  // reloadKey re-ejecuta el fetch; el estado solo se muta en callbacks async
+  // o en handlers de eventos (regla react-hooks/set-state-in-effect).
+  const [posts, setPosts] = useState([])
+  const [loadState, setLoadState] = useState('loading')
+  const [reloadKey, setReloadKey] = useState(0)
+  const [adminError, setAdminError] = useState('')
+
+  useEffect(() => {
+    let alive = true
+    fetchPosts()
+      .then(list => {
+        if (!alive) return
+        setPosts(list)
+        setLoadState('ready')
+      })
+      .catch(() => { if (alive) setLoadState('error') })
+    return () => { alive = false }
+  }, [reloadKey])
+
+  const reload = useCallback(() => {
+    setLoadState('loading')
+    setReloadKey(k => k + 1)
+  }, [])
+
+  // Re-dispara el reveal cuando los posts llegan async.
+  useScrollReveal(loadState)
+
+  const handleDelete = async p => {
+    const title = p.i18n[lang].title
+    if (!window.confirm(tp.admin.deleteConfirm.replace('{title}', title))) return
+    setAdminError('')
+    try {
+      await deletePost(p.id)
+      reload()
+    } catch {
+      setAdminError(tp.admin.deleteError)
+    }
+  }
 
   const [h1, h2, h3] = tp.intro.headline
   const [n1, n2, n3] = tp.newsletter.headline
@@ -61,7 +102,7 @@ export function PerspectivesPage() {
           : (a.p.publishedAt < b.p.publishedAt ? -dir : dir),
       )
       .map(({ p }) => p)
-  }, [sortKey])
+  }, [sortKey, posts])
 
   return (
     <div>
@@ -145,18 +186,52 @@ export function PerspectivesPage() {
                 </button>
               ))}
             </div>
+            {isAdmin && (
+              <div className="persp-admin-toolbar">
+                <Button variant="solid" onClick={() => navigate('admin/post')}>
+                  + {tp.admin.addPost}
+                </Button>
+              </div>
+            )}
           </div>
+          {adminError && <p className="persp-admin-error">{adminError}</p>}
+
+          {loadState === 'loading' && (
+            <p className="persp-list-status">{tp.list.loading}</p>
+          )}
+          {loadState === 'error' && (
+            <div className="persp-list-status">
+              <p>{tp.list.error}</p>
+              <Button variant="ghost" onClick={reload}>{tp.list.retry}</Button>
+            </div>
+          )}
+          {loadState === 'ready' && sortedPosts.length === 0 && (
+            <p className="persp-list-status">{tp.list.empty}</p>
+          )}
+
           <div className="persp-articles-grid">
             {sortedPosts.map((p, i) => {
               const c = p.i18n[lang]
               return (
                 <article key={p.id} className={`persp-single-article reveal${i > 0 ? ` d${i}` : ''}`}>
-                  <img
-                    src={p.image}
-                    alt={c.title}
-                    className="persp-single-article-img"
-                  />
-                  <span className="persp-article-type">{c.tag}</span>
+                  {p.image && (
+                    <img
+                      src={p.image}
+                      alt={c.title}
+                      className="persp-single-article-img"
+                    />
+                  )}
+                  <div className="persp-article-tags">
+                    {p.tags.map(tag => (
+                      <span
+                        key={tag.id}
+                        className="persp-article-type"
+                        style={{ color: tag.color }}
+                      >
+                        {lang === 'es' ? tag.nameEs : tag.nameEn}
+                      </span>
+                    ))}
+                  </div>
                   <div className="persp-single-article-title">{c.title}</div>
                   <p className="persp-single-article-excerpt">{c.body}</p>
                   <div className="persp-article-footer">
@@ -166,7 +241,7 @@ export function PerspectivesPage() {
                   <div className="persp-single-article-cta">
                     <Button
                       variant="ghost"
-                      onClick={() => navigate('perspectivas', p.id)}
+                      onClick={() => navigate('perspectivas', p.slug)}
                       style={{
                         color: 'var(--black)',
                         borderColor: 'var(--border)',
@@ -188,6 +263,32 @@ export function PerspectivesPage() {
                       </a>
                     )}
                   </div>
+                  {isAdmin && (
+                    <div className="persp-admin-actions">
+                      <button
+                        type="button"
+                        className="persp-admin-btn"
+                        title={tp.admin.edit}
+                        aria-label={tp.admin.edit}
+                        onClick={() => navigate('admin/post', p.slug)}
+                      >
+                        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.4">
+                          <path d="M11.3 1.7l3 3L5 14H2v-3l9.3-9.3zM9.5 3.5l3 3" />
+                        </svg>
+                      </button>
+                      <button
+                        type="button"
+                        className="persp-admin-btn persp-admin-btn-danger"
+                        title={tp.admin.delete}
+                        aria-label={tp.admin.delete}
+                        onClick={() => handleDelete(p)}
+                      >
+                        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.4">
+                          <path d="M2.5 4h11M6.5 4V2.5h3V4M4 4l.8 10h6.4L12 4M6.5 7v4.5M9.5 7v4.5" />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
                 </article>
               )
             })}

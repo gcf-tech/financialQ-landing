@@ -712,3 +712,70 @@
     gap: 56px;
   }
 }
+
+/* --- Posts desde API: estados de carga y chips de etiquetas --- */
+
+.persp-list-status {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--muted);
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.persp-article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+
+.persp-article-tags .persp-article-type {
+  display: inline-block;
+}
+
+/* --- Controles admin (sesión de editor activa) --- */
+
+.persp-admin-toolbar {
+  margin-left: 18px;
+}
+
+.persp-admin-error {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: #A03B3B;
+  margin: 12px 0 0;
+}
+
+.persp-admin-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.persp-admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--black-soft);
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease;
+}
+
+.persp-admin-btn:hover {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.persp-admin-btn-danger:hover {
+  color: #A03B3B;
+  border-color: #A03B3B;
+}

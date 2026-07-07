@@ -744,6 +744,60 @@
     }
   },
 
+  "admin": {
+    "login": {
+      "eyebrow": "Restricted access",
+      "title": "Editor sign-in",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "submit": "Sign in",
+      "sending": "Signing in…",
+      "otpTitle": "We sent a verification code to your email.",
+      "otpLabel": "Verification code",
+      "otpSubmit": "Verify code",
+      "error": "Could not sign in. Check your credentials.",
+      "notAdmin": "This account does not have editor permissions.",
+      "sessionTitle": "Session active",
+      "goToPerspectives": "Go to Perspectives",
+      "logout": "Sign out"
+    },
+    "editor": {
+      "newTitle": "New post",
+      "editTitle": "Edit post",
+      "tabEn": "English",
+      "tabEs": "Español",
+      "titleLabel": "Title",
+      "contentLabel": "Body (markdown)",
+      "excerptLabel": "Excerpt (one sentence)",
+      "translateBtn": "Translate to Spanish with AI",
+      "translating": "Translating…",
+      "translateHint": "Write the English version first, then generate the Spanish draft and review it before publishing.",
+      "translateError": "Translation failed. Retry or write the Spanish version manually.",
+      "previewLabel": "Preview",
+      "imageLabel": "Cover image",
+      "uploadBtn": "Upload image",
+      "uploading": "Uploading…",
+      "changeImage": "Change image",
+      "dateLabel": "Publication date",
+      "readLabel": "Read time",
+      "hrefLabel": "Original link (LinkedIn, optional)",
+      "tagsLabel": "Tags",
+      "newTagNameEs": "Name (Spanish)",
+      "newTagNameEn": "Name (English)",
+      "newTagColor": "Color",
+      "addTag": "Add tag",
+      "deleteTagConfirm": "Delete this tag? Posts will keep working without it.",
+      "requiredError": "Title and body are required in both languages.",
+      "saveError": "The post could not be saved. Please try again.",
+      "save": "Publish post",
+      "saveEdit": "Save changes",
+      "saving": "Saving…",
+      "cancel": "Cancel",
+      "loading": "Loading post…",
+      "notFound": "Post not found."
+    }
+  },
+
   "perspectivas": {
     "detail": {
       "readArticle": "Read article",
@@ -755,6 +809,19 @@
       "label": "Sort",
       "newest": "Newest first",
       "oldest": "Oldest first"
+    },
+    "list": {
+      "loading": "Loading articles…",
+      "error": "We couldn't load the articles. Please try again.",
+      "retry": "Retry",
+      "empty": "No articles published yet."
+    },
+    "admin": {
+      "addPost": "Add new post",
+      "edit": "Edit post",
+      "delete": "Delete post",
+      "deleteConfirm": "Delete \"{title}\"? This cannot be undone.",
+      "deleteError": "The post could not be deleted. Please try again."
     },
     "intro": {
       "eyebrow": "Perspectives",

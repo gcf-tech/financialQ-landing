@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 
-export function useScrollReveal() {
+// `dep` (opcional) re-dispara el reveal cuando el contenido llega async
+// (p. ej. posts cargados por fetch): los .reveal montados después del timeout
+// inicial quedarían invisibles sin esto.
+export function useScrollReveal(dep) {
   useEffect(() => {
     const trigger = () => {
       document.querySelectorAll('.reveal:not(.in)').forEach(el => {
@@ -17,5 +20,5 @@ export function useScrollReveal() {
       window.removeEventListener('scroll', trigger)
       window.removeEventListener('resize', trigger)
     }
-  }, [])
+  }, [dep])
 }

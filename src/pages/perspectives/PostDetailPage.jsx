@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import rehypeSanitize from 'rehype-sanitize'
@@ -6,31 +7,52 @@ import { Button } from '../../shared/ui/button/Button'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
-import posts from './posts.json'
+import { fetchPost } from '../../shared/api/posts'
 import './ui/postDetailPage.css'
 
 export function PostDetailPage() {
-  const { id } = useParams()
-  useScrollReveal()
+  const { id } = useParams() // slug del post en la URL
   const navigate = useAppNavigate()
   const { t, lang } = useTranslation()
   const tp = t.perspectivas
   const td = tp.detail
 
-  const post = posts.find(p => p.id === id)
+  const [post, setPost] = useState(null)
+  const [loadState, setLoadState] = useState('loading')
 
-  // Ruta de detalle resiliente: id inexistente → mensaje + volver a la lista.
-  if (!post) {
+  // El estado solo se muta en callbacks async (regla set-state-in-effect);
+  // el estado inicial ya es 'loading'.
+  useEffect(() => {
+    let alive = true
+    fetchPost(id)
+      .then(data => {
+        if (!alive) return
+        setPost(data)
+        setLoadState(data ? 'ready' : 'notfound')
+      })
+      .catch(() => { if (alive) setLoadState('notfound') })
+    return () => { alive = false }
+  }, [id])
+
+  // Re-dispara el reveal cuando el post llega async.
+  useScrollReveal(loadState)
+
+  // Ruta de detalle resiliente: id inexistente o error → mensaje + volver.
+  if (loadState !== 'ready') {
     return (
       <div>
         <section className="s-post-detail">
           <div className="wrap">
-            <p className="post-detail-notfound">{td.notFound}</p>
-            <div className="post-detail-back">
-              <Button variant="ghost" onClick={() => navigate('perspectivas')}>
-                {td.back}
-              </Button>
-            </div>
+            <p className="post-detail-notfound">
+              {loadState === 'loading' ? tp.list.loading : td.notFound}
+            </p>
+            {loadState === 'notfound' && (
+              <div className="post-detail-back">
+                <Button variant="ghost" onClick={() => navigate('perspectivas')}>
+                  {td.back}
+                </Button>
+              </div>
+            )}
           </div>
         </section>
         <Footer variant="mini" />
@@ -47,7 +69,17 @@ export function PostDetailPage() {
           <button type="button" className="post-detail-backlink reveal" onClick={() => navigate('perspectivas')}>
             ← {td.back}
           </button>
-          <span className="persp-article-type reveal d1">{c.tag}</span>
+          <div className="persp-article-tags reveal d1">
+            {post.tags.map(tag => (
+              <span
+                key={tag.id}
+                className="persp-article-type"
+                style={{ color: tag.color }}
+              >
+                {lang === 'es' ? tag.nameEs : tag.nameEn}
+              </span>
+            ))}
+          </div>
           <h1 className="post-detail-title reveal d1">{c.title}</h1>
           <div className="post-detail-meta reveal d2">
             <span>{post.date}</span>

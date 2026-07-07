@@ -1,0 +1,115 @@
+import { BACKEND_URL } from './config'
+import { getAccessToken } from './auth'
+
+// Posts y etiquetas de Perspectives. Lectura pública; escritura con sesión
+// admin (ver shared/api/auth.js). El backend expone /landings/posts y
+// /landings/tags (repo marca-blanca-back-v2, módulo src/landings/posts).
+
+async function parseError(res, fallback) {
+  const err = await res.json().catch(() => ({}))
+  return new Error(err.error || err.message || fallback)
+}
+
+async function authHeaders() {
+  const token = await getAccessToken()
+  return { Authorization: `Bearer ${token}` }
+}
+
+// ---------- Lectura pública ----------
+
+export async function fetchPosts() {
+  const res = await fetch(`${BACKEND_URL}/landings/posts`)
+  if (!res.ok) throw await parseError(res, 'Could not load posts')
+  return res.json()
+}
+
+export async function fetchPost(slug) {
+  const res = await fetch(`${BACKEND_URL}/landings/posts/${encodeURIComponent(slug)}`)
+  if (res.status === 404) return null
+  if (!res.ok) throw await parseError(res, 'Could not load post')
+  return res.json()
+}
+
+export async function fetchTags() {
+  const res = await fetch(`${BACKEND_URL}/landings/tags`)
+  if (!res.ok) throw await parseError(res, 'Could not load tags')
+  return res.json()
+}
+
+// ---------- Escritura (admin) ----------
+
+export async function createPost(data) {
+  const res = await fetch(`${BACKEND_URL}/landings/posts`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
+    body: JSON.stringify(data),
+  })
+  if (!res.ok) throw await parseError(res, 'Could not create post')
+  return res.json()
+}
+
+export async function updatePost(id, data) {
+  const res = await fetch(`${BACKEND_URL}/landings/posts/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
+    body: JSON.stringify(data),
+  })
+  if (!res.ok) throw await parseError(res, 'Could not update post')
+  return res.json()
+}
+
+export async function deletePost(id) {
+  const res = await fetch(`${BACKEND_URL}/landings/posts/${id}`, {
+    method: 'DELETE',
+    headers: await authHeaders(),
+  })
+  if (!res.ok) throw await parseError(res, 'Could not delete post')
+  return res.json()
+}
+
+/** Sube la imagen de portada y devuelve su URL pública. */
+export async function uploadPostImage(file) {
+  const form = new FormData()
+  form.append('file', file)
+  const res = await fetch(`${BACKEND_URL}/landings/posts/upload-image`, {
+    method: 'POST',
+    headers: await authHeaders(),
+    body: form,
+  })
+  if (!res.ok) throw await parseError(res, 'Could not upload image')
+  const data = await res.json()
+  return data.imageUrl
+}
+
+/**
+ * Traducción EN -> ES vía LLM del backend. Devuelve
+ * { titleEs, contentEs, bodyEs, bodyEn, read } para revisar en el editor.
+ */
+export async function translateDraft({ titleEn, contentEn }) {
+  const res = await fetch(`${BACKEND_URL}/landings/posts/translate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
+    body: JSON.stringify({ titleEn, contentEn }),
+  })
+  if (!res.ok) throw await parseError(res, 'Translation failed')
+  return res.json()
+}
+
+export async function createTag(data) {
+  const res = await fetch(`${BACKEND_URL}/landings/tags`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
+    body: JSON.stringify(data),
+  })
+  if (!res.ok) throw await parseError(res, 'Could not create tag')
+  return res.json()
+}
+
+export async function deleteTag(id) {
+  const res = await fetch(`${BACKEND_URL}/landings/tags/${id}`, {
+    method: 'DELETE',
+    headers: await authHeaders(),
+  })
+  if (!res.ok) throw await parseError(res, 'Could not delete tag')
+  return res.json()
+}

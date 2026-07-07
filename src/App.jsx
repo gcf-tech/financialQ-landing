@@ -7,6 +7,8 @@ import { CustomerPage } from './pages/customer/CustomerPage'
 import { PerspectivesPage } from './pages/perspectives/PerspectivesPage'
 import { PostDetailPage } from './pages/perspectives/PostDetailPage'
 import { ContactoPage } from './pages/contacto/ContactoPage'
+import { AdminLoginPage } from './pages/admin/AdminLoginPage'
+import { PostEditorPage } from './pages/admin/PostEditorPage'
 import { LanguagePicker } from './shared/ui/languagePicker/LanguagePicker'
 
 function App() {
@@ -41,6 +43,10 @@ function App() {
           {/* Contact — ES + EN */}
           <Route path="/contacto" element={<ContactoPage />} />
           <Route path="/contact" element={<ContactoPage />} />
+
+          {/* Admin (editor de Perspectives) — ruta única, sin variante por idioma */}
+          <Route path="/admin" element={<AdminLoginPage />} />
+          <Route path="/admin/post/:slug?" element={<PostEditorPage />} />
 
           <Route path="*" element={<LandingPage />} />
         </Routes>
