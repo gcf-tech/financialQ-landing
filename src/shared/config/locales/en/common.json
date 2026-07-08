@@ -5,6 +5,8 @@
     "clientes": "Clients",
     "perspectivas": "Perspectives",
     "cta": "Start a Conversation",
+    "login": "Log in",
+    "admin": "Admin",
     "dropdown": {
       "sobre": [
         { "title": "The Firm",           "desc": "History, mission and legal structure" },
@@ -770,8 +772,10 @@
       "contentLabel": "Body (markdown)",
       "excerptLabel": "Excerpt (one sentence)",
       "translateBtn": "Translate to Spanish with AI",
+      "translateBtnToEn": "Translate to English with AI",
       "translating": "Translating…",
       "translateHint": "Write the English version first, then generate the Spanish draft and review it before publishing.",
+      "translateHintToEn": "Write the Spanish version first, then generate the English draft and review it before publishing.",
       "translateError": "Translation failed. Retry or write the Spanish version manually.",
       "previewLabel": "Preview",
       "imageLabel": "Cover image",

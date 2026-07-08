@@ -5,6 +5,8 @@
     "clientes": "Clientes",
     "perspectivas": "Perspectivas",
     "cta": "Iniciar Diálogo",
+    "login": "Iniciar sesión",
+    "admin": "Admin",
     "dropdown": {
       "sobre": [
         { "title": "La Firma",           "desc": "Historia, misión y estructura legal" },
@@ -770,8 +772,10 @@
       "contentLabel": "Cuerpo (markdown)",
       "excerptLabel": "Resumen (una oración)",
       "translateBtn": "Traducir al español con IA",
+      "translateBtnToEn": "Traducir al inglés con IA",
       "translating": "Traduciendo…",
       "translateHint": "Escribe primero la versión en inglés, luego genera el borrador en español y revísalo antes de publicar.",
+      "translateHintToEn": "Escribe primero la versión en español, luego genera el borrador en inglés y revísalo antes de publicar.",
       "translateError": "La traducción falló. Reintenta o escribe la versión en español manualmente.",
       "previewLabel": "Vista previa",
       "imageLabel": "Imagen de portada",

@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import './Header.css'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
+import { useAdminSession } from '../../shared/lib/useAdminSession'
+import { logout } from '../../shared/api/auth'
 import { SLUG_TO_KEY } from '../../shared/config/routes'
 import logoImg from '../../assets/images/header/logo_financialQ.png'
 
@@ -12,10 +14,13 @@ const ENFOQUE_SUBS = ['filosofia', 'framework', 'proceso', 'riesgo']
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [openDrop, setOpenDrop] = useState(null)
+  const [userOpen, setUserOpen] = useState(false)
   const { t, lang } = useTranslation()
   const tn = t.nav
   const navigate = useAppNavigate()
   const location = useLocation()
+  const { isAdmin, name } = useAdminSession()
+  const userRef = useRef(null)
 
   // Clave interna de la sección activa según el primer segmento de la URL,
   // para resaltar el ítem del navbar de la página en la que está el usuario.
@@ -25,7 +30,20 @@ export function Header() {
   useEffect(() => {
     setMenuOpen(false)
     setOpenDrop(null)
+    setUserOpen(false)
   }, [location.pathname])
+
+  useEffect(() => {
+    if (!userOpen) return
+    // Ignorar clicks dentro del propio menú: el mismo click que abre puede
+    // alcanzar este listener al burbujear hasta document y cerrarlo al instante.
+    const close = e => {
+      if (userRef.current?.contains(e.target)) return
+      setUserOpen(false)
+    }
+    document.addEventListener('click', close)
+    return () => document.removeEventListener('click', close)
+  }, [userOpen])
 
   useEffect(() => {
     if (!menuOpen) {
@@ -46,6 +64,13 @@ export function Header() {
     e.stopPropagation()
     setOpenDrop(prev => prev === idx ? null : idx)
   }
+
+  const userIcon = (
+    <svg className="nav-user-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
+  )
 
   const caret = (idx) => (
     <button
@@ -68,6 +93,7 @@ export function Header() {
           <img src={logoImg} alt={t.common.logoName} className="logo-img" />
         </div>
 
+        <div className="nav-right">
         <ul className={`nav-menu${menuOpen ? ' open' : ''}`}>
           <li className={`nav-item${openDrop === 0 ? ' expanded' : ''}`}>
             <div className={`nav-link${activeKey === 'sobre' ? ' active' : ''}`} onClick={() => go('sobre')}>
@@ -124,15 +150,54 @@ export function Header() {
           </li>
         </ul>
 
+        {isAdmin ? (
+          <div ref={userRef} className={`nav-user${userOpen ? ' open' : ''}`}>
+            <button
+              type="button"
+              className="nav-user-btn"
+              onClick={() => { setUserOpen(o => !o); setMenuOpen(false) }}
+              aria-haspopup="true"
+              aria-expanded={userOpen}
+            >
+              {userIcon}
+              <span className="nav-user-name">{name || tn.admin}</span>
+              <svg className="nav-user-caret" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M1 1l4 4 4-4" />
+              </svg>
+            </button>
+            <div className="nav-user-drop">
+              <span className="nav-user-session">{name || tn.admin}</span>
+              <button
+                type="button"
+                className="nav-user-logout"
+                onClick={() => { logout(); setUserOpen(false) }}
+              >
+                {t.admin.login.logout}
+              </button>
+            </div>
+          </div>
+        ) : (
+          <button
+            type="button"
+            className="nav-user-btn"
+            onClick={() => go('admin')}
+            aria-label={tn.login}
+            title={tn.login}
+          >
+            {userIcon}
+          </button>
+        )}
+
         <button
           type="button"
           className={`burger${menuOpen ? ' open' : ''}`}
-          onClick={() => setMenuOpen(o => !o)}
+          onClick={() => { setMenuOpen(o => !o); setUserOpen(false) }}
           aria-label="Menu"
           aria-expanded={menuOpen}
         >
           <span /><span /><span />
         </button>
+        </div>
       </div>
     </nav>
   )

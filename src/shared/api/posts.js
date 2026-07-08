@@ -3,7 +3,7 @@ import { getAccessToken } from './auth'
 
 // Posts y etiquetas de Perspectives. Lectura pública; escritura con sesión
 // admin (ver shared/api/auth.js). El backend expone /landings/posts y
-// /landings/tags (repo marca-blanca-back-v2, módulo src/landings/posts).
+// /landings/tags (repo financial-backend, módulo src/landings/posts).
 
 async function parseError(res, fallback) {
   const err = await res.json().catch(() => ({}))
@@ -82,14 +82,15 @@ export async function uploadPostImage(file) {
 }
 
 /**
- * Traducción EN -> ES vía LLM del backend. Devuelve
- * { titleEs, contentEs, bodyEs, bodyEn, read } para revisar en el editor.
+ * Traducción bidireccional vía LLM del backend. Enviar { titleEn, contentEn }
+ * para generar el español o { titleEs, contentEs } para generar el inglés.
+ * Devuelve título/cuerpo del idioma destino + { bodyEs, bodyEn, read }.
  */
-export async function translateDraft({ titleEn, contentEn }) {
+export async function translateDraft(fields) {
   const res = await fetch(`${BACKEND_URL}/landings/posts/translate`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
-    body: JSON.stringify({ titleEn, contentEn }),
+    body: JSON.stringify(fields),
   })
   if (!res.ok) throw await parseError(res, 'Translation failed')
   return res.json()

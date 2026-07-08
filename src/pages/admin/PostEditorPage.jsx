@@ -95,24 +95,29 @@ export function PostEditorPage() {
 
   const set = (key, value) => setForm(prev => ({ ...prev, [key]: value }))
 
-  const handleTranslate = async () => {
-    if (busy || !form.titleEn.trim() || !form.contentEn.trim()) return
+  // from: idioma en el que escribió el autor; el LLM genera el otro.
+  const handleTranslate = async from => {
+    const title = from === 'en' ? form.titleEn : form.titleEs
+    const content = from === 'en' ? form.contentEn : form.contentEs
+    if (busy || !title.trim() || !content.trim()) return
     setBusy('translating')
     setError('')
     try {
-      const r = await translateDraft({
-        titleEn: form.titleEn.trim(),
-        contentEn: form.contentEn,
-      })
+      const r = await translateDraft(
+        from === 'en'
+          ? { titleEn: title.trim(), contentEn: content }
+          : { titleEs: title.trim(), contentEs: content },
+      )
       setForm(prev => ({
         ...prev,
-        titleEs: r.titleEs,
-        contentEs: r.contentEs,
+        ...(from === 'en'
+          ? { titleEs: r.titleEs, contentEs: r.contentEs }
+          : { titleEn: r.titleEn, contentEn: r.contentEn }),
         bodyEs: r.bodyEs,
         bodyEn: r.bodyEn,
         read: prev.read || r.read,
       }))
-      setActiveTab('es')
+      setActiveTab(from === 'en' ? 'es' : 'en')
     } catch {
       setError(ta.translateError)
     } finally {
@@ -281,7 +286,7 @@ export function PostEditorPage() {
                   <p className="admin-hint">{ta.translateHint}</p>
                   <Button
                     variant="ghost"
-                    onClick={handleTranslate}
+                    onClick={() => handleTranslate('en')}
                     style={{ opacity: busy === 'translating' ? 0.6 : 1 }}
                   >
                     {busy === 'translating' ? ta.translating : ta.translateBtn}
@@ -310,6 +315,14 @@ export function PostEditorPage() {
                     value={form.bodyEs}
                     onChange={e => set('bodyEs', e.target.value)}
                   />
+                  <p className="admin-hint">{ta.translateHintToEn}</p>
+                  <Button
+                    variant="ghost"
+                    onClick={() => handleTranslate('es')}
+                    style={{ opacity: busy === 'translating' ? 0.6 : 1 }}
+                  >
+                    {busy === 'translating' ? ta.translating : ta.translateBtnToEn}
+                  </Button>
                 </div>
               )}
 

@@ -33,6 +33,8 @@ nav {
   mix-blend-mode: multiply;
 }
 
+.nav-right { display: flex; align-items: center; gap: 6px; }
+
 .nav-menu {
   display: flex; align-items: center; gap: 4px; list-style: none;
   margin: 0; padding: 0;
@@ -112,6 +114,65 @@ nav {
   white-space: nowrap;
 }
 .nav-cta:hover { background: var(--blue-deep); transform: translateY(-1px); }
+
+/* Acceso admin: ícono discreto a la derecha del CTA (desktop) / junto al
+   burger (móvil). Con sesión activa muestra nombre + menú de cerrar sesión. */
+.nav-user { position: relative; }
+
+.nav-user-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  color: var(--black-soft);
+  background: none; border: none; border-radius: 4px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: color .2s, background .2s;
+}
+.nav-user-btn:hover { color: var(--blue); background: var(--blue-pale); }
+.nav-user-icon { width: 17px; height: 17px; }
+.nav-user-caret { width: 9px; height: 9px; transition: transform .2s; }
+.nav-user.open .nav-user-caret { transform: rotate(180deg); }
+.nav-user-name {
+  max-width: 140px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.nav-user-drop {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 180px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px;
+  opacity: 0; pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity .2s, transform .2s;
+  box-shadow: 0 16px 40px rgba(35, 31, 32, .1);
+}
+.nav-user.open .nav-user-drop { opacity: 1; pointer-events: all; transform: translateY(0); }
+
+.nav-user-session {
+  display: block;
+  padding: 6px 14px 8px;
+  font-size: 11.5px; font-weight: 300; color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.nav-user-logout {
+  display: block; width: 100%;
+  font-family: inherit; font-size: 13px; font-weight: 600;
+  color: var(--black);
+  text-align: left;
+  background: none; border: none; border-radius: 4px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background .18s;
+}
+.nav-user-logout:hover { background: var(--blue-pale); }
 
 .burger {
   display: none; flex-direction: column; gap: 5px;
@@ -223,4 +284,8 @@ nav {
     text-align: center;
     padding: 14px 22px;
   }
+
+  .nav-right { gap: 12px; }
+  .nav-user-btn { padding: 6px; }
+  .nav-user-name { display: none; }
 }
