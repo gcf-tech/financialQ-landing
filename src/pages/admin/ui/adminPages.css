@@ -139,6 +139,44 @@
   background: var(--ivory-pale);
 }
 
+.admin-md-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  background: var(--ivory-pale);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  padding: 6px 8px;
+}
+
+.admin-md-btn {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--black-soft);
+  background: none;
+  border: 1px solid transparent;
+  padding: 6px 9px;
+  cursor: pointer;
+}
+
+.admin-md-btn:hover {
+  color: var(--blue-deep);
+  background: var(--white);
+  border-color: var(--border);
+}
+
+.admin-md-btn-b {
+  font-weight: 800;
+}
+
+.admin-md-btn-i {
+  font-style: italic;
+  font-family: var(--serif);
+  font-size: 14px;
+}
+
 .admin-meta-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -17,6 +17,7 @@ import {
   createTag,
   deleteTag,
 } from '../../shared/api/posts'
+import { MarkdownEditor } from './ui/MarkdownEditor'
 import './ui/adminPages.css'
 
 const EMPTY_FORM = {
@@ -270,11 +271,11 @@ export function PostEditorPage() {
                     onChange={e => set('titleEn', e.target.value)}
                   />
                   <label className="admin-label" htmlFor="ed-content-en">{ta.contentLabel}</label>
-                  <textarea
+                  <MarkdownEditor
                     id="ed-content-en"
-                    className="admin-textarea"
                     value={form.contentEn}
-                    onChange={e => set('contentEn', e.target.value)}
+                    onChange={v => set('contentEn', v)}
+                    labels={ta.toolbar}
                   />
                   <label className="admin-label" htmlFor="ed-body-en">{ta.excerptLabel}</label>
                   <input
@@ -302,11 +303,11 @@ export function PostEditorPage() {
                     onChange={e => set('titleEs', e.target.value)}
                   />
                   <label className="admin-label" htmlFor="ed-content-es">{ta.contentLabel}</label>
-                  <textarea
+                  <MarkdownEditor
                     id="ed-content-es"
-                    className="admin-textarea"
                     value={form.contentEs}
-                    onChange={e => set('contentEs', e.target.value)}
+                    onChange={v => set('contentEs', v)}
+                    labels={ta.toolbar}
                   />
                   <label className="admin-label" htmlFor="ed-body-es">{ta.excerptLabel}</label>
                   <input
