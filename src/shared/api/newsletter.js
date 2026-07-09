@@ -1,7 +1,8 @@
 // Suscripción al newsletter de Perspectivas. Reutiliza el mismo passthrough a
 // GHL que el form de contacto (ver contact.js): el suscriptor queda como
 // contacto en GHL, distinguido por un tag propio. El aviso de "nuevo post" lo
-// envía GHL a ese tag (disparado manualmente vía scripts/notify-subscribers.mjs).
+// dispara financial-backend al publicar (fan-out a ese tag, ver
+// ghl-newsletter.service.ts; scripts/notify-subscribers.mjs quedó como legacy).
 import { BACKEND_URL } from './config'
 
 export async function subscribeNewsletter({ email, name }, lang) {
