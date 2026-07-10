@@ -9,6 +9,7 @@ import { PostDetailPage } from './pages/perspectives/PostDetailPage'
 import { ContactoPage } from './pages/contacto/ContactoPage'
 import { AdminLoginPage } from './pages/admin/AdminLoginPage'
 import { PostEditorPage } from './pages/admin/PostEditorPage'
+import { ResetPasswordPage } from './pages/admin/ResetPasswordPage'
 import { LanguagePicker } from './shared/ui/languagePicker/LanguagePicker'
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
           {/* Admin (editor de Perspectives) — ruta única, sin variante por idioma */}
           <Route path="/admin" element={<AdminLoginPage />} />
           <Route path="/admin/post/:slug?" element={<PostEditorPage />} />
+
+          {/* Restablecer contraseña (enlace del correo) — ruta única */}
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
 
           <Route path="*" element={<LandingPage />} />
         </Routes>

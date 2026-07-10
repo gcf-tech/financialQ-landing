@@ -45,7 +45,7 @@ export function PostEditorPage() {
   const { t } = useTranslation()
   const ta = t.admin.editor
   const navigate = useAppNavigate()
-  const { isAdmin } = useAdminSession()
+  const { isAdmin, mustChangePassword } = useAdminSession()
 
   const [form, setForm] = useState(EMPTY_FORM)
   const [postId, setPostId] = useState(null)
@@ -58,8 +58,10 @@ export function PostEditorPage() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    if (!isAdmin) navigate('admin')
-  }, [isAdmin]) // eslint-disable-line react-hooks/exhaustive-deps
+    // Sin sesión admin, o con cambio de contraseña pendiente: volver a /admin
+    // (allí se resuelve el primer cambio antes de editar).
+    if (!isAdmin || mustChangePassword) navigate('admin')
+  }, [isAdmin, mustChangePassword]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     let alive = true
@@ -216,7 +218,7 @@ export function PostEditorPage() {
     }
   }
 
-  if (!isAdmin) return null
+  if (!isAdmin || mustChangePassword) return null
 
   if (loadState !== 'ready') {
     return (

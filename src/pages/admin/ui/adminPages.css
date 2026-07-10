@@ -92,6 +92,23 @@
   margin-top: 22px;
 }
 
+.admin-linkbtn {
+  align-self: flex-start;
+  margin-top: 16px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--blue-deep);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.admin-linkbtn:hover {
+  color: var(--blue);
+}
+
 /* --- Editor --- */
 
 .admin-editor-grid {

@@ -44,6 +44,9 @@ function toSession(result) {
     expiresAt: result.session.expires_at,
     role: result.role,
     name: result.name || '',
+    // El backend marca 1 en el primer ingreso (contraseña temporal): la UI
+    // obliga a cambiarla antes de dejar entrar al editor.
+    mustChangePassword: Boolean(result.must_change_password),
   }
 }
 
@@ -93,7 +96,10 @@ function establish(result) {
     throw new Error('NOT_ADMIN')
   }
   setSession(toSession(result))
-  return { status: 'LOGGED_IN' }
+  return {
+    status: 'LOGGED_IN',
+    mustChangePassword: Boolean(result.must_change_password),
+  }
 }
 
 export function logout() {
@@ -139,4 +145,51 @@ export async function getAccessToken() {
     expiresAt: Math.floor(Date.now() / 1000) + (data.expires_in || 3600),
   })
   return data.access_token
+}
+
+/**
+ * Cambia la contraseña del usuario autenticado. Requiere la actual. Al
+ * completarse, apaga must_change_password en la sesión local.
+ */
+export async function changePassword(currentPassword, newPassword) {
+  const accessToken = await getAccessToken()
+  const res = await fetch(`${BACKEND_URL}/auth/change-password`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      current_password: currentPassword,
+      new_password: newPassword,
+    }),
+  })
+  if (!res.ok) throw await parseError(res, 'Could not change password')
+
+  if (currentSession) {
+    setSession({ ...currentSession, mustChangePassword: false })
+  }
+  return res.json().catch(() => ({}))
+}
+
+/** Solicita el enlace de recuperación. Respuesta genérica (no revela si existe). */
+export async function forgotPassword(email) {
+  const res = await fetch(`${BACKEND_URL}/auth/forgot-password`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  })
+  if (!res.ok) throw await parseError(res, 'Request failed')
+  return res.json().catch(() => ({}))
+}
+
+/** Fija una nueva contraseña con el token recibido por correo. */
+export async function resetPassword(token, newPassword) {
+  const res = await fetch(`${BACKEND_URL}/auth/reset-password`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token, new_password: newPassword }),
+  })
+  if (!res.ok) throw await parseError(res, 'Reset failed')
+  return res.json().catch(() => ({}))
 }
