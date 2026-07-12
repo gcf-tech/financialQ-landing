@@ -16,23 +16,15 @@ const CALENDAR_ICON = (
   </svg>
 )
 
-// Agenda externa de LeadConnector. Su branding (colores/fuentes) se configura
-// en el panel de LeadConnector, no aquí: el iframe es cross-origin.
-const CONSULT_URL = 'https://api.leadconnectorhq.com/widget/bookings/meeting-financial-q-group'
-const CONSULT_EMBED_SCRIPT = 'https://link.msgsndr.com/js/form_embed.js'
+// Agenda externa de Calendly. Su idioma y branding se configuran en la cuenta
+// de Calendly, no aquí: el iframe es cross-origin.
+const CONSULT_URL = 'https://calendly.com/denciso-financialqgroup/30min'
 
 function ConsultModal({ open, onClose, title }) {
   useEffect(() => {
     if (!open) return
     // Bloquear el scroll del fondo mientras el modal está abierto.
     document.body.style.overflow = 'hidden'
-    // Script oficial de LeadConnector para autoajustar el alto del iframe.
-    if (!document.querySelector(`script[src="${CONSULT_EMBED_SCRIPT}"]`)) {
-      const s = document.createElement('script')
-      s.src = CONSULT_EMBED_SCRIPT
-      s.async = true
-      document.body.appendChild(s)
-    }
     const onKey = e => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', onKey)
     return () => {
