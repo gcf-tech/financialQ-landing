@@ -40,6 +40,24 @@
   # --------------------------------------------------------------------------
 
   # --------------------------------------------------------------------------
+  # 1a-bis. HTML PRE-RENDERIZADO POR RUTA
+  #     El build genera un HTML estático por ruta (dist/sobre/index.html,
+  #     dist/approach/risk/index.html, …) con el contenido ya pintado, para
+  #     que los crawlers lo lean sin ejecutar JS. Ver scripts/prerender.mjs.
+  #
+  #     Esta regla va ANTES de 1b a propósito. Si dejáramos que 1b detectara
+  #     el directorio (-d) y cortara, mod_dir respondería 301 de /sobre a
+  #     /sobre/ — y la URL con barra final ya no coincidiría con la canonical
+  #     declarada en el <head>. Sirviendo el index.html directamente no hay
+  #     redirección y la URL visible no cambia.
+  #
+  #     Si algún día se retira el prerender, esta regla queda inerte: sin
+  #     esos archivos en disco la condición nunca se cumple.
+  # --------------------------------------------------------------------------
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.+?)/?$ /$1/index.html [L]
+
+  # --------------------------------------------------------------------------
   # 1b. EXCLUIR ARCHIVOS Y DIRECTORIOS REALES
   #     Si la petición apunta a un recurso físico que SÍ existe en disco
   #     (JS, CSS, PNG, webmanifest, etc.), Apache lo sirve directamente.

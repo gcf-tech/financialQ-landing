@@ -58,6 +58,10 @@ nav {
 }
 .nav-link:hover, .nav-link.active { color: var(--blue); background: var(--blue-pale); }
 .nav-link svg { width: 9px; height: 9px; transition: transform .2s; }
+/* El texto del ítem es un <a href> real (los crawlers necesitan el enlace),
+   pero visualmente debe seguir siendo el mismo texto: hereda color de
+   .nav-link y no pinta subrayado. */
+.nav-link-text { color: inherit; text-decoration: none; }
 
 .nav-caret {
   background: none; border: none; padding: 0;

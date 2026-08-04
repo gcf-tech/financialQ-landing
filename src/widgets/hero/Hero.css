@@ -15,7 +15,10 @@
   /* 'cover' garantiza que la imagen llene siempre todo el hero
      (texto y card quedan dentro de la foto en cualquier tamaño/relación
      de pantalla). 'center top' ancla el skyline arriba al recortar. */
-  background: url('../../assets/images/hero/New-york.png') center top / cover no-repeat;
+  /* WebP: el original .png pesaba 2.1 MB para una foto. Mismo 1920x1080,
+     84 KB. Es el LCP de la home, así que el ahorro va directo a la métrica.
+     Regenerar con: node scripts/gen-images.mjs */
+  background: url('../../assets/images/hero/New-york.webp') center top / cover no-repeat;
 
   transform-origin: center;
 }

@@ -1,8 +1,9 @@
 import './Footer.css'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
-import { useAppNavigate } from '../../shared/lib/useAppNavigate'
+import { useAppNavigate, useAppPath } from '../../shared/lib/useAppNavigate'
 import { SocialLinks } from '../../shared/ui/socialLinks/SocialLinks'
-import logoImg from '../../assets/images/footer/logo_blanco_financialQ.png'
+import logo1x from '../../assets/images/footer/logo_blanco_financialQ-158w.webp'
+import logo2x from '../../assets/images/footer/logo_blanco_financialQ-316w.webp'
 
 function LegalLinks({ tf }) {
   return (
@@ -19,6 +20,15 @@ export function Footer({ variant = 'mini' }) {
   const { t } = useTranslation()
   const tf = t.footer
   const navigate = useAppNavigate()
+  const href = useAppPath()
+
+  // Enlaces reales para los crawlers; el click normal navega por el router.
+  // Ver la misma lógica en widgets/header/Header.jsx.
+  const onNavClick = (page, sub) => (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return
+    e.preventDefault()
+    navigate(page, sub)
+  }
 
   if (variant === 'mini') {
     return (
@@ -42,7 +52,14 @@ export function Footer({ variant = 'mini' }) {
         <div className="fg">
           <div className="fb">
             <div className="logo">
-              <img src={logoImg} alt={t.common.logoName} className="logo-img" />
+              <img
+                src={logo1x}
+                srcSet={`${logo1x} 1x, ${logo2x} 2x`}
+                width="158"
+                height="34"
+                alt={t.common.logoAlt}
+                className="logo-img"
+              />
             </div>
             <p>{tf.tagline}</p>
             <SocialLinks className="fsocial" />
@@ -51,29 +68,29 @@ export function Footer({ variant = 'mini' }) {
           <div className="fc">
             <h5>{tf.sections.sobre}</h5>
             <ul>
-              <li><span onClick={() => navigate('sobre', 'firma')}>{tf.links.firma}</span></li>
-              {/* <li><span onClick={() => navigate('sobre', 'equipo')}>{tf.links.equipo}</span></li> */}
-              <li><span onClick={() => navigate('sobre', 'mision')}>{tf.links.mision}</span></li>
-              <li><span onClick={() => navigate('sobre', 'governance')}>{tf.links.governance}</span></li>
+              <li><a href={href('sobre', 'firma')} onClick={onNavClick('sobre', 'firma')}>{tf.links.firma}</a></li>
+              {/* <li><a href={href('sobre', 'equipo')} onClick={onNavClick('sobre', 'equipo')}>{tf.links.equipo}</a></li> */}
+              <li><a href={href('sobre', 'mision')} onClick={onNavClick('sobre', 'mision')}>{tf.links.mision}</a></li>
+              <li><a href={href('sobre', 'governance')} onClick={onNavClick('sobre', 'governance')}>{tf.links.governance}</a></li>
             </ul>
           </div>
 
           <div className="fc">
             <h5>{tf.sections.enfoque}</h5>
             <ul>
-              <li><span onClick={() => navigate('enfoque', 'filosofia')}>{tf.links.filosofia}</span></li>
-              <li><span onClick={() => navigate('enfoque', 'framework')}>{tf.links.framework}</span></li>
-              <li><span onClick={() => navigate('enfoque', 'riesgo')}>{tf.links.riesgo}</span></li>
+              <li><a href={href('enfoque', 'filosofia')} onClick={onNavClick('enfoque', 'filosofia')}>{tf.links.filosofia}</a></li>
+              <li><a href={href('enfoque', 'framework')} onClick={onNavClick('enfoque', 'framework')}>{tf.links.framework}</a></li>
+              <li><a href={href('enfoque', 'riesgo')} onClick={onNavClick('enfoque', 'riesgo')}>{tf.links.riesgo}</a></li>
             </ul>
           </div>
 
           <div className="fc">
             <h5>{tf.sections.clientes}</h5>
             <ul>
-              <li><span onClick={() => navigate('clientes')}>{tf.links.profesionales}</span></li>
-              <li><span onClick={() => navigate('clientes')}>{tf.links.empresarios}</span></li>
-              <li><span onClick={() => navigate('clientes')}>{tf.links.internacional}</span></li>
-              <li><span onClick={() => navigate('clientes')}>{tf.links.fundadores}</span></li>
+              <li><a href={href('clientes')} onClick={onNavClick('clientes')}>{tf.links.profesionales}</a></li>
+              <li><a href={href('clientes')} onClick={onNavClick('clientes')}>{tf.links.empresarios}</a></li>
+              <li><a href={href('clientes')} onClick={onNavClick('clientes')}>{tf.links.internacional}</a></li>
+              <li><a href={href('clientes')} onClick={onNavClick('clientes')}>{tf.links.fundadores}</a></li>
             </ul>
           </div>
 

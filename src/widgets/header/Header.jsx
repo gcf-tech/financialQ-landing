@@ -2,11 +2,12 @@ import { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import './Header.css'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
-import { useAppNavigate } from '../../shared/lib/useAppNavigate'
+import { useAppNavigate, useAppPath } from '../../shared/lib/useAppNavigate'
 import { useAdminSession } from '../../shared/lib/useAdminSession'
 import { logout } from '../../shared/api/auth'
 import { SLUG_TO_KEY } from '../../shared/config/routes'
-import logoImg from '../../assets/images/header/logo_financialQ.png'
+import logo1x from '../../assets/images/header/logo_financialQ-209w.webp'
+import logo2x from '../../assets/images/header/logo_financialQ-418w.webp'
 
 const SOBRE_SUBS = ['firma', 'mision', 'governance']
 const ENFOQUE_SUBS = ['filosofia', 'framework', 'proceso', 'riesgo']
@@ -18,6 +19,7 @@ export function Header() {
   const { t, lang } = useTranslation()
   const tn = t.nav
   const navigate = useAppNavigate()
+  const href = useAppPath()
   const location = useLocation()
   const { isAdmin, name } = useAdminSession()
   const userRef = useRef(null)
@@ -60,6 +62,17 @@ export function Header() {
     setMenuOpen(false)
   }
 
+  /**
+   * Handler para los enlaces del nav. El <a href> real existe para que los
+   * crawlers descubran las páginas y para que ctrl/cmd/middle-click abran una
+   * pestaña nueva; el click normal se intercepta y navega por el router.
+   */
+  const onNavClick = (page, sub) => (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return
+    e.preventDefault()
+    go(page, sub)
+  }
+
   const toggleDrop = (e, idx) => {
     e.stopPropagation()
     setOpenDrop(prev => prev === idx ? null : idx)
@@ -89,64 +102,71 @@ export function Header() {
   return (
     <nav id="mainNav">
       <div className="nav-inner">
-        <div className="logo" onClick={() => go('inicio')}>
-          <img src={logoImg} alt={t.common.logoName} className="logo-img" />
-        </div>
+        <a className="logo" href={href('inicio')} onClick={onNavClick('inicio')}>
+          <img
+            src={logo1x}
+            srcSet={`${logo1x} 1x, ${logo2x} 2x`}
+            width="209"
+            height="45"
+            alt={t.common.logoAlt}
+            className="logo-img"
+          />
+        </a>
 
         <div className="nav-right">
         <ul className={`nav-menu${menuOpen ? ' open' : ''}`}>
           <li className={`nav-item${openDrop === 0 ? ' expanded' : ''}`}>
-            <div className={`nav-link${activeKey === 'sobre' ? ' active' : ''}`} onClick={() => go('sobre')}>
-              <span className="nav-link-text">{tn.sobre}</span>
+            <div className={`nav-link${activeKey === 'sobre' ? ' active' : ''}`} onClick={onNavClick('sobre')}>
+              <a className="nav-link-text" href={href('sobre')}>{tn.sobre}</a>
               {caret(0)}
             </div>
             <div className="nav-drop wide">
               {tn.dropdown.sobre.filter((_, i) => i !== 1).map((item, i) => (
-                <div key={i} className="drop-item" onClick={() => go('sobre', SOBRE_SUBS[i])}>
+                <a key={i} className="drop-item" href={href('sobre', SOBRE_SUBS[i])} onClick={onNavClick('sobre', SOBRE_SUBS[i])}>
                   <span className="drop-title">{item.title}</span>
                   <span className="drop-desc">{item.desc}</span>
-                </div>
+                </a>
               ))}
             </div>
           </li>
 
           <li className={`nav-item${openDrop === 1 ? ' expanded' : ''}`}>
-            <div className={`nav-link${activeKey === 'enfoque' ? ' active' : ''}`} onClick={() => go('enfoque')}>
-              <span className="nav-link-text">{tn.enfoque}</span>
+            <div className={`nav-link${activeKey === 'enfoque' ? ' active' : ''}`} onClick={onNavClick('enfoque')}>
+              <a className="nav-link-text" href={href('enfoque')}>{tn.enfoque}</a>
               {caret(1)}
             </div>
             <div className="nav-drop wide">
               {tn.dropdown.enfoque.slice(0, ENFOQUE_SUBS.length).map((item, i) => (
-                <div key={i} className="drop-item" onClick={() => go('enfoque', ENFOQUE_SUBS[i])}>
+                <a key={i} className="drop-item" href={href('enfoque', ENFOQUE_SUBS[i])} onClick={onNavClick('enfoque', ENFOQUE_SUBS[i])}>
                   <span className="drop-title">{item.title}</span>
                   <span className="drop-desc">{item.desc}</span>
-                </div>
+                </a>
               ))}
             </div>
           </li>
 
           <li className={`nav-item${openDrop === 2 ? ' expanded' : ''}`}>
-            <div className={`nav-link${activeKey === 'clientes' ? ' active' : ''}`} onClick={() => go('clientes')}>
-              <span className="nav-link-text">{tn.clientes}</span>
+            <div className={`nav-link${activeKey === 'clientes' ? ' active' : ''}`} onClick={onNavClick('clientes')}>
+              <a className="nav-link-text" href={href('clientes')}>{tn.clientes}</a>
               {caret(2)}
             </div>
             <div className="nav-drop">
               {tn.dropdown.clientes.map((label, i) => (
-                <div key={i} className="drop-item" onClick={() => go('clientes')}>
+                <a key={i} className="drop-item" href={href('clientes')} onClick={onNavClick('clientes')}>
                   <span className="drop-title">{label}</span>
-                </div>
+                </a>
               ))}
             </div>
           </li>
 
           <li className="nav-item">
-            <div className={`nav-link${activeKey === 'perspectivas' ? ' active' : ''}`} onClick={() => go('perspectivas')}>
-              <span className="nav-link-text">{tn.perspectivas}</span>
+            <div className={`nav-link${activeKey === 'perspectivas' ? ' active' : ''}`} onClick={onNavClick('perspectivas')}>
+              <a className="nav-link-text" href={href('perspectivas')}>{tn.perspectivas}</a>
             </div>
           </li>
 
           <li className="nav-item-cta">
-            <div className="nav-cta" onClick={() => go('contacto')}>{tn.cta}</div>
+            <a className="nav-cta" href={href('contacto')} onClick={onNavClick('contacto')}>{tn.cta}</a>
           </li>
         </ul>
 

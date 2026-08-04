@@ -37,7 +37,7 @@ export function LanguagePicker() {
     >
       {/* Bandera activa */}
       <div className="lang-current">
-        <img src={FLAG_URLS[lang]} alt={LANG_LABELS[lang]} />
+        <img src={FLAG_URLS[lang]} alt={LANG_LABELS[lang]} width="44" height="44" />
       </div>
 
       {/* Opciones — aparecen al hacer hover */}
@@ -49,7 +49,7 @@ export function LanguagePicker() {
             className="lang-option"
             onClick={() => handleChange(l)}
           >
-            <img src={FLAG_URLS[l]} alt={LANG_LABELS[l]} />
+            <img src={FLAG_URLS[l]} alt={LANG_LABELS[l]} width="44" height="44" />
           </button>
         ))}
       </div>

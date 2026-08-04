@@ -215,10 +215,16 @@ export function PerspectivesPage() {
               return (
                 <article key={p.id} className={`persp-single-article reveal${i > 0 ? ` d${i}` : ''}`}>
                   {p.image && (
+                    // Sin width/height: la portada llega del backend y no
+                    // conocemos su tamaño intrínseco. El hueco ya lo reserva
+                    // `aspect-ratio: 16/9` en perspectivesPage.css:655, así
+                    // que no hay CLS.
                     <img
                       src={p.image}
                       alt={c.title}
                       className="persp-single-article-img"
+                      loading="lazy"
+                      decoding="async"
                     />
                   )}
                   <div className="persp-article-tags">

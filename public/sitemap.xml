@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap de FinancialQ Group.
+
+  Cada página existe en dos URLs (ES / EN) declaradas como alternativas
+  recíprocas con hreflang. x-default apunta a la variante EN porque es el
+  idioma por defecto del sitio (ver src/shared/config/locales/i18nContext.jsx).
+
+  Fuera del sitemap a propósito:
+    - /admin, /admin/post/*, /reset-password  → privadas (ver robots.txt)
+    - /sobre/equipo, /about/team              → página existente pero no enlazada
+    - /perspectivas/:id, /perspectives/:id    → artículos servidos por API en
+      runtime; requieren generación dinámica (ver PRERENDER-TODO.md)
+    - /sobre/firma y /enfoque/filosofia       → mismo contenido que /sobre y
+      /enfoque respectivamente; canonicalizadas hacia la URL corta.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://financialqgroup.com/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/" />
+  </url>
+
+  <!-- Sobre la firma / About the firm -->
+  <url>
+    <loc>https://financialqgroup.com/about</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/sobre" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/about" />
+  </url>
+  <url>
+    <loc>https://financialqgroup.com/sobre</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/sobre" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/about" />
+  </url>
+
+  <url>
+    <loc>https://financialqgroup.com/about/mission</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/about/mission" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/sobre/mision" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/about/mission" />
+  </url>
+  <url>
+    <loc>https://financialqgroup.com/sobre/mision</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/about/mission" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/sobre/mision" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/about/mission" />
+  </url>
+
+  <url>
+    <loc>https://financialqgroup.com/about/governance</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/about/governance" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/sobre/governance" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/about/governance" />
+  </url>
+  <url>
+    <loc>https://financialqgroup.com/sobre/governance</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/about/governance" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/sobre/governance" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/about/governance" />
+  </url>
+
+  <!-- Enfoque / Our Approach -->
+  <url>
+    <loc>https://financialqgroup.com/approach</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/approach" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/enfoque" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/approach" />
+  </url>
+  <url>
+    <loc>https://financialqgroup.com/enfoque</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/approach" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/enfoque" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/approach" />
+  </url>
+
+  <url>
+    <loc>https://financialqgroup.com/approach/framework</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/approach/framework" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/enfoque/framework" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/approach/framework" />
+  </url>
+  <url>
+    <loc>https://financialqgroup.com/enfoque/framework</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/approach/framework" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/enfoque/framework" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/approach/framework" />
+  </url>
+
+  <url>
+    <loc>https://financialqgroup.com/approach/process</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/approach/process" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/enfoque/proceso" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/approach/process" />
+  </url>
+  <url>
+    <loc>https://financialqgroup.com/enfoque/proceso</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/approach/process" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/enfoque/proceso" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/approach/process" />
+  </url>
+
+  <url>
+    <loc>https://financialqgroup.com/approach/risk</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/approach/risk" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/enfoque/riesgo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/approach/risk" />
+  </url>
+  <url>
+    <loc>https://financialqgroup.com/enfoque/riesgo</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/approach/risk" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/enfoque/riesgo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/approach/risk" />
+  </url>
+
+  <!-- Clientes / Clients -->
+  <url>
+    <loc>https://financialqgroup.com/clients</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/clients" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/clientes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/clients" />
+  </url>
+  <url>
+    <loc>https://financialqgroup.com/clientes</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/clients" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/clientes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/clients" />
+  </url>
+
+  <!-- Perspectives -->
+  <url>
+    <loc>https://financialqgroup.com/perspectives</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/perspectives" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/perspectivas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/perspectives" />
+  </url>
+  <url>
+    <loc>https://financialqgroup.com/perspectivas</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/perspectives" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/perspectivas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/perspectives" />
+  </url>
+
+  <!-- Contacto / Contact -->
+  <url>
+    <loc>https://financialqgroup.com/contact</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/contacto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/contact" />
+  </url>
+  <url>
+    <loc>https://financialqgroup.com/contacto</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://financialqgroup.com/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://financialqgroup.com/contacto" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/contact" />
+  </url>
+
+</urlset>

@@ -1,0 +1,52 @@
+# FinancialQ Group
+
+FinancialQ Group is a U.S. SEC-registered investment advisor (Form ADV firm #327095) that provides institutional-grade wealth management under a fiduciary standard. Its platform is built on mandate-driven portfolios, explicit risk budgeting and regime-aware allocation, serving high-income professionals, cross-border entrepreneurs, international investors and founders after a liquidity event.
+
+The site is bilingual: every page exists at an English URL and a Spanish URL with equivalent content.
+
+## Core pages (English)
+
+- [Home](https://financialqgroup.com/): Structured capital management built for permanence — firm overview, client segments, methodological framework and latest perspectives.
+- [About the firm](https://financialqgroup.com/about): Who FinancialQ Group is, how it is structured and what the fiduciary registration means in practice.
+- [Mission and vision](https://financialqgroup.com/about/mission): The firm's purpose and long-term commitments to clients.
+- [Fiduciary governance](https://financialqgroup.com/about/governance): Conflict-of-interest policy, fee-only model and the controls behind every recommendation.
+- [Our approach](https://financialqgroup.com/approach): Investment philosophy — how portfolios are designed by mandate rather than by product.
+- [Methodological framework](https://financialqgroup.com/approach/framework): The pillars that structure portfolio construction.
+- [Investment process](https://financialqgroup.com/approach/process): Step-by-step method from mandate definition to ongoing supervision.
+- [Risk philosophy](https://financialqgroup.com/approach/risk): Explicit risk budgeting and how risk is measured, allocated and monitored.
+- [Clients](https://financialqgroup.com/clients): The four client profiles the firm serves and what each mandate looks like.
+- [Perspectives](https://financialqgroup.com/perspectives): Market commentary and research notes on liquidity, credit spreads, asset allocation and risk.
+- [Contact](https://financialqgroup.com/contact): Inquiry form, office details and consultation scheduling.
+
+## Core pages (Spanish)
+
+- [Inicio](https://financialqgroup.com/)
+- [Sobre la firma](https://financialqgroup.com/sobre)
+- [Misión y visión](https://financialqgroup.com/sobre/mision)
+- [Gobernanza fiduciaria](https://financialqgroup.com/sobre/governance)
+- [Nuestro enfoque](https://financialqgroup.com/enfoque)
+- [Marco metodológico](https://financialqgroup.com/enfoque/framework)
+- [Proceso de inversión](https://financialqgroup.com/enfoque/proceso)
+- [Filosofía de riesgo](https://financialqgroup.com/enfoque/riesgo)
+- [Clientes](https://financialqgroup.com/clientes)
+- [Perspectivas](https://financialqgroup.com/perspectivas)
+- [Contacto](https://financialqgroup.com/contacto)
+
+## Firm details
+
+- Legal / regulatory: U.S. SEC-registered investment advisor. Public record: [Form ADV — firm #327095](https://adviserinfo.sec.gov/firm/summary/327095)
+- Compensation model: fee-only fiduciary
+- Main office: 14 Wall Street, 20th Floor, New York, NY 10005, USA
+- Phone: +1 407-288-0087 (Monday–Friday, 9am–5pm EST)
+- Email: admin@financialqgroup.com
+- Privacy notice: [2026 Privacy Notice (PDF)](https://financialqgroup.com/docs/2026_Privacy_Notice-FinancialQGroup.pdf)
+
+## Optional
+
+- [Instagram](https://www.instagram.com/financial.qgroup/)
+- [LinkedIn — David Enciso](https://www.linkedin.com/in/david-enciso-32451b98/)
+- [Schedule a 30-minute consultation](https://calendly.com/denciso-financialqgroup/30min)
+
+<!-- TODO: si existe una página de LinkedIn *de empresa* (distinta del perfil
+     personal enlazado arriba), añadirla aquí y en el sameAs del JSON-LD de
+     index.html. No se encontró ninguna referencia en el código. -->

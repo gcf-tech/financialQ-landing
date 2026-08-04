@@ -1,17 +1,138 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
+    <!--
+      Estas etiquetas son las de la home en inglés (idioma por defecto).
+      En build, scripts/prerender.mjs las reescribe por ruta —título,
+      description, canonical, hreflang y Open Graph— a partir de
+      src/shared/config/seo.js. En navegación SPA las mantiene al día
+      shared/lib/useDocumentMeta.js.
+
+      OJO: no escribir la etiqueta de apertura de head dentro de un
+      comentario. Vite inyecta ahí el preamble de React Refresh buscando su
+      primera aparición en el archivo, y si cae dentro del comentario el dev
+      server arranca roto ("can't detect preamble") aunque el build funcione.
+    -->
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>FinancialQ Group — Institutional Wealth Management</title>
+    <meta name="description" content="Institutional wealth management under a fiduciary standard: mandate-driven portfolios, explicit risk budgeting and regime-aware allocation." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://financialqgroup.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://financialqgroup.com/" />
+
+    <!-- Fuentes auto-hospedadas: se precargan las dos que pinta el hero
+         (serif del H1 y sans del cuerpo). Ver src/shared/config/fonts.css. -->
+    <link rel="preload" href="/fonts/plus-jakarta-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/cormorant-garamond-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+
     <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
     <link rel="manifest" href="/favicon/site.webmanifest" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FinancialQ Group — Gestión Patrimonial Institucional</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FinancialQ Group" />
+    <meta property="og:title" content="FinancialQ Group — Institutional Wealth Management" />
+    <meta property="og:description" content="Institutional wealth management under a fiduciary standard: mandate-driven portfolios, explicit risk budgeting and regime-aware allocation." />
+    <meta property="og:url" content="https://financialqgroup.com/" />
+    <meta property="og:image" content="https://financialqgroup.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="FinancialQ Group — Structured Capital Management" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FinancialQ Group — Institutional Wealth Management" />
+    <meta name="twitter:description" content="Institutional wealth management under a fiduciary standard: mandate-driven portfolios, explicit risk budgeting and regime-aware allocation." />
+    <meta name="twitter:image" content="https://financialqgroup.com/og-image.jpg" />
+    <!-- TODO: añadir <meta name="twitter:site" content="@handle"> cuando exista
+         cuenta de X de la firma. No hay ninguna referenciada en el código. -->
+
+    <!--
+      JSON-LD. Todos los datos salen del contenido real del sitio:
+        · dirección, teléfono y horario → locales/{en,es}/common.json → contacto.info
+        · registro SEC                  → widgets/footer/Footer.jsx (adviserinfo, firm 327095)
+        · redes                         → shared/ui/socialLinks/SocialLinks.jsx
+        · modelo fee-only               → locales → hero.stats ("100% Fee-Only Fiduciary")
+    -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Organization", "FinancialService"],
+          "@id": "https://financialqgroup.com/#organization",
+          "name": "FinancialQ Group",
+          "url": "https://financialqgroup.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://financialqgroup.com/logo-financialq.png",
+            "width": 836,
+            "height": 180
+          },
+          "image": "https://financialqgroup.com/og-image.jpg",
+          "description": "U.S. SEC-registered investment advisor providing institutional wealth management under a fiduciary standard, built on mandate-driven portfolios, explicit risk budgeting and regime-aware allocation.",
+          "email": "admin@financialqgroup.com",
+          "telephone": "+1-407-288-0087",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "14 Wall Street, 20th Floor",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10005",
+            "addressCountry": "US"
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "17:00"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "United States"
+          },
+          "knowsLanguage": ["en", "es"],
+          "feesAndCommissionsSpecification": "Fee-only fiduciary. No commissions.",
+          "identifier": {
+            "@type": "PropertyValue",
+            "name": "SEC Investment Adviser Firm CRD",
+            "value": "327095"
+          },
+          "sameAs": [
+            "https://adviserinfo.sec.gov/firm/summary/327095",
+            "https://www.instagram.com/financial.qgroup/",
+            "https://www.linkedin.com/in/david-enciso-32451b98/"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://financialqgroup.com/#website",
+          "url": "https://financialqgroup.com/",
+          "name": "FinancialQ Group",
+          "inLanguage": ["en", "es"],
+          "publisher": { "@id": "https://financialqgroup.com/#organization" }
+        }
+      ]
+    }
+    </script>
+    <!--
+      TODOs de JSON-LD — datos que NO están en el código. No inventar:
+        · sameAs: página de LinkedIn *de empresa*. La enlazada es el perfil
+          personal de David Enciso (SocialLinks.jsx:20).
+        · areaServed: el sitio menciona "cross-border mandates" e
+          "international investors" pero no lista países. Añadir el array
+          real cuando la firma lo confirme.
+        · founder / employee: no hay página de equipo publicada
+          (/sobre/equipo existe pero no está enlazada desde el nav).
+        · aggregateRating / review: no usar sin reseñas verificables.
+    -->
   </head>
   <body>
     <div id="root"></div>
