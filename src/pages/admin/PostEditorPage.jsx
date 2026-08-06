@@ -223,7 +223,8 @@ export function PostEditorPage() {
   if (loadState !== 'ready') {
     return (
       <div>
-        <section className="s-admin">
+        {/* data-clarity-mask: ver shared/lib/clarity.js */}
+        <section className="s-admin" data-clarity-mask="true">
           <div className="wrap admin-wrap">
             <p className="admin-session-note">
               {loadState === 'loading' ? ta.loading : ta.notFound}
@@ -239,7 +240,8 @@ export function PostEditorPage() {
 
   return (
     <div>
-      <section className="s-admin">
+      {/* data-clarity-mask: ver shared/lib/clarity.js */}
+      <section className="s-admin" data-clarity-mask="true">
         <div className="wrap admin-wrap admin-wrap-wide">
           <span className="eyebrow">{isEdit ? ta.editTitle : ta.newTitle}</span>
           <h1 className="admin-title">

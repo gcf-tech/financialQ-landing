@@ -148,7 +148,11 @@ export function AdminLoginPage() {
 
   return (
     <div>
-      <section className="s-admin">
+      {/* data-clarity-mask: Clarity no puede detenerse una vez cargado, así que
+          si el usuario llega aquí navegando desde una página pública el tag ya
+          está corriendo. Esto impide que se suba el contenido. Ver
+          shared/lib/clarity.js. */}
+      <section className="s-admin" data-clarity-mask="true">
         <div className="wrap admin-wrap">
           <span className="eyebrow">{ta.eyebrow}</span>
           <h1 className="admin-title">{heading}</h1>

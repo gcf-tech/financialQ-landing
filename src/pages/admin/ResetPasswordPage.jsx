@@ -47,7 +47,8 @@ export function ResetPasswordPage() {
 
   return (
     <div>
-      <section className="s-admin">
+      {/* data-clarity-mask: ver shared/lib/clarity.js */}
+      <section className="s-admin" data-clarity-mask="true">
         <div className="wrap admin-wrap">
           <span className="eyebrow">{tr.eyebrow}</span>
           <h1 className="admin-title">{tr.title}</h1>

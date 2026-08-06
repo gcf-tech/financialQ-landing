@@ -25,7 +25,7 @@ function ConsultModal({ open, onClose, title }) {
     if (!open) return
     // Bloquear el scroll del fondo mientras el modal está abierto.
     document.body.style.overflow = 'hidden'
-    const onKey = e => { if (e.key === 'Escape') onClose() }
+  const onKey = e => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', onKey)
     return () => {
       document.body.style.overflow = ''
