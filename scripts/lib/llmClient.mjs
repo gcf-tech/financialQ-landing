@@ -1,13 +1,40 @@
 // Adapter LLM aislado (Dependency Inversion).
 //
-// El orquestador (ingest-post.mjs) depende SOLO de la función `summarize()`,
-// no del proveedor concreto. Para cambiar de proveedor, se reescribe este
-// archivo sin tocar el orquestador.
+// El orquestador (ingest-post.mjs) depende SOLO de las funciones `summarize()`
+// y `assertLlmConfigured()`, no del proveedor concreto ni de los nombres de sus
+// variables de entorno. Para cambiar de proveedor, se reescribe este archivo
+// sin tocar el orquestador.
 //
-// Implementación actual: OpenAI Chat Completions vía fetch nativo (Node 18+),
-// sin dependencias. El modelo se lee de OPENAI_MODEL (no se hardcodea).
+// Implementación actual: Gemini (API nativa, generateContent) vía fetch nativo
+// (Node 18+), sin dependencias. OpenAI Chat Completions queda como alterna,
+// seleccionable con LLM_PROVIDER y usable como fallback con
+// LLM_FALLBACK_PROVIDER. El modelo se lee del entorno (no se hardcodea).
+//
+// Env:
+//   LLM_PROVIDER           gemini | openai   (default: gemini)
+//   LLM_FALLBACK_PROVIDER  gemini | openai   (vacío = sin fallback)
+//   GEMINI_API_KEY / GEMINI_MODEL [/ GEMINI_BASE_URL]
+//   OPENAI_API_KEY / OPENAI_MODEL [/ OPENAI_BASE_URL]
+//   LLM_TIMEOUT_MS         timeout por petición (default: 180000)
 
-const OPENAI_URL = 'https://api.openai.com/v1/chat/completions'
+const PROVIDERS = ['gemini', 'openai']
+
+const BASE_URL_DEFAULT = {
+  gemini: 'https://generativelanguage.googleapis.com/v1beta',
+  openai: 'https://api.openai.com/v1',
+}
+
+// Sin timeout, un proveedor colgado deja el script colgado para siempre y el
+// fallback nunca se dispara. Default holgado: la traducción de un artículo
+// largo tarda decenas de segundos.
+const TIMEOUT_MS_DEFAULT = 180_000
+
+/**
+ * Fallo de DISPONIBILIDAD del proveedor: red, HTTP no-2xx o respuesta vacía.
+ * Es lo único que dispara el fallback, porque es lo único que otro proveedor
+ * puede resolver. Un JSON mal formado no lo dispara.
+ */
+class ProviderUnavailableError extends Error {}
 
 /**
  * Parsea JSON tolerando que el modelo envuelva la respuesta en fences markdown
@@ -30,6 +57,91 @@ function parseJsonLoose(raw) {
   }
 
   return JSON.parse(s)
+}
+
+/**
+ * Resuelve la config de un proveedor desde el entorno.
+ * @param {'gemini'|'openai'} provider
+ * @returns {{provider:string, apiKey:string, model:string, baseUrl:string}|null}
+ *          null si le falta la key o el modelo.
+ */
+function resolveConfig(provider) {
+  const prefix = provider.toUpperCase()
+  const apiKey = (process.env[`${prefix}_API_KEY`] ?? '').trim()
+  const model = (process.env[`${prefix}_MODEL`] ?? '').trim()
+  if (!apiKey || !model) return null
+
+  const baseUrl = (process.env[`${prefix}_BASE_URL`] || BASE_URL_DEFAULT[provider]).replace(/\/+$/, '')
+
+  // Un LLM_TIMEOUT_MS inválido o <= 0 se ignora en favor del default.
+  const rawTimeout = Number(process.env.LLM_TIMEOUT_MS)
+  const timeoutMs = Number.isFinite(rawTimeout) && rawTimeout > 0 ? rawTimeout : TIMEOUT_MS_DEFAULT
+
+  return { provider, apiKey, model, baseUrl, timeoutMs }
+}
+
+/** Distingue el timeout del resto de fallos de red al construir el mensaje. */
+function describeFetchError(err, config) {
+  return err?.name === 'TimeoutError'
+    ? `timeout tras ${config.timeoutMs} ms`
+    : `error de red: ${err?.message ?? err}`
+}
+
+/**
+ * Normaliza el nombre del proveedor primario. Un valor desconocido no se ignora
+ * en silencio: se avisa y se cae a gemini.
+ * @returns {'gemini'|'openai'}
+ */
+function resolvePrimaryName() {
+  const raw = (process.env.LLM_PROVIDER ?? '').trim().toLowerCase()
+  if (!raw) return 'gemini'
+  if (PROVIDERS.includes(raw)) return raw
+  console.warn(`⚠ LLM_PROVIDER="${raw}" no es válido (${PROVIDERS.join(' | ')}); usando gemini.`)
+  return 'gemini'
+}
+
+/**
+ * Fallback opcional: solo si está declarado, es distinto al primario y tiene su
+ * propia key + modelo. Declarado a medias = warning y sin fallback.
+ * @param {string} primaryName
+ */
+function resolveFallback(primaryName) {
+  const raw = (process.env.LLM_FALLBACK_PROVIDER ?? '').trim().toLowerCase()
+  if (!raw) return null
+
+  if (!PROVIDERS.includes(raw)) {
+    console.warn(`⚠ LLM_FALLBACK_PROVIDER="${raw}" no es válido; fallback desactivado.`)
+    return null
+  }
+  if (raw === primaryName) {
+    console.warn('⚠ LLM_FALLBACK_PROVIDER es igual a LLM_PROVIDER; fallback desactivado.')
+    return null
+  }
+
+  const config = resolveConfig(raw)
+  if (!config) {
+    console.warn(`⚠ Fallback "${raw}" declarado pero sin ${raw.toUpperCase()}_API_KEY / ${raw.toUpperCase()}_MODEL; fallback desactivado.`)
+    return null
+  }
+  return config
+}
+
+/**
+ * Falla rápido si el proveedor primario no está configurado, ANTES de gastar
+ * red o tiempo en el scrape. El orquestador llama a esto en vez de conocer los
+ * nombres concretos de las variables.
+ * @returns {{provider:string, model:string}} descriptor para logging
+ */
+export function assertLlmConfigured() {
+  const primaryName = resolvePrimaryName()
+  const config = resolveConfig(primaryName)
+  if (!config) {
+    const prefix = primaryName.toUpperCase()
+    throw new Error(
+      `Falta ${prefix}_API_KEY o ${prefix}_MODEL en el entorno (el modelo no se hardcodea).`,
+    )
+  }
+  return { provider: config.provider, model: config.model }
 }
 
 /**
@@ -89,6 +201,109 @@ function buildPrompt({ ogTitle, ogDescription, body, bodyLang, samples }) {
 }
 
 /**
+ * Transporte Gemini (API nativa). responseMimeType fuerza JSON válido, así que
+ * parseJsonLoose queda como red de seguridad y no como necesidad.
+ * @returns {Promise<string>} texto crudo del modelo
+ */
+async function callGemini(config, system, user) {
+  const url = `${config.baseUrl}/models/${encodeURIComponent(config.model)}:generateContent`
+
+  let res
+  try {
+    res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'x-goog-api-key': config.apiKey,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: system }] },
+        contents: [{ role: 'user', parts: [{ text: user }] }],
+        generationConfig: { responseMimeType: 'application/json' },
+      }),
+      signal: AbortSignal.timeout(config.timeoutMs),
+    })
+  } catch (err) {
+    throw new ProviderUnavailableError(describeFetchError(err, config))
+  }
+
+  if (!res.ok) {
+    const detail = await res.text().catch(() => '')
+    throw new ProviderUnavailableError(`HTTP ${res.status} ${res.statusText}. ${detail.slice(0, 500)}`)
+  }
+
+  const data = await res.json()
+
+  const blockReason = data?.promptFeedback?.blockReason
+  if (blockReason) throw new ProviderUnavailableError(`prompt bloqueado (${blockReason})`)
+
+  const candidate = data?.candidates?.[0]
+  const parts = candidate?.content?.parts
+  const text = Array.isArray(parts) ? parts.map((p) => p?.text ?? '').join('') : ''
+
+  if (!text.trim()) {
+    // finishReason explica el vacío (MAX_TOKENS, SAFETY, RECITATION...).
+    throw new ProviderUnavailableError(
+      `respuesta vacía (finishReason: ${candidate?.finishReason ?? 'desconocido'})`,
+    )
+  }
+
+  // Truncar por límite de tokens produce JSON incompleto; avisarlo aquí evita
+  // que el síntoma aparezca como "Unexpected end of JSON input".
+  if (candidate?.finishReason === 'MAX_TOKENS') {
+    console.warn('⚠ Gemini cortó la respuesta por MAX_TOKENS: el JSON puede venir incompleto.')
+  }
+
+  return text
+}
+
+/**
+ * Transporte OpenAI (Chat Completions). Se conserva como alterna/fallback.
+ * @returns {Promise<string>} texto crudo del modelo
+ */
+async function callOpenAI(config, system, user) {
+  let res
+  try {
+    res = await fetch(`${config.baseUrl}/chat/completions`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${config.apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: config.model,
+        messages: [
+          { role: 'system', content: system },
+          { role: 'user', content: user },
+        ],
+        response_format: { type: 'json_object' },
+      }),
+      signal: AbortSignal.timeout(config.timeoutMs),
+    })
+  } catch (err) {
+    throw new ProviderUnavailableError(describeFetchError(err, config))
+  }
+
+  if (!res.ok) {
+    const detail = await res.text().catch(() => '')
+    throw new ProviderUnavailableError(`HTTP ${res.status} ${res.statusText}. ${detail.slice(0, 500)}`)
+  }
+
+  const data = await res.json()
+  const text = data?.choices?.[0]?.message?.content
+  if (!text || !String(text).trim()) {
+    throw new ProviderUnavailableError('respuesta sin contenido en choices[0].message.content')
+  }
+  return String(text)
+}
+
+function callProvider(config, system, user) {
+  return config.provider === 'gemini'
+    ? callGemini(config, system, user)
+    : callOpenAI(config, system, user)
+}
+
+/**
  * Genera el contenido bilingüe del post a partir del cuerpo del autor + los
  * metadatos OG + ejemplos de estilo. Contrato estable que el orquestador
  * consume. El cuerpo full siempre lo provee el autor (`input.body`); el adapter
@@ -97,42 +312,34 @@ function buildPrompt({ ogTitle, ogDescription, body, bodyLang, samples }) {
  * @returns {Promise<object>} JSON parseado: { es, en, cat, read } con content por idioma
  */
 export async function summarize(input) {
-  const apiKey = process.env.OPENAI_API_KEY
-  const model = process.env.OPENAI_MODEL
-  if (!apiKey) throw new Error('Falta OPENAI_API_KEY en el entorno.')
-  if (!model) throw new Error('Falta OPENAI_MODEL en el entorno (no se hardcodea el modelo).')
+  const primaryName = resolvePrimaryName()
+  const primary = resolveConfig(primaryName)
+  if (!primary) {
+    const prefix = primaryName.toUpperCase()
+    throw new Error(`Falta ${prefix}_API_KEY o ${prefix}_MODEL en el entorno (el modelo no se hardcodea).`)
+  }
+  const fallback = resolveFallback(primaryName)
 
   const { system, user } = buildPrompt(input)
 
-  let res
+  let content
   try {
-    res = await fetch(OPENAI_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model,
-        messages: [
-          { role: 'system', content: system },
-          { role: 'user', content: user },
-        ],
-      }),
-    })
+    content = await callProvider(primary, system, user)
   } catch (err) {
-    throw new Error(`Error de red llamando a OpenAI: ${err.message}`)
-  }
+    if (!(err instanceof ProviderUnavailableError)) throw err
 
-  if (!res.ok) {
-    const detail = await res.text().catch(() => '')
-    throw new Error(`OpenAI respondió ${res.status} ${res.statusText}. ${detail.slice(0, 500)}`)
-  }
+    if (!fallback) {
+      throw new Error(`${primary.provider} no disponible: ${err.message}`)
+    }
 
-  const data = await res.json()
-  const content = data?.choices?.[0]?.message?.content
-  if (!content) {
-    throw new Error('Respuesta de OpenAI sin contenido en choices[0].message.content.')
+    console.warn(`⚠ ${primary.provider} no disponible (${err.message}); reintentando con ${fallback.provider}.`)
+    try {
+      content = await callProvider(fallback, system, user)
+    } catch (fallbackErr) {
+      throw new Error(
+        `Ambos proveedores fallaron — ${primary.provider}: ${err.message} | ${fallback.provider}: ${fallbackErr.message}`,
+      )
+    }
   }
 
   try {

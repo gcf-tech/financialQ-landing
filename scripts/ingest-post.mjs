@@ -26,12 +26,13 @@
 //        [--body-lang es|en] [--id <slug>] [--published-at <ISO>]
 //        [--title "..."] [--desc "..."] [--image-url <url>]
 //
-// Env: OPENAI_API_KEY, OPENAI_MODEL (requeridos por el adapter).
+// Env: las del adapter LLM (ver scripts/lib/llmClient.mjs). Por defecto Gemini:
+//      GEMINI_API_KEY y GEMINI_MODEL.
 
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { summarize } from './lib/llmClient.mjs'
+import { assertLlmConfigured, summarize } from './lib/llmClient.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
@@ -71,7 +72,7 @@ function usage() {
                  hay scrape, ERROR explícito (nunca asume "hoy").
   --title/--desc/--image-url   Overrides manuales si el scrape de OG falla.
 
-  Env requeridas: OPENAI_API_KEY, OPENAI_MODEL.`)
+  Env requeridas: las del adapter LLM (default Gemini: GEMINI_API_KEY, GEMINI_MODEL).`)
 }
 
 function parseArgs(argv) {
@@ -252,9 +253,10 @@ async function main() {
     process.exit(2)
   }
 
-  // Falla rápido si faltan credenciales del adapter.
-  if (!process.env.OPENAI_API_KEY) throw new Error('Falta OPENAI_API_KEY en el entorno.')
-  if (!process.env.OPENAI_MODEL) throw new Error('Falta OPENAI_MODEL en el entorno (no se hardcodea el modelo).')
+  // Falla rápido si faltan credenciales del adapter. El orquestador no conoce
+  // los nombres de las variables: eso vive en el adapter (Dependency Inversion).
+  const llmConfig = assertLlmConfigured()
+  console.error(`· LLM: ${llmConfig.provider} (${llmConfig.model})`)
 
   // Cuerpo full del autor (source-of-truth). NUNCA se scrapea.
   let body
