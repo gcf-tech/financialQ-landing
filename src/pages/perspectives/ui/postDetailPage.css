@@ -160,3 +160,32 @@
   padding-bottom: var(--gap);
   display: inline-block;
 }
+
+/* Bloque de cierre: la oferta de conversación (ui/PostCta.jsx).
+   Va fuera del <article>: no es contenido del artículo, es lo que la firma
+   ofrece después de él. Misma columna de 720px que el cuerpo para que no se
+   lea como un elemento ajeno pegado al final. */
+.post-cta {
+  max-width: 720px;
+  padding-bottom: var(--gap);
+}
+
+.post-cta-link {
+  /* .btn-solid ya trae el aspecto; aquí solo el ancho en móvil, donde el
+     white-space: nowrap del botón desbordaría con el nombre dentro. */
+  text-align: center;
+  white-space: normal;
+}
+
+/* .btn-solid solo lleva anillo de foco en su variante <button> (Button.css).
+   Este es un <a> real y también se alcanza con Tab. */
+.post-cta-link:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .post-cta-link {
+    display: block;
+  }
+}

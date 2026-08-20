@@ -7,6 +7,8 @@ import { Button } from '../../shared/ui/button/Button'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
+import { prerenderData } from '../../shared/lib/prerenderData'
+import { PostCta } from './ui/PostCta'
 import { fetchPost } from '../../shared/api/posts'
 import './ui/postDetailPage.css'
 
@@ -17,8 +19,14 @@ export function PostDetailPage() {
   const tp = t.perspectivas
   const td = tp.detail
 
-  const [post, setPost] = useState(null)
-  const [loadState, setLoadState] = useState('loading')
+  // Semilla del prerender (ver PerspectivesPage). Se comprueba el slug: el
+  // global lleva el post de la ruta que se está generando, y renderizar aquí
+  // otro sería publicar un artículo bajo la URL de otro.
+  const seeded = prerenderData().post
+  const seededPost = seeded && seeded.slug === id ? seeded : null
+
+  const [post, setPost] = useState(seededPost)
+  const [loadState, setLoadState] = useState(seededPost ? 'ready' : 'loading')
 
   // El estado solo se muta en callbacks async (regla set-state-in-effect);
   // el estado inicial ya es 'loading'.
@@ -111,6 +119,13 @@ export function PostDetailPage() {
           </div>
         )}
       </article>
+
+      {/* Oferta de cierre. Fuera del <article> a propósito: no es contenido
+          del artículo. Va DESPUÉS del enlace al original de LinkedIn, que es
+          atribución y no una oferta que compita con esta. */}
+      <div className="wrap">
+        <PostCta slug={post.slug || id} />
+      </div>
 
       <Footer variant="mini" />
     </div>

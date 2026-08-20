@@ -53,23 +53,6 @@
   text-align: center;
 }
 
-/* Bloqueado hasta enviar el formulario de consulta: atenuado y no clickeable */
-.consult-card .btn-solid.is-locked {
-  opacity: 0.45;
-  pointer-events: none;
-  cursor: not-allowed;
-}
-
-.consult-locked-hint {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.55;
-  margin: 12px 0 0;
-  max-width: 320px;
-}
-
 /* ── Redes sociales (bajo la tarjeta de consulta) ── */
 .ci-social {
   display: flex;
@@ -157,3 +140,61 @@
     border-radius: 0;
   }
 }
+
+/* ── Sección secundaria plegable del formulario ──
+   Agrupa lo opcional (empresa, perfil, activos, ingreso, referencia) para
+   que el formulario abra con lo imprescindible a la vista. Es un <details>
+   nativo: sin JS, con teclado gratis y presente en el HTML pre-renderizado.
+   Se reutilizan los estilos de campo de index.css (.fgroup/.flabel/…): esto
+   solo viste el contenedor. */
+.fdetails {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 18px;
+}
+
+.fdetails-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  list-style: none;
+}
+
+/* El triángulo por defecto sobra: ya hay un caret propio. */
+.fdetails-summary::-webkit-details-marker { display: none; }
+
+.fdetails-summary:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: -2px;
+}
+
+.fdetails-caret {
+  width: 12px;
+  height: 12px;
+  flex: none;
+  transition: transform .2s;
+}
+
+.fdetails[open] .fdetails-caret { transform: rotate(180deg); }
+
+.fdetails-hint {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0 16px 18px;
+}
+
+/* Los campos van con el mismo aire que fuera del bloque, pero sangrados */
+.fdetails .fgroup { margin: 0 16px 18px; }
+.fdetails .fgroup:last-child { margin-bottom: 16px; }

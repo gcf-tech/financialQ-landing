@@ -863,6 +863,9 @@
 
   "perspectivas": {
     "detail": {
+      "cta": {
+        "label": "Agendar una charla con {name}"
+      },
       "readArticle": "Leer artículo",
       "viewOriginal": "Ver original en LinkedIn",
       "back": "Volver a Perspectivas",
@@ -1035,7 +1038,9 @@
       "placeholderLastName": "Su apellido",
       "labelEmail": "Correo Electrónico",
       "placeholderEmail": "correo@empresa.com",
-      "labelCompany": "Empresa u Organización (opcional)",
+      "optionalTitle": "Datos adicionales (opcional)",
+      "optionalHint": "Nos ayudan a preparar la conversación. Puede omitirlos todos: no hacen falta para recibir respuesta.",
+      "labelCompany": "Empresa u Organización",
       "placeholderCompany": "Nombre de su empresa o fondo",
       "labelProfile": "¿Cómo lo describiría?",
       "placeholderProfile": "Seleccione su perfil",
@@ -1047,7 +1052,7 @@
         "Otro / Prefiero no especificar"
       ],
       "labelAssets": "Activos Invertibles Aproximados",
-      "placeholderAssets": "Rango aproximado",
+      "placeholderAssets": "Seleccione un rango aproximado",
       "assetOptions": [
         "$100,000 – $249,000",
         "$250,000 – $999,000",
@@ -1055,7 +1060,7 @@
         "$3,000,000 – $4,999,999",
         "$5,000,000+"
       ],
-      "labelIncome": "¿Cuál es el ingreso anual de su hogar? (opcional)",
+      "labelIncome": "¿Cuál es el ingreso anual de su hogar?",
       "placeholderIncome": "Seleccione un rango",
       "incomeOptions": [
         "Menos de $250,000",
@@ -1065,7 +1070,7 @@
         "Más de $2,000,000",
         "Prefiero no decirlo"
       ],
-      "labelReferral": "¿Cómo conoció a FinancialQ Group? (opcional)",
+      "labelReferral": "¿Cómo conoció a FinancialQ Group?",
       "placeholderReferral": "Seleccione una opción",
       "referralOptions": [
         "LinkedIn",
@@ -1106,7 +1111,6 @@
       "consultTitle": "Agenda una Consulta",
       "consultText": "Reserva una conversación confidencial y sin compromiso. Evaluaremos tu situación y determinaremos si somos la opción adecuada.",
       "consultBtn": "Agenda una Consulta",
-      "consultLockedHint": "Completa y envía el formulario de consulta para habilitar el agendamiento.",
       "eligibilityLabel": "Criterios de Elegibilidad",
       "eligibilityBody": "Los compromisos son selectivos. Trabajamos principalmente con clientes con un mínimo de",
       "eligibilityBody.bold": "$2 millones en activos invertibles",
@@ -1175,6 +1179,12 @@
     "email": "hola@financialqgroup.com"
   },
   "picker": {
-    "change": "Cambiar idioma"
+    "change": "Cambiar idioma",
+    "current": "Idioma actual: {lang}",
+    "switchTo": "Cambiar a {lang}",
+    "names": {
+      "en": "inglés",
+      "es": "español"
+    }
   }
 }

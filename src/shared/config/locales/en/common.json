@@ -648,7 +648,7 @@
       "headline": ["Clients who", "think in", "decades."],
       "lead": "We bring institutional portfolio management principles traditionally used by pensions, insurance companies, and large asset managers to individuals, families, and business owners.",
       "commonStrong": "What they all share:",
-      "commonRest": " Our relationship typically begin at $250,000 in investable assets."
+      "commonRest": " Our relationship typically begin at $100,000 in investable assets."
     },
     "profiles": [
       {
@@ -863,6 +863,9 @@
 
   "perspectivas": {
     "detail": {
+      "cta": {
+        "label": "Schedule a conversation with {name}"
+      },
       "readArticle": "Read article",
       "viewOriginal": "View original on LinkedIn",
       "back": "Back to Perspectives",
@@ -1035,7 +1038,9 @@
       "placeholderLastName": "Your last name",
       "labelEmail": "Email Address",
       "placeholderEmail": "email@company.com",
-      "labelCompany": "Company or Organization (optional)",
+      "optionalTitle": "Additional details (optional)",
+      "optionalHint": "Helps us prepare for the conversation. You can skip all of it — none of it is needed to get a reply.",
+      "labelCompany": "Company or Organization",
       "placeholderCompany": "Your company or fund name",
       "labelProfile": "How would you describe yourself?",
       "placeholderProfile": "Select your profile",
@@ -1047,7 +1052,7 @@
         "Other / Prefer not to specify"
       ],
       "labelAssets": "Approximate Investable Assets",
-      "placeholderAssets": "Approximate range",
+      "placeholderAssets": "Select an approximate range",
       "assetOptions": [
         "$100,000 – $249,000",
         "$250,000 – $999,000",
@@ -1055,7 +1060,7 @@
         "$3,000,000 – $4,999,999",
         "$5,000,000+"
       ],
-      "labelIncome": "What is your annual household income? (optional)",
+      "labelIncome": "What is your annual household income?",
       "placeholderIncome": "Select a range",
       "incomeOptions": [
         "Less than $250,000",
@@ -1065,7 +1070,7 @@
         "More than $2,000,000",
         "Prefer not to say"
       ],
-      "labelReferral": "How did you hear about FinancialQ Group? (optional)",
+      "labelReferral": "How did you hear about FinancialQ Group?",
       "placeholderReferral": "Select an option",
       "referralOptions": [
         "LinkedIn",
@@ -1106,7 +1111,6 @@
       "consultTitle": "Schedule a Consultation",
       "consultText": "Reserve a confidential, no-obligation conversation. We will assess your situation and determine whether we are the right fit.",
       "consultBtn": "Schedule a Consultation",
-      "consultLockedHint": "Please complete and submit the inquiry form to unlock scheduling.",
       "eligibilityLabel": "Eligibility Criteria",
       "eligibilityBody": "Commitments are selective. We work primarily with clients with a minimum of",
       "eligibilityBody.bold": "$2 million in investable assets",
@@ -1175,6 +1179,12 @@
     "email": "hello@financialqgroup.com"
   },
   "picker": {
-    "change": "Change language"
+    "change": "Change language",
+    "current": "Current language: {lang}",
+    "switchTo": "Switch to {lang}",
+    "names": {
+      "en": "English",
+      "es": "Spanish"
+    }
   }
 }

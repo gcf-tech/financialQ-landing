@@ -6,11 +6,15 @@
   recíprocas con hreflang. x-default apunta a la variante EN porque es el
   idioma por defecto del sitio (ver src/shared/config/locales/i18nContext.jsx).
 
+  Este archivo es la parte FIJA del sitemap, escrita a mano. Las URLs de los
+  artículos de Perspectives no están aquí porque no se pueden conocer sin
+  preguntarle al backend: scripts/prerender.mjs las descubre en cada build
+  (GET /landings/posts, solo is_published = 1) y las añade a la copia de
+  dist/sitemap.xml, que es la que se sube. Este archivo del repo no se toca.
+
   Fuera del sitemap a propósito:
     - /admin, /admin/post/*, /reset-password  → privadas (ver robots.txt)
     - /sobre/equipo, /about/team              → página existente pero no enlazada
-    - /perspectivas/:id, /perspectives/:id    → artículos servidos por API en
-      runtime; requieren generación dinámica (ver PRERENDER-TODO.md)
     - /sobre/firma y /enfoque/filosofia       → mismo contenido que /sobre y
       /enfoque respectivamente; canonicalizadas hacia la URL corta.
 -->

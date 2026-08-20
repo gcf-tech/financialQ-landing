@@ -175,6 +175,102 @@ const CANONICAL_ALIASES = {
 /** Rutas privadas: se sirven con noindex. */
 const NOINDEX_PREFIXES = ['/admin', '/reset-password']
 
+/**
+ * Base de las rutas de artículo. Sale de PAGES.perspectivas para que no haya
+ * dos sitios donde cambiar el slug de la sección.
+ */
+const POST_BASE = PAGES.perspectivas.path
+
+/** '/perspectives/liquidity-drives-markets' para (slug, 'en'). */
+export function postPath(slug, lang) {
+  return `${POST_BASE[lang]}/${slug}`
+}
+
+/**
+ * Las dos URLs de un artículo. El slug es uno solo y compartido por los dos
+ * idiomas (columna `slug` de landing_posts en financial-backend): un post es
+ * una fila bilingüe, no un recurso por idioma.
+ */
+export function postRoutes(slug) {
+  return [postPath(slug, 'en'), postPath(slug, 'es')]
+}
+
+/** '/perspectivas/foo' → { slug: 'foo', lang: 'es' }. null si no es artículo. */
+function parsePostPath(path) {
+  for (const lang of ['en', 'es']) {
+    const prefix = POST_BASE[lang] + '/'
+    if (path.startsWith(prefix)) {
+      const slug = path.slice(prefix.length)
+      // Un solo segmento: /perspectivas/a/b no es un artículo.
+      if (slug && !slug.includes('/')) return { slug, lang }
+    }
+  }
+  return null
+}
+
+/**
+ * Recorta sin partir palabras. Google corta la description en 155 caracteres,
+ * y check-seo.mjs lo verifica ruta por ruta.
+ */
+function clamp(text, max = 155) {
+  const flat = String(text || '').replace(/\s+/g, ' ').trim()
+  if (flat.length <= max) return flat
+  const cut = flat.slice(0, max - 1)
+  const lastSpace = cut.lastIndexOf(' ')
+  return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut).replace(/[.,;:—–-]$/, '') + '…'
+}
+
+/**
+ * La portada, siempre como URL absoluta: og:image relativa no la resuelve
+ * ningún scraper. Las portadas llegan en dos formas — absoluta las que sirve
+ * el backend desde la base (/landings/posts/image/:id) y relativa a la raíz
+ * las antiguas, que viven en Hostinger (/posts-img/…). Si no hay portada, la
+ * imagen social genérica.
+ */
+function absoluteImage(image) {
+  if (!image) return OG_IMAGE
+  if (/^https?:\/\//i.test(image)) return image
+  return image.startsWith('/') ? SITE_URL + image : OG_IMAGE
+}
+
+/**
+ * Metadatos de un artículo.
+ *
+ * Con `article` —el post tal como lo devuelve GET /landings/posts— salen el
+ * título y el resumen reales: eso solo lo tiene scripts/prerender.mjs, y es lo
+ * que acaba en el HTML servido, que es lo que leen los rastreadores y los
+ * scrapers de LinkedIn o X (ninguno ejecuta JS).
+ *
+ * Sin él —navegación SPA— se cae a los textos de Perspectives. El respaldo no
+ * es cosmético: lo importante es que la ruta salga con SU canónica, SU juego de
+ * hreflang y sin noindex. Antes de esto `resolveSeo` no reconocía estas rutas,
+ * caía en el `?? { key: 'inicio' }` de abajo y useDocumentMeta pisaba en
+ * runtime el <head> del prerender con el título de la home y noindex.
+ */
+function postSeo(slug, lang, article) {
+  const page = PAGES.perspectivas
+  const content = article?.i18n?.[lang]
+  const title = content?.title?.trim()
+  const description = clamp(content?.body)
+
+  return {
+    lang,
+    title: title ? `${title} — FinancialQ Group` : page.title[lang],
+    description: description || page.description[lang],
+    canonical: SITE_URL + postPath(slug, lang),
+    alternates: [
+      { hreflang: 'en', href: SITE_URL + postPath(slug, 'en') },
+      { hreflang: 'es', href: SITE_URL + postPath(slug, 'es') },
+      { hreflang: 'x-default', href: SITE_URL + postPath(slug, DEFAULT_LANG) },
+    ],
+    noindex: false,
+    // La portada del post, no la imagen social genérica: es el motivo por el
+    // que un artículo compartido en LinkedIn hoy enseña la tarjeta de la home.
+    ogImage: absoluteImage(article?.image),
+    ogType: 'article',
+  }
+}
+
 /** Índice pathname → clave de página, construido una sola vez. */
 const PATH_TO_PAGE = {}
 for (const [key, page] of Object.entries(PAGES)) {
@@ -194,13 +290,16 @@ function normalize(pathname) {
 /**
  * Devuelve los metadatos completos de un pathname.
  *
+ * @param {string} pathname
+ * @param {object} [article] post de GET /landings/posts. Solo lo pasa el
+ *   prerender, y solo en rutas de artículo: da el título y el resumen reales.
  * @returns {{
  *   lang: 'en'|'es', title: string, description: string, canonical: string,
  *   alternates: Array<{hreflang: string, href: string}>, noindex: boolean,
- *   ogImage: string
+ *   ogImage: string, ogType: 'website'|'article'
  * }}
  */
-export function resolveSeo(pathname) {
+export function resolveSeo(pathname, article) {
   const path = normalize(pathname)
 
   if (NOINDEX_PREFIXES.some(p => path === p || path.startsWith(p + '/'))) {
@@ -212,8 +311,12 @@ export function resolveSeo(pathname) {
       alternates: [],
       noindex: true,
       ogImage: OG_IMAGE,
+      ogType: 'website',
     }
   }
+
+  const post = parsePostPath(path)
+  if (post) return postSeo(post.slug, post.lang, article)
 
   const aliasKey = CANONICAL_ALIASES[path]
   const hit = aliasKey
@@ -240,10 +343,15 @@ export function resolveSeo(pathname) {
     alternates,
     noindex: !hit && path !== '/',
     ogImage: OG_IMAGE,
+    ogType: 'website',
   }
 }
 
-/** Todas las rutas indexables, para el prerender y para auditar el sitemap. */
+/**
+ * Rutas estáticas indexables. Los artículos NO salen de aquí: no se pueden
+ * conocer sin preguntarle al backend, y eso lo hace scripts/prerender.mjs en
+ * build (ver postRoutes()).
+ */
 export function allRoutes() {
   const paths = new Set(['/'])
   for (const page of Object.values(PAGES)) {

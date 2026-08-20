@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Footer } from '../../widgets/footer/Footer'
 import { Button } from '../../shared/ui/button/Button'
 import { useScrollReveal } from '../../shared/lib/useScrollReveal'
@@ -53,7 +54,13 @@ const CONTACT_ICONS = {
   meeting: <svg className="ci-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="3" width="16" height="14" rx="1" /><path d="M2 7h16M7 3v4M13 3v4" /></svg>,
 }
 
-function ContactInfo({ ti, onSchedule, unlocked }) {
+// El agendamiento NO depende del formulario. Antes el botón solo se activaba
+// tras un envío correcto ("Please complete and submit the inquiry form to
+// unlock scheduling"), así que todos los CTA del sitio decían "Schedule a
+// Consultation" y ninguno agendaba: llevaban a un formulario que había que
+// completar y enviar primero. Son dos caminos distintos hacia la firma y
+// ninguno es requisito del otro.
+function ContactInfo({ ti, onSchedule }) {
   const CONTACT_ITEMS = [
     { icon: 'office', label: ti.officeLabel, line1: ti.officeLine1, line2: ti.officeLine2 },
   //   { icon: 'email', label: ti.emailLabel, line1: ti.emailLine1, /*line2: ti.emailLine2 */},
@@ -82,14 +89,9 @@ function ContactInfo({ ti, onSchedule, unlocked }) {
         <h3 className="consult-title">{ti.consultTitle}</h3>
         <span className="consult-divider" />
         <p className="consult-text">{ti.consultText}</p>
-        <Button
-          variant="solid"
-          className={unlocked ? '' : 'is-locked'}
-          onClick={unlocked ? onSchedule : undefined}
-        >
+        <Button variant="solid" onClick={onSchedule}>
           {ti.consultBtn}
         </Button>
-        {!unlocked && <p className="consult-locked-hint">{ti.consultLockedHint}</p>}
       </div>
 
       <div className="ci-social">
@@ -110,9 +112,18 @@ const EMPTY_FORM = {
   income: '',
   referral: '',
   situation: '',
+  // Atribución de origen: de dónde venía quien abrió este formulario. No lo
+  // rellena la persona, lo trae el query string (?source=post-<slug>) que pone
+  // el bloque de cierre de un artículo. Vacío en una visita directa a /contacto.
+  source: '',
 }
 
-const REQUIRED = ['firstName', 'lastName', 'email', 'profile', 'assets', 'situation']
+// Lo mínimo para poder responder a alguien: quién es, cómo contactarle y qué
+// necesita. `assets` (activos invertibles) e `income` (ingreso del hogar) salen
+// de aquí a propósito: son datos financieros no públicos de personas que aún no
+// son clientes, pedidos en el momento de menor confianza, y la calificación que
+// dan se obtiene igual en la llamada. Siguen existiendo, pero opcionales.
+const REQUIRED = ['firstName', 'lastName', 'email', 'situation']
 const isValidEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
 
 function isFieldInvalid(field, value) {
@@ -123,12 +134,20 @@ function isFieldInvalid(field, value) {
 
 export function ContactoPage() {
   useScrollReveal()
+  const [searchParams] = useSearchParams()
   const { t, lang } = useTranslation()
   const tc = t.contacto
   const tf = tc.form
   const ti = tc.info
 
-  const [form, setForm] = useState(EMPTY_FORM)
+  // Se lee una sola vez, al montar: se llega aquí desde otra ruta, así que el
+  // query string ya está puesto en el primer render. Nada dentro de /contacto
+  // reescribe el `source`, y sincronizarlo después obligaría a mutar estado en
+  // un efecto para un caso que no ocurre.
+  const [form, setForm] = useState(() => ({
+    ...EMPTY_FORM,
+    source: searchParams.get('source') || '',
+  }))
   const [touched, setTouched] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [status, setStatus] = useState('idle') // idle | loading | success | error
@@ -158,7 +177,7 @@ export function ContactoPage() {
     try {
       await submitContact(form, lang)
       setStatus('success')
-      setForm(EMPTY_FORM)
+      setForm({ ...EMPTY_FORM, source: form.source })
       setTouched({})
     } catch {
       setStatus('error')
@@ -186,6 +205,12 @@ export function ContactoPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} noValidate>
+                  {/* Atribución de origen. Campo oculto y no un valor suelto
+                      del componente: así viaja con el resto del formulario y
+                      se ve en el DOM al depurar de dónde vino un envío.
+                      `readOnly` porque nadie lo edita — sin él React avisa de
+                      un input controlado sin onChange. */}
+                  <input type="hidden" name="source" value={form.source} readOnly />
                   <span className="eyebrow" style={{ marginBottom: 24, display: 'flex' }}>{tf.eyebrow}</span>
                   <p className="body-copy" style={{ fontSize: 15, marginBottom: 32 }}>{tf.intro}</p>
 
@@ -232,68 +257,9 @@ export function ContactoPage() {
                       onBlur={touch('email')}
                     />
                   </div>
-
-                  <div className="fgroup">
-                    <label className="flabel">{tf.labelCompany}</label>
-                    <input
-                      className="finput"
-                      type="text"
-                      placeholder={tf.placeholderCompany}
-                      value={form.company}
-                      onChange={set('company')}
-                    />
-                  </div>
-
-                  <div className="fgroup">
-                    <label className="flabel">{tf.labelProfile}</label>
-                    <select
-                      className={`fselect ${ec('profile')}`}
-                      value={form.profile}
-                      onChange={set('profile')}
-                      onBlur={touch('profile')}
-                    >
-                      <option value="" disabled>{tf.placeholderProfile}</option>
-                      {tf.profileOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.profile[i]}>{opt}</option>)}
-                    </select>
-                  </div>
-
-                  <div className="fgroup">
-                    <label className="flabel">{tf.labelAssets}</label>
-                    <select
-                      className={`fselect ${ec('assets')}`}
-                      value={form.assets}
-                      onChange={set('assets')}
-                      onBlur={touch('assets')}
-                    >
-                      <option value="" disabled>{tf.placeholderAssets}</option>
-                      {tf.assetOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.assets[i]}>{opt}</option>)}
-                    </select>
-                  </div>
-
-                  <div className="fgroup">
-                    <label className="flabel">{tf.labelIncome}</label>
-                    <select
-                      className="fselect"
-                      value={form.income}
-                      onChange={set('income')}
-                    >
-                      <option value="">{tf.placeholderIncome}</option>
-                      {tf.incomeOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.income[i]}>{opt}</option>)}
-                    </select>
-                  </div>
-
-                  <div className="fgroup">
-                    <label className="flabel">{tf.labelReferral}</label>
-                    <select
-                      className="fselect"
-                      value={form.referral}
-                      onChange={set('referral')}
-                    >
-                      <option value="">{tf.placeholderReferral}</option>
-                      {tf.referralOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.referral[i]}>{opt}</option>)}
-                    </select>
-                  </div>
-
+                  {/* Descripción libre: obligatoria. Es lo único que de verdad
+                      hace falta para poder responder con criterio, y lo escribe
+                      quien contacta con el nivel de detalle que quiera dar. */}
                   <div className="fgroup">
                     <label className="flabel">{tf.labelSituation}</label>
                     <textarea
@@ -305,6 +271,81 @@ export function ContactoPage() {
                     />
                   </div>
 
+                  {/* Todo lo demás es secundario y opcional, agrupado y plegado.
+                      Entre ello van los dos campos financieros —activos
+                      invertibles e ingreso del hogar—: siguen disponibles para
+                      quien quiera darlos, pero no se piden como peaje de entrada.
+                      <details> nativo: sin JS, accesible por teclado y presente
+                      en el HTML pre-renderizado. */}
+                  <details className="fdetails">
+                    <summary className="fdetails-summary">
+                      <span>{tf.optionalTitle}</span>
+                      <svg className="fdetails-caret" viewBox="0 0 12 12" aria-hidden="true">
+                        <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                      </svg>
+                    </summary>
+
+                    <p className="fdetails-hint">{tf.optionalHint}</p>
+
+                    <div className="fgroup">
+                      <label className="flabel">{tf.labelCompany}</label>
+                      <input
+                        className="finput"
+                        type="text"
+                        placeholder={tf.placeholderCompany}
+                        value={form.company}
+                        onChange={set('company')}
+                      />
+                    </div>
+
+                    <div className="fgroup">
+                      <label className="flabel">{tf.labelProfile}</label>
+                      <select
+                        className="fselect"
+                        value={form.profile}
+                        onChange={set('profile')}
+                      >
+                        <option value="">{tf.placeholderProfile}</option>
+                        {tf.profileOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.profile[i]}>{opt}</option>)}
+                      </select>
+                    </div>
+
+                    <div className="fgroup">
+                      <label className="flabel">{tf.labelAssets}</label>
+                      <select
+                        className="fselect"
+                        value={form.assets}
+                        onChange={set('assets')}
+                      >
+                        <option value="">{tf.placeholderAssets}</option>
+                        {tf.assetOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.assets[i]}>{opt}</option>)}
+                      </select>
+                    </div>
+
+                    <div className="fgroup">
+                      <label className="flabel">{tf.labelIncome}</label>
+                      <select
+                        className="fselect"
+                        value={form.income}
+                        onChange={set('income')}
+                      >
+                        <option value="">{tf.placeholderIncome}</option>
+                        {tf.incomeOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.income[i]}>{opt}</option>)}
+                      </select>
+                    </div>
+
+                    <div className="fgroup">
+                      <label className="flabel">{tf.labelReferral}</label>
+                      <select
+                        className="fselect"
+                        value={form.referral}
+                        onChange={set('referral')}
+                      >
+                        <option value="">{tf.placeholderReferral}</option>
+                        {tf.referralOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.referral[i]}>{opt}</option>)}
+                      </select>
+                    </div>
+                  </details>
                   <div style={{ marginTop: 4 }}>
                     <Button
                       variant="solid"
@@ -324,7 +365,7 @@ export function ContactoPage() {
             </div>
 
             {/* Info lateral */}
-            <ContactInfo ti={ti} onSchedule={() => setConsultOpen(true)} unlocked={status === 'success'} />
+            <ContactInfo ti={ti} onSchedule={() => setConsultOpen(true)} />
           </div>
         </div>
       </section>

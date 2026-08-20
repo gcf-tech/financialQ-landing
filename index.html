@@ -58,8 +58,12 @@
       JSON-LD. Todos los datos salen del contenido real del sitio:
         · dirección, teléfono y horario → locales/{en,es}/common.json → contacto.info
         · registro SEC                  → widgets/footer/Footer.jsx (adviserinfo, firm 327095)
-        · redes                         → shared/ui/socialLinks/SocialLinks.jsx
+        · redes                         → src/shared/config/firm.js (FIRM_SOCIAL)
         · modelo fee-only               → locales → hero.stats ("100% Fee-Only Fiduciary")
+
+      OJO con `sameAs`: las URLs de redes están duplicadas aquí a mano porque
+      este archivo es HTML estático y no puede importar de firm.js. Al cambiar
+      una allí, cambiarla también aquí.
     -->
     <script type="application/ld+json">
     {

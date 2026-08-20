@@ -17,10 +17,17 @@ export function buildPath(lang, page, sub = null) {
  * Devuelve el href de una página en el idioma activo, para pintar enlaces
  * reales (<a href>) que los crawlers puedan seguir.
  * Uso: const href = useAppPath(); <a href={href('sobre', 'firma')}>…</a>
+ *
+ * `search` es opcional y se concatena tal cual (incluido el '?'), para los
+ * enlaces que llevan atribución de origen. Va aquí y no compuesto en el sitio
+ * de llamada porque el mismo valor tiene que ir en el href Y en la navegación
+ * SPA: si solo se pusiera en el href, el onClick con preventDefault navegaría
+ * a la ruta sin query string y la atribución se perdería justo en el camino
+ * que usa todo el mundo.
  */
 export function useAppPath() {
   const { lang } = useTranslation()
-  return (page, sub = null) => buildPath(lang, page, sub)
+  return (page, sub = null, search = '') => buildPath(lang, page, sub) + search
 }
 
 /**
@@ -32,8 +39,8 @@ export function useAppNavigate() {
   const { lang } = useTranslation()
   const navigate = useNavigate()
 
-  return (page, sub = null) => {
-    navigate(buildPath(lang, page, sub))
+  return (page, sub = null, search = '') => {
+    navigate(buildPath(lang, page, sub) + search)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 }

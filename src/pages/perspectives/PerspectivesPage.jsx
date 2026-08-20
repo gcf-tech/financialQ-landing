@@ -5,6 +5,7 @@ import { useScrollReveal } from '../../shared/lib/useScrollReveal'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
 import { useAdminSession } from '../../shared/lib/useAdminSession'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
+import { prerenderData } from '../../shared/lib/prerenderData'
 import { subscribeNewsletter } from '../../shared/api/newsletter'
 import {
   fetchPosts,
@@ -38,13 +39,20 @@ export function PerspectivesPage() {
   // dispare desde donde se dispare.
   const te = t.admin.editor
 
+  // Semilla del prerender: en Node el useEffect de abajo no corre, así que sin
+  // esto el HTML estático de /perspectivas salía con "Cargando artículos…" y
+  // cero artículos — un rastreador que no ejecuta JS no veía ni un titular.
+  // En el navegador `prerenderData()` está vacío, `seededPosts` es undefined y
+  // la página arranca exactamente como antes: manda el fetch del efecto.
+  const seededPosts = prerenderData().posts
+
   // Posts desde el backend (antes: posts.json empaquetado en el build).
   // reloadKey re-ejecuta el fetch; el estado solo se muta en callbacks async
   // o en handlers de eventos (regla react-hooks/set-state-in-effect).
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState(seededPosts ?? [])
   const [adminItems, setAdminItems] = useState([])
   const [adminStatus, setAdminStatus] = useState('draft')
-  const [loadState, setLoadState] = useState('loading')
+  const [loadState, setLoadState] = useState(seededPosts ? 'ready' : 'loading')
   const [reloadKey, setReloadKey] = useState(0)
   const [adminError, setAdminError] = useState('')
   // Id del post cuya acción está en vuelo, para no disparar dos veces la misma
