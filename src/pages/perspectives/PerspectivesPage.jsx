@@ -6,37 +6,74 @@ import { useAppNavigate } from '../../shared/lib/useAppNavigate'
 import { useAdminSession } from '../../shared/lib/useAdminSession'
 import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { subscribeNewsletter } from '../../shared/api/newsletter'
-import { fetchPosts, deletePost } from '../../shared/api/posts'
+import {
+  fetchPosts,
+  listAdminPosts,
+  deletePost,
+  updatePost,
+} from '../../shared/api/posts'
+import { PostCard } from './ui/PostCard'
 import './ui/perspectivesPage.css'
 
 const SORT_KEYS = ['newest', 'oldest']
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+// Filtros del panel admin. 'draft' primero porque es la pregunta que trae a
+// alguien al panel: qué hay pendiente de revisar.
+const ADMIN_STATUSES = [
+  { key: 'draft', label: 'filterDraft', empty: 'emptyDraft' },
+  { key: 'published', label: 'filterPublished', empty: 'emptyPublished' },
+  { key: 'all', label: 'filterAll', empty: 'emptyAll' },
+]
+const ADMIN_PAGE_SIZE = 100
 
 export function PerspectivesPage() {
   const navigate = useAppNavigate()
   const { t, lang } = useTranslation()
   const { isAdmin } = useAdminSession()
   const tp = t.perspectivas
+  // Los textos de publicar/despublicar —incluido el aviso de que el correo del
+  // newsletter no se puede recuperar— ya existen para el editor. Se reutilizan
+  // en vez de traducirlos otra vez: el diálogo tiene que decir lo mismo se
+  // dispare desde donde se dispare.
+  const te = t.admin.editor
 
   // Posts desde el backend (antes: posts.json empaquetado en el build).
   // reloadKey re-ejecuta el fetch; el estado solo se muta en callbacks async
   // o en handlers de eventos (regla react-hooks/set-state-in-effect).
   const [posts, setPosts] = useState([])
+  const [adminItems, setAdminItems] = useState([])
+  const [adminStatus, setAdminStatus] = useState('draft')
   const [loadState, setLoadState] = useState('loading')
   const [reloadKey, setReloadKey] = useState(0)
   const [adminError, setAdminError] = useState('')
+  // Id del post cuya acción está en vuelo, para no disparar dos veces la misma
+  // publicación desde una tarjeta a la que se le hizo doble clic.
+  const [busyId, setBusyId] = useState('')
 
+  // Con sesión admin la página se alimenta del endpoint de administración, que
+  // SÍ devuelve los borradores; sin sesión, del público de siempre. El
+  // prerender entra siempre por la rama pública: useAdminSession devuelve
+  // isAdmin=false en Node (no hay localStorage), así que el HTML estático no
+  // cambia.
   useEffect(() => {
     let alive = true
-    fetchPosts()
+    const request = isAdmin
+      ? listAdminPosts({ status: adminStatus, limit: ADMIN_PAGE_SIZE }).then(
+          res => res.items,
+        )
+      : fetchPosts()
+
+    request
       .then(list => {
         if (!alive) return
-        setPosts(list)
+        if (isAdmin) setAdminItems(list)
+        else setPosts(list)
         setLoadState('ready')
       })
       .catch(() => { if (alive) setLoadState('error') })
     return () => { alive = false }
-  }, [reloadKey])
+  }, [reloadKey, isAdmin, adminStatus])
 
   const reload = useCallback(() => {
     setLoadState('loading')
@@ -46,16 +83,91 @@ export function PerspectivesPage() {
   // Re-dispara el reveal cuando los posts llegan async.
   useScrollReveal(loadState)
 
-  const handleDelete = async p => {
-    const title = p.i18n[lang].title
+  const handleDelete = async (id, title) => {
+    if (busyId) return
     if (!window.confirm(tp.admin.deleteConfirm.replace('{title}', title))) return
     setAdminError('')
+    setBusyId(id)
     try {
-      await deletePost(p.id)
+      await deletePost(id)
       reload()
     } catch {
       setAdminError(tp.admin.deleteError)
+    } finally {
+      setBusyId('')
     }
+  }
+
+  /**
+   * Publicar / despublicar desde la tarjeta. Mismo contrato que el botón del
+   * editor (`PostEditorPage.handleTogglePublish`): manda SOLO el flag, con el
+   * mismo diálogo de confirmación, porque la primera publicación dispara el
+   * correo del newsletter en el backend y eso no se deshace.
+   */
+  const handleTogglePublish = async (item, title) => {
+    if (busyId) return
+    const next = !item.isPublished
+    const message = (next ? te.publishConfirm : te.unpublishConfirm).replace(
+      '{title}',
+      title,
+    )
+    if (!window.confirm(message)) return
+
+    setAdminError('')
+    setBusyId(item.id)
+    try {
+      await updatePost(item.id, { isPublished: next })
+      // Recargar en vez de parchear el item en memoria: con el filtro en
+      // "Borradores" el post recién publicado deja de pertenecer a la lista, y
+      // el servidor es quien decide eso.
+      reload()
+    } catch {
+      setAdminError(next ? te.publishError : te.unpublishError)
+    } finally {
+      setBusyId('')
+    }
+  }
+
+  const changeAdminStatus = status => {
+    if (status === adminStatus) return
+    setLoadState('loading')
+    setAdminStatus(status)
+  }
+
+  /**
+   * Título de una tarjeta del panel. El backend devuelve los dos y NO rellena
+   * uno con el otro: un título vacío significa que esa traducción quedó a
+   * medias. El fallback es solo de presentación y vive aquí, en el frontend,
+   * para que la tarjeta siga siendo identificable — pero el badge de idioma es
+   * el que dice la verdad sobre qué versión existe.
+   *
+   * Ojo al orden: primero el idioma de la interfaz y después el otro, no
+   * siempre `titleEs`. Con la interfaz en inglés, caer al español teniendo el
+   * inglés guardado sería enseñar el idioma equivocado.
+   */
+  const rowTitle = item => {
+    const own = lang === 'es' ? item.titleEs : item.titleEn
+    const other = lang === 'es' ? item.titleEn : item.titleEs
+    return own?.trim() || other?.trim() || tp.admin.untitled
+  }
+
+  /** Mismo criterio que `rowTitle`, para el blurb de la tarjeta. */
+  const rowExcerpt = item => {
+    const own = lang === 'es' ? item.bodyEs : item.bodyEn
+    const other = lang === 'es' ? item.bodyEn : item.bodyEs
+    return own?.trim() || other?.trim() || ''
+  }
+
+  /**
+   * Etiqueta "solo ES" / "solo EN" cuando el post existe en un idioma nada más.
+   * Devuelve null si están los dos (lo normal) o si no está ninguno — en ese
+   * caso el propio título ya sale como "(sin título)" y el badge sobraría.
+   */
+  const singleLangBadge = item => {
+    const es = Boolean(item.titleEs?.trim())
+    const en = Boolean(item.titleEn?.trim())
+    if (es === en) return null
+    return es ? tp.admin.onlyEs : tp.admin.onlyEn
   }
 
   const [h1, h2, h3] = tp.intro.headline
@@ -171,21 +283,49 @@ export function PerspectivesPage() {
 
         <div className="wrap" style={{ paddingTop: 0 }}>
           <div className="persp-articles-toolbar reveal">
-            <span className="persp-sort-label" id="persp-sort-label">{tp.sort.label}</span>
-            <div className="persp-sort" role="radiogroup" aria-labelledby="persp-sort-label">
-              {SORT_KEYS.map(key => (
-                <button
-                  key={key}
-                  type="button"
-                  role="radio"
-                  aria-checked={sortKey === key}
-                  className={`persp-sort-btn${sortKey === key ? ' is-active' : ''}`}
-                  onClick={() => setSortKey(key)}
+            {isAdmin ? (
+              <>
+                <span className="persp-sort-label" id="persp-status-label">
+                  {tp.admin.filterLabel}
+                </span>
+                <div
+                  className="persp-sort"
+                  role="radiogroup"
+                  aria-labelledby="persp-status-label"
                 >
-                  {tp.sort[key]}
-                </button>
-              ))}
-            </div>
+                  {ADMIN_STATUSES.map(({ key, label }) => (
+                    <button
+                      key={key}
+                      type="button"
+                      role="radio"
+                      aria-checked={adminStatus === key}
+                      className={`persp-sort-btn${adminStatus === key ? ' is-active' : ''}`}
+                      onClick={() => changeAdminStatus(key)}
+                    >
+                      {tp.admin[label]}
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <span className="persp-sort-label" id="persp-sort-label">{tp.sort.label}</span>
+                <div className="persp-sort" role="radiogroup" aria-labelledby="persp-sort-label">
+                  {SORT_KEYS.map(key => (
+                    <button
+                      key={key}
+                      type="button"
+                      role="radio"
+                      aria-checked={sortKey === key}
+                      className={`persp-sort-btn${sortKey === key ? ' is-active' : ''}`}
+                      onClick={() => setSortKey(key)}
+                    >
+                      {tp.sort[key]}
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
             {isAdmin && (
               <div className="persp-admin-toolbar">
                 <Button variant="solid" onClick={() => navigate('admin/post')}>
@@ -201,104 +341,165 @@ export function PerspectivesPage() {
           )}
           {loadState === 'error' && (
             <div className="persp-list-status">
-              <p>{tp.list.error}</p>
+              <p>{isAdmin ? tp.admin.loadError : tp.list.error}</p>
               <Button variant="ghost" onClick={reload}>{tp.list.retry}</Button>
             </div>
           )}
-          {loadState === 'ready' && sortedPosts.length === 0 && (
+          {loadState === 'ready' && !isAdmin && sortedPosts.length === 0 && (
             <p className="persp-list-status">{tp.list.empty}</p>
           )}
 
+          {/* Panel de administración: la MISMA parrilla y la MISMA tarjeta que
+              el listado público, con badges de estado y acciones encima. Antes
+              eran filas de tabla, porque el endpoint admin solo devolvía
+              metadatos; desde que devuelve también portada, blurb, fecha,
+              tiempo de lectura y etiquetas no hay motivo para mantener dos
+              representaciones del mismo recurso. Lo que cambia con sesión no es
+              la forma del post, es lo que puedes hacer con él. */}
+          {isAdmin && loadState === 'ready' && (
+            <div className="persp-admin-panel">
+              <div className="persp-admin-panel-head">
+                <h2 className="persp-admin-panel-title">{tp.admin.panelTitle}</h2>
+                <p className="persp-admin-panel-hint">{tp.admin.panelHint}</p>
+              </div>
+
+              {adminItems.length === 0 ? (
+                <p className="persp-list-status">
+                  {tp.admin[
+                    ADMIN_STATUSES.find(s => s.key === adminStatus).empty
+                  ]}
+                </p>
+              ) : (
+                <div className="persp-articles-grid">
+                  {adminItems.map((item, i) => {
+                    const title = rowTitle(item)
+                    const onlyLang = singleLangBadge(item)
+                    const busy = busyId === item.id
+                    return (
+                      <PostCard
+                        key={item.id}
+                        title={title}
+                        excerpt={rowExcerpt(item)}
+                        image={item.image}
+                        date={item.date}
+                        read={item.read}
+                        href={item.href}
+                        tags={item.tags || []}
+                        lang={lang}
+                        readLabel={tp.detail.readArticle}
+                        originalLabel={tp.detail.viewOriginal}
+                        onRead={() => navigate('perspectivas', item.slug)}
+                        className={`reveal${i > 0 ? ` d${i}` : ''}`}
+                        emptyCover
+                        badges={
+                          <>
+                            <span
+                              className={`persp-status-badge${item.isPublished ? ' is-published' : ' is-draft'}`}
+                            >
+                              {item.isPublished
+                                ? tp.admin.badgePublished
+                                : tp.admin.badgeDraft}
+                            </span>
+                            {onlyLang && (
+                              <span className="persp-lang-badge is-partial">
+                                {onlyLang}
+                              </span>
+                            )}
+                            <span className="persp-card-updated">
+                              {/* ISO cortado, sin Date(): mismo criterio que el
+                                  resto de fechas de la página. */}
+                              {tp.admin.updatedAt}{' '}
+                              {String(item.updatedAt || '').slice(0, 10)}
+                            </span>
+                          </>
+                        }
+                        adminActions={
+                          <>
+                            <button
+                              type="button"
+                              className="persp-admin-btn"
+                              title={tp.admin.edit}
+                              aria-label={`${tp.admin.edit}: ${title}`}
+                              onClick={() => navigate('admin/post', item.slug)}
+                            >
+                              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.4">
+                                <path d="M11.3 1.7l3 3L5 14H2v-3l9.3-9.3zM9.5 3.5l3 3" />
+                              </svg>
+                            </button>
+
+                            {/* La acción con consecuencias: publicar por
+                                primera vez manda el correo del newsletter. Va
+                                con etiqueta de texto, no con un icono que haya
+                                que adivinar, y como <button> de verdad. */}
+                            <Button
+                              as="button"
+                              variant="ghost"
+                              className="persp-card-publish"
+                              disabled={busy}
+                              aria-label={`${item.isPublished ? te.unpublish : te.publish}: ${title}`}
+                              onClick={() => handleTogglePublish(item, title)}
+                              style={{ opacity: busy ? 0.6 : 1 }}
+                            >
+                              {busy
+                                ? item.isPublished
+                                  ? te.unpublishing
+                                  : te.publishing
+                                : item.isPublished
+                                  ? te.unpublish
+                                  : te.publish}
+                            </Button>
+
+                            <button
+                              type="button"
+                              className="persp-admin-btn persp-admin-btn-danger"
+                              title={tp.admin.delete}
+                              aria-label={`${tp.admin.delete}: ${title}`}
+                              onClick={() => handleDelete(item.id, title)}
+                            >
+                              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.4">
+                                <path d="M2.5 4h11M6.5 4V2.5h3V4M4 4l.8 10h6.4L12 4M6.5 7v4.5M9.5 7v4.5" />
+                              </svg>
+                            </button>
+                          </>
+                        }
+                      />
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* La parrilla pública no se pinta con sesión admin: su sitio lo
+              ocupa el panel de arriba. (Ojo: no vale `hidden`, porque la regla
+              `display: grid` del propio .persp-articles-grid gana al atributo.) */}
+          {!isAdmin && (
           <div className="persp-articles-grid">
             {sortedPosts.map((p, i) => {
               const c = p.i18n[lang]
               return (
-                <article key={p.id} className={`persp-single-article reveal${i > 0 ? ` d${i}` : ''}`}>
-                  {p.image && (
-                    // Sin width/height: la portada llega del backend y no
-                    // conocemos su tamaño intrínseco. El hueco ya lo reserva
-                    // `aspect-ratio: 16/9` en perspectivesPage.css:655, así
-                    // que no hay CLS.
-                    <img
-                      src={p.image}
-                      alt={c.title}
-                      className="persp-single-article-img"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  )}
-                  <div className="persp-article-tags">
-                    {p.tags.map(tag => (
-                      <span
-                        key={tag.id}
-                        className="persp-article-type"
-                        style={{ color: tag.color }}
-                      >
-                        {lang === 'es' ? tag.nameEs : tag.nameEn}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="persp-single-article-title">{c.title}</div>
-                  <p className="persp-single-article-excerpt">{c.body}</p>
-                  <div className="persp-article-footer">
-                    <span className="persp-article-date">{p.date}</span>
-                    <span className="persp-article-read">{p.read}</span>
-                  </div>
-                  <div className="persp-single-article-cta">
-                    <Button
-                      variant="ghost"
-                      onClick={() => navigate('perspectivas', p.slug)}
-                      style={{
-                        color: 'var(--black)',
-                        borderColor: 'var(--border)',
-                        borderWidth: 'thin',
-                        backgroundColor: 'transparent',
-                      }}
-                    >
-                      {tp.detail.readArticle}
-                      <svg viewBox="0 0 12 12" style={{ fill: 'var(--black)' }}><path d="M1 6h10M6 1l5 5-5 5" /></svg>
-                    </Button>
-                    {p.href && (
-                      <a
-                        href={p.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="persp-single-article-original"
-                      >
-                        {tp.detail.viewOriginal} ↗
-                      </a>
-                    )}
-                  </div>
-                  {isAdmin && (
-                    <div className="persp-admin-actions">
-                      <button
-                        type="button"
-                        className="persp-admin-btn"
-                        title={tp.admin.edit}
-                        aria-label={tp.admin.edit}
-                        onClick={() => navigate('admin/post', p.slug)}
-                      >
-                        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.4">
-                          <path d="M11.3 1.7l3 3L5 14H2v-3l9.3-9.3zM9.5 3.5l3 3" />
-                        </svg>
-                      </button>
-                      <button
-                        type="button"
-                        className="persp-admin-btn persp-admin-btn-danger"
-                        title={tp.admin.delete}
-                        aria-label={tp.admin.delete}
-                        onClick={() => handleDelete(p)}
-                      >
-                        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.4">
-                          <path d="M2.5 4h11M6.5 4V2.5h3V4M4 4l.8 10h6.4L12 4M6.5 7v4.5M9.5 7v4.5" />
-                        </svg>
-                      </button>
-                    </div>
-                  )}
-                </article>
+                // Sin badges, sin adminActions y sin emptyCover: la tarjeta
+                // emite exactamente el mismo árbol que cuando este JSX estaba
+                // aquí en línea. La rama sin sesión no cambia.
+                <PostCard
+                  key={p.id}
+                  title={c.title}
+                  excerpt={c.body}
+                  image={p.image}
+                  date={p.date}
+                  read={p.read}
+                  href={p.href}
+                  tags={p.tags}
+                  lang={lang}
+                  readLabel={tp.detail.readArticle}
+                  originalLabel={tp.detail.viewOriginal}
+                  onRead={() => navigate('perspectivas', p.slug)}
+                  className={`reveal${i > 0 ? ` d${i}` : ''}`}
+                />
               )
             })}
           </div>
+          )}
         </div>
 
         <div className="persp-about">

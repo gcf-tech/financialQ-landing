@@ -8,7 +8,7 @@ import { useTranslation } from '../../shared/config/locales/i18nContext'
 import { useAppNavigate } from '../../shared/lib/useAppNavigate'
 import { useAdminSession } from '../../shared/lib/useAdminSession'
 import {
-  fetchPost,
+  getAdminPost,
   fetchTags,
   createPost,
   updatePost,
@@ -49,6 +49,10 @@ export function PostEditorPage() {
 
   const [form, setForm] = useState(EMPTY_FORM)
   const [postId, setPostId] = useState(null)
+  // Estado de publicación del post cargado. Un post nuevo nace borrador: el
+  // backend ya usa false por defecto, pero el editor lo manda SIEMPRE explícito
+  // para no depender de ese default.
+  const [isPublished, setIsPublished] = useState(false)
   const [tags, setTags] = useState([])
   const [tagIds, setTagIds] = useState([])
   const [newTag, setNewTag] = useState({ nameEs: '', nameEn: '', color: '#8A7A5C' })
@@ -68,7 +72,9 @@ export function PostEditorPage() {
     fetchTags().then(list => { if (alive) setTags(list) }).catch(() => {})
 
     if (isEdit) {
-      fetchPost(slug)
+      // Endpoint de administración: devuelve el post publicado o no. El
+      // público filtra is_published = 1, así que con él un borrador daba 404.
+      getAdminPost(slug)
         .then(post => {
           if (!alive) return
           if (!post) {
@@ -76,6 +82,7 @@ export function PostEditorPage() {
             return
           }
           setPostId(post.id)
+          setIsPublished(Boolean(post.isPublished))
           setTagIds(post.tags.map(tag => tag.id))
           setForm({
             titleEn: post.i18n.en.title,
@@ -204,6 +211,10 @@ export function PostEditorPage() {
       href: form.href.trim(),
       imageUrl: form.imageUrl,
       tagIds,
+      // SIEMPRE explícito, y siempre el estado ACTUAL: guardar no publica ni
+      // despublica. Un post nuevo se crea como borrador; publicar es el botón
+      // de al lado. Antes este campo se omitía y decidía el backend.
+      isPublished: isEdit ? isPublished : false,
     }
     try {
       if (isEdit) {
@@ -214,6 +225,41 @@ export function PostEditorPage() {
       navigate('perspectivas')
     } catch {
       setError(ta.saveError)
+      setBusy('')
+    }
+  }
+
+  /**
+   * Publicar / despublicar: acción separada de guardar, con confirmación.
+   * Publicar por primera vez dispara el correo del newsletter en el backend
+   * (transición is_published 0 → 1) y eso no se puede deshacer, así que el
+   * diálogo lo dice antes.
+   *
+   * No guarda los cambios del formulario: manda solo el flag. Lo que esté sin
+   * guardar sigue sin guardarse — publicar no es "guardar y publicar".
+   */
+  const handleTogglePublish = async () => {
+    if (busy) return
+    if (!postId) {
+      setError(ta.publishNeedsSave)
+      return
+    }
+    const next = !isPublished
+    const title = form.titleEs.trim() || form.titleEn.trim()
+    const message = (next ? ta.publishConfirm : ta.unpublishConfirm).replace(
+      '{title}',
+      title,
+    )
+    if (!window.confirm(message)) return
+
+    setBusy(next ? 'publishing' : 'unpublishing')
+    setError('')
+    try {
+      const updated = await updatePost(postId, { isPublished: next })
+      setIsPublished(Boolean(updated.isPublished))
+    } catch {
+      setError(next ? ta.publishError : ta.unpublishError)
+    } finally {
       setBusy('')
     }
   }
@@ -426,6 +472,40 @@ export function PostEditorPage() {
 
               {error && <p className="admin-error">{error}</p>}
 
+              {/* Estado de publicación. Solo tiene sentido sobre un post que
+                  ya existe: uno nuevo se guarda primero (como borrador) y se
+                  publica después. */}
+              {isEdit && (
+                <div className="admin-publish-row">
+                  <div>
+                    <span className="admin-label">{ta.statusLabel}</span>
+                    <span
+                      className={`admin-status-badge${isPublished ? ' is-published' : ' is-draft'}`}
+                    >
+                      {isPublished ? ta.statusPublished : ta.statusDraft}
+                    </span>
+                  </div>
+                  {/* `as="button"`: publicar es irreversible (la primera vez
+                      manda el correo del newsletter) y hasta ahora solo se
+                      podía accionar con ratón — T-009. */}
+                  <Button
+                    as="button"
+                    variant="ghost"
+                    onClick={handleTogglePublish}
+                    disabled={busy === 'publishing' || busy === 'unpublishing'}
+                    style={{
+                      opacity: busy === 'publishing' || busy === 'unpublishing' ? 0.6 : 1,
+                    }}
+                  >
+                    {busy === 'publishing'
+                      ? ta.publishing
+                      : busy === 'unpublishing'
+                        ? ta.unpublishing
+                        : isPublished ? ta.unpublish : ta.publish}
+                  </Button>
+                </div>
+              )}
+
               <div className="admin-actions-row">
                 <Button
                   variant="solid"
@@ -438,6 +518,7 @@ export function PostEditorPage() {
                   {ta.cancel}
                 </Button>
               </div>
+              <p className="admin-hint">{ta.saveHint}</p>
             </div>
 
             <div className="admin-editor-preview">

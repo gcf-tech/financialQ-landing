@@ -71,3 +71,27 @@
   border-color: var(--ivory-dark);
   transform: translateY(-1px);
 }
+
+/* Variante `as="button"` (Button.jsx). Los navegadores aplican estilos propios
+   a los controles nativos —appearance, márgenes, line-height y text-align del
+   UA— que un <div> no tiene. Se neutralizan aquí, en un selector que solo
+   alcanza al <button>, para que el caso <div> —el que entra en el prerender de
+   las páginas públicas— no cambie ni un byte. */
+button.btn-solid,
+button.btn-ghost,
+button.btn-ivory {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  line-height: inherit;
+  text-align: inherit;
+}
+
+/* Estas sí son enfocables con Tab, así que necesitan foco visible. Mismo anillo
+   que usan los controles del listado (perspectivesPage.css). */
+button.btn-solid:focus-visible,
+button.btn-ghost:focus-visible,
+button.btn-ivory:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}

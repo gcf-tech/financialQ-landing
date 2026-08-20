@@ -36,6 +36,48 @@ export async function fetchTags() {
   return res.json()
 }
 
+// ---------- Lectura admin (incluye borradores) ----------
+
+/**
+ * Listado del panel: NO filtra por publicado, así que es la única vía para ver
+ * un borrador. Devuelve { items, page, limit, total, totalPages }.
+ *
+ * Cada item trae metadatos, no el artículo: id, slug, titleEs, titleEn,
+ * isPublished, notifiedAt, createdAt, updatedAt, createdBy, updatedBy. Los DOS
+ * títulos, sin elegir idioma por el cliente: si uno viene vacío es que la
+ * traducción de ese borrador quedó a medias, y el panel lo muestra.
+ *
+ * params: { status: 'draft' | 'published' | 'all', page, limit }
+ */
+export async function listAdminPosts(params = {}) {
+  const query = new URLSearchParams()
+  if (params.status) query.set('status', params.status)
+  if (params.page) query.set('page', String(params.page))
+  if (params.limit) query.set('limit', String(params.limit))
+  const qs = query.toString()
+
+  const res = await fetch(
+    `${BACKEND_URL}/landings/posts/admin${qs ? `?${qs}` : ''}`,
+    { headers: await authHeaders() },
+  )
+  if (!res.ok) throw await parseError(res, 'Could not load admin posts')
+  return res.json()
+}
+
+/**
+ * Detalle para el editor, publicado o no. Misma forma que fetchPost (i18n,
+ * tags…) más `isPublished`. Acepta el uuid o el slug.
+ */
+export async function getAdminPost(idOrSlug) {
+  const res = await fetch(
+    `${BACKEND_URL}/landings/posts/admin/${encodeURIComponent(idOrSlug)}`,
+    { headers: await authHeaders() },
+  )
+  if (res.status === 404) return null
+  if (!res.ok) throw await parseError(res, 'Could not load post')
+  return res.json()
+}
+
 // ---------- Escritura (admin) ----------
 
 export async function createPost(data) {

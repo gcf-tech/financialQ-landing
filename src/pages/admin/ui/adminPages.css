@@ -322,3 +322,33 @@
 .admin-preview-body ol {
   margin: 0 0 1em;
 }
+
+/* ---------- Estado de publicación del editor ------------------------------ */
+
+.admin-publish-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  padding: 16px;
+  border: thin solid var(--border);
+  background: var(--ivory-pale);
+}
+
+.admin-status-badge {
+  display: block;
+  font-family: var(--sans);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.admin-status-badge.is-draft {
+  color: var(--muted);
+}
+
+.admin-status-badge.is-published {
+  color: var(--blue);
+  font-weight: 600;
+}

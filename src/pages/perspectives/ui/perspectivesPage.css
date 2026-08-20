@@ -779,3 +779,132 @@
   color: #A03B3B;
   border-color: #A03B3B;
 }
+
+/* ---------- Panel de administración (sustituye a la parrilla con sesión) ---- */
+
+.persp-admin-panel {
+  padding: 32px 0 64px;
+}
+
+.persp-admin-panel-head {
+  padding-bottom: 16px;
+  border-bottom: thin solid var(--border);
+}
+
+.persp-admin-panel-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--black);
+  margin: 0;
+}
+
+.persp-admin-panel-hint {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--muted);
+  margin: 6px 0 0;
+}
+
+/* Las reglas .persp-admin-row* que había aquí se borraron con las filas de
+   tabla que estilaban: el panel usa ahora .persp-articles-grid y la misma
+   tarjeta que el listado público. */
+
+.persp-status-badge {
+  flex-shrink: 0;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: thin solid var(--border);
+}
+
+.persp-status-badge.is-draft {
+  color: var(--muted);
+  background: var(--ivory-pale);
+}
+
+.persp-status-badge.is-published {
+  color: var(--ivory);
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+/* "Solo ES" / "Solo EN": el post existe en un idioma nada más. Borde punteado
+   —no tachado— porque lo que falta es el OTRO idioma, no el que se nombra. Un
+   título vacío significa que esa traducción quedó a medias y el backend no lo
+   disimula (no rellena un idioma con el otro), así que el panel tampoco. */
+.persp-lang-badge {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border: thin solid var(--border);
+  color: var(--black-soft);
+}
+
+.persp-lang-badge.is-partial {
+  color: var(--muted);
+  border-style: dashed;
+}
+
+/* ---------- Modo admin de la tarjeta (PostCard: badges + acciones) --------- */
+
+/* Fila de badges sobre la portada. Solo existe con sesión: sin la prop
+   `badges` la tarjeta no emite este nodo. */
+.persp-card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.persp-card-updated {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+/* Hueco de portada de un borrador sin imagen: el mismo recuadro que se ve
+   mientras carga una portada real, para que la tarjeta conserve su geometría
+   en la parrilla en vez de encogerse. */
+.persp-single-article-img-empty {
+  border: thin dashed var(--border);
+  background: var(--ivory-pale);
+}
+
+.persp-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: thin solid var(--border);
+}
+
+/* Publicar / Despublicar: el btn-ghost completo (14px 36px) desbordaría una
+   tarjeta de tres columnas. Se ajusta a la altura de los botones de icono para
+   que la fila quede alineada. */
+.persp-card-publish {
+  padding: 0 16px;
+  height: 32px;
+  font-size: 10px;
+}
+
+.persp-card-publish[disabled] {
+  cursor: default;
+}
+
+@media (max-width: 700px) {
+  .persp-card-updated {
+    margin-left: 0;
+  }
+}
