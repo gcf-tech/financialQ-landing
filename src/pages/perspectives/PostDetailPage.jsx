@@ -123,9 +123,7 @@ export function PostDetailPage() {
       {/* Oferta de cierre. Fuera del <article> a propósito: no es contenido
           del artículo. Va DESPUÉS del enlace al original de LinkedIn, que es
           atribución y no una oferta que compita con esta. */}
-      <div className="wrap">
-        <PostCta slug={post.slug || id} />
-      </div>
+      <PostCta slug={post.slug || id} />
 
       <Footer variant="mini" />
     </div>

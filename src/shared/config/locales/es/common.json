@@ -1052,7 +1052,7 @@
         "Otro / Prefiero no especificar"
       ],
       "labelAssets": "Activos Invertibles Aproximados",
-      "placeholderAssets": "Seleccione un rango aproximado",
+      "placeholderAssets": "Seleccione un rango",
       "assetOptions": [
         "$100,000 – $249,000",
         "$250,000 – $999,000",

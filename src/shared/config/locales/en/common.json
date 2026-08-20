@@ -1052,7 +1052,7 @@
         "Other / Prefer not to specify"
       ],
       "labelAssets": "Approximate Investable Assets",
-      "placeholderAssets": "Select an approximate range",
+      "placeholderAssets": "Select a range",
       "assetOptions": [
         "$100,000 – $249,000",
         "$250,000 – $999,000",

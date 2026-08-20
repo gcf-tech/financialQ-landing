@@ -50,7 +50,7 @@ export function PostCta({ slug }) {
   }
 
   return (
-    <aside className="post-cta reveal" data-instrument={instrument.id}>
+    <aside className="wrap post-cta reveal" data-instrument={instrument.id}>
       <a
         className="btn-solid post-cta-link"
         href={href(instrument.href, null, search)}

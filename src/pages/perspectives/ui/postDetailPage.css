@@ -130,7 +130,10 @@
 .post-detail-original {
   max-width: 720px;
   padding-top: 8px;
-  padding-bottom: var(--gap);
+  /* Antes cerraba la página con var(--gap): era el último elemento. Ahora
+     el último es el bloque de cierre, así que la separación final la pone
+     él, y aquí solo queda el aire entre el enlace de atribución y la oferta. */
+  padding-bottom: 56px;
 }
 
 .post-detail-original-link {
@@ -164,15 +167,32 @@
 /* Bloque de cierre: la oferta de conversación (ui/PostCta.jsx).
    Va fuera del <article>: no es contenido del artículo, es lo que la firma
    ofrece después de él. Misma columna de 720px que el cuerpo para que no se
-   lea como un elemento ajeno pegado al final. */
+   lea como un elemento ajeno pegado al final.
+
+   El botón arranca donde arrancaría un párrafo más del artículo: alineado al
+   texto, no centrado. Para eso el <aside> tiene que SER un .wrap y no ir
+   dentro de uno, igual que .post-detail-body. Anidado no sirve: el .wrap
+   exterior ya gastó su padding, así que la columna de 720px del hijo empieza
+   56px a la izquierda del texto en escritorio y 24px en móvil, y los dos
+   valores cambian en el mismo punto de ruptura. Compensarlo con anchos
+   calculados (720 − 112 y 720 − 48) alinea, pero deja dos números que se
+   rompen en silencio si alguien toca el padding de .wrap o el ancho de la
+   columna. Reutilizar la clase es lo que se mantiene solo. */
 .post-cta {
   max-width: 720px;
+  /* Separación propia y no heredada de lo anterior: un artículo sin enlace al
+     original no renderiza .post-detail-original, y sin esto el bloque quedaría
+     a 16px del último párrafo, leyéndose como parte del cuerpo. */
+  padding-top: 56px;
   padding-bottom: var(--gap);
 }
 
 .post-cta-link {
   /* .btn-solid ya trae el aspecto; aquí solo el ancho en móvil, donde el
-     white-space: nowrap del botón desbordaría con el nombre dentro. */
+     white-space: nowrap del botón desbordaría con el nombre dentro. El
+     `text-align` centra el texto DENTRO del botón —que en móvil ocupa el ancho
+     de la columna—, no el botón dentro de la columna: eso queda a la
+     izquierda, alineado con el cuerpo del artículo. */
   text-align: center;
   white-space: normal;
 }
