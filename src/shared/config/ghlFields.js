@@ -22,7 +22,8 @@ export const GHL_FIELD_IDS = {
 // Values canónicos de GHL por opción, en el MISMO orden que los arrays
 // profileOptions / assetOptions / incomeOptions / referralOptions de i18n.
 // profile/income/referral coinciden con el label en inglés (así están dadas de
-// alta las opciones en GHL); assets usa el string corto configurado en GHL.
+// alta las opciones en GHL); assets usa el string corto configurado en GHL,
+// salvo su opción de salida, que reusa la de income.
 export const GHL_OPTION_VALUES = {
   profile: [
     'High-Income Professional',
@@ -37,6 +38,10 @@ export const GHL_OPTION_VALUES = {
     '10M - 25M',
     '25M - 50M',
     '50M +',
+    // Opción de salida. Mismo string que la equivalente de `income`, a
+    // propósito: es el mismo dato ("no lo digo") en dos campos distintos y el
+    // CRM tiene que poder segmentarlo igual en los dos.
+    'Prefer not to say',
   ],
   income: [
     'Less than $250,000',

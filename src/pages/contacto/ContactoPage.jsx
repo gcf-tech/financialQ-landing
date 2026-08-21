@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Footer } from '../../widgets/footer/Footer'
 import { Button } from '../../shared/ui/button/Button'
@@ -118,12 +118,22 @@ const EMPTY_FORM = {
   source: '',
 }
 
-// Lo mínimo para poder responder a alguien: quién es, cómo contactarle y qué
-// necesita. `assets` (activos invertibles) e `income` (ingreso del hogar) salen
-// de aquí a propósito: son datos financieros no públicos de personas que aún no
-// son clientes, pedidos en el momento de menor confianza, y la calificación que
-// dan se obtiene igual en la llamada. Siguen existiendo, pero opcionales.
-const REQUIRED = ['firstName', 'lastName', 'email', 'situation']
+// Los campos que viven dentro del bloque plegable. Se nombran aparte porque
+// hacen falta dos veces: para exigirlos y para saber si un error de validación
+// cayó dentro de una sección que el usuario no está viendo.
+const DETAILS_FIELDS = ['company', 'profile', 'assets', 'income', 'referral']
+
+// Por decisión editorial el formulario se envía completo: no hay campo que se
+// pueda dejar en blanco. Eso incluye los dos financieros —activos invertibles
+// e ingreso del hogar—, que se piden a personas que todavía no son clientes.
+// La salida de quien no quiera darlos NO es dejarlos vacíos, es elegir la
+// opción explícita de cada desplegable («Prefiero no decirlo» / «Otro»): así
+// la negativa llega al CRM como un dato y no como un hueco indistinguible de
+// un formulario abandonado a medias.
+//
+// `source` queda fuera a propósito: no lo rellena nadie, lo trae el query
+// string, y está vacío en una visita directa a /contacto.
+const REQUIRED = ['firstName', 'lastName', 'email', 'situation', ...DETAILS_FIELDS]
 const isValidEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
 
 function isFieldInvalid(field, value) {
@@ -153,6 +163,12 @@ export function ContactoPage() {
   const [status, setStatus] = useState('idle') // idle | loading | success | error
   const [consultOpen, setConsultOpen] = useState(false)
 
+  // Se abre el bloque plegable desde aquí cuando el envío falla por un campo
+  // que está dentro. Es un ref y no estado: `<details>` sigue siendo nativo y
+  // sin atributo `open`, así que el HTML pre-renderizado no cambia y la
+  // sección sigue funcionando con JS deshabilitado.
+  const detailsRef = useRef(null)
+
   const fieldErrors = Object.fromEntries(
     Object.keys(form)
       .filter(f => touched[f] && isFieldInvalid(f, form[f]))
@@ -170,7 +186,14 @@ export function ContactoPage() {
     setTouched(Object.fromEntries(REQUIRED.map(f => [f, true])))
     setSubmitted(true)
     const hasErrors = REQUIRED.some(f => isFieldInvalid(f, form[f]))
-    if (hasErrors) return
+    if (hasErrors) {
+      // Un error señalado sobre un campo plegado no se puede corregir: se ve
+      // el aviso y no el campo que lo causa.
+      if (DETAILS_FIELDS.some(f => isFieldInvalid(f, form[f])) && detailsRef.current) {
+        detailsRef.current.open = true
+      }
+      return
+    }
 
     setSubmitted(false)
     setStatus('loading')
@@ -257,9 +280,9 @@ export function ContactoPage() {
                       onBlur={touch('email')}
                     />
                   </div>
-                  {/* Descripción libre: obligatoria. Es lo único que de verdad
-                      hace falta para poder responder con criterio, y lo escribe
-                      quien contacta con el nivel de detalle que quiera dar. */}
+                  {/* Descripción libre. Es el campo que de verdad permite
+                      responder con criterio, y lo escribe quien contacta con el
+                      nivel de detalle que quiera dar. */}
                   <div className="fgroup">
                     <label className="flabel">{tf.labelSituation}</label>
                     <textarea
@@ -271,13 +294,13 @@ export function ContactoPage() {
                     />
                   </div>
 
-                  {/* Todo lo demás es secundario y opcional, agrupado y plegado.
-                      Entre ello van los dos campos financieros —activos
-                      invertibles e ingreso del hogar—: siguen disponibles para
-                      quien quiera darlos, pero no se piden como peaje de entrada.
+                  {/* El resto de campos, agrupado y plegado para no abrumar de
+                      entrada. Plegado no quiere decir opcional: todos se exigen
+                      (ver REQUIRED), y si el envío falla por alguno de ellos la
+                      sección se abre sola para que el error sea visible.
                       <details> nativo: sin JS, accesible por teclado y presente
                       en el HTML pre-renderizado. */}
-                  <details className="fdetails">
+                  <details className="fdetails" ref={detailsRef}>
                     <summary className="fdetails-summary">
                       <span>{tf.optionalTitle}</span>
                       <svg className="fdetails-caret" viewBox="0 0 12 12" aria-hidden="true">
@@ -290,20 +313,22 @@ export function ContactoPage() {
                     <div className="fgroup">
                       <label className="flabel">{tf.labelCompany}</label>
                       <input
-                        className="finput"
+                        className={`finput ${ec('company')}`}
                         type="text"
                         placeholder={tf.placeholderCompany}
                         value={form.company}
                         onChange={set('company')}
+                        onBlur={touch('company')}
                       />
                     </div>
 
                     <div className="fgroup">
                       <label className="flabel">{tf.labelProfile}</label>
                       <select
-                        className="fselect"
+                        className={`fselect ${ec('profile')}`}
                         value={form.profile}
                         onChange={set('profile')}
+                        onBlur={touch('profile')}
                       >
                         <option value="">{tf.placeholderProfile}</option>
                         {tf.profileOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.profile[i]}>{opt}</option>)}
@@ -313,9 +338,10 @@ export function ContactoPage() {
                     <div className="fgroup">
                       <label className="flabel">{tf.labelAssets}</label>
                       <select
-                        className="fselect"
+                        className={`fselect ${ec('assets')}`}
                         value={form.assets}
                         onChange={set('assets')}
+                        onBlur={touch('assets')}
                       >
                         <option value="">{tf.placeholderAssets}</option>
                         {tf.assetOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.assets[i]}>{opt}</option>)}
@@ -325,9 +351,10 @@ export function ContactoPage() {
                     <div className="fgroup">
                       <label className="flabel">{tf.labelIncome}</label>
                       <select
-                        className="fselect"
+                        className={`fselect ${ec('income')}`}
                         value={form.income}
                         onChange={set('income')}
+                        onBlur={touch('income')}
                       >
                         <option value="">{tf.placeholderIncome}</option>
                         {tf.incomeOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.income[i]}>{opt}</option>)}
@@ -337,9 +364,10 @@ export function ContactoPage() {
                     <div className="fgroup">
                       <label className="flabel">{tf.labelReferral}</label>
                       <select
-                        className="fselect"
+                        className={`fselect ${ec('referral')}`}
                         value={form.referral}
                         onChange={set('referral')}
+                        onBlur={touch('referral')}
                       >
                         <option value="">{tf.placeholderReferral}</option>
                         {tf.referralOptions.map((opt, i) => <option key={opt} value={GHL_OPTION_VALUES.referral[i]}>{opt}</option>)}

@@ -1038,8 +1038,8 @@
       "placeholderLastName": "Your last name",
       "labelEmail": "Email Address",
       "placeholderEmail": "email@company.com",
-      "optionalTitle": "Additional details (optional)",
-      "optionalHint": "Helps us prepare for the conversation. You can skip all of it — none of it is needed to get a reply.",
+      "optionalTitle": "Additional details",
+      "optionalHint": "Helps us prepare for the conversation. All of it is required; if you would rather not share a detail, choose “Prefer not to say” or “Other”.",
       "labelCompany": "Company or Organization",
       "placeholderCompany": "Your company or fund name",
       "labelProfile": "How would you describe yourself?",
@@ -1058,7 +1058,8 @@
         "$250,000 – $999,000",
         "$1,000,000 – $2,999,999",
         "$3,000,000 – $4,999,999",
-        "$5,000,000+"
+        "$5,000,000+",
+        "Prefer not to say"
       ],
       "labelIncome": "What is your annual household income?",
       "placeholderIncome": "Select a range",

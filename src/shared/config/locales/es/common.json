@@ -1038,8 +1038,8 @@
       "placeholderLastName": "Su apellido",
       "labelEmail": "Correo Electrónico",
       "placeholderEmail": "correo@empresa.com",
-      "optionalTitle": "Datos adicionales (opcional)",
-      "optionalHint": "Nos ayudan a preparar la conversación. Puede omitirlos todos: no hacen falta para recibir respuesta.",
+      "optionalTitle": "Datos adicionales",
+      "optionalHint": "Nos ayudan a preparar la conversación. Todos son obligatorios; si prefiere no dar un dato, elija «Prefiero no decirlo» u «Otro».",
       "labelCompany": "Empresa u Organización",
       "placeholderCompany": "Nombre de su empresa o fondo",
       "labelProfile": "¿Cómo lo describiría?",
@@ -1058,7 +1058,8 @@
         "$250,000 – $999,000",
         "$1,000,000 – $2,999,999",
         "$3,000,000 – $4,999,999",
-        "$5,000,000+"
+        "$5,000,000+",
+        "Prefiero no decirlo"
       ],
       "labelIncome": "¿Cuál es el ingreso anual de su hogar?",
       "placeholderIncome": "Seleccione un rango",

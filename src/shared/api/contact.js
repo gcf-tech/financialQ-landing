@@ -4,22 +4,21 @@ import { BACKEND_URL } from './config'
 export async function submitContact(formData, lang) {
   // Passthrough genérico a GHL: las keys son fieldKey nativos. Los values de
   // los dropdowns ya vienen canónicos desde el form (ver ghlFields.js).
-  // situation es LARGE_TEXT → string plano, y es el único obligatorio de los
-  // custom fields.
+  // situation es LARGE_TEXT → string plano, no array.
   const customField = {
     [K.situation]: formData.situation,
   }
 
-  // Los cuatro dropdowns son MULTIPLE_OPTIONS y todos son opcionales: solo se
-  // mandan si la persona eligió algo.
+  // Los cuatro dropdowns son MULTIPLE_OPTIONS: el value canónico viaja dentro
+  // de un array de un elemento.
   //
-  // El guard importa: mandarlos siempre metería `[""]` —un array con la opción
-  // vacía— en un campo de opciones de GHL en cuanto el usuario no lo rellena.
-  // Antes no se notaba porque profile y assets eran obligatorios en el front;
-  // desde que dejaron de serlo, sin esto se enviaría basura en cada envío
-  // mínimo. `assets` (activos invertibles) e `income` (ingreso del hogar) son
-  // además los dos campos financieros que motivaron el cambio: si no se dan,
-  // no se transmiten ni se guardan en el CRM.
+  // El guard se queda aunque el formulario los exija ahora todos. Esta función
+  // es el contrato con el backend y no depende de qué valide la página: quien
+  // la llame con un dropdown vacío mandaría `[""]` —un array con la opción
+  // vacía— a un campo de opciones de GHL, y eso ensucia la segmentación sin
+  // que nada falle. Quien no quiera dar un dato tiene en cada desplegable su
+  // opción explícita («Prefiero no decirlo» / «Otro»), que sí se transmite:
+  // una negativa es un dato, un hueco no.
   for (const [field, id] of [
     ['profile', K.profile],
     ['assets', K.assets],
