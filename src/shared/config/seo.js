@@ -25,6 +25,11 @@ export const OG_IMAGE = `${SITE_URL}/og-image.jpg`
  * `path` es el pathname canónico en cada idioma. Las subpáginas por defecto
  * (`/sobre/firma`, `/enfoque/filosofia`) renderizan exactamente lo mismo que
  * la ruta corta, por eso canonicalizan hacia ella en lugar de tener entrada.
+ *
+ * `noindex: true` marca una página que EXISTE y se pre-renderiza, pero que
+ * todavía no es pública: se sirve con `noindex, nofollow`. No es una propiedad
+ * permanente de una página — es un estado por el que pasa mientras su contenido
+ * se revisa, y se quita borrando la línea.
  */
 export const PAGES = {
   inicio: {
@@ -120,6 +125,26 @@ export const PAGES = {
     description: {
       en: 'Risk is budgeted, not avoided. How FinancialQ Group measures, allocates and monitors risk across every mandate it manages.',
       es: 'El riesgo se presupuesta, no se evita. Cómo FinancialQ Group mide, asigna y supervisa el riesgo en cada mandato que gestiona.',
+    },
+  },
+
+  presupuesto: {
+    path: { en: '/approach/risk-budget', es: '/enfoque/risk-budget' },
+    // La ruta existe, se pre-renderiza y está enlazada en el menú, pero no se
+    // anuncia a los buscadores. Anunciarla es una decisión aparte de tenerla
+    // construida, y todavía no se ha tomado.
+    //
+    // Quitar esta línea es lo único que hace falta para volverla pública — y
+    // hace algo más: la auditoría del build pasa a EXIGIR sus dos URLs en el
+    // sitemap, así que hay que añadirlas en el mismo cambio o se queda en rojo.
+    noindex: true,
+    title: {
+      en: 'Risk Budget Simulator — FinancialQ Group',
+      es: 'Simulador de Presupuesto de Riesgo — FinancialQ Group',
+    },
+    description: {
+      en: 'Project a contribution schedule over a horizon and a rate of return you supply. An illustrative tool: not a forecast and not a recommendation.',
+      es: 'Proyección de aportes periódicos sobre un horizonte y una rentabilidad que introduce el lector. Herramienta ilustrativa: ni previsión ni recomendación.',
     },
   },
 
@@ -341,7 +366,11 @@ export function resolveSeo(pathname, article) {
     description: page.description[lang],
     canonical: SITE_URL + page.path[lang],
     alternates,
-    noindex: !hit && path !== '/',
+    // Dos motivos distintos para lo mismo. El primero es deliberado: una
+    // página dada de alta que aún no es pública (ver PAGES). El segundo es el
+    // de siempre: una ruta que no reconoce nadie y que React Router resuelve
+    // con la home, que no debe indexarse bajo una URL que no le corresponde.
+    noindex: page.noindex === true || (!hit && path !== '/'),
     ogImage: OG_IMAGE,
     ogType: 'website',
   }
@@ -359,4 +388,39 @@ export function allRoutes() {
     paths.add(page.path.es)
   }
   return [...paths]
+}
+
+/**
+ * Rutas que existen y se pre-renderizan pero que TODAVÍA no se anuncian: las
+ * que su entrada en PAGES marca con `noindex`.
+ *
+ * Es un estado transitorio, no una categoría. Una ruta está aquí mientras su
+ * contenido se revisa, y **sale de aquí borrando la línea `noindex: true` de su
+ * entrada en PAGES** — no hay una segunda lista que mantener en paralelo.
+ *
+ * Que se derive del mismo campo y no de una lista aparte es deliberado. Dos
+ * listas diciendo lo mismo acaban discrepando, y el día que discrepen o se
+ * anuncia una página que no debía o desaparece del sitemap una que sí. Además
+ * la combinación que evitaría —una página con `noindex` listada en el sitemap—
+ * es contradictoria de por sí: se le pide a un rastreador que visite una URL
+ * para decirle acto seguido que no la indexe.
+ *
+ * Lo que NO hace: excluirlas del pre-renderizado. El HTML se genera igual, y
+ * `scripts/check-seo.mjs` las audita como a cualquier otra. Lo único que cambia
+ * es que no se anuncian.
+ */
+export function unlistedRoutes() {
+  const paths = new Set()
+  for (const page of Object.values(PAGES)) {
+    if (page.noindex !== true) continue
+    paths.add(page.path.en)
+    paths.add(page.path.es)
+  }
+  return [...paths]
+}
+
+/** Las rutas estáticas que SÍ deben aparecer en public/sitemap.xml. */
+export function sitemapRoutes() {
+  const unlisted = new Set(unlistedRoutes())
+  return allRoutes().filter(route => !unlisted.has(route))
 }

@@ -421,6 +421,9 @@
   padding: var(--gap) 0;
   position: relative;
   overflow: hidden;
+  /* La sección es el destino de un ancla y la barra de navegación está fija:
+     sin este margen, el salto deja el encabezado tapado debajo del nav. */
+  scroll-margin-top: var(--nav-h);
 }
 
 .persp-newsletter::before {

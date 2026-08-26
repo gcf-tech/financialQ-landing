@@ -14,13 +14,13 @@
         { "title": "Misión y Visión",    "desc": "El propósito que guía cada decisión" },
         { "title": "Gobernanza Fiduciaria", "desc": "Registro SEC · Formulario ADV" }
       ],
-      "enfoque": [
-        { "title": "Filosofía de Inversión", "desc": "Las 5 convicciones fundamentales" },
-        { "title": "Marco Metodológico",     "desc": "Arquitectura de Capital FinancialQ™" },
-        { "title": "Proceso de Inversión",   "desc": "Marco de cuatro pasos estructurado" },
-        { "title": "Filosofía de Riesgo",    "desc": "Presupuesto explícito multidimensional" }
-        
-      ],
+      "enfoque": {
+        "filosofia":   { "title": "Filosofía de Inversión", "desc": "Las 5 convicciones fundamentales" },
+        "framework":   { "title": "Marco Metodológico",     "desc": "Arquitectura de Capital FinancialQ™" },
+        "proceso":     { "title": "Proceso de Inversión",   "desc": "Marco de cuatro pasos estructurado" },
+        "riesgo":      { "title": "Filosofía de Riesgo",    "desc": "Presupuesto explícito multidimensional" },
+        "presupuesto": { "title": "Presupuesto de Riesgo",  "desc": "Simulador de aportes periódicos" }
+      },
       "clientes": [
         "Profesionales de Altos Ingresos",
         "Empresarios Transfronterizos",
@@ -326,7 +326,8 @@
       "filosofia": "Filosofía de Inversión",
       "framework": "Marco Metodológico",
       "proceso": "Proceso de Inversión",
-      "riesgo": "Filosofía de Riesgo"
+      "riesgo": "Filosofía de Riesgo",
+      "presupuesto": "Presupuesto de Riesgo"
     },
     "filosofia": {
       "kicker": "Nuestro Enfoque — Filosofía de Inversión",
@@ -638,6 +639,113 @@
       "closing": {
         "quote": ["Riesgo intencional.", "Riesgo medido.", "Riesgo alineado."],
         "body": "La diferencia entre un portafolio bien gestionado y uno mal gestionado no siempre es visible en los retornos — se revela en los momentos de estrés del mercado. Nuestra filosofía de riesgo está diseñada para que esos momentos sean manejables, no devastadores."
+      }
+    },
+
+    "riskBudget": {
+      "hero": {
+        "eyebrow": "Presupuesto de Riesgo",
+        "headline": [
+          "Los aportes",
+          "se conocen.",
+          "El rendimiento, no."
+        ],
+        "body": "La herramienta proyecta un calendario de aportes sobre el horizonte y la rentabilidad que usted introduzca. Ninguna de las dos cifras procede de la firma."
+      },
+      "inputs": {
+        "legend": "Sus cifras",
+        "initial": {
+          "label": "¿Cuál es su importe inicial de inversión?",
+          "hint": "Capital con el que empieza la proyección."
+        },
+        "years": {
+          "label": "¿Cuál es el horizonte de su inversión?",
+          "unit": "años",
+          "hint": "Duración de la proyección en años completos."
+        },
+        "rate": {
+          "label": "¿Cuál es su rentabilidad supuesta?",
+          "unit": "% anual",
+          "hint": "Supuesto suyo. La firma no lo produce, no lo sugiere y no lo respalda."
+        },
+        "contribution": {
+          "label": "¿Cuánto aportará adicionalmente?",
+          "hint": "Importe de cada aporte, no el total del año."
+        },
+        "frequency": {
+          "label": "¿Con qué frecuencia aportará?",
+          "options": {
+            "monthly": "Mensual",
+            "quarterly": "Trimestral",
+            "annual": "Anual"
+          }
+        }
+      },
+      "actions": {
+        "calculate": "Calcular"
+      },
+      "errors": {
+        "amount": "Introduzca un importe inicial, un aporte periódico, o ambos."
+      },
+      "summary": {
+        "title": "Al final del periodo",
+        "balance": "Saldo total",
+        "contributed": "Aportación total",
+        "interest": "Interés total"
+      },
+      "baseline": {
+        "title": "Línea base: solo aportes",
+        "body": "La rentabilidad supuesta es cero, así que la tabla y el gráfico muestran únicamente lo aportado. No se supone ningún rendimiento ni se insinúa ninguno.",
+        "cta": "Introduzca arriba un supuesto propio para proyectar rendimiento."
+      },
+      "chart": {
+        "ariaLabel": "Gráfico: saldo total y capital aportado, año a año.",
+        "title": "Saldo total frente al capital aportado",
+        "desc": "Dos líneas a lo largo del horizonte: el saldo total y el capital aportado. Con una rentabilidad supuesta de cero ambas coinciden exactamente. La banda alrededor del saldo ilustra un rango derivado del supuesto, no una probabilidad. Las mismas cifras están en la tabla siguiente.",
+        "axisX": "Horizontal: año",
+        "axisY": "Vertical: importe",
+        "series": {
+          "total": "Saldo total",
+          "paidIn": "Capital aportado",
+          "band": "Rango del supuesto"
+        }
+      },
+      "tooltip": {
+        "year": "Año",
+        "balance": "Saldo total",
+        "principal": "Capital aportado",
+        "interest": "Interés"
+      },
+      "table": {
+        "caption": "Proyección año a año a partir de los datos de arriba. Cifras ilustrativas.",
+        "unit": "USD",
+        "scrollLabel": "Tabla de proyección. Se desplaza en horizontal.",
+        "columns": {
+          "year": "Año",
+          "principal": "Capital inicial",
+          "contributed": "Aportado",
+          "growth": "Interés",
+          "total": "Total"
+        },
+        "closing": "Al cierre"
+      },
+      "assumptions": {
+        "title": "Qué supone esta proyección",
+        "items": [
+          "Capitalización: la rentabilidad supuesta se aplica una vez por cada periodo de aporte.",
+          "Momento del aporte: cada aporte entra al final de su periodo y no capitaliza dentro de él.",
+          "Exclusiones: no se modelan inflación, impuestos ni comisiones. Todas las cifras son nominales y brutas.",
+          "Banda de dispersión: horquilla relativa fija alrededor de la rentabilidad supuesta. Ilustra un rango, no una probabilidad."
+        ]
+      },
+      "closing": {
+        "title": "Una proyección no es un plan",
+        "body": "Esta herramienta ordena aritmética, no decisiones. Un mandato parte del patrimonio, del horizonte y de las restricciones de cada caso, y ninguno de esos tres cabe en cinco campos. Si quiere contrastar lo que ha visto aquí con su situación, hablemos.",
+        "newsletter": "Leer Perspectivas",
+        "contact": "Iniciar una conversación"
+      },
+      "version": {
+        "label": "Versión de los supuestos"
       }
     }
   },

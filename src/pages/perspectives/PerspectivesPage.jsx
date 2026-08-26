@@ -533,7 +533,10 @@ export function PerspectivesPage() {
           </div>
         </div>
 
-        <div className="persp-newsletter">
+        {/* El `id` es el destino de los enlaces que apuntan al boletín desde
+            otras páginas. Hasta ahora solo lo tenían los campos del formulario,
+            así que un enlace a esta sección no aterrizaba en ninguna parte. */}
+        <div className="persp-newsletter" id="newsletter">
           <div className="wrap">
             <div className="persp-nl-inner">
               <div>

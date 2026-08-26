@@ -13,12 +13,19 @@
  */
 
 import { readFileSync, existsSync, readdirSync } from 'node:fs'
-import { dirname, resolve } from 'node:path'
+import { dirname, resolve, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { allRoutes, resolveSeo, postPath, SITE_URL } from '../src/shared/config/seo.js'
+import { allRoutes, sitemapRoutes, unlistedRoutes, resolveSeo, postPath, SITE_URL } from '../src/shared/config/seo.js'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const DIST = resolve(ROOT, 'dist')
+
+/**
+ * Directorio de build a auditar. Por defecto `dist/`, que es lo que produce
+ * `npm run build` y lo que audita `npm run verify`. Se puede apuntar a otro
+ * —`node scripts/check-seo.mjs <dir>`— para pasar la misma auditoría, sin una
+ * sola comprobación distinta, sobre una salida ya renderizada en otro sitio.
+ */
+const DIST = process.argv[2] ? resolve(process.argv[2]) : resolve(ROOT, 'dist')
 const MANIFEST = resolve(ROOT, 'dist-ssr/prerender-manifest.json')
 
 const problems = []
@@ -78,24 +85,50 @@ if (robots && !robots.includes(`Sitemap: ${SITE_URL}/sitemap.xml`)) {
 }
 
 // ------------------------------------------- 2. sitemap.xml vs rutas del build
+/** Rutas dadas de alta que todavía no se anuncian. Vacío en un build normal. */
+const unlisted = new Set(unlistedRoutes())
+
 const sitemap = read('sitemap.xml')
 if (sitemap) {
   const inSitemap = new Set(
     [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
       .map(m => m[1].replace(SITE_URL, '') || '/')
   )
-  // Estáticas del código + artículos realmente generados. Las dos direcciones
-  // se comprueban: una URL de artículo que sobre en el sitemap sería una
-  // promesa de contenido que no existe, y una que falte no se rastrea.
-  const inCode = new Set([...allRoutes(), ...postRoutes.map(p => p.route)])
+  // Lo que DEBE estar listado: las estáticas públicas más los artículos
+  // realmente generados. Las dos direcciones se comprueban: una URL de artículo
+  // que sobre en el sitemap sería una promesa de contenido que no existe, y una
+  // que falte no se rastrea.
+  //
+  // `sitemapRoutes()` y no `allRoutes()`: hay rutas dadas de alta que se
+  // pre-renderizan y se auditan pero que todavía no se anuncian (ver
+  // `unlistedRoutes()` en seo.js). Auditarlas y a la vez no exigirlas en el
+  // sitemap es justo lo que permite publicar el código de una página antes que
+  // su contenido, sin perder la red de seguridad sobre las demás.
+  const expected = new Set([...sitemapRoutes(), ...postRoutes.map(p => p.route)])
+  const before = problems.length
 
-  for (const route of inCode) {
+  for (const route of expected) {
     if (!inSitemap.has(route)) fail(`sitemap.xml no incluye ${route}`)
   }
   for (const loc of inSitemap) {
-    if (!inCode.has(loc)) fail(`sitemap.xml incluye ${loc}, que no se generó`)
+    if (expected.has(loc)) continue
+    // Los dos motivos no son el mismo defecto. Prometer una URL que no se
+    // generó es una promesa vacía; anunciar una que sí existe pero se sirve con
+    // noindex es una contradicción, y hay que deshacerla por un lado o por el
+    // otro. El mensaje tiene que decir cuál de las dos es.
+    fail(unlisted.has(loc)
+      ? `sitemap.xml incluye ${loc}, que se sirve con noindex: sobra en uno de los dos sitios`
+      : `sitemap.xml incluye ${loc}, que no se generó`)
   }
-  ok(`sitemap.xml y build coinciden (${allRoutes().length} estáticas + ${postRoutes.length} de artículo)`)
+
+  // Antes esta línea se emitía siempre, y en un build con rutas descuadradas
+  // salía un «coinciden» junto a los fallos que decían lo contrario.
+  if (problems.length === before) {
+    ok(
+      `sitemap.xml: ${sitemapRoutes().length} rutas estáticas listadas + ` +
+      `${postRoutes.length} de artículo, sin sobras ni faltas`
+    )
+  }
 }
 
 // ------------------------------------------------------ 3. <head> por ruta
@@ -169,8 +202,16 @@ function auditRoute(route, article) {
   return html
 }
 
+// `allRoutes()` y no `sitemapRoutes()`: una ruta que no se anuncia se audita
+// igual que las demás. No estar en el sitemap no la exime de tener su canónica,
+// su juego de hreflang y contenido de verdad en el HTML.
 for (const route of allRoutes()) auditRoute(route, null)
-ok(`${allRoutes().length} rutas estáticas con <head> correcto y contenido estático`)
+ok(
+  `${allRoutes().length} rutas estáticas auditadas con <head> correcto y contenido estático` +
+  (unlisted.size
+    ? ` — ${unlisted.size} de ellas fuera del sitemap a propósito: ${[...unlisted].join(', ')}`
+    : '')
+)
 
 // -------------------------------- 4. Artículos: HTML propio y nada a medias
 /**
@@ -295,4 +336,9 @@ if (problems.length) {
   for (const p of problems) console.error(`  · ${p}`)
   process.exit(1)
 }
-console.log('\n✓ SEO técnico verificado sobre dist/')
+// El directorio se nombra porque ya no siempre es dist/: decir "dist/" cuando
+// se auditó otra cosa convierte un informe correcto en uno engañoso. Si queda
+// fuera del repositorio se escribe entero, que subir por una escalera de «..»
+// no ayuda a nadie a saber qué se auditó.
+const shown = relative(ROOT, DIST)
+console.log(`\n✓ SEO técnico verificado sobre ${!shown || shown.startsWith('..') ? DIST : shown}`)

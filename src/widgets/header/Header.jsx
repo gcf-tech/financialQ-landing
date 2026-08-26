@@ -10,7 +10,7 @@ import logo1x from '../../assets/images/header/logo_financialQ-209w.webp'
 import logo2x from '../../assets/images/header/logo_financialQ-418w.webp'
 
 const SOBRE_SUBS = ['firma', 'mision', 'governance']
-const ENFOQUE_SUBS = ['filosofia', 'framework', 'proceso', 'riesgo']
+const ENFOQUE_SUBS = ['filosofia', 'framework', 'proceso', 'riesgo', 'presupuesto']
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -136,12 +136,19 @@ export function Header() {
               {caret(1)}
             </div>
             <div className="nav-drop wide">
-              {tn.dropdown.enfoque.slice(0, ENFOQUE_SUBS.length).map((item, i) => (
-                <a key={i} className="drop-item" href={href('enfoque', ENFOQUE_SUBS[i])} onClick={onNavClick('enfoque', ENFOQUE_SUBS[i])}>
-                  <span className="drop-title">{item.title}</span>
-                  <span className="drop-desc">{item.desc}</span>
-                </a>
-              ))}
+              {/* Indexado por clave de ruta, no por posición: antes ENFOQUE_SUBS y el
+                  diccionario se emparejaban por índice, y un ítem añadido en uno
+                  solo de los dos desplazaba los enlaces hacia la página
+                  equivocada sin fallar. */}
+              {ENFOQUE_SUBS.map(key => {
+                const item = tn.dropdown.enfoque[key] ?? {}
+                return (
+                  <a key={key} className="drop-item" href={href('enfoque', key)} onClick={onNavClick('enfoque', key)}>
+                    <span className="drop-title">{item.title}</span>
+                    <span className="drop-desc">{item.desc}</span>
+                  </a>
+                )
+              })}
             </div>
           </li>
 

@@ -15,6 +15,9 @@ export const ROUTE_SLUGS = {
     framework: 'framework',
     proceso: 'process',
     riesgo: 'risk',
+    // Mismo slug en los dos idiomas, como `framework` y `governance`: el
+    // segmento que revela el idioma es el de la sección, no el de la subpágina.
+    presupuesto: 'risk-budget',
     clientes: 'clients',
     perspectivas: 'perspectives',
     contacto: 'contact',
@@ -30,6 +33,7 @@ export const ROUTE_SLUGS = {
     framework: 'framework',
     proceso: 'proceso',
     riesgo: 'riesgo',
+    presupuesto: 'risk-budget',
     clientes: 'clientes',
     perspectivas: 'perspectivas',
     contacto: 'contacto',

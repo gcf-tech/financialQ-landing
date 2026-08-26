@@ -14,12 +14,13 @@
         { "title": "Mission and Vision", "desc": "The purpose that guides every decision" },
         { "title": "Fiduciary Governance", "desc": "Form ADV" }
       ],
-      "enfoque": [
-        { "title": "Investment Philosophy",    "desc": "The 5 fundamental convictions" },
-        { "title": "Methodological Framework", "desc": "FinancialQ™ Capital Architecture" },
-        { "title": "Investment Process",       "desc": "Four-step structured framework" },
-        { "title": "Risk Philosophy",          "desc": "Explicit multidimensional budget" }
-      ],
+      "enfoque": {
+        "filosofia":   { "title": "Investment Philosophy",    "desc": "The 5 fundamental convictions" },
+        "framework":   { "title": "Methodological Framework", "desc": "FinancialQ™ Capital Architecture" },
+        "proceso":     { "title": "Investment Process",       "desc": "Four-step structured framework" },
+        "riesgo":      { "title": "Risk Philosophy",          "desc": "Explicit multidimensional budget" },
+        "presupuesto": { "title": "Risk Budget",              "desc": "Periodic contribution simulator" }
+      },
       "clientes": [
         "High-Income Professionals",
         "Cross-Border Entrepreneurs",
@@ -326,7 +327,8 @@
       "filosofia": "Investment Philosophy",
       "framework": "Methodological Framework",
       "proceso": "Investment Process",
-      "riesgo": "Risk Philosophy"
+      "riesgo": "Risk Philosophy",
+      "presupuesto": "Risk Budget"
     },
     "filosofia": {
       "kicker": "Our Approach — Investment Philosophy",
@@ -638,6 +640,113 @@
       "closing": {
         "quote": ["Intentional risk.", "Measured risk.", "Aligned risk."],
         "body": "The difference between a well-managed portfolio and a poorly managed one is not always visible in returns — it appears in moments of market stress. Our risk philosophy is designed so those moments are manageable, not devastating."
+      }
+    },
+
+    "riskBudget": {
+      "hero": {
+        "eyebrow": "Risk Budget",
+        "headline": [
+          "Contributions",
+          "are known.",
+          "Returns are not."
+        ],
+        "body": "The tool projects a contribution schedule over the horizon and the rate of return you enter. Neither figure comes from the firm."
+      },
+      "inputs": {
+        "legend": "Your numbers",
+        "initial": {
+          "label": "What is your initial investment amount?",
+          "hint": "Capital the projection starts from."
+        },
+        "years": {
+          "label": "What is the time period of your investment?",
+          "unit": "years",
+          "hint": "Length of the projection, in whole years."
+        },
+        "rate": {
+          "label": "What's your rate of return?",
+          "unit": "% per year",
+          "hint": "Your assumption. The firm does not produce it, suggest it or endorse it."
+        },
+        "contribution": {
+          "label": "How much extra will you contribute?",
+          "hint": "Amount of each contribution, not the yearly total."
+        },
+        "frequency": {
+          "label": "How often will you contribute?",
+          "options": {
+            "monthly": "Monthly",
+            "quarterly": "Quarterly",
+            "annual": "Annual"
+          }
+        }
+      },
+      "actions": {
+        "calculate": "Calculate"
+      },
+      "errors": {
+        "amount": "Enter an initial amount, a periodic contribution, or both."
+      },
+      "summary": {
+        "title": "At the end of the period",
+        "balance": "Total balance",
+        "contributed": "Total amount contribution",
+        "interest": "Total interest"
+      },
+      "baseline": {
+        "title": "Baseline: contributions only",
+        "body": "The assumed rate is zero, so the table and the chart show only what is paid in. No return is assumed, and none is implied.",
+        "cta": "Enter your own assumption above to project growth."
+      },
+      "chart": {
+        "ariaLabel": "Chart: total balance and principal, year by year.",
+        "title": "Total balance against principal",
+        "desc": "Two lines across the horizon: the total balance and the principal paid in. With an assumed rate of zero the two coincide exactly. The band around the balance illustrates a range derived from the assumption, not a probability. The same figures appear in the table below.",
+        "axisX": "Horizontal: year",
+        "axisY": "Vertical: amount",
+        "series": {
+          "total": "Total balance",
+          "paidIn": "Principal",
+          "band": "Assumption range"
+        }
+      },
+      "tooltip": {
+        "year": "Year",
+        "balance": "Total balance",
+        "principal": "Principal",
+        "interest": "Interest"
+      },
+      "table": {
+        "caption": "Year-by-year projection from the inputs above. Illustrative figures.",
+        "unit": "USD",
+        "scrollLabel": "Projection table. Scrolls horizontally.",
+        "columns": {
+          "year": "Year",
+          "principal": "Initial capital",
+          "contributed": "Contributed",
+          "growth": "Interest",
+          "total": "Total"
+        },
+        "closing": "At close"
+      },
+      "assumptions": {
+        "title": "What this projection assumes",
+        "items": [
+          "Compounding: the assumed rate is applied once per contribution period.",
+          "Contribution timing: each contribution enters at the end of its period and does not compound within it.",
+          "Exclusions: inflation, taxes and fees are not modelled. Every figure is nominal and gross.",
+          "Dispersion band: a fixed relative spread around the assumed rate. It illustrates a range, not a probability."
+        ]
+      },
+      "closing": {
+        "title": "A projection is not a plan",
+        "body": "This tool arranges arithmetic, not decisions. A mandate starts from the assets, the horizon and the constraints of a specific case, and none of those three fits in five fields. If you want to weigh what you have seen here against your own situation, let us talk.",
+        "newsletter": "Read Perspectives",
+        "contact": "Start a conversation"
+      },
+      "version": {
+        "label": "Assumptions version"
       }
     }
   },

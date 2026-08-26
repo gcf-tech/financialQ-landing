@@ -46,6 +46,16 @@ body {
   transition: opacity .8s cubic-bezier(.22, 1, .36, 1), transform .8s cubic-bezier(.22, 1, .36, 1);
 }
 .reveal.in { opacity: 1; transform: translateY(0); }
+
+/* La animación de entrada la dispara JS (shared/lib/useScrollReveal.js: añade
+   .in al entrar en pantalla). Sin JS nadie la añade y el contenido se queda en
+   opacity: 0 — el HTML pre-renderizado se sirve entero pero ilegible. Aquí se
+   salta al estado final cuando el cliente no ejecuta scripts: se ve todo, sin
+   animación, que es lo único que tiene sentido sin JS. */
+@media (scripting: none) {
+  .reveal { opacity: 1; transform: none; }
+}
+
 .d1 { transition-delay: .08s; }
 .d2 { transition-delay: .16s; }
 .d3 { transition-delay: .24s; }
@@ -74,6 +84,10 @@ body {
 .display.lt em { color: rgba(230, 223, 197, .5); }
 
 .body-copy { font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.85; }
+
+/* Se aplica a las celdas de cifras, no al contenedor: los encabezados son
+   texto y no ganan nada con el ancho fijo de los numerales tabulares. */
+.tnum { font-variant-numeric: var(--numeric); }
 
 /* ── Sections ── */
 .section { padding: var(--gap) 0; }
@@ -130,6 +144,20 @@ body {
   max-width: 1200px; margin: 0 auto;
   padding: 0 56px;
   display: flex; gap: 0; overflow-x: auto;
+
+  /* La barra se desplaza desde que hay más subsecciones que ancho —en un móvil
+     estrecho se ve menos de la mitad—, y hasta ahora nada lo insinuaba: los
+     ítems ocultos parecían no existir. Estas dos sombras interiores se
+     desvanecen solas al llegar a cada extremo, sin una línea de JavaScript.
+     Mismo recurso que el contenedor de la tabla del simulador. */
+  background:
+    linear-gradient(to right, var(--white) 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(to right, rgba(255, 255, 255, 0), var(--white) 70%) 100% 0,
+    radial-gradient(farthest-side at 0 50%, rgba(35, 31, 32, var(--op-grid)), rgba(35, 31, 32, 0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(35, 31, 32, var(--op-grid)), rgba(35, 31, 32, 0)) 100% 0;
+  background-repeat: no-repeat;
+  background-size: 40px 100%, 40px 100%, 12px 100%, 12px 100%;
+  background-attachment: local, local, scroll, scroll;
 }
 @media (max-width: 768px) { .subnav-inner { padding: 0 24px; } }
 .snav-link {

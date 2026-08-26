@@ -1,0 +1,36 @@
+{
+  "version": "0.1.0-draft",
+
+  "compounding": "per-contribution-period",
+  "contributionTiming": "end-of-period",
+  "inflation": "not-modelled",
+  "taxes": "not-modelled",
+  "fees": "not-modelled",
+
+  "dispersion": {
+    "model": "relative-rate-spread",
+    "spread": 0.25
+  },
+
+  "format": {
+    "group": ",",
+    "decimal": "."
+  },
+
+  "periodsPerYear": {
+    "monthly": 12,
+    "quarterly": 4,
+    "annual": 1
+  },
+
+  "defaults": {
+    "frequency": "monthly"
+  },
+
+  "limits": {
+    "initial": { "min": 0, "max": 100000000, "step": "any" },
+    "contribution": { "min": 0, "max": 1000000, "step": "any" },
+    "years": { "min": 1, "max": 40, "step": 1 },
+    "annualRatePct": { "min": 0, "max": 20, "step": "any" }
+  }
+}

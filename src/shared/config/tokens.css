@@ -20,4 +20,20 @@
   --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
   --gap: 120px;
   --nav-h: 76px;
+
+  /* Cifras alineadas en columna. Una tabla de proyección se lee en vertical
+     y las cifras proporcionales desalinean los millares de una fila a otra.
+     El subset auto-hospedado de Plus Jakarta Sans trae la feature `tnum`
+     (public/fonts/, ver fonts.css), así que esto no obliga a regenerar nada.
+     `lining-nums` se omite a propósito: la familia tampoco trae `onum`, sus
+     figuras ya son de caja alta y declararlo sería un no-op que sugiere un
+     problema que no existe. */
+  --numeric: tabular-nums;
+
+  /* Opacidad de las capas de un gráfico SVG dibujado a mano: banda de
+     dispersión, retícula y texto secundario. Tres valores fijos en lugar de
+     un rgba() distinto por componente. */
+  --op-band: .12;
+  --op-grid: .18;
+  --op-soft: .55;
 }
