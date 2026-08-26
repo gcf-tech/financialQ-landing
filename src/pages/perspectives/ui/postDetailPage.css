@@ -127,16 +127,11 @@
   color: var(--muted);
 }
 
-.post-detail-original {
-  max-width: 720px;
-  padding-top: 8px;
-  /* Antes cerraba la página con var(--gap): era el último elemento. Ahora
-     el último es el bloque de cierre, así que la separación final la pone
-     él, y aquí solo queda el aire entre el enlace de atribución y la oferta. */
-  padding-bottom: 56px;
-}
-
 .post-detail-original-link {
+  /* Como hijo de un contenedor flex el <a> se convierte en bloque; sin esto
+     ocuparía el ancho de la columna y el subrayado inferior se estiraría con
+     él en vez de ceñirse al texto. */
+  align-self: flex-start;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: .06em;
@@ -164,27 +159,62 @@
   display: inline-block;
 }
 
-/* Bloque de cierre: la oferta de conversación (ui/PostCta.jsx).
-   Va fuera del <article>: no es contenido del artículo, es lo que la firma
-   ofrece después de él. Misma columna de 720px que el cuerpo para que no se
-   lea como un elemento ajeno pegado al final.
+/* Acciones de cierre del artículo: la atribución al original y la oferta de
+   conversación (ui/PostCta.jsx), agrupadas en un solo bloque. Antes eran dos
+   elementos con 56px de aire propio cada uno —112px entre ellos, casi un
+   var(--gap)— y se leían como cosas distintas.
 
-   El botón arranca donde arrancaría un párrafo más del artículo: alineado al
-   texto, no centrado. Para eso el <aside> tiene que SER un .wrap y no ir
+   Va fuera del <article>: la oferta no es contenido del artículo, es lo que la
+   firma ofrece después de él. Misma columna de 720px que el cuerpo para que no
+   se lea como un elemento ajeno pegado al final.
+
+   El bloque arranca donde arrancaría un párrafo más del artículo: alineado al
+   texto, no centrado. Para eso el contenedor tiene que SER un .wrap y no ir
    dentro de uno, igual que .post-detail-body. Anidado no sirve: el .wrap
    exterior ya gastó su padding, así que la columna de 720px del hijo empieza
    56px a la izquierda del texto en escritorio y 24px en móvil, y los dos
    valores cambian en el mismo punto de ruptura. Compensarlo con anchos
    calculados (720 − 112 y 720 − 48) alinea, pero deja dos números que se
    rompen en silencio si alguien toca el padding de .wrap o el ancho de la
-   columna. Reutilizar la clase es lo que se mantiene solo. */
-.post-cta {
+   columna. Reutilizar la clase es lo que se mantiene solo.
+
+   Apilado y no en fila: el ancho del botón depende del nombre propio que lleva
+   dentro y del idioma, así que una fila entraría justa en inglés y necesitaría
+   un punto de ruptura propio para no apretarse. Apilado se comporta igual a
+   cualquier ancho y no hay nada que pueda desbordar. */
+.post-detail-actions {
+  /* Punto único de cambio de la separación interna. Es un valor en píxeles y no
+     una variable global a propósito: tokens.css solo declara --gap (120px), que
+     es ritmo entre secciones y no sirve como separación dentro de un bloque.
+     Vive aquí, y no en :root, porque hoy lo usa un único bloque: sacarlo a
+     global sería abrir una escala de espaciado a medias. */
+  --actions-gap: 24px;
+
   max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--actions-gap);
   /* Separación propia y no heredada de lo anterior: un artículo sin enlace al
-     original no renderiza .post-detail-original, y sin esto el bloque quedaría
-     a 16px del último párrafo, leyéndose como parte del cuerpo. */
+     original no renderiza la atribución, y sin esto el bloque quedaría a 16px
+     del último párrafo, leyéndose como parte del cuerpo. En ese caso el `gap`
+     tampoco deja espaciado huérfano: sin hermano no hay separación que aplicar. */
   padding-top: 56px;
   padding-bottom: var(--gap);
+}
+
+/* Sin enlace al original y sin oferta —el bloque puede no pintar nada si le
+   falta el copy, ver ui/PostCta.jsx— el contenedor quedaría vacío pero seguiría
+   reservando su padding: 176px de aire muerto antes del pie. */
+.post-detail-actions:empty {
+  display: none;
+}
+
+.post-cta {
+  /* Ocupa el ancho de la columna y no el de su contenido: en móvil el botón
+     pasa a display:block (abajo) y toma el ancho de este <aside>. Es lo que
+     hace un hijo de flex por defecto; se escribe para que se note si alguien
+     pone un align-items en el contenedor. */
+  align-self: stretch;
 }
 
 .post-cta-link {

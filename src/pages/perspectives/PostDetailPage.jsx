@@ -110,20 +110,23 @@ export function PostDetailPage() {
             <p className="post-detail-fallback">{c.body}</p>
           )}
         </div>
-
-        {post.href && (
-          <div className="wrap post-detail-original">
-            <a href={post.href} target="_blank" rel="noopener noreferrer" className="post-detail-original-link">
-              {td.viewOriginal} ↗
-            </a>
-          </div>
-        )}
       </article>
 
-      {/* Oferta de cierre. Fuera del <article> a propósito: no es contenido
-          del artículo. Va DESPUÉS del enlace al original de LinkedIn, que es
-          atribución y no una oferta que compita con esta. */}
-      <PostCta slug={post.slug || id} />
+      {/* Acciones de cierre. Fuera del <article> a propósito: la oferta no es
+          contenido del artículo. El enlace al original la acompaña dentro del
+          mismo contenedor para que las dos se lean como un bloque y no como
+          dos elementos sueltos; la separación la pone el contenedor.
+
+          Orden: primero la atribución, después la oferta — la atribución no
+          compite con ella. */}
+      <div className="wrap post-detail-actions reveal">
+        {post.href && (
+          <a href={post.href} target="_blank" rel="noopener noreferrer" className="post-detail-original-link">
+            {td.viewOriginal} ↗
+          </a>
+        )}
+        <PostCta slug={post.slug || id} />
+      </div>
 
       <Footer variant="mini" />
     </div>

@@ -49,8 +49,11 @@ export function PostCta({ slug }) {
     go(instrument.href, null, search)
   }
 
+  // No se posiciona a sí mismo: el ancho de columna, la separación y el reveal
+  // los pone el contenedor de acciones de cierre (PostDetailPage). Reutilizarlo
+  // en otra ruta exige darle uno equivalente.
   return (
-    <aside className="wrap post-cta reveal" data-instrument={instrument.id}>
+    <aside className="post-cta" data-instrument={instrument.id}>
       <a
         className="btn-solid post-cta-link"
         href={href(instrument.href, null, search)}
